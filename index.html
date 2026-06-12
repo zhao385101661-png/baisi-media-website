@@ -561,6 +561,14 @@
     @media (max-width: 48rem) {
       main { padding: 1rem; }
       .gc { padding: 0.75rem; }
+      .media-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      .clock-container { width: min(85vw, 320px) !important; height: min(85vw, 320px) !important; }
+      .clock-item { width: 3.5rem !important; margin-left: -1.75rem !important; }
+      .clock-item .cy { font-size: 0.9rem !important; }
+      .clock-item .ct { font-size: 0.55rem !important; display:none !important; }
+      .partner-grid { grid-template-columns: 1fr !important; }
+      .job-grid { grid-template-columns: 1fr !important; }
+      .g[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
     }
   </style>
 </head>
@@ -655,7 +663,13 @@
   <!-- mobile header -->
   <div class="header-mobile">
     <h2 style="font-family:Inter,sans-serif;font-size:1.5rem;font-weight:700;color:var(--midground);text-transform:uppercase;letter-spacing:0.05rem;"><img src="logo.png" alt="百思传媒" style="height:1.5rem;width:auto;display:block;" /></h2>
-    <button class="btn" style="border:1px solid var(--border-color);padding:0.375rem 0.75rem;" onclick="alert('导航：我们是谁 · 我们能做什么 · 我们做过什么 · 联系我们')">菜单 ↓</button>
+    <button class="btn" style="border:1px solid var(--border-color);padding:0.375rem 0.75rem;" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='flex'?'none':'flex'">菜单 ↓</button>
+    <div style="display:none;flex-direction:column;gap:0.5rem;padding:0.75rem 0;border-top:1px solid var(--border-color);margin-top:0.5rem;">
+      <a href="#about" style="color:var(--midground);text-decoration:none;text-transform:uppercase;letter-spacing:0.1em;font-size:0.85rem;opacity:0.7;">我们是谁</a>
+      <a href="#services" style="color:var(--midground);text-decoration:none;text-transform:uppercase;letter-spacing:0.1em;font-size:0.85rem;opacity:0.7;">我们能做什么</a>
+      <a href="#portfolio" style="color:var(--midground);text-decoration:none;text-transform:uppercase;letter-spacing:0.1em;font-size:0.85rem;opacity:0.7;">我们做过什么</a>
+      <a href="#contact" style="color:var(--midground);text-decoration:none;text-transform:uppercase;letter-spacing:0.1em;font-size:0.85rem;opacity:0.7;">联系我们</a>
+    </div>
   </div>
 
   <!-- ════════════════════════════════════════ -->
@@ -1438,6 +1452,13 @@ document.addEventListener('DOMContentLoaded',function(){
   }, { threshold: 0.3 });
   var tw = document.querySelector('.typewriter-wrap');
   if (tw) twObs.observe(tw);
+  // Mobile clock fix
+  if (window.innerWidth <= 768) {
+    document.querySelectorAll('.clock-item').forEach(function(el) {
+      var t = el.style.transform;
+      el.style.transform = t.replace('translateY(-15rem)', 'translateY(-8rem)');
+    });
+  }
 });
 function typeWriter() {
   var lines = ['用创意内容','赋能每一个IP'];

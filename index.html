@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>百思传媒 — 值得信赖的文化内容IP整合营销集团</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800&family=DM+Mono:wght@400;500&family=Inter:wght@400;700;800&family=Courier+Prime&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --midground: #ffac02;
+      --foreground: #f5f5f5;
+      --background: #170d02;
+      --text-secondary: rgba(255, 172, 2, 0.8);
+      --text-tertiary: rgba(255, 172, 2, 0.65);
+      --border-color: oklab(0.805203 0.0462314 0.163789 / 0.2);
+    }
+
+    html {
+      font-size: clamp(10px, 1vw * 5, 14px);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      font-family: "DM Mono", "Courier New", monospace;
+      background: var(--background);
+      color: var(--midground);
+      text-transform: uppercase;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* ── Background layers (Hermes-style compositing) ── */
+    .bg-layer-dark {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background-color: #170d02;
+      mix-blend-mode: multiply;
+    }
+    .bg-layer-texture {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      mix-blend-mode: difference;
+      opacity: 0.06;
+      overflow: hidden;
+    }
+    .bg-layer-texture img {
+      width: 100%;
+      height: 150%;
+      object-fit: cover;
+      object-position: center;
+      filter: invert(1);
+    }
+    .bg-layer-glow {
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      pointer-events: none;
+      background: radial-gradient(ellipse at 0% 0%, transparent 60%, rgba(255,189,56,0.35) 100%);
+      mix-blend-mode: lighten;
+      opacity: 0.22;
+    }
+    .bg-layer-invert {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      pointer-events: none;
+      background-color: #ffffff;
+      mix-blend-mode: difference;
+    }
+
+    .font-sans { font-family: "Inter", sans-serif; }
+    .font-expanded { font-family: "Barlow Condensed", sans-serif; }
+    .font-mondwest { font-family: "DM Mono", "Courier New", monospace; }
+    .font-courier { font-family: "Courier Prime", "Courier New", monospace; }
+
+    /* ── Scrollbar ── */
+    * { scrollbar-width: thin; scrollbar-color: transparent transparent; }
+    *:hover { scrollbar-color: color-mix(in srgb, var(--midground) 20%, transparent) transparent; }
+    ::-webkit-scrollbar { width: 0.25rem; height: 0.25rem; }
+    ::-webkit-scrollbar-track { display: none; }
+    ::-webkit-scrollbar-thumb { background: transparent; border-radius: 1rem; }
+    *:hover::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--midground) 20%, transparent); }
+
+    /* ── Grid System ── */
+    .g {
+      border-left: 1px solid var(--border-color);
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    .g:last-child { border-bottom: 1px solid var(--border-color); }
+    .g:first-child,
+    .g + .g > .gc,
+    .g > .g { border-top: 1px solid var(--border-color); }
+    .g .g { border-left: 0; }
+    .g:not(:last-child) .gc:last-child { border-bottom: 0; }
+
+    .gc {
+      border-right: 1px solid var(--border-color);
+      min-width: 0;
+      padding: 1rem;
+    }
+    .gc:has(> .gc) { padding: 0; }
+    .gc:has(> .gc) > .gc { border-right: 0; }
+    .gc:has(> .gc) > .gc:not(:first-child) { border-top: 1px solid var(--border-color); }
+    .gc:has(> .gc) > .gc:last-child { border-bottom: 0; }
+
+    /* responsive grid */
+    @media (min-width: 40rem) {
+      .g:has(> .gc:nth-child(2)) { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 64rem) {
+      .g:has(> .gc:nth-child(3)) { grid-template-columns: repeat(3, 1fr); }
+      .g:has(> .gc:nth-child(4)) { grid-template-columns: repeat(4, 1fr); }
+      .g:has(> .gc:nth-child(5)) { grid-template-columns: repeat(5, 1fr); }
+      .g:has(> .gc:nth-child(6)) { grid-template-columns: repeat(6, 1fr); }
+    }
+
+    .col-span-full { grid-column: 1 / -1; }
+    @media (min-width: 64rem) {
+      .lg\\:col-span-1 { grid-column: span 1 / span 1; }
+    }
+    .order-none { order: 0; }
+
+    /* ── Main container ── */
+    main {
+      position: relative;
+      z-index: 200;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* ── Header ── */
+    header.g {
+      border-top: 1px solid var(--border-color);
+    }
+    .header-logo {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    .header-logo h2 {
+      font-family: "Inter", sans-serif;
+      font-size: 2.625rem;
+      line-height: 1;
+      letter-spacing: 0.0525rem;
+      font-weight: 700;
+      color: var(--midground);
+      text-transform: uppercase;
+    }
+    .header-logo h2 small {
+      font-family: "DM Mono", "Courier New", monospace;
+      font-size: 0.9375rem;
+      letter-spacing: 0.1875rem;
+      font-weight: 400;
+      display: block;
+    }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .header-nav a {
+      font-size: 0.9375rem;
+      letter-spacing: 0.1875rem;
+      color: var(--midground);
+      text-decoration: none;
+      text-transform: uppercase;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+    .header-nav a:hover { opacity: 1; }
+    .header-social {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-left: 0.75rem;
+    }
+    .header-social a {
+      opacity: 0.6;
+      transition: opacity 0.2s;
+      font-size: 0.9375rem;
+      letter-spacing: 0.1875rem;
+      color: var(--midground);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .header-social a:hover { opacity: 1; }
+
+    /* mobile header */
+    .header-mobile {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid var(--border-color);
+      padding: 1rem;
+    }
+    @media (max-width: 63.999rem) {
+      .header-desktop { display: none; }
+      .header-mobile { display: flex; }
+    }
+
+    /* ── Hero ── */
+    .hero-gc {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+    @media (min-width: 48rem) {
+      .hero-gc { padding: 6rem 1rem; }
+    }
+
+    .hero-subtitle {
+      font-family: "DM Mono", "Courier New", monospace;
+      font-size: 0.9375rem;
+      letter-spacing: 0.1875rem;
+      opacity: 0.5;
+    }
+
+    .hero-title {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--midground);
+    }
+
+    .hero-desc {
+      font-family: "DM Mono", "Courier New", monospace;
+      font-size: 1.125rem;
+      line-height: 1.625;
+      text-transform: none;
+      opacity: 0.6;
+      max-width: 40rem;
+      color: var(--midground);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      padding: 0.375rem 0.75rem;
+      font-family: "DM Mono", "Courier New", monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      text-decoration: none;
+      color: var(--midground);
+    }
+    .btn::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--midground);
+    }
+    .btn-inactive {
+      color: var(--text-secondary);
+    }
+    .btn-inactive::after { background: var(--text-secondary); }
+    .btn-inactive:hover {
+      color: var(--midground);
+    }
+    .btn-inactive:hover::after { background: var(--midground); }
+
+    /* Copy button */
+    .btn-copy {
+      font-family: "Courier Prime", "Courier New", monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s;
+    }
+    .btn-copy:hover { color: var(--midground); }
+
+    /* Code block */
+    code {
+      font-family: "Courier Prime", monospace;
+      font-size: 0.875rem;
+      background: var(--midground);
+      color: #1a0e00;
+      text-transform: lowercase;
+      padding: 0 0.25rem;
+      border-radius: 0.25rem;
+      word-break: break-all;
+    }
+
+    /* ── Section Labels ── */
+    .section-label {
+      font-family: "DM Mono", "Courier New", monospace;
+      font-size: 0.9375rem;
+      letter-spacing: 0.1875rem;
+      opacity: 0.5;
+    }
+    .section-heading {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      letter-spacing: 0.1875rem;
+    }
+
+    /* ── Feature Cards ── */
+    .feature-title {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      letter-spacing: 0.1875rem;
+      margin-bottom: 0.5rem;
+    }
+    .feature-desc {
+      font-family: "DM Mono", "Courier New", monospace;
+      font-size: 1.0625rem;
+      line-height: 1.625;
+      text-transform: none;
+      opacity: 0.6;
+    }
+
+    /* ── About text ── */
+    .about-text {
+      font-family: "DM Mono", "Courier New", monospace;
+      font-size: 1rem;
+      line-height: 1.625;
+      text-transform: none;
+      opacity: 0.6;
+    }
+    .about-text p { margin-bottom: 1rem; }
+
+    /* ── Stat card ── */
+    .stat-number {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: "DM Mono", "Courier New", monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      opacity: 0.6;
+      margin-top: 0.25rem;
+    }
+
+    /* ── Service card ── */
+    .service-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .service-card .feature-title { margin-bottom: 0.25rem; }
+
+    /* ── Portfolio ── */
+    .portfolio-tag {
+      font-family: "Courier Prime", "Courier New", monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      opacity: 0.65;
+      margin-bottom: 0.25rem;
+    }
+    .portfolio-name {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    .portfolio-desc {
+      font-family: "DM Mono", "Courier New", monospace;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      text-transform: none;
+      opacity: 0.6;
+    }
+    .case-hidden { display: none; }
+
+    /* ── Contact ── */
+    .contact-label {
+      font-family: "Courier Prime", "Courier New", monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      opacity: 0.65;
+      margin-bottom: 0.1rem;
+    }
+    .contact-value {
+      font-family: "DM Mono", "Courier New", monospace;
+      font-size: 0.9375rem;
+      letter-spacing: 0.05em;
+      text-transform: none;
+    }
+    .contact-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    /* ── MORE DETAILS button ── */
+    .btn-more {
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      gap: 0.5rem;
+      border: none;
+      background: transparent;
+      font-family: "DM Mono", "Courier New", monospace;
+      font-size: 0.9375rem;
+      letter-spacing: 0.1875rem;
+      text-transform: uppercase;
+      color: var(--midground);
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .btn-more:hover { opacity: 1; }
+
+    /* ── Footer ── */
+    footer.g {
+      border-bottom: 1px solid var(--border-color);
+      font-family: "DM Mono", "Courier New", monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+    }
+    footer a {
+      color: var(--midground);
+      text-decoration: none;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+    footer a:hover { opacity: 1; }
+
+    /* ── Form ── */
+    .form-input {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--midground);
+      font-family: "DM Mono", "Courier New", monospace;
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+      text-transform: none;
+    }
+    .form-input:focus { outline: none; border-color: var(--midground); }
+    .form-label {
+      font-family: "Courier Prime", "Courier New", monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      opacity: 0.65;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+    .form-textarea {
+      min-height: 4rem;
+      resize: vertical;
+    }
+
+    /* ── Decorative dots ── */
+    .dot-full { display: inline-block; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--midground); }
+    .dot-mid { display: inline-block; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: color-mix(in srgb, var(--midground) 60%, transparent); }
+    .dot-dim { display: inline-block; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: color-mix(in srgb, var(--midground) 30%, transparent); }
+
+    /* ── Blink cursor ── */
+    .blink {
+      display: inline-block;
+      animation: blink-anim 1s step-end infinite;
+    }
+    @keyframes blink-anim {
+      50% { opacity: 0; }
+    }
+
+    @media (max-width: 48rem) {
+      main { padding: 1rem; }
+      .gc { padding: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════ Background layers (Hermes-style compositing) ═══════ -->
+<div class="bg-layer-dark" aria-hidden="true"></div>
+<div class="bg-layer-texture" aria-hidden="true">
+  <img src="filler-bg02.png" alt="" />
+</div>
+<div class="bg-layer-glow" aria-hidden="true"></div>
+<div class="bg-layer-invert" aria-hidden="true"></div>
+
+<main>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- HEADER -->
+  <!-- ════════════════════════════════════════ -->
+  <header class="g header-desktop">
+    <div class="gc header-logo">
+      <h2>百思<br>传媒</h2>
+      <div class="header-nav">
+        <a href="#about">我们是谁</a>
+        <a href="#services">我们能做什么</a>
+        <a href="#portfolio">我们做过什么</a>
+        <a href="#contact">联系我们</a>
+        <span class="header-social">
+          <a href="#">微信</a>
+          <a href="#">小红书</a>
+          <a href="#">抖音</a>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- mobile header -->
+  <div class="header-mobile">
+    <h2 style="font-family:Inter,sans-serif;font-size:1.5rem;font-weight:700;color:var(--midground);text-transform:uppercase;letter-spacing:0.05rem;">百思传媒</h2>
+    <button class="btn" style="border:1px solid var(--border-color);padding:0.375rem 0.75rem;" onclick="alert('导航：我们是谁 · 我们能做什么 · 我们做过什么 · 联系我们')">菜单 ↓</button>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- HERO SECTION -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="g">
+    <div class="gc hero-gc">
+      <small class="hero-subtitle">文化内容IP整合营销</small>
+
+      <div class="hero-title">
+        用创意内容<br>赋能每一个IP
+      </div>
+
+      <p class="hero-desc">
+        百思传媒 — 国内领先的文化内容IP整合营销集团。<br>
+        成立于2011年，400人专业团队，专注于影视文娱<br>
+        及文化产业内容营销，值得您信赖的文化内容IP整合营销服务团队。
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contact" class="btn">与我们合作 →</a>
+        <a href="#portfolio" class="btn btn-inactive">查看案例</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- INSTALL / CODE DEMO SECTION -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="g">
+    <div class="gc hero-gc" style="padding-top:2rem;padding-bottom:2rem;">
+      <small class="hero-subtitle">快速了解我们</small>
+
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;justify-content:center;">
+        <span class="btn" id="tab-about" style="cursor:pointer;" onclick="showTab('about')">公司简介</span>
+        <span class="btn btn-inactive" id="tab-services" style="cursor:pointer;" onclick="showTab('services')">服务范围</span>
+      </div>
+
+      <div style="font-family:'Courier Prime',monospace;font-size:0.875rem;background:var(--midground);color:var(--foreground);text-transform:lowercase;padding:1rem 1.25rem;border-radius:0.25rem;word-break:break-all;max-width:100%;text-align:left;width:100%;max-width:32rem;">
+        <div id="demo-about">
+          $ 百思传媒 · 公司简介<br>
+          <br>
+          <span style="text-transform:none;">成立于 2011 年 · 北京<br>
+          专注影视文娱及文化产业内容营销<br>
+          超200个影视IP · 近50个一线品牌客户<br>
+          三大事业群 · 400人专业团队</span>
+        </div>
+        <div id="demo-services" style="display:none;">
+          $ 我们能做什么<br>
+          <br>
+          <span style="text-transform:none;">TOP剧综整合营销 · 文娱新媒体矩阵<br>
+          娱乐数字效果营销 · 艺人经纪商务<br>
+          IP&品牌企划赋能 · 新媒体整合营销</span>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:0.25rem;align-items:center;">
+        <span class="dot-full"></span>
+        <span class="dot-mid"></span>
+        <span class="dot-dim"></span>
+      </div>
+
+      <div style="display:flex;gap:0.25rem;align-items:center;font-family:'Courier Prime','Courier New',monospace;font-size:0.75rem;letter-spacing:0.1em;opacity:0.65;">
+        <span>互动展示</span>
+        <span class="blink" style="width:1ch;height:1em;background:var(--midground);margin-left:0.125rem;">&nbsp;</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- ABOUT / STATS -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="g" id="about">
+    <div class="gc hero-gc" style="padding-bottom:1rem;">
+      <small class="hero-subtitle">✦ 关于百思</small>
+      <div class="hero-title" style="font-size:clamp(1.5rem,4vw,3rem);">深耕影视文娱营销13年</div>
+      <p class="hero-desc" style="max-width:50rem;">
+        百思传媒成立于2011年，13年潜心行业探索，团队规模近400人，专注于影视文娱及文化产业内容营销，是国内该领域专业领先且极具规模效应的IP整合营销集团。
+      </p>
+    </div>
+  </div>
+
+  <div class="g">
+    <div class="gc about-text">
+      <p>百思传媒成立于2011年11月11日，至今已为超200个影视IP、近50个知名一线品牌提供企划咨询、全案营销传播、跨界联合服务，同时为国内优质IP提供全价值链的深度企划咨询。</p>
+      <p>百思旗下设三大事业群：娱乐整合营销事业群、文娱产经新媒体事业群、IP&品牌企划与赋能事业群。以创新为驱动力，连环创业，以领先思维、前瞻布局影视娱乐营销业务，不断围绕影视娱乐产业进行升级。</p>
+      <p>合伙人及高管团队均来自top10、4A广告及公关公司、专业的娱乐营销公司。百思初创时期就在行业内率先以"合伙人模式"建设核心团队，现吸纳近30位优秀合伙人及公司管理层。拥有近400人的专业团队，与头部出品公司、优势播出平台等达成战略合作。</p>
+      <p>自营"烹小鲜"自媒体矩阵创立于2014年，是国内最早建立的跨微博、微信、短视频的综合性娱乐影视自媒体矩阵，旗下有"烹小鲜"、"娱乐新观察"、"导演帮"等知名品牌。</p>
+    </div>
+    <div class="gc" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:1rem;">
+      <div style="text-align:center;">
+        <div class="stat-number">400</div>
+        <div class="stat-label">专业团队</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="stat-number">200+</div>
+        <div class="stat-label">服务影视IP</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="stat-number">3000+</div>
+        <div class="stat-label">剧集打造</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">一线品牌客户</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- SERVICES / FEATURES -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="g" id="services">
+    <div class="gc hero-gc" style="padding-bottom:1rem;">
+      <small class="hero-subtitle">✦ 我们能做什么</small>
+      <div class="hero-title" style="font-size:clamp(1.5rem,4vw,3rem);">三大事业群 · 全链路整合营销</div>
+      <p class="hero-desc" style="max-width:50rem;">
+        百思传媒旗下设三大事业群，覆盖从影视内容营销到新媒体传播到IP赋能的完整服务链条。
+      </p>
+    </div>
+  </div>
+
+  <div class="g">
+    <div class="gc service-card">
+      <div class="service-icon">🎬</div>
+      <div class="feature-title">TOP剧综整合营销</div>
+      <p class="feature-desc">头部剧集、电影、综艺、纪录片的全案营销。从策略策划到执行落地，打破单一平台模式，全网整合资源，3000+集头部剧集打造经验。</p>
+    </div>
+    <div class="gc service-card">
+      <div class="service-icon">📱</div>
+      <div class="feature-title">文娱新媒体事业群</div>
+      <p class="feature-desc">自营"烹小鲜"等50+微信自媒体矩阵，2000+影视娱乐行业自媒体代理资源，签约700+KOL，覆盖9亿互联网用户，月度100亿+阅读。</p>
+    </div>
+    <div class="gc service-card">
+      <div class="service-icon">🧠</div>
+      <div class="feature-title">IP&品牌企划赋能</div>
+      <p class="feature-desc">为文娱内容IP、文旅IP、个人IP提供孵化打造运营及衍生商业化运营。从0到1打造IP，品牌+泛娱乐内容营销，跨界品牌定位与战略咨询。</p>
+    </div>
+    <div class="gc service-card">
+      <div class="service-icon">📊</div>
+      <div class="feature-title">娱乐数字效果营销</div>
+      <p class="feature-desc">针对分账剧、自制剧、腰部剧集的数字化营销。依托烹小鲜联盟强大新媒体资源，数字化思维保障剧集有效播放量，对营销转化效果负责。</p>
+    </div>
+    <div class="gc service-card">
+      <div class="service-icon">🎭</div>
+      <div class="feature-title">艺人经纪商务宣传</div>
+      <p class="feature-desc">依托百思11年行业资源，3000集头部剧集打造经验，代理艺人商务经纪业务、艺人形象包装宣传等业务，为艺人提供全维度的定制化服务。</p>
+    </div>
+    <div class="gc service-card">
+      <div class="service-icon">🌐</div>
+      <div class="feature-title">新媒体整合营销</div>
+      <p class="feature-desc">烹小鲜微博娱乐矩阵、微信娱乐号矩阵、抖快娱乐号矩阵，年框服务、内容策划、精准触达。官方微博/抖音代运营、短视频策划制作等一站式服务。</p>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- SEE IT IN ACTION / DEMO AREA -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="g">
+    <div class="gc col-span-full lg:col-span-1 hero-gc" style="padding-top:3rem;padding-bottom:3rem;">
+      <div class="section-heading">精选案例</div>
+      <div style="width:100%;max-width:32rem;font-family:'Courier Prime',monospace;font-size:0.875rem;background:var(--midground);color:var(--foreground);text-transform:lowercase;padding:1rem 1.25rem;border-radius:0.25rem;text-align:left;">
+        <div style="text-transform:none;">
+          <span style="opacity:0.6;">部分影视案例展示 ↓</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- PORTFOLIO -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="g" id="portfolio">
+    <div class="gc hero-gc" style="padding-bottom:1rem;">
+      <small class="hero-subtitle">✦ 我们做过什么</small>
+      <div class="hero-title" style="font-size:clamp(1.5rem,4vw,3rem);">服务200+头部影视IP</div>
+      <p class="hero-desc" style="max-width:50rem;">
+        从《繁花》到《山花烂漫时》，从《玫瑰的故事》到《漫长的季节》，百思传媒用专业的内容营销能力助力每一部好作品发光。
+      </p>
+    </div>
+  </div>
+
+  <div class="g" id="cases-container">
+    <!-- ═══ 前6个案例（默认显示） ═══ -->
+    <div class="gc case-item">
+      <div class="portfolio-tag">电视剧 · 豆瓣评分近五年TOP1</div>
+      <div class="portfolio-name">《山花烂漫时》整合营销传播</div>
+      <p class="portfolio-desc">根据张桂梅校长真实事迹改编。CVB收视率2.897%，同时段全国TOP1；豆瓣评分近五年TOP1；斩获微博热搜731个，抖音主话题播放量32亿+。</p>
+    </div>
+    <div class="gc case-item">
+      <div class="portfolio-tag">电视剧 · 全网热搜1329个</div>
+      <div class="portfolio-name">《凡人歌》全案营销</div>
+      <p class="portfolio-desc">CVB黄金时段收视率单日最高1.718%，15天酷云TOP1；#电视剧凡人歌#抖音播放量54亿次+，相关话题总播放量105亿次+。</p>
+    </div>
+    <div class="gc case-item">
+      <div class="portfolio-tag">电视剧 · 全民热追</div>
+      <div class="portfolio-name">《玫瑰的故事》整合营销</div>
+      <p class="portfolio-desc">CVB单日最高1.844%，全国第一；小红书主话题浏览量31.9亿，衍生话题"黄亦玫同款穿搭"、"方协文北京有谁在"等出圈热议。</p>
+    </div>
+    <div class="gc case-item">
+      <div class="portfolio-tag">电视剧 · 2024首部破万谍战剧</div>
+      <div class="portfolio-name">《追风者》全案营销</div>
+      <p class="portfolio-desc">爱奇艺首部破万谍战剧，弹幕互动总量TOP1；豆瓣评分7.8；微博主话题阅读量28.1亿；上宣媒体10余家、大众媒体91余家联合发声。</p>
+    </div>
+    <div class="gc case-item">
+      <div class="portfolio-tag">电视剧 · 腾讯视频热度纪录</div>
+      <div class="portfolio-name">《繁花》整合营销传播</div>
+      <p class="portfolio-desc">腾讯视频非古装热度最高纪录，站内热度最高31129；微博热搜热榜总计2922+；相关话题阅读量102.84亿；豆瓣6.5万人打出8.4分。</p>
+    </div>
+    <div class="gc case-item">
+      <div class="portfolio-tag">网剧 · 豆瓣9.5封神</div>
+      <div class="portfolio-name">《漫长的季节》口碑营销</div>
+      <p class="portfolio-desc">腾讯X剧场首发剧集，豆瓣9.5破纪录；全网热搜热榜1180+个；短视频主话题播放量27.1亿；横跨11城出租车线下应援。</p>
+    </div>
+
+    <!-- ═══ 更多案例（初始隐藏，点击分批加载） ═══ -->
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">电视剧 · 献礼二十大重点作品</div>
+      <div class="portfolio-name">《县委大院》全案营销</div>
+      <p class="portfolio-desc">首部基层干部"行业剧"；CVB集均综合收视率1.941%；微博热搜117个；抖音主话题播放量超25.8亿；与学习强国、考公类APP跨界合作。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">电视剧 · CVB收视领跑</div>
+      <div class="portfolio-name">《追光的日子》口碑营销</div>
+      <p class="portfolio-desc">青春成长励志剧，登陆CCTV-1&CCTV-8黄金时间；酷云实时收视率1.549%；微博热搜575+；豆瓣开分8.4。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">电视剧 · 优酷历史剧第一</div>
+      <div class="portfolio-name">《山河月明》史实剧营销</div>
+      <p class="portfolio-desc">展现明朝永乐大帝辉煌一生的史实剧集；优酷站内历史剧热度榜第一名，最高热度9663；酷云电视直播收视率最高达1.3839%，累计24日TOP1。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">网剧 · 豆瓣开分8.4</div>
+      <div class="portfolio-name">《风吹半夏》口碑营销</div>
+      <p class="portfolio-desc">赵丽颖转型力作，爱奇艺热度值最高10263；微博热搜1896个；主话题阅读量56.2亿+；抖音相关话题总播放量达118亿+。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">网剧 · 微博话题150亿+</div>
+      <div class="portfolio-name">《梦华录》全案整合营销</div>
+      <p class="portfolio-desc">腾讯S+古装剧，刘亦菲重回小荧屏之作；豆瓣2022年国产古装剧最高分；微博主话题阅读量150亿+；上线首周播放量破10亿。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">网剧 · 腾讯播放量22亿</div>
+      <div class="portfolio-name">《开端》全民热议传播</div>
+      <p class="portfolio-desc">"时间循环"概念垂直打透；腾讯视频播放量突破22亿；微博热搜总榜251次；豆瓣超71万人打分，开分8.2。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">电视剧 · 现偶爆款</div>
+      <div class="portfolio-name">《以爱为营》口碑逆转传播</div>
+      <p class="portfolio-desc">舆情崩盘到口碑逆转，实时转变传播策略；1200+话题登微博主榜；CSM35城平均收视率1.414%；小红书话题浏览量10.7亿+。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">网剧 · 2023暑期第一高分喜剧</div>
+      <div class="portfolio-name">《鹊刀门传奇》内容营销</div>
+      <p class="portfolio-desc">赵本山主演，情怀蓄水+喜剧内容出圈；抖音主话题阅读量21.4亿+；"爱海儿"原声使用人群破4.4万人次；短视频爆款频出。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">网剧 · 爱奇艺热度峰值9057</div>
+      <div class="portfolio-name">《浮图缘》沉浸式营销</div>
+      <p class="portfolio-desc">爱奇艺播前预约量达350w+，热度峰值9057；狂揽微博热搜2000+；#浮图缘#主话题阅读量破63.5亿+；豆瓣开分7.3。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">综艺 · 收视12连冠</div>
+      <div class="portfolio-name">《你好，星期六》整合营销</div>
+      <p class="portfolio-desc">湖南卫视周六黄金档棚内热播综艺；全网热搜2000+，微博热搜1400+；主话题阅读量170亿；美兰德、骨朵等多榜蝉联TOP1。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">综艺 · 豆瓣开分8.4</div>
+      <div class="portfolio-name">《时光音乐会》第二季营销</div>
+      <p class="portfolio-desc">依托艺人真实人生体验，彰显治愈能量；全网热搜1125+；微博话题阅读总量258亿+；与人民日报联合推出#来听春天的音乐会#。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">综艺 · 12期连冠</div>
+      <div class="portfolio-name">《中餐厅》第六季传播</div>
+      <p class="portfolio-desc">12期节目全网热搜1494+；CVB、欢网、酷云等多次收视排名第一；微博主话题阅读量新增37.2亿+；抖音主话题阅读量47.4亿+。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">综艺 · 青年共创音乐竞演</div>
+      <div class="portfolio-name">《青年π计划》整合营销</div>
+      <p class="portfolio-desc">湖南卫视与芒果TV双平台制作；全网总热搜600+，微博热搜350+；主话题阅读量近8亿，相关话题阅读总量超35亿。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">综艺 · 00后成长纪实</div>
+      <div class="portfolio-name">《100道光芒》整合传播</div>
+      <p class="portfolio-desc">湖南卫视、芒果TV和小芒电商联合推出；芒果TV累计播放6.77亿；#汪涵面试何炅#登微博主榜TOP1；#00后发朋友圈吐槽公司被开除#TOP1。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">综艺 · 收视12连冠</div>
+      <div class="portfolio-name">《牧野家族》实验真人秀</div>
+      <p class="portfolio-desc">明星情侣+单身艺人乡间生活实验；节目收视12连冠；微博话题上榜253次；全网累计播放量达13.72亿；联动电影派、浪潮工作室等公众号深度解读。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">综艺 · 民歌音乐节目</div>
+      <div class="portfolio-name">《春天花会开》整合营销</div>
+      <p class="portfolio-desc">湖南卫视原创民歌音乐节目；微博话题上榜204次，主榜热搜33个；抖音主话题播放总量6.9亿；《人民日报》主版、《光明日报》主版整版面点赞。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">综艺 · 乡村振兴正能量</div>
+      <div class="portfolio-name">《云上的小店》传播营销</div>
+      <p class="portfolio-desc">用劳动创造美好，助力乡村振兴"云上"；节目收视12连冠；全网热搜150+；主话题阅读量6.7亿。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">综艺 · 全民互动欢唱</div>
+      <div class="portfolio-name">《欢唱大篷车》整合营销</div>
+      <p class="portfolio-desc">打造全民互动欢唱类节目形象；节目收视12连冠；#辞职去大理的人现在都过得怎么样了#登微博热搜主榜TOP1，阅读达4.9亿+。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">综艺 · 骨朵热度榜TOP1</div>
+      <div class="portfolio-name">《牛气满满的哥哥》传播</div>
+      <p class="portfolio-desc">收视12连冠；骨朵综艺热度排行榜top1累计在榜11天；热搜348+强势霸榜；相关话题总阅读量48亿+。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">综艺 · 脱口秀标杆</div>
+      <div class="portfolio-name">《吐槽大会》第五季营销</div>
+      <p class="portfolio-desc">全平台热搜204个；子话题累计阅读量超150亿；主话题阅读量88.3亿；知乎、抖音、小红书、虎扑、微信实现热度全开，全面超越前三季。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 3C品类第一虚拟偶像</div>
+      <div class="portfolio-name">华硕"天选姬"IP企划运营</div>
+      <p class="portfolio-desc">从0到1打造国风X科技二次元品牌IP——天选姬。1年运营完成从黑马到王者的逆袭，社区活跃粉丝占比95.86%，上榜元宇宙服务爆赞榜。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 电影跨界合作</div>
+      <div class="portfolio-name">《樱桃小丸子》异业合作</div>
+      <p class="portfolio-desc">为影片促成13家异业合作品牌助力宣发，包括全时便利店、中石油加油站、华住酒店、COSTA咖啡等，推广期媒体曝光量超20亿次。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 品牌联名</div>
+      <div class="portfolio-name">小罐茶×《邪不压正》联名</div>
+      <p class="portfolio-desc">#喝小罐茶看邪不压正#等微博话题总阅读量达589万；多渠道发布稿件共计40篇；抖音KOL参与活动总阅读量超40.3万。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 沉浸式社区</div>
+      <div class="portfolio-name">《欢乐颂3》欢乐ZONE社区</div>
+      <p class="portfolio-desc">打造线上沉浸式体验社区，两日社区访问量突破6.4万；三大欢乐品牌节持续增加用户粘性，欢乐ZONE社区总访问量达10万+。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 场景化营销</div>
+      <div class="portfolio-name">《这！就是铁甲》×DQ主题店</div>
+      <p class="portfolio-desc">DQ全国280家主流店铺设置进店扫码领会员；打造"战斗仓"主题店，定制铁甲系列周边产品捆绑销售，视觉听觉整体烘托主题氛围。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 短视频矩阵</div>
+      <div class="portfolio-name">QJMOTOR短视频矩阵运营</div>
+      <p class="portfolio-desc">设计统一高辨识度视觉抓取；内容质感原生亲切接地气；极致化挖掘产品品牌价值，场景代入情感价值，技术流硬核操作知识价值。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 国风二次元</div>
+      <div class="portfolio-name">腾讯音乐×古北水镇红叶祭</div>
+      <p class="portfolio-desc">官微+KOL+演出艺人活动预热；线下次元国风音乐快闪SHOW；打造国风+二次元的视觉听觉盛宴，激发用户"情绪爆发"，成功破圈！</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 文旅小镇</div>
+      <div class="portfolio-name">浙江上虞e游小镇嘉年华</div>
+      <p class="portfolio-desc">结合小镇特色企划次元跑活动；首发小镇官方主题曲《此间少年》；联合国内顶级IP和瑞丽集团及游戏公司，共同打造游戏/国风/时尚跨界T台show。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 剧中同款脱销</div>
+      <div class="portfolio-name">《江河水》×刘伶醉商植合作</div>
+      <p class="portfolio-desc">「刘伶醉」深度植入江苏卫视献礼大剧《江河水》，推出剧中同款纪念酒，深度情节植入带动产品脱销。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 衍生合作</div>
+      <div class="portfolio-name">《琅琊榜之风起长林》衍生合作</div>
+      <p class="portfolio-desc">深度开发头部IP衍生价值，提供从内容策划到商业化的全链路衍生合作服务。</p>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- LOAD MORE BUTTON -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="g">
+    <div class="gc hero-gc" style="padding-top:1rem;padding-bottom:1rem;flex-direction:row;">
+      <button class="btn-more" id="load-more-btn">  
+        加载更多案例 ↓
+      </button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- CLOSE BUTTON -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="g" style="display:none;" id="close-case-row">
+    <div class="gc hero-gc" style="padding-top:0.5rem;padding-bottom:1.5rem;flex-direction:row;">
+      <button class="btn-more" id="close-cases-btn" onclick="closeExtraCases()" style="opacity:0.6;">
+        收起案例 ↑
+      </button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- FEATURES GRID (secondary feature row) -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="g">
+    <div class="gc hero-gc" style="padding-bottom:1rem;">
+      <small class="hero-subtitle">✦ 百思优势</small>
+      <div class="hero-title" style="font-size:clamp(1.5rem,4vw,3rem);">为什么选择百思</div>
+    </div>
+  </div>
+
+  <div class="g">
+    <div class="gc">
+      <div class="feature-title">13年深耕行业</div>
+      <p class="feature-desc">成立于2011年，国内最早重度垂直于影视娱乐营销的企业，具有先发优势，在快速成长过程中形成了近400人的专业团队。</p>
+    </div>
+    <div class="gc">
+      <div class="feature-title">专业力与创新力</div>
+      <p class="feature-desc">合伙人及高管团队均来自top10、4A广告及公关公司，专业且经验丰富。持续以创新为驱动力，连环创业，前瞻布局。</p>
+    </div>
+    <div class="gc">
+      <div class="feature-title">蜂巢合伙人机制</div>
+      <p class="feature-desc">行业内率先以"合伙人模式"建设核心团队，吸纳近30位优秀合伙人及公司管理层，稳定及持续创业孵化。</p>
+    </div>
+    <div class="gc">
+      <div class="feature-title">全链路服务能力</div>
+      <p class="feature-desc">三大事业群覆盖从影视营销到新媒体矩阵到IP赋能的完整链条，200+影视IP服务经验，3000+集头部剧集打造经验。</p>
+    </div>
+    <div class="gc">
+      <div class="feature-title">新媒体资源矩阵</div>
+      <p class="feature-desc">自营50+微信自媒体矩阵，700+签约KOL，抖音粉丝2400W+，微信粉丝1200W+，月度100亿+阅读，5000+次上热门。</p>
+    </div>
+    <div class="gc">
+      <div class="feature-title">备受信任的品牌形象</div>
+      <p class="feature-desc">中国移动咪咕、央视年框供应商。超200个影视IP、近50个知名一线品牌信赖选择。专业体系保障服务质量。</p>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- CONTACT -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="g" id="contact">
+    <div class="gc hero-gc" style="padding-bottom:1rem;">
+      <small class="hero-subtitle">✦ 联系我们</small>
+      <div class="hero-title" style="font-size:clamp(1.5rem,4vw,3rem);">一起聊聊？</div>
+      <p class="hero-desc" style="max-width:50rem;">
+        无论是一个具体的项目，还是只是想认识一下，我们都很乐意和你聊聊。
+      </p>
+    </div>
+  </div>
+
+  <div class="g">
+    <div class="gc" style="display:flex;flex-direction:column;gap:0.75rem;padding:1.5rem;">
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="contact-icon">📍</span>
+        <div>
+          <div class="contact-label">地址</div>
+          <div class="contact-value">北京市朝阳区三间房dream2049产业园D08</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="contact-icon">📧</span>
+        <div>
+          <div class="contact-label">邮箱</div>
+          <div class="contact-value">yueyunfei@imbestmedia.com</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="contact-icon">📞</span>
+        <div>
+          <div class="contact-label">电话</div>
+          <div class="contact-value">18614024484</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="contact-icon">💬</span>
+        <div>
+          <div class="contact-label">微信</div>
+          <div class="contact-value">quanyule</div>
+        </div>
+      </div>
+      <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border-color);">
+        <div class="contact-label">工作时间</div>
+        <div class="contact-value">周一至周五 9:00 – 18:00</div>
+        <div class="contact-value" style="font-size:0.8rem;opacity:0.6;margin-top:0.25rem;">项目合作欢迎随时留言，我们会在 24 小时内回复。</div>
+      </div>
+    </div>
+
+    <div class="gc" style="padding:1.5rem;">
+      <form onsubmit="event.preventDefault();alert('感谢您的留言！我们会尽快与您联系。')">
+        <label class="form-label" for="name">您的姓名</label>
+        <input class="form-input" type="text" id="name" placeholder="请输入姓名" />
+
+        <label class="form-label" for="email">邮箱地址</label>
+        <input class="form-input" type="email" id="email" placeholder="name@company.com" />
+
+        <label class="form-label" for="message">说说您的需求</label>
+        <textarea class="form-input form-textarea" id="message" placeholder="请简要描述您的项目或合作意向..."></textarea>
+
+        <button type="submit" class="btn" style="width:100%;margin-top:0.5rem;">发送消息 →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- FOOTER -->
+  <!-- ════════════════════════════════════════ -->
+  <footer class="g">
+    <div class="gc" style="padding:0.75rem 1rem;">百思传媒 © 2026</div>
+    <div class="gc" style="padding:0.75rem 1rem;text-align:center;">
+      <a href="#">隐私政策</a> · <a href="#">服务条款</a>
+    </div>
+    <div class="gc" style="padding:0.75rem 1rem;text-align:right;">值得信赖的文化内容IP整合营销集团</div>
+  </footer>
+
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('load-more-btn').addEventListener('click', loadMoreCases);
+  document.getElementById('close-cases-btn').addEventListener('click', closeExtraCases);
+});
+
+function showTab(name) {
+  document.getElementById('demo-about').style.display = name === 'about' ? 'block' : 'none';
+  document.getElementById('demo-services').style.display = name === 'services' ? 'block' : 'none';
+
+  const tabAbout = document.getElementById('tab-about');
+  const tabServices = document.getElementById('tab-services');
+  if (name === 'about') {
+    tabAbout.classList.remove('btn-inactive');
+    tabServices.classList.add('btn-inactive');
+  } else {
+    tabServices.classList.remove('btn-inactive');
+    tabAbout.classList.add('btn-inactive');
+  }
+}
+
+function loadMoreCases() {
+  var hidden = document.querySelectorAll('.case-hidden[style*="display: none"], .case-hidden:not([style])');
+  // Also catch case-hidden that are hidden by CSS class but have no inline style
+  var allCaseItems = document.querySelectorAll('.case-hidden');
+  var visibleCount = 0;
+  for (var i = 0; i < allCaseItems.length; i++) {
+    var s = allCaseItems[i].style;
+    if (s.display === 'block') visibleCount++;
+  }
+  // Show next 6
+  var shown = 0;
+  for (var i = 0; i < allCaseItems.length && shown < 6; i++) {
+    var s = allCaseItems[i].style;
+    if (s.display !== 'block') {
+      allCaseItems[i].style.display = 'block';
+      shown++;
+    }
+  }
+  // If no more hidden cases, remove the button
+  var remainingHidden = 0;
+  for (var i = 0; i < allCaseItems.length; i++) {
+    var s = allCaseItems[i].style;
+    if (s.display !== 'block') remainingHidden++;
+  }
+  if (remainingHidden === 0) {
+    document.getElementById('load-more-btn').style.display = 'none';
+  }
+  document.getElementById('close-case-row').style.display = 'block';
+}
+
+function closeExtraCases() {
+  var hidden = document.querySelectorAll('.case-hidden');
+  for (var i = 0; i < hidden.length; i++) {
+    hidden[i].style.display = 'none';
+  }
+  document.getElementById('load-more-btn').style.display = 'inline-flex';
+  document.getElementById('close-case-row').style.display = 'none';
+  window.scrollTo({ top: document.getElementById('cases-container').offsetTop - 100, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>

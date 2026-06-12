@@ -1,0 +1,10 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Large assets - keep only the main bg
+filler-bg0.webp
+filler-bg02.png
+filler-bg03.png
+filler-bg04.png
+1540276733559.jpeg

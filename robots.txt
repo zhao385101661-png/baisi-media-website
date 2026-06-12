@@ -1,0 +1,4 @@
+# robots.txt for 百思传媒 (imbestmedia.com)
+User-agent: *
+Allow: /
+Sitemap: https://imbestmedia.com/sitemap.xml

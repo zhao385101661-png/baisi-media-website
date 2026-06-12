@@ -3,6 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="百思传媒 — 国内领先的文化内容IP整合营销集团。成立于2011年，15年专注影视文娱营销，服务超200个影视IP、近50个知名品牌，旗下烹小鲜自媒体矩阵覆盖5亿+粉丝。" />
+  <meta name="keywords" content="百思传媒,影视营销,IP整合营销,娱乐营销,剧集营销,综艺营销,品牌营销,烹小鲜" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="百思传媒 — 值得信赖的文化内容IP整合营销集团" />
+  <meta property="og:description" content="15年专注影视文娱营销，服务超200个影视IP、近50个一线品牌，三大事业群·400人专业团队。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://imbestmedia.com" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="百思传媒 — 文化内容IP整合营销集团" />
+  <meta name="twitter:description" content="15年专注影视文娱营销，服务超200个影视IP、近50个一线品牌。" />
+  <link rel="canonical" href="https://imbestmedia.com" />
   <title>百思传媒 — 值得信赖的文化内容IP整合营销集团</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -91,6 +103,63 @@
     ::-webkit-scrollbar-thumb { background: transparent; border-radius: 1rem; }
     *:hover::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--midground) 20%, transparent); }
 
+
+    ::selection { background: var(--selection-bg, var(--accent)); color: #000; }
+    ::-moz-selection { background: var(--selection-bg, var(--accent)); color: #000; }
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-delay-1 { transition-delay:.1s; } .reveal-delay-2 { transition-delay:.2s; }
+    .reveal-delay-3 { transition-delay:.3s; } .reveal-delay-4 { transition-delay:.4s; }
+    .gc, .service-card { transition: transform .3s cubic-bezier(.16,1,.3,1), border-color .3s ease; }
+    .gc:hover, .service-card:hover { transform: translateY(-4px); }
+    @keyframes pulse-glow { 0%,100%{opacity:1} 50%{opacity:.7;text-shadow:0 0 20px color-mix(in srgb,var(--accent) 30%,transparent);} }
+    .stat-number { animation: pulse-glow 3s ease-in-out infinite; }
+    .case-hidden { display: none; }
+    .media-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:2rem 0; }
+    .media-card { border:1px solid var(--border-color); border-radius:.75rem; padding:1.5rem; text-align:center; }
+    .media-card:hover { border-color:color-mix(in srgb,var(--midground) 40%,transparent); }
+    .media-number { font-size:2.5rem; font-weight:800; color:var(--accent); font-family:"Barlow Condensed",sans-serif; line-height:1; margin-bottom:.3rem; }
+    .media-label { font-size:.95rem; opacity:.65; font-family:"DM Mono",monospace; text-transform:uppercase; letter-spacing:.05em; }
+    .media-sub { font-size:.85rem; opacity:.45; margin-top:.3rem; font-family:"DM Mono",monospace; }
+    .clock-container { position:relative; width:min(85vw,580px); height:min(85vw,580px); margin:2.5rem auto; }
+    .clock-ring { position:absolute; inset:0; border-radius:50%; border:1px solid var(--border-color); }
+    .clock-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:2.5rem; height:2.5rem; border-radius:50%; background:var(--accent); opacity:.15; }
+    .clock-item { position:absolute; top:50%; left:50%; width:6rem; margin-left:-3rem; text-align:center; }
+    .clock-item .cy { font-family:"Barlow Condensed",sans-serif; font-size:1.4rem; font-weight:700; color:var(--accent); line-height:1; }
+    .clock-item .ct { font-size:.85rem; opacity:.6; font-family:"DM Mono",monospace; line-height:1.3; margin-top:.25rem; }
+    .award-grid { display:flex; flex-wrap:wrap; gap:.75rem; margin:2rem 0; justify-content:center; }
+    .award-badge { border:1px solid var(--border-color); border-radius:2rem; padding:.6rem 1.4rem; font-size:.95rem; font-family:"DM Mono",monospace; }
+    .award-badge:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-2px); }
+    .partner-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:1rem; margin:2rem 0; }
+    .partner-card { border:1px solid var(--border-color); border-radius:.75rem; padding:1.25rem; text-align:center; }
+    .partner-card:hover { border-color:color-mix(in srgb,var(--midground) 40%,transparent); }
+    .partner-name { font-size:1rem; font-weight:700; margin-bottom:.3rem; }
+    .partner-desc { font-size:.8rem; opacity:.6; line-height:1.5; font-family:"DM Mono",monospace; }
+
+    /* ── 加入我们 · 岗位卡片 ── */
+    .job-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:2rem 0; }
+    .job-card {
+      border:1px solid var(--border-color); border-radius:.75rem; padding:1.25rem;
+      display:flex; flex-direction:column; gap:0.5rem; transition:border-color .3s,transform .3s;
+    }
+    .job-card:hover { border-color:color-mix(in srgb,var(--midground) 40%,transparent); transform:translateY(-3px); }
+    .job-card-hr {
+      border-color:var(--accent); border-style:dashed;
+      justify-content:center; align-items:center; text-align:center;
+    }
+    .job-title { font-size:1.05rem; font-weight:700; color:var(--midground); line-height:1.3; }
+    .job-tags { display:flex; gap:0.4rem; flex-wrap:wrap; }
+    .job-tags span {
+      font-size:.7rem; font-family:"DM Mono",monospace; letter-spacing:.05em;
+      padding:0.15rem 0.5rem; border:1px solid var(--border-color); border-radius:2rem;
+      text-transform:uppercase; opacity:0.7;
+    }
+    .job-desc { font-size:.85rem; opacity:.65; line-height:1.55; font-family:"DM Mono",monospace; }
+
+    /* ── 打字机光标 ── */
+    .tw-cursor { animation: blink-cursor .8s step-end infinite; font-weight:100; color:var(--midground); margin-left:.05em; }
+    @keyframes blink-cursor { 50% { opacity:0; } }
+
     /* ── Grid System ── */
     .g {
       border-left: 1px solid var(--border-color);
@@ -143,11 +212,30 @@
     /* ── Header ── */
     header.g {
       border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      min-height: 7.5rem;
     }
+    header.g:first-child { border-top: 1px solid var(--border-color); }
     .header-logo {
       display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
+      align-items: stretch;
+      min-height: 7.5rem;
+      padding: 0;
+      border-right: none;
+    }
+    .header-logo h2,
+    .header-logo .nav-link {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      letter-spacing: 0.1875rem;
+      color: var(--midground);
+      text-transform: uppercase;
+      padding: 0 1rem;
+      border-right: 1px solid var(--border-color);
+      text-decoration: none;
     }
     .header-logo h2 {
       font-family: "Inter", sans-serif;
@@ -155,8 +243,8 @@
       line-height: 1;
       letter-spacing: 0.0525rem;
       font-weight: 700;
-      color: var(--midground);
-      text-transform: uppercase;
+      justify-content: center;
+      padding: 1rem;
     }
     .header-logo h2 small {
       font-family: "DM Mono", "Courier New", monospace;
@@ -165,37 +253,9 @@
       font-weight: 400;
       display: block;
     }
-    .header-nav {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .header-nav a {
-      font-size: 0.9375rem;
-      letter-spacing: 0.1875rem;
-      color: var(--midground);
-      text-decoration: none;
-      text-transform: uppercase;
-      opacity: 0.6;
-      transition: opacity 0.2s;
-    }
-    .header-nav a:hover { opacity: 1; }
-    .header-social {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-left: 0.75rem;
-    }
-    .header-social a {
-      opacity: 0.6;
-      transition: opacity 0.2s;
-      font-size: 0.9375rem;
-      letter-spacing: 0.1875rem;
-      color: var(--midground);
-      text-decoration: none;
-      text-transform: uppercase;
-    }
-    .header-social a:hover { opacity: 1; }
+    .nav-link { opacity: 0.6; transition: opacity 0.2s; font-family: "DM Mono", "Courier New", monospace; }
+    .nav-link:hover { opacity: 1; }
+    .nav-link:last-child { border-right: none; }
 
     /* mobile header */
     .header-mobile {
@@ -263,7 +323,7 @@
       align-items: center;
       justify-content: center;
       white-space: nowrap;
-      padding: 0.375rem 0.75rem;
+      padding: 0.5rem 1rem;
       font-family: "DM Mono", "Courier New", monospace;
       font-size: 0.75rem;
       letter-spacing: 0.1em;
@@ -344,7 +404,7 @@
     }
     .feature-desc {
       font-family: "DM Mono", "Courier New", monospace;
-      font-size: 1.0625rem;
+      font-size: 1.2rem;
       line-height: 1.625;
       text-transform: none;
       opacity: 0.6;
@@ -353,7 +413,7 @@
     /* ── About text ── */
     .about-text {
       font-family: "DM Mono", "Courier New", monospace;
-      font-size: 1rem;
+      font-size: 1.15rem;
       line-height: 1.625;
       text-transform: none;
       opacity: 0.6;
@@ -504,6 +564,69 @@
     }
   </style>
 </head>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "百思传媒",
+  "alternateName": "Baisi Media",
+  "description": "国内领先的文化内容IP整合营销集团，15年专注影视文娱营销，服务超200个影视IP、近50个一线品牌。",
+  "foundingDate": "2011-11-11",
+  "numberOfEmployees": "400",
+  "areaServed": "中国",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "北京",
+    "addressRegion": "朝阳区",
+    "streetAddress": "三间房dream2049产业园D08"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "yueyunfei@imbestmedia.com",
+    "telephone": "+86-18614024484",
+    "contactType": "business"
+  },
+  "sameAs": ["https://weibo.com/baisimedia"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "百思传媒",
+  "url": "https://imbestmedia.com",
+  "description": "值得信赖的文化内容IP整合营销服务团队",
+  "inLanguage": "zh-CN"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"首页","item":"https://imbestmedia.com/"},
+    {"@type":"ListItem","position":2,"name":"关于我们","item":"https://imbestmedia.com/#about"},
+    {"@type":"ListItem","position":3,"name":"服务","item":"https://imbestmedia.com/#services"},
+    {"@type":"ListItem","position":4,"name":"案例","item":"https://imbestmedia.com/#portfolio"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "百思传媒服务案例",
+  "description": "百思传媒15年深耕影视文娱营销，64个服务案例展示",
+  "numberOfItems": 64,
+  "itemListElement": [
+    {"@type":"CreativeWork","name":"《韶华若锦》整合营销","description":"古装羞甜逗趣爱情剧，CSM全国网、CVB同时段省卫TOP1"},
+    {"@type":"CreativeWork","name":"《小巷人家》全案传播","description":"开播首周CVB、CSM、酷云、欢网同时段省卫收视率TOP1"},
+    {"@type":"CreativeWork","name":"《凡人歌》全案营销","description":"CVB黄金时段收视率单日最高1.718%，全网热搜1329个"},
+    {"@type":"CreativeWork","name":"《山花烂漫时》整合营销","description":"根据张桂梅真实事迹改编，豆瓣评分近五年TOP1"},
+    {"@type":"CreativeWork","name":"《玫瑰的故事》整合营销","description":"CVB单日最高1.844%全国第一，小红书浏览量31.9亿"}
+  ]
+}
+</script>
 <body>
 
 <!-- ═══════ Background layers (Hermes-style compositing) ═══════ -->
@@ -521,24 +644,17 @@
   <!-- ════════════════════════════════════════ -->
   <header class="g header-desktop">
     <div class="gc header-logo">
-      <h2>百思<br>传媒</h2>
-      <div class="header-nav">
-        <a href="#about">我们是谁</a>
-        <a href="#services">我们能做什么</a>
-        <a href="#portfolio">我们做过什么</a>
-        <a href="#contact">联系我们</a>
-        <span class="header-social">
-          <a href="#">微信</a>
-          <a href="#">小红书</a>
-          <a href="#">抖音</a>
-        </span>
-      </div>
+      <h2><img src="logo.png" alt="百思传媒" style="height:4.4rem;width:auto;display:block;" /></h2>
+      <a href="#about" class="nav-link">我们是谁</a>
+      <a href="#services" class="nav-link">我们能做什么</a>
+      <a href="#portfolio" class="nav-link">我们做过什么</a>
+      <a href="#contact" class="nav-link">联系我们</a>
     </div>
   </header>
 
   <!-- mobile header -->
   <div class="header-mobile">
-    <h2 style="font-family:Inter,sans-serif;font-size:1.5rem;font-weight:700;color:var(--midground);text-transform:uppercase;letter-spacing:0.05rem;">百思传媒</h2>
+    <h2 style="font-family:Inter,sans-serif;font-size:1.5rem;font-weight:700;color:var(--midground);text-transform:uppercase;letter-spacing:0.05rem;"><img src="logo.png" alt="百思传媒" style="height:1.5rem;width:auto;display:block;" /></h2>
     <button class="btn" style="border:1px solid var(--border-color);padding:0.375rem 0.75rem;" onclick="alert('导航：我们是谁 · 我们能做什么 · 我们做过什么 · 联系我们')">菜单 ↓</button>
   </div>
 
@@ -547,10 +663,13 @@
   <!-- ════════════════════════════════════════ -->
   <div class="g">
     <div class="gc hero-gc">
-      <small class="hero-subtitle">文化内容IP整合营销</small>
+      <small class="hero-subtitle reveal">文化内容IP整合营销</small>
 
-      <div class="hero-title">
-        用创意内容<br>赋能每一个IP
+      <div class="hero-title" style="min-height:2.5em;" role="heading" aria-level="1">
+        <div class="typewriter-wrap">
+          <span id="tw-line1"></span><br>
+          <span id="tw-line2" style="margin-left:1.2em;"></span><span class="tw-cursor" id="tw-cursor">▏</span>
+        </div>
       </div>
 
       <p class="hero-desc">
@@ -596,17 +715,7 @@
         </div>
       </div>
 
-      <div style="display:flex;gap:0.25rem;align-items:center;">
-        <span class="dot-full"></span>
-        <span class="dot-mid"></span>
-        <span class="dot-dim"></span>
-      </div>
-
-      <div style="display:flex;gap:0.25rem;align-items:center;font-family:'Courier Prime','Courier New',monospace;font-size:0.75rem;letter-spacing:0.1em;opacity:0.65;">
-        <span>互动展示</span>
-        <span class="blink" style="width:1ch;height:1em;background:var(--midground);margin-left:0.125rem;">&nbsp;</span>
-      </div>
-    </div>
+          </div>
   </div>
 
   <!-- ════════════════════════════════════════ -->
@@ -614,10 +723,10 @@
   <!-- ════════════════════════════════════════ -->
   <div class="g" id="about">
     <div class="gc hero-gc" style="padding-bottom:1rem;">
-      <small class="hero-subtitle">✦ 关于百思</small>
-      <div class="hero-title" style="font-size:clamp(1.5rem,4vw,3rem);">深耕影视文娱营销13年</div>
+      <small class="hero-subtitle reveal">✦ 关于百思</small>
+      <div class="hero-title reveal reveal-delay-1" style="font-size:clamp(1.5rem,4vw,3rem);">深耕影视文娱营销15年</div>
       <p class="hero-desc" style="max-width:50rem;">
-        百思传媒成立于2011年，13年潜心行业探索，团队规模近400人，专注于影视文娱及文化产业内容营销，是国内该领域专业领先且极具规模效应的IP整合营销集团。
+        百思传媒成立于2011年，15年潜心行业探索，团队规模近400人，专注于影视文娱及文化产业内容营销，是国内该领域专业领先且极具规模效应的IP整合营销集团。
       </p>
     </div>
   </div>
@@ -654,8 +763,8 @@
   <!-- ════════════════════════════════════════ -->
   <div class="g" id="services">
     <div class="gc hero-gc" style="padding-bottom:1rem;">
-      <small class="hero-subtitle">✦ 我们能做什么</small>
-      <div class="hero-title" style="font-size:clamp(1.5rem,4vw,3rem);">三大事业群 · 全链路整合营销</div>
+      <small class="hero-subtitle reveal">✦ 我们能做什么</small>
+      <div class="hero-title reveal reveal-delay-1" style="font-size:clamp(1.5rem,4vw,3rem);">三大事业群 · 全链路整合营销</div>
       <p class="hero-desc" style="max-width:50rem;">
         百思传媒旗下设三大事业群，覆盖从影视内容营销到新媒体传播到IP赋能的完整服务链条。
       </p>
@@ -665,32 +774,32 @@
   <div class="g">
     <div class="gc service-card">
       <div class="service-icon">🎬</div>
-      <div class="feature-title">TOP剧综整合营销</div>
+      <div class="feature-title reveal">TOP剧综整合营销</div>
       <p class="feature-desc">头部剧集、电影、综艺、纪录片的全案营销。从策略策划到执行落地，打破单一平台模式，全网整合资源，3000+集头部剧集打造经验。</p>
     </div>
     <div class="gc service-card">
       <div class="service-icon">📱</div>
-      <div class="feature-title">文娱新媒体事业群</div>
+      <div class="feature-title reveal reveal-delay-1">文娱新媒体事业群</div>
       <p class="feature-desc">自营"烹小鲜"等50+微信自媒体矩阵，2000+影视娱乐行业自媒体代理资源，签约700+KOL，覆盖9亿互联网用户，月度100亿+阅读。</p>
     </div>
     <div class="gc service-card">
       <div class="service-icon">🧠</div>
-      <div class="feature-title">IP&品牌企划赋能</div>
+      <div class="feature-title reveal reveal-delay-2">IP&品牌企划赋能</div>
       <p class="feature-desc">为文娱内容IP、文旅IP、个人IP提供孵化打造运营及衍生商业化运营。从0到1打造IP，品牌+泛娱乐内容营销，跨界品牌定位与战略咨询。</p>
     </div>
     <div class="gc service-card">
       <div class="service-icon">📊</div>
-      <div class="feature-title">娱乐数字效果营销</div>
+      <div class="feature-title reveal reveal-delay-1">娱乐数字效果营销</div>
       <p class="feature-desc">针对分账剧、自制剧、腰部剧集的数字化营销。依托烹小鲜联盟强大新媒体资源，数字化思维保障剧集有效播放量，对营销转化效果负责。</p>
     </div>
     <div class="gc service-card">
       <div class="service-icon">🎭</div>
-      <div class="feature-title">艺人经纪商务宣传</div>
+      <div class="feature-title reveal reveal-delay-2">艺人经纪商务宣传</div>
       <p class="feature-desc">依托百思11年行业资源，3000集头部剧集打造经验，代理艺人商务经纪业务、艺人形象包装宣传等业务，为艺人提供全维度的定制化服务。</p>
     </div>
     <div class="gc service-card">
       <div class="service-icon">🌐</div>
-      <div class="feature-title">新媒体整合营销</div>
+      <div class="feature-title reveal reveal-delay-3">新媒体整合营销</div>
       <p class="feature-desc">烹小鲜微博娱乐矩阵、微信娱乐号矩阵、抖快娱乐号矩阵，年框服务、内容策划、精准触达。官方微博/抖音代运营、短视频策划制作等一站式服务。</p>
     </div>
   </div>
@@ -700,13 +809,7 @@
   <!-- ════════════════════════════════════════ -->
   <div class="g">
     <div class="gc col-span-full lg:col-span-1 hero-gc" style="padding-top:3rem;padding-bottom:3rem;">
-      <div class="section-heading">精选案例</div>
-      <div style="width:100%;max-width:32rem;font-family:'Courier Prime',monospace;font-size:0.875rem;background:var(--midground);color:var(--foreground);text-transform:lowercase;padding:1rem 1.25rem;border-radius:0.25rem;text-align:left;">
-        <div style="text-transform:none;">
-          <span style="opacity:0.6;">部分影视案例展示 ↓</span>
-        </div>
       </div>
-    </div>
   </div>
 
   <!-- ════════════════════════════════════════ -->
@@ -714,8 +817,8 @@
   <!-- ════════════════════════════════════════ -->
   <div class="g" id="portfolio">
     <div class="gc hero-gc" style="padding-bottom:1rem;">
-      <small class="hero-subtitle">✦ 我们做过什么</small>
-      <div class="hero-title" style="font-size:clamp(1.5rem,4vw,3rem);">服务200+头部影视IP</div>
+      <small class="hero-subtitle reveal">✦ 我们做过什么</small>
+      <div class="hero-title reveal reveal-delay-1" style="font-size:clamp(1.5rem,4vw,3rem);">服务200+头部影视IP</div>
       <p class="hero-desc" style="max-width:50rem;">
         从《繁花》到《山花烂漫时》，从《玫瑰的故事》到《漫长的季节》，百思传媒用专业的内容营销能力助力每一部好作品发光。
       </p>
@@ -723,192 +826,337 @@
   </div>
 
   <div class="g" id="cases-container">
-    <!-- ═══ 前6个案例（默认显示） ═══ -->
     <div class="gc case-item">
-      <div class="portfolio-tag">电视剧 · 豆瓣评分近五年TOP1</div>
-      <div class="portfolio-name">《山花烂漫时》整合营销传播</div>
-      <p class="portfolio-desc">根据张桂梅校长真实事迹改编。CVB收视率2.897%，同时段全国TOP1；豆瓣评分近五年TOP1；斩获微博热搜731个，抖音主话题播放量32亿+。</p>
+      <div class="portfolio-tag">网剧 · 芒果TV/湖南卫视播出</div>
+      <div class="portfolio-name">《韶华若锦》整合营销</div>
+      <p class="portfolio-desc">古装羞甜逗趣爱情剧，通过"骄纵小姐×冷面王爷"的高甜互动打造CP感。CSM全国网、CVB同时段省卫TOP1，站内热度持续霸榜。</p>
     </div>
     <div class="gc case-item">
-      <div class="portfolio-tag">电视剧 · 全网热搜1329个</div>
+      <div class="portfolio-tag">电视剧 · CVB同时段省卫TOP1</div>
+      <div class="portfolio-name">《小巷人家》全案传播</div>
+      <p class="portfolio-desc">改编自大米同名小说，讲述70年代末苏州棉纺厂家属区三个家庭的命运变迁。开播首周CVB、CSM、酷云、欢网同时段省卫收视率TOP1，全网热搜1200+。</p>
+    </div>
+    <div class="gc case-item">
+      <div class="portfolio-tag">电视剧 · 罗云熙主演</div>
+      <div class="portfolio-name">《水龙吟》整合营销</div>
+      <p class="portfolio-desc">罗云熙主演古装玄幻武侠剧，正邪莫辨的唐俪辞卷入颠覆武林阴谋。咪咕"体育+影视"生态联动，CSM全国网平均收视率0.83，CSM71城平均1.76。</p>
+    </div>
+    <div class="gc case-item">
+      <div class="portfolio-tag">电视剧 · 东北抗联群像剧</div>
+      <div class="portfolio-name">《归队》口碑营销</div>
+      <p class="portfolio-desc">展现东北抗联"小人物，大历史"的热血归途群像剧。腾讯视频预约量破128.2万，热度值最高25708，斩获微博热搜310+，猫眼、德塔文等多榜TOP1。</p>
+    </div>
+    <div class="gc case-item">
+      <div class="portfolio-tag">电视剧 · 芒果TV/湖南卫视播出</div>
+      <div class="portfolio-name">《五福临门》全案营销</div>
+      <p class="portfolio-desc">北宋仁宗年间，郦家一家为觅良缘远赴汴京创业的啼笑皆非故事。欢网次黄时段卫视剧集收视率TOP1，CSM全国网收视份额2.82%省卫第1，芒果TV预约超400万。</p>
+    </div>
+    <div class="gc case-item">
+      <div class="portfolio-tag">电视剧 · CCTV-8收视率亚军</div>
+      <div class="portfolio-name">《沉默的荣耀》整合营销</div>
+      <p class="portfolio-desc">根据真实历史改编，讲述1949年吴石将军潜伏台湾获取情报的故事。CCTV-8 CVB收视率3.129%位列历年亚军，欢网2025年度剧集直播收视均值榜冠军。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">网剧 · 张予曦毕雯珺主演</div>
+      <div class="portfolio-name">《深情眼》传播营销</div>
+      <p class="portfolio-desc">改编自热门IP的甜宠爱情剧。放大题材优势强打风格化，高光剧情前置释放吸引入场，#深情眼第八集#登微博主榜TOP10，撬动艺人互动打造沉浸式嗑糖体验。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">网剧 · 咪咕视频/爱奇艺播出</div>
+      <div class="portfolio-name">《暗潮缉凶》口碑营销</div>
+      <p class="portfolio-desc">国营大厂内断足女尸被发现，刑警组长奉命侦查的宿命缉凶故事。全网曝光超1.42亿，微博热搜35个，话题词总阅读量6700W+，咪咕"体育+悬疑"跨界联动破圈。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">电视剧 · CVB单日最高1.718%</div>
       <div class="portfolio-name">《凡人歌》全案营销</div>
-      <p class="portfolio-desc">CVB黄金时段收视率单日最高1.718%，15天酷云TOP1；#电视剧凡人歌#抖音播放量54亿次+，相关话题总播放量105亿次+。</p>
+      <p class="portfolio-desc">六个角色切开社会众生横截面，掀起全景社会议题探讨。CVB黄金时段收视率单日最高1.718%，酷云15天TOP1，云合17天霸屏榜TOP1，全网热搜1329个。</p>
     </div>
-    <div class="gc case-item">
-      <div class="portfolio-tag">电视剧 · 全民热追</div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">网剧 · TVB刑侦悬疑</div>
+      <div class="portfolio-name">《刑侦12》整合传播</div>
+      <p class="portfolio-desc">聚焦人格解离的TVB刑侦悬疑剧。腾讯视频热度值最高21417，翡翠台首周最高收视21.5点（140万+观众），2025年剧集首播收视冠军。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">电视剧 · 豆瓣评分近五年TOP1</div>
+      <div class="portfolio-name">《山花烂漫时》整合营销</div>
+      <p class="portfolio-desc">根据张桂梅校长真实事迹改编。CVB收视率2.897%同时段全国TOP1，豆瓣评分近五年TOP1，微博热搜731个，抖音主话题播放量32亿+。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">网剧 · 优酷校园剧热度榜TOP1</div>
+      <div class="portfolio-name">《我在顶峰等你》传播营销</div>
+      <p class="portfolio-desc">顾雪茭怀揣遗憾重生回到高三，化恋爱脑为事业脑的甜美故事。优酷站内荣登校园剧热度榜等4类榜单TOP1，微博热搜10+，最高主榜TOP6。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">电视剧 · 首部国安反间谍大剧</div>
+      <div class="portfolio-name">《绝密较量》全案传播</div>
+      <p class="portfolio-desc">国家安全部门指导的首部国安反间谍大剧，北京市广电局重点资助项目。高圆圆首次饰演反派女间谍，斩获微博热搜318+，主话题阅读量破3.1亿+。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">电视剧 · CSM71收视最高2.524%</div>
+      <div class="portfolio-name">《成家》整合营销</div>
+      <p class="portfolio-desc">当代相亲相恋的全景切片，聚焦新时代婚恋焦虑的双线叙事。CSM71省级卫视收视率最高2.524%，市场份额10.29%，酷云黄金时段卫视平均收视率TOP1×11。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">电视剧 · CVB单日最高1.844%全国第一</div>
       <div class="portfolio-name">《玫瑰的故事》整合营销</div>
-      <p class="portfolio-desc">CVB单日最高1.844%，全国第一；小红书主话题浏览量31.9亿，衍生话题"黄亦玫同款穿搭"、"方协文北京有谁在"等出圈热议。</p>
+      <p class="portfolio-desc">刘亦菲主演，保留原作"女性爱情观的成长"精神内核。CVB单日最高1.844%全国第一，小红书主话题浏览量31.9亿，"黄亦玫同款穿搭"等现象级出圈。</p>
     </div>
-    <div class="gc case-item">
+    <div class="gc case-item case-hidden">
       <div class="portfolio-tag">电视剧 · 2024首部破万谍战剧</div>
       <div class="portfolio-name">《追风者》全案营销</div>
-      <p class="portfolio-desc">爱奇艺首部破万谍战剧，弹幕互动总量TOP1；豆瓣评分7.8；微博主话题阅读量28.1亿；上宣媒体10余家、大众媒体91余家联合发声。</p>
+      <p class="portfolio-desc">爱奇艺首部破万谍战剧，弹幕互动总量TOP1。豆瓣评分7.8，微博主话题阅读量28.1亿，人民网、新华社等10余家上宣媒体发声。</p>
     </div>
-    <div class="gc case-item">
-      <div class="portfolio-tag">电视剧 · 腾讯视频热度纪录</div>
-      <div class="portfolio-name">《繁花》整合营销传播</div>
-      <p class="portfolio-desc">腾讯视频非古装热度最高纪录，站内热度最高31129；微博热搜热榜总计2922+；相关话题阅读量102.84亿；豆瓣6.5万人打出8.4分。</p>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">电视剧 · 腾讯视频热度纪录31129</div>
+      <div class="portfolio-name">《繁花》整合营销</div>
+      <p class="portfolio-desc">王家卫导演，胡歌主演。站内热度最高31129创腾讯视频非古装最高纪录，微博热搜2922+，相关话题阅读量102.84亿，豆瓣8.4分。</p>
     </div>
-    <div class="gc case-item">
+    <div class="gc case-item case-hidden">
       <div class="portfolio-tag">网剧 · 豆瓣9.5封神</div>
       <div class="portfolio-name">《漫长的季节》口碑营销</div>
-      <p class="portfolio-desc">腾讯X剧场首发剧集，豆瓣9.5破纪录；全网热搜热榜1180+个；短视频主话题播放量27.1亿；横跨11城出租车线下应援。</p>
-    </div>
-
-    <!-- ═══ 更多案例（初始隐藏，点击分批加载） ═══ -->
-    <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">电视剧 · 献礼二十大重点作品</div>
-      <div class="portfolio-name">《县委大院》全案营销</div>
-      <p class="portfolio-desc">首部基层干部"行业剧"；CVB集均综合收视率1.941%；微博热搜117个；抖音主话题播放量超25.8亿；与学习强国、考公类APP跨界合作。</p>
+      <p class="portfolio-desc">腾讯X剧场首发剧集，豆瓣9.5破华语剧纪录。全网热搜1180+个，短视频主话题播放量27.1亿，横跨11城42402辆出租车线下应援。</p>
     </div>
     <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">电视剧 · CVB收视领跑</div>
-      <div class="portfolio-name">《追光的日子》口碑营销</div>
-      <p class="portfolio-desc">青春成长励志剧，登陆CCTV-1&CCTV-8黄金时间；酷云实时收视率1.549%；微博热搜575+；豆瓣开分8.4。</p>
+      <div class="portfolio-tag">网剧 · 搜狐站内评分8.7</div>
+      <div class="portfolio-name">《奔向所有时空的你》传播营销</div>
+      <p class="portfolio-desc">双时空悬爱春日逆爱剧。搜狐站内连续多日榜单TOP1，评分8.7分，全平台霸榜热搜58次，微博主话题阅读量3706.4万。</p>
     </div>
     <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">电视剧 · 优酷历史剧第一</div>
-      <div class="portfolio-name">《山河月明》史实剧营销</div>
-      <p class="portfolio-desc">展现明朝永乐大帝辉煌一生的史实剧集；优酷站内历史剧热度榜第一名，最高热度9663；酷云电视直播收视率最高达1.3839%，累计24日TOP1。</p>
-    </div>
-    <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">网剧 · 豆瓣开分8.4</div>
-      <div class="portfolio-name">《风吹半夏》口碑营销</div>
-      <p class="portfolio-desc">赵丽颖转型力作，爱奇艺热度值最高10263；微博热搜1896个；主话题阅读量56.2亿+；抖音相关话题总播放量达118亿+。</p>
-    </div>
-    <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">网剧 · 微博话题150亿+</div>
-      <div class="portfolio-name">《梦华录》全案整合营销</div>
-      <p class="portfolio-desc">腾讯S+古装剧，刘亦菲重回小荧屏之作；豆瓣2022年国产古装剧最高分；微博主话题阅读量150亿+；上线首周播放量破10亿。</p>
-    </div>
-    <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">网剧 · 腾讯播放量22亿</div>
-      <div class="portfolio-name">《开端》全民热议传播</div>
-      <p class="portfolio-desc">"时间循环"概念垂直打透；腾讯视频播放量突破22亿；微博热搜总榜251次；豆瓣超71万人打分，开分8.2。</p>
-    </div>
-    <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">电视剧 · 现偶爆款</div>
-      <div class="portfolio-name">《以爱为营》口碑逆转传播</div>
-      <p class="portfolio-desc">舆情崩盘到口碑逆转，实时转变传播策略；1200+话题登微博主榜；CSM35城平均收视率1.414%；小红书话题浏览量10.7亿+。</p>
+      <div class="portfolio-tag">电视剧 · 现偶爆款口碑逆转</div>
+      <div class="portfolio-name">《以爱为营》传播营销</div>
+      <p class="portfolio-desc">舆情崩盘到口碑逆转的经典案例。CSM35城平均收视率1.414%，1200+话题登微博主榜，小红书话题浏览量10.7亿+，官微粉丝30W+。</p>
     </div>
     <div class="gc case-item case-hidden">
       <div class="portfolio-tag">网剧 · 2023暑期第一高分喜剧</div>
       <div class="portfolio-name">《鹊刀门传奇》内容营销</div>
-      <p class="portfolio-desc">赵本山主演，情怀蓄水+喜剧内容出圈；抖音主话题阅读量21.4亿+；"爱海儿"原声使用人群破4.4万人次；短视频爆款频出。</p>
+      <p class="portfolio-desc">赵本山主演，情怀蓄水+喜剧出圈。抖音主话题阅读量21.4亿+，快手23.2亿+，"爱海儿"原声使用破4.4万人次，赵本山踩空凳教学视频560w+赞。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">电视剧 · CCTV-1/CCTV-8播出</div>
+      <div class="portfolio-name">《追光的日子》口碑营销</div>
+      <p class="portfolio-desc">青春成长励志剧，剧情写实引发强烈情感共鸣。酷云实时收视率1.549%，豆瓣开分8.4，微博热搜575+，猫眼全网热度最高登顶TOP4。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">电视剧 · 献礼二十大重点作品</div>
+      <div class="portfolio-name">《县委大院》全案营销</div>
+      <p class="portfolio-desc">首部基层干部"行业剧"全景群像。CVB集均1.941%，微博热搜117个，抖音主话题播放量超25.8亿，与学习强国、考公类APP跨界合作。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">网剧 · 爱奇艺热度值最高10263</div>
+      <div class="portfolio-name">《风吹半夏》口碑营销</div>
+      <p class="portfolio-desc">赵丽颖转型力作，首部女性为主角的创业题材。豆瓣开分8.4，爱奇艺热度值最高10263，微博热搜1896个，抖音相关话题总播放量达118亿+。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">网剧 · 豆瓣2022年古装剧最高分</div>
+      <div class="portfolio-name">《梦华录》全案整合营销</div>
+      <p class="portfolio-desc">刘亦菲重回小荧屏之作，宋代国风美学精品。微博主话题阅读量150亿+，上线首周播放量破10亿，豆瓣8.1分，2022年国产古装剧最高分。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">网剧 · 腾讯播放量22亿</div>
+      <div class="portfolio-name">《开端》全民热议传播</div>
+      <p class="portfolio-desc">"时间循环"概念垂直打透。腾讯视频播放量突破22亿，微博热搜总榜251次，豆瓣超71万人打分，"反炸联盟"等话题全民热议。</p>
     </div>
     <div class="gc case-item case-hidden">
       <div class="portfolio-tag">网剧 · 爱奇艺热度峰值9057</div>
       <div class="portfolio-name">《浮图缘》沉浸式营销</div>
-      <p class="portfolio-desc">爱奇艺播前预约量达350w+，热度峰值9057；狂揽微博热搜2000+；#浮图缘#主话题阅读量破63.5亿+；豆瓣开分7.3。</p>
+      <p class="portfolio-desc">王鹤棣、陈钰琪主演古装权谋爱情剧。爱奇艺播前预约量达350w+，热度峰值9057，狂揽微博热搜2000+，主话题阅读量破63.5亿+。</p>
     </div>
     <div class="gc case-item case-hidden">
       <div class="portfolio-tag">综艺 · 收视12连冠</div>
       <div class="portfolio-name">《你好，星期六》整合营销</div>
-      <p class="portfolio-desc">湖南卫视周六黄金档棚内热播综艺；全网热搜2000+，微博热搜1400+；主话题阅读量170亿；美兰德、骨朵等多榜蝉联TOP1。</p>
+      <p class="portfolio-desc">湖南卫视周六黄金档棚内热播综艺。全网热搜2000+，微博热搜1400+，主话题阅读量170亿，美兰德、骨朵等多榜蝉联TOP1。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">综艺 · 全网热搜4027个</div>
+      <div class="portfolio-name">《花儿与少年第六季》传播</div>
+      <p class="portfolio-desc">开启"一带一路"国家游学体验，九位嘉宾组成"花少姐弟团"。全网热搜4027个，微博主榜热搜323个，主话题阅读量累计343.9亿+。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">综艺 · 2024下半年微博唯一爆款</div>
+      <div class="portfolio-name">《披荆斩棘第四季》整合营销</div>
+      <p class="portfolio-desc">芒果TV男性全景音乐竞演综艺，34位嘉宾12期竞演。全网热搜6878+，主话题阅读量201.4亿，云合、灯塔、猫眼等榜单TOP1斩获435+次。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">综艺 · 表演新生实训</div>
+      <div class="portfolio-name">《芒果新生班》传播营销</div>
+      <p class="portfolio-desc">秦海璐、周一围带领10位表演新生的成长节目。全网热搜400+，微博热搜270+，#感觉秦海璐再也不想看霸总文了#等话题登主榜TOP1。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">综艺 · CSM71城收视最高2.943</div>
+      <div class="portfolio-name">《闪光的夏天》整合传播</div>
+      <p class="portfolio-desc">殿堂级音乐人带领音乐少年奔赴四城闪光音乐之旅。全网热搜2659+，CSM71城收视最高2.943，微博主话题阅读量新增29亿+。</p>
     </div>
     <div class="gc case-item case-hidden">
       <div class="portfolio-tag">综艺 · 豆瓣开分8.4</div>
       <div class="portfolio-name">《时光音乐会》第二季营销</div>
-      <p class="portfolio-desc">依托艺人真实人生体验，彰显治愈能量；全网热搜1125+；微博话题阅读总量258亿+；与人民日报联合推出#来听春天的音乐会#。</p>
+      <p class="portfolio-desc">依托艺人真实人生体验彰显治愈能量。全网热搜1125+，微博话题阅读总量258亿+，与人民日报联合推出#来听春天的音乐会#。</p>
     </div>
     <div class="gc case-item case-hidden">
       <div class="portfolio-tag">综艺 · 12期连冠</div>
       <div class="portfolio-name">《中餐厅》第六季传播</div>
-      <p class="portfolio-desc">12期节目全网热搜1494+；CVB、欢网、酷云等多次收视排名第一；微博主话题阅读量新增37.2亿+；抖音主话题阅读量47.4亿+。</p>
+      <p class="portfolio-desc">12期节目全网热搜1494+，微博热搜1147+，CVB、欢网、酷云等多次收视排名第一，微博主话题阅读量新增37.2亿+。</p>
     </div>
     <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">综艺 · 青年共创音乐竞演</div>
-      <div class="portfolio-name">《青年π计划》整合营销</div>
-      <p class="portfolio-desc">湖南卫视与芒果TV双平台制作；全网总热搜600+，微博热搜350+；主话题阅读量近8亿，相关话题阅读总量超35亿。</p>
-    </div>
-    <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">综艺 · 00后成长纪实</div>
-      <div class="portfolio-name">《100道光芒》整合传播</div>
-      <p class="portfolio-desc">湖南卫视、芒果TV和小芒电商联合推出；芒果TV累计播放6.77亿；#汪涵面试何炅#登微博主榜TOP1；#00后发朋友圈吐槽公司被开除#TOP1。</p>
+      <div class="portfolio-tag">综艺 · 《人民日报》主版点赞</div>
+      <div class="portfolio-name">《春天花会开》整合营销</div>
+      <p class="portfolio-desc">湖南卫视原创民歌音乐节目。微博话题上榜204次，主榜热搜33个，抖音主话题播放总量6.9亿，《人民日报》《光明日报》主版整版面点赞。</p>
     </div>
     <div class="gc case-item case-hidden">
       <div class="portfolio-tag">综艺 · 收视12连冠</div>
-      <div class="portfolio-name">《牧野家族》实验真人秀</div>
-      <p class="portfolio-desc">明星情侣+单身艺人乡间生活实验；节目收视12连冠；微博话题上榜253次；全网累计播放量达13.72亿；联动电影派、浪潮工作室等公众号深度解读。</p>
-    </div>
-    <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">综艺 · 民歌音乐节目</div>
-      <div class="portfolio-name">《春天花会开》整合营销</div>
-      <p class="portfolio-desc">湖南卫视原创民歌音乐节目；微博话题上榜204次，主榜热搜33个；抖音主话题播放总量6.9亿；《人民日报》主版、《光明日报》主版整版面点赞。</p>
-    </div>
-    <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">综艺 · 乡村振兴正能量</div>
       <div class="portfolio-name">《云上的小店》传播营销</div>
-      <p class="portfolio-desc">用劳动创造美好，助力乡村振兴"云上"；节目收视12连冠；全网热搜150+；主话题阅读量6.7亿。</p>
+      <p class="portfolio-desc">用劳动创造美好，助力乡村振兴"云上"。节目收视12连冠，全网热搜150+，微博热搜56+，主榜热搜16个，5个登热搜榜top5。</p>
     </div>
     <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">综艺 · 全民互动欢唱</div>
+      <div class="portfolio-tag">综艺 · 收视12连冠</div>
       <div class="portfolio-name">《欢唱大篷车》整合营销</div>
-      <p class="portfolio-desc">打造全民互动欢唱类节目形象；节目收视12连冠；#辞职去大理的人现在都过得怎么样了#登微博热搜主榜TOP1，阅读达4.9亿+。</p>
+      <p class="portfolio-desc">打造全民互动欢唱类节目形象。节目收视12连冠，#辞职去大理的人现在都过得怎么样了#登微博热搜主榜TOP1，阅读达4.9亿+。</p>
     </div>
     <div class="gc case-item case-hidden">
       <div class="portfolio-tag">综艺 · 骨朵热度榜TOP1</div>
       <div class="portfolio-name">《牛气满满的哥哥》传播</div>
-      <p class="portfolio-desc">收视12连冠；骨朵综艺热度排行榜top1累计在榜11天；热搜348+强势霸榜；相关话题总阅读量48亿+。</p>
+      <p class="portfolio-desc">收视12连冠，骨朵综艺热度排行榜top1累计在榜11天，热搜348+强势霸榜，相关话题总阅读量48亿+，多条短视频点赞破百万。</p>
     </div>
     <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">综艺 · 脱口秀标杆</div>
+      <div class="portfolio-tag">综艺 · 全面超越前三季</div>
       <div class="portfolio-name">《吐槽大会》第五季营销</div>
-      <p class="portfolio-desc">全平台热搜204个；子话题累计阅读量超150亿；主话题阅读量88.3亿；知乎、抖音、小红书、虎扑、微信实现热度全开，全面超越前三季。</p>
+      <p class="portfolio-desc">全平台热搜204个，主话题阅读量88.3亿，全面超越前三季。知乎、抖音、小红书、虎扑、微信实现热度全开。</p>
     </div>
     <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">IP营销 · 3C品类第一虚拟偶像</div>
-      <div class="portfolio-name">华硕"天选姬"IP企划运营</div>
-      <p class="portfolio-desc">从0到1打造国风X科技二次元品牌IP——天选姬。1年运营完成从黑马到王者的逆袭，社区活跃粉丝占比95.86%，上榜元宇宙服务爆赞榜。</p>
+      <div class="portfolio-tag">晚会 · CVB省级卫视春晚TOP1</div>
+      <div class="portfolio-name">《2025辽视春晚》整合营销</div>
+      <p class="portfolio-desc">辽宁卫视携手快手打造"家春晚"。CVB位列全部省级卫视春晚收视TOP1，全国收视率1.667%，全网热搜2033+，全网覆盖粉丝量161.41亿。</p>
     </div>
     <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">IP营销 · 电影跨界合作</div>
-      <div class="portfolio-name">《樱桃小丸子》异业合作</div>
-      <p class="portfolio-desc">为影片促成13家异业合作品牌助力宣发，包括全时便利店、中石油加油站、华住酒店、COSTA咖啡等，推广期媒体曝光量超20亿次。</p>
+      <div class="portfolio-tag">晚会 · CVB/酷云/欢网三网第一</div>
+      <div class="portfolio-name">《湖南卫视跨年晚会》传播</div>
+      <p class="portfolio-desc">"去热爱，活出彩"主题跨年晚会。三网全时段排名省级卫视第一，份额领先第二名2.28倍，501+双榜热搜，抖音快手主话题播放量超84.3亿。</p>
     </div>
     <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">IP营销 · 品牌联名</div>
-      <div class="portfolio-name">小罐茶×《邪不压正》联名</div>
-      <p class="portfolio-desc">#喝小罐茶看邪不压正#等微博话题总阅读量达589万；多渠道发布稿件共计40篇；抖音KOL参与活动总阅读量超40.3万。</p>
+      <div class="portfolio-tag">晚会 · 欢网收视峰值6.11%</div>
+      <div class="portfolio-name">《江苏卫视跨年晚会》整合营销</div>
+      <p class="portfolio-desc">第7次落户澳门银河综艺馆。全网热搜2193+，全网话题阅读量200亿+，欢网收视峰值6.11%创历史记录。#11个王俊凯#登微博主榜TOP1。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">晚会 · 全网热搜1600次+</div>
+      <div class="portfolio-name">《天猫双十一》惊喜夜传播</div>
+      <p class="portfolio-desc">天猫与湖南卫视、芒果TV联手"双屏晚会"。全网热搜1600次+，微博主榜99次，全网话题浏览量超132亿，全网播放量9亿+。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 全网声量10亿+</div>
+      <div class="portfolio-name">《大奉打更人》书影联动营销</div>
+      <p class="portfolio-desc">全网IP联动话题声量10亿+，全平台热搜热榜163+。线下IPX天府双塔、IPX盒马联动，趣味玩法吸引新用户超20w+，手游全平台预约创新高。</p>
     </div>
     <div class="gc case-item case-hidden">
       <div class="portfolio-tag">IP营销 · 沉浸式社区</div>
       <div class="portfolio-name">《欢乐颂3》欢乐ZONE社区</div>
-      <p class="portfolio-desc">打造线上沉浸式体验社区，两日社区访问量突破6.4万；三大欢乐品牌节持续增加用户粘性，欢乐ZONE社区总访问量达10万+。</p>
+      <p class="portfolio-desc">线上沉浸式体验社区全方位展示剧集亮点。首日"抢房入住"活动，两日访问量突破6.4万，三大欢乐品牌节持续增粘性，总访问量达10万+。</p>
     </div>
     <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">IP营销 · 场景化营销</div>
-      <div class="portfolio-name">《这！就是铁甲》×DQ主题店</div>
-      <p class="portfolio-desc">DQ全国280家主流店铺设置进店扫码领会员；打造"战斗仓"主题店，定制铁甲系列周边产品捆绑销售，视觉听觉整体烘托主题氛围。</p>
+      <div class="portfolio-tag">IP营销 · "测一测命定之人"H5</div>
+      <div class="portfolio-name">《长相思》品牌营销</div>
+      <p class="portfolio-desc">围绕相思主题、CP设定进行品牌曝光。开播山海相见品牌强官宣，"测一测命定之人"线上H5上线首日点击量近2w，平均访问时长8分钟。</p>
     </div>
     <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">IP营销 · 短视频矩阵</div>
-      <div class="portfolio-name">QJMOTOR短视频矩阵运营</div>
-      <p class="portfolio-desc">设计统一高辨识度视觉抓取；内容质感原生亲切接地气；极致化挖掘产品品牌价值，场景代入情感价值，技术流硬核操作知识价值。</p>
+      <div class="portfolio-tag">IP营销 · 六周年节点传播</div>
+      <div class="portfolio-name">《魔道祖师》周边种草营销</div>
+      <p class="portfolio-desc">围绕六周年节点衍生发起新品路透、美谷大赏等活动。新品图文居小红书上亿话题热门前置位，#魔道祖师动画六周年快乐#话题阅读量84.8万。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 剧集热播期种草</div>
+      <div class="portfolio-name">《庆余年》周边种草营销</div>
+      <p class="portfolio-desc">围绕剧方热点话题精准捕获粉丝群体。创意视频获赞1800+，#鹅厂庆余年周边上新了#话题阅读量226万，#草场地周边晒单团#话题阅读量168.3万。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 活动曝光近亿次</div>
+      <div class="portfolio-name">《草场地好物大赏》种草营销</div>
+      <p class="portfolio-desc">年度好物推荐官+心愿派对+新年限定IP新品宣发。活动主话题阅读近3500万，整体活动曝光近亿次，抖音话题发酵超50小时播放超500w。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 泡泡岛音乐节合作</div>
+      <div class="portfolio-name">《喜力啤酒》社会化传播</div>
+      <p class="portfolio-desc">借势泡泡岛音乐节创造新消费场景。通过抖音发布音乐节现场视频增加品牌曝光，传达"高品质""时尚""快乐陪伴"品牌心智，总播放量800w+。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 抖音直播热度飙升</div>
+      <div class="portfolio-name">《瑞幸咖啡》社会化传播</div>
+      <p class="portfolio-desc">借助抖音平台热门话题提升品牌曝光。#瑞幸直播已经nextlevel#话题播放量突破313.9w，@圈内发布的视频播放量高达72.8w。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 抖音话题播放破千万</div>
+      <div class="portfolio-name">《红星二锅头》种草传播</div>
+      <p class="portfolio-desc">专家达人担当品牌榜样，多圈层垂类KOL密集种草。头部达人占比20%、优质达人40%、成长型40%，抖音话题播放量破千万。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 为国民运动而生</div>
+      <div class="portfolio-name">《鸿星尔克》社会化传播</div>
+      <p class="portfolio-desc">强调"为国民运动而生"战略定位，借势爱国情怀强化"国货担当"。项目执行期间总播放量8004.2w，单视频播放量154.2w。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 公益传播</div>
+      <div class="portfolio-name">《达肤妍》社会化传播</div>
+      <p class="portfolio-desc">"守护高原红"公益行动聚焦藏区女孩。首批定向帮扶100位藏区女孩承诺终身免费护肤品，项目曝光量185w+，品牌搜索量提升25%。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 孙颖莎代言</div>
+      <div class="portfolio-name">《Olay》社会化传播</div>
+      <p class="portfolio-desc">孙颖莎代言年轻化策略。借助体育赛事热点结合明星人气，主话题播放量2000w+，单视频点赞8w+，单视频完播率94%。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 官宣传播</div>
+      <div class="portfolio-name">《笑容加樊振东》官宣传播</div>
+      <p class="portfolio-desc">樊振东品牌代言官宣传播，借势体育明星热度提升品牌声量与关注度。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 多维创意视觉设计</div>
+      <div class="portfolio-name">《西出玉门》创意产品设计</div>
+      <p class="portfolio-desc">定制CP手绘海报、开播概念海报、弹幕特效、中插视频视觉设计等多维度创意。片头广告百事可乐、中插视频OPPO等品牌联动，沉浸式追剧体验。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 衍生合作</div>
+      <div class="portfolio-name">《那年花开月正圆》衍生合作</div>
+      <p class="portfolio-desc">深度开发头部IP衍生价值，提供从内容策划到商业化的全链路衍生合作服务。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 3C品类第一虚拟偶像</div>
+      <div class="portfolio-name">华硕"天选姬"IP企划运营</div>
+      <p class="portfolio-desc">从0到1打造国风X科技二次元品牌IP——天选姬。社区活跃粉丝占比95.86%，远超友商85%，上榜元宇宙服务爆赞榜第16名。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 游戏/国风/时尚跨界</div>
+      <div class="portfolio-name">浙江上虞e游小镇嘉年华</div>
+      <p class="portfolio-desc">企划次元跑活动+首发小镇主题曲+顶级IP名曲演绎+时尚T台show。带动e游小镇影响力及产业群聚效应，一场超级跨界神仙组合。</p>
+    </div>
+    <div class="gc case-item case-hidden">
+      <div class="portfolio-tag">IP营销 · 品牌联名</div>
+      <div class="portfolio-name">小罐茶×《邪不压正》联名</div>
+      <p class="portfolio-desc">#喝小罐茶看邪不压正#等微博话题总阅读量达589万，多渠道发布稿件40篇。春节恭王府福茶品鉴会，抢占"买小罐茶=纳入天下第一福"强关联心智。</p>
     </div>
     <div class="gc case-item case-hidden">
       <div class="portfolio-tag">IP营销 · 国风二次元</div>
       <div class="portfolio-name">腾讯音乐×古北水镇红叶祭</div>
-      <p class="portfolio-desc">官微+KOL+演出艺人活动预热；线下次元国风音乐快闪SHOW；打造国风+二次元的视觉听觉盛宴，激发用户"情绪爆发"，成功破圈！</p>
+      <p class="portfolio-desc">官微+KOL+演出艺人活动预热，次元票务平台推广，线下次元国风音乐快闪SHOW。打造国风+二次元视觉听觉盛宴，激发用户"情绪爆发"成功破圈！</p>
     </div>
     <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">IP营销 · 文旅小镇</div>
-      <div class="portfolio-name">浙江上虞e游小镇嘉年华</div>
-      <p class="portfolio-desc">结合小镇特色企划次元跑活动；首发小镇官方主题曲《此间少年》；联合国内顶级IP和瑞丽集团及游戏公司，共同打造游戏/国风/时尚跨界T台show。</p>
+      <div class="portfolio-tag">IP营销 · 13家异业合作品牌</div>
+      <div class="portfolio-name">《樱桃小丸子》异业合作</div>
+      <p class="portfolio-desc">促成全时便利店120家、物美140家、中石油加油站、华住酒店2000家+等13家品牌合作。推广期人流量及媒体曝光量超20亿次。</p>
     </div>
     <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">IP营销 · 剧中同款脱销</div>
-      <div class="portfolio-name">《江河水》×刘伶醉商植合作</div>
-      <p class="portfolio-desc">「刘伶醉」深度植入江苏卫视献礼大剧《江河水》，推出剧中同款纪念酒，深度情节植入带动产品脱销。</p>
-    </div>
-    <div class="gc case-item case-hidden">
-      <div class="portfolio-tag">IP营销 · 衍生合作</div>
-      <div class="portfolio-name">《琅琊榜之风起长林》衍生合作</div>
-      <p class="portfolio-desc">深度开发头部IP衍生价值，提供从内容策划到商业化的全链路衍生合作服务。</p>
+      <div class="portfolio-tag">IP营销 · DQ全国280家主题店</div>
+      <div class="portfolio-name">《这！就是铁甲》场景化营销</div>
+      <p class="portfolio-desc">DQ全国280家店铺设置进店扫码领会员。上海"战斗仓"主题店定制铁甲系列周边，打造声光电沉浸式体验，品牌与IP相互借势。</p>
     </div>
   </div>
 
   <!-- ════════════════════════════════════════ -->
+  </div>
+
+  <div class="g">
+    <div class="gc" style="text-align:center;padding:1.5rem 1rem;opacity:0.4;font-family:'DM Mono',monospace;font-size:0.8rem;letter-spacing:0.1em;">
+      更多过往案例正在整理中 · · ·
+    </div>
+  </div>
+
   <!-- LOAD MORE BUTTON -->
   <!-- ════════════════════════════════════════ -->
   <div class="g">
@@ -935,35 +1183,164 @@
   <!-- ════════════════════════════════════════ -->
   <div class="g">
     <div class="gc hero-gc" style="padding-bottom:1rem;">
-      <small class="hero-subtitle">✦ 百思优势</small>
-      <div class="hero-title" style="font-size:clamp(1.5rem,4vw,3rem);">为什么选择百思</div>
+      <small class="hero-subtitle reveal">✦ 百思优势</small>
+      <div class="hero-title reveal reveal-delay-1" style="font-size:clamp(1.5rem,4vw,3rem);">为什么选择百思</div>
     </div>
   </div>
 
   <div class="g">
     <div class="gc">
-      <div class="feature-title">13年深耕行业</div>
+      <div class="feature-title reveal">15年深耕行业</div>
       <p class="feature-desc">成立于2011年，国内最早重度垂直于影视娱乐营销的企业，具有先发优势，在快速成长过程中形成了近400人的专业团队。</p>
     </div>
     <div class="gc">
-      <div class="feature-title">专业力与创新力</div>
+      <div class="feature-title reveal reveal-delay-1">专业力与创新力</div>
       <p class="feature-desc">合伙人及高管团队均来自top10、4A广告及公关公司，专业且经验丰富。持续以创新为驱动力，连环创业，前瞻布局。</p>
     </div>
     <div class="gc">
-      <div class="feature-title">蜂巢合伙人机制</div>
+      <div class="feature-title reveal reveal-delay-2">蜂巢合伙人机制</div>
       <p class="feature-desc">行业内率先以"合伙人模式"建设核心团队，吸纳近30位优秀合伙人及公司管理层，稳定及持续创业孵化。</p>
     </div>
     <div class="gc">
-      <div class="feature-title">全链路服务能力</div>
+      <div class="feature-title reveal reveal-delay-3">全链路服务能力</div>
       <p class="feature-desc">三大事业群覆盖从影视营销到新媒体矩阵到IP赋能的完整链条，200+影视IP服务经验，3000+集头部剧集打造经验。</p>
     </div>
     <div class="gc">
-      <div class="feature-title">新媒体资源矩阵</div>
+      <div class="feature-title reveal reveal-delay-1">新媒体资源矩阵</div>
       <p class="feature-desc">自营50+微信自媒体矩阵，700+签约KOL，抖音粉丝2400W+，微信粉丝1200W+，月度100亿+阅读，5000+次上热门。</p>
     </div>
     <div class="gc">
-      <div class="feature-title">备受信任的品牌形象</div>
+      <div class="feature-title reveal reveal-delay-2">备受信任的品牌形象</div>
       <p class="feature-desc">中国移动咪咕、央视年框供应商。超200个影视IP、近50个知名一线品牌信赖选择。专业体系保障服务质量。</p>
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+  <div class="g"><div class="gc hero-gc" style="padding-top:2rem;padding-bottom:1rem;">
+    <small class="hero-subtitle reveal">✦ 新媒体矩阵</small>
+    <div class="hero-title" style="font-size:clamp(1.5rem,4vw,3rem);margin-bottom:0.25rem;">全网覆盖 · 声量聚合</div>
+    <p class="hero-desc reveal reveal-delay-2" style="max-width:50rem;margin-top:0;">自营"烹小鲜"等50+微信自媒体矩阵，700+签约KOL，覆盖互联网9亿用户，月度100亿+阅读。</p>
+  </div></div>
+  <div class="g"><div class="gc" style="grid-column:1/-1;padding:0 1rem;">
+  <div class="media-grid">
+    <div class="media-card"><div class="media-number">50+</div><div class="media-label">微信自运营矩阵</div><div class="media-sub">200W+活跃粉丝 · 日均UV 1000W</div></div>
+    <div class="media-card"><div class="media-number">700+</div><div class="media-label">签约KOL</div><div class="media-sub">成员粉丝总量超5亿</div></div>
+    <div class="media-card"><div class="media-number">100亿+</div><div class="media-label">月均阅读量</div><div class="media-sub">5000+次月均上热门</div></div>
+    <div class="media-card"><div class="media-number">2400W+</div><div class="media-label">抖音粉丝</div><div class="media-sub">抖快娱乐号矩阵</div></div>
+    <div class="media-card"><div class="media-number">1200W+</div><div class="media-label">微信粉丝</div><div class="media-sub">行业类+信息流矩阵</div></div>
+    <div class="media-card"><div class="media-number">2000+</div><div class="media-label">合作自媒体</div><div class="media-sub">覆盖电影/剧综/艺人</div></div>
+  </div></div></div>
+
+  <div class="g"><div class="gc hero-gc" style="padding-top:2rem;padding-bottom:1rem;">
+    <small class="hero-subtitle reveal">✦ 发展历程</small>
+    <div class="hero-title reveal reveal-delay-1" style="font-size:clamp(1.5rem,4vw,3rem);">15年深耕 · 砥砺前行</div>
+  </div></div>
+  <div class="g"><div class="gc" style="grid-column:1/-1;padding:0 1rem;display:flex;justify-content:center;">
+  <div class="clock-container"><div class="clock-ring"></div><div class="clock-center"></div>
+    <div class="clock-item" style="transform:rotate(-90deg)translateY(-15rem)rotate(90deg);"><div class="cy">2011</div><div class="ct">百思传媒成立</div></div>
+    <div class="clock-item" style="transform:rotate(-50deg)translateY(-15rem)rotate(50deg);"><div class="cy">2012</div><div class="ct">百思必达成立</div></div>
+    <div class="clock-item" style="transform:rotate(-10deg)translateY(-15rem)rotate(10deg);"><div class="cy">2013</div><div class="ct">烹小鲜联盟</div></div>
+    <div class="clock-item" style="transform:rotate(30deg)translateY(-15rem)rotate(-30deg);"><div class="cy">2014</div><div class="ct">百思艺腾成立</div></div>
+    <div class="clock-item" style="transform:rotate(70deg)translateY(-15rem)rotate(-70deg);"><div class="cy">2017</div><div class="ct">A轮融资2000万</div></div>
+    <div class="clock-item" style="transform:rotate(110deg)translateY(-15rem)rotate(-110deg);"><div class="cy">2018</div><div class="ct">S级项目深耕</div></div>
+    <div class="clock-item" style="transform:rotate(150deg)translateY(-15rem)rotate(-150deg);"><div class="cy">2022</div><div class="ct">短剧/IP事业群</div></div>
+    <div class="clock-item" style="transform:rotate(190deg)translateY(-15rem)rotate(-190deg);"><div class="cy">2023</div><div class="ct">服务200+IP</div></div>
+    <div class="clock-item" style="transform:rotate(230deg)translateY(-15rem)rotate(-230deg);"><div class="cy">2025</div><div class="ct">持续引领</div></div>
+  </div></div></div>
+
+  <div class="g"><div class="gc hero-gc" style="padding-top:2rem;padding-bottom:1rem;">
+    <small class="hero-subtitle reveal">✦ 荣誉奖项</small>
+    <div class="hero-title reveal reveal-delay-1" style="font-size:clamp(1.5rem,4vw,3rem);">行业认可 · 实力见证</div>
+  </div></div>
+  <div class="g"><div class="gc" style="grid-column:1/-1;padding:0 1rem;">
+  <div class="award-grid">
+    <span class="award-badge">🏆 微博十大影响力剧综机构</span>
+    <span class="award-badge">🏆 微博十大影响力电影机构</span>
+    <span class="award-badge">🏆 微博娱评团影响力机构</span>
+    <span class="award-badge">🏆 新榜TOP100内容创业公司</span>
+    <span class="award-badge">🏆 腾讯视频娱乐自媒体优质合作伙伴</span>
+    <span class="award-badge">🏆 微博内容商业联盟优培计划伙伴</span>
+    <span class="award-badge">🏆 抖音官方榜单第六名</span>
+    <span class="award-badge">🏆 快手官方榜单第七名</span>
+    <span class="award-badge">🏆 视频号官方榜单第十三名</span>
+    <span class="award-badge">🏆 微博官方榜单第二名</span>
+    <span class="award-badge">🏆 微博十大影响力娱乐大V</span>
+    <span class="award-badge">🏆 一点资讯优质内容贡献机构</span>
+  </div></div></div>
+
+  <div class="g"><div class="gc hero-gc" style="padding-top:2rem;padding-bottom:1rem;">
+    <small class="hero-subtitle reveal">✦ 合作伙伴</small>
+    <div class="hero-title" style="font-size:clamp(1.5rem,4vw,3rem);margin-bottom:0.25rem;">值得信赖的品牌背书</div>
+    <p class="hero-desc reveal reveal-delay-2" style="max-width:50rem;margin-top:0;">服务300+影视公司、500+影视项目、100+品牌客户，与头部出品公司、优势播出平台达成战略合作。</p>
+  </div></div>
+  <div class="g"><div class="gc" style="grid-column:1/-1;padding:0 1rem;">
+  <div class="partner-grid">
+    <div class="partner-card"><div class="partner-name">中国移动咪咕</div><div class="partner-desc">常年品牌整合营销供应商<br>世界杯/冬奥会/NBA等赛事IP营销</div></div>
+    <div class="partner-card"><div class="partner-name">中央广播电视总台</div><div class="partner-desc">央视年度晚会整合营销传播<br>《百年礼赞》、春晚倒计时、中秋/元宵晚会</div></div>
+    <div class="partner-card"><div class="partner-name">正午阳光</div><div class="partner-desc">国内头部影视制作公司<br>《县委大院》《凡人歌》全案整合营销</div></div>
+    <div class="partner-card"><div class="partner-name">腾讯视频</div><div class="partner-desc">《繁花》《山花烂漫时》《漫长的季节》《玫瑰的故事》深度合作</div></div>
+    <div class="partner-card"><div class="partner-name">爱奇艺</div><div class="partner-desc">《追风者》《浮图缘》《风吹半夏》《暗潮缉凶》营销合作</div></div>
+    <div class="partner-card"><div class="partner-name">芒果TV/湖南卫视</div><div class="partner-desc">《你好星期六》《中餐厅》《时光音乐会》等综艺/剧集全案营销</div></div>
+    <div class="partner-card"><div class="partner-name">优酷</div><div class="partner-desc">《这！就是铁甲》《我在顶峰等你》等综艺/剧集营销合作</div></div>
+    <div class="partner-card"><div class="partner-name">江苏卫视</div><div class="partner-desc">江苏卫视跨年演唱会整合营销传播</div></div>
+    <div class="partner-card"><div class="partner-name">辽宁卫视</div><div class="partner-desc">《2025辽视春晚》整合营销·连续5年收视TOP1</div></div>
+    <div class="partner-card"><div class="partner-name">天猫</div><div class="partner-desc">天猫双11惊喜夜双屏晚会·全网热搜1600次+</div></div>
+  </div>
+  <div style="text-align:center;padding:.5rem 0 1rem;opacity:.35;font-family:'DM Mono',monospace;font-size:.75rem;">更多合作伙伴正在持续拓展中…</div>
+  </div></div>
+  <!-- ════════════════════════════════════════ -->
+  <!-- JOIN US -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="g">
+    <div class="gc hero-gc" style="padding-top:2rem;padding-bottom:1rem;">
+      <small class="hero-subtitle reveal">✦ 加入我们</small>
+      <div class="hero-title reveal reveal-delay-1" style="font-size:clamp(1.5rem,4vw,3rem);">一起创造更好的内容</div>
+      <p class="hero-desc reveal reveal-delay-2" style="max-width:50rem;">百思传媒诚邀热爱影视文娱的伙伴加入，与我们一起用创意内容赋能每一个IP。</p>
+    </div>
+  </div>
+
+  <div class="g">
+    <div class="gc" style="grid-column:1/-1;padding:0 1rem;">
+      <div class="job-grid">
+        <div class="job-card">
+          <div class="job-title">影视剧宣项目经理</div>
+          <div class="job-tags"><span>北京</span><span>全职</span><span>3-5年经验</span></div>
+          <div class="job-desc">负责影视剧集全案营销策划与执行，统筹项目进度，对接平台及客户需求。有头部剧集营销经验者优先。</div>
+        </div>
+        <div class="job-card">
+          <div class="job-title">新媒体运营主管</div>
+          <div class="job-tags"><span>北京</span><span>全职</span><span>2-4年经验</span></div>
+          <div class="job-desc">负责微博/微信/抖音等平台内容策划与运营，熟悉娱乐营销生态，具备优秀的文案能力和热点敏感度。</div>
+        </div>
+        <div class="job-card">
+          <div class="job-title">品牌策划专员</div>
+          <div class="job-tags"><span>太原</span><span>全职</span><span>1-3年经验</span></div>
+          <div class="job-desc">负责品牌客户的全案策划与执行，包含方案撰写、创意输出、资源整合。有广告/公关公司经验者优先。</div>
+        </div>
+        <div class="job-card">
+          <div class="job-title">短视频编导</div>
+          <div class="job-tags"><span>长沙</span><span>全职</span><span>1-3年经验</span></div>
+          <div class="job-desc">负责抖音/快手等平台短视频内容策划与制作，熟悉平台算法与玩法，具备独立剪辑能力。</div>
+        </div>
+        <div class="job-card">
+          <div class="job-title">商务拓展经理</div>
+          <div class="job-tags"><span>郑州</span><span>全职</span><span>3-5年经验</span></div>
+          <div class="job-desc">负责品牌客户开发与维护，拓展影视/IP跨界合作资源，具备良好的商务谈判能力和行业资源。</div>
+        </div>
+        <div class="job-card job-card-hr">
+          <div class="job-title" style="color:var(--accent);">📩 人力总监直联</div>
+          <div class="job-desc" style="margin-top:0.5rem;">
+            <span style="display:block;margin-bottom:0.3rem;">📧 hr@imbestmedia.com</span>
+            <span style="display:block;margin-bottom:0.3rem;">💬 微信：baisi_hr</span>
+            <span style="display:block;">📞 010-12345678</span>
+          </div>
+          <div class="job-tags" style="margin-top:0.5rem;justify-content:center;">
+            <span style="background:var(--accent);color:var(--background);">投递简历</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -972,23 +1349,30 @@
   <!-- ════════════════════════════════════════ -->
   <div class="g" id="contact">
     <div class="gc hero-gc" style="padding-bottom:1rem;">
-      <small class="hero-subtitle">✦ 联系我们</small>
-      <div class="hero-title" style="font-size:clamp(1.5rem,4vw,3rem);">一起聊聊？</div>
+      <small class="hero-subtitle reveal">✦ 联系我们</small>
+      <div class="hero-title reveal reveal-delay-1" style="font-size:clamp(1.5rem,4vw,3rem);">一起聊聊？</div>
       <p class="hero-desc" style="max-width:50rem;">
         无论是一个具体的项目，还是只是想认识一下，我们都很乐意和你聊聊。
       </p>
     </div>
   </div>
 
-  <div class="g">
+  <div class="g" style="grid-template-columns:1fr 1fr;">
     <div class="gc" style="display:flex;flex-direction:column;gap:0.75rem;padding:1.5rem;">
-      <div style="display:flex;align-items:center;gap:0.75rem;">
-        <span class="contact-icon">📍</span>
-        <div>
-          <div class="contact-label">地址</div>
-          <div class="contact-value">北京市朝阳区三间房dream2049产业园D08</div>
-        </div>
-      </div>
+      <div class="contact-label" style="margin-bottom:0.25rem;">北京总部</div>
+      <div class="contact-value">北京市朝阳区三间房dream2049产业园D08</div>
+      <div style="border-top:1px solid var(--border-color);margin:0.5rem 0;"></div>
+      <div class="contact-label" style="margin-bottom:0.25rem;">太原分公司</div>
+      <div class="contact-value">山西省太原市小店区长治路323号<br>灵芝谷大厦9层</div>
+      <div style="border-top:1px solid var(--border-color);margin:0.5rem 0;"></div>
+      <div class="contact-label" style="margin-bottom:0.25rem;">长沙分公司</div>
+      <div class="contact-value">湖南省长沙市开福区洪山街道<br>马栏山众创园504</div>
+      <div style="border-top:1px solid var(--border-color);margin:0.5rem 0;"></div>
+      <div class="contact-label" style="margin-bottom:0.25rem;">郑州分公司</div>
+      <div class="contact-value">河南省郑州市中原区<br>汇泉西悦城11号院8号楼203</div>
+    </div>
+
+    <div class="gc" style="display:flex;flex-direction:column;gap:0.75rem;padding:1.5rem;">
       <div style="display:flex;align-items:center;gap:0.75rem;">
         <span class="contact-icon">📧</span>
         <div>
@@ -1016,21 +1400,6 @@
         <div class="contact-value" style="font-size:0.8rem;opacity:0.6;margin-top:0.25rem;">项目合作欢迎随时留言，我们会在 24 小时内回复。</div>
       </div>
     </div>
-
-    <div class="gc" style="padding:1.5rem;">
-      <form onsubmit="event.preventDefault();alert('感谢您的留言！我们会尽快与您联系。')">
-        <label class="form-label" for="name">您的姓名</label>
-        <input class="form-input" type="text" id="name" placeholder="请输入姓名" />
-
-        <label class="form-label" for="email">邮箱地址</label>
-        <input class="form-input" type="email" id="email" placeholder="name@company.com" />
-
-        <label class="form-label" for="message">说说您的需求</label>
-        <textarea class="form-input form-textarea" id="message" placeholder="请简要描述您的项目或合作意向..."></textarea>
-
-        <button type="submit" class="btn" style="width:100%;margin-top:0.5rem;">发送消息 →</button>
-      </form>
-    </div>
   </div>
 
   <!-- ════════════════════════════════════════ -->
@@ -1047,64 +1416,61 @@
 </main>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('load-more-btn').addEventListener('click', loadMoreCases);
-  document.getElementById('close-cases-btn').addEventListener('click', closeExtraCases);
+document.addEventListener('DOMContentLoaded',function(){
+  var btn=document.getElementById('load-more-btn');if(btn)btn.onclick=function(){
+    var a=document.querySelectorAll('.case-hidden'),n=0;
+    for(var i=0;i<a.length&&n<10;i++){if(a[i].style.display!=='block'){a[i].style.display='block';n++}}
+    var r=0;for(var i=0;i<a.length;i++){if(a[i].style.display!=='block')r++}
+    if(r===0)this.style.display='none'
+  };
+  var o=new IntersectionObserver(function(e){e.forEach(function(e){e.isIntersecting&&(e.target.classList.add('visible'),o.unobserve(e.target))})},{threshold:0.12});
+  document.querySelectorAll('.reveal,.clock-item').forEach(function(e){o.observe(e)});
+  var c=['#edff45','#ff6b6b','#ffac02','#51cf66','#74c0fc','#d0bfff','#f783ac','#63e6be','#ffe066','#f08c00','#20c997','#e599f7','#ff8787','#38d9a9','#4dabf7','#ff922b'];
+  document.addEventListener('mousedown',function(){document.documentElement.style.setProperty('--selection-bg',c[Math.floor(Math.random()*c.length)])});
+  // Typewriter on scroll
+  var twObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        typeWriter();
+        twObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  var tw = document.querySelector('.typewriter-wrap');
+  if (tw) twObs.observe(tw);
 });
-
-function showTab(name) {
-  document.getElementById('demo-about').style.display = name === 'about' ? 'block' : 'none';
-  document.getElementById('demo-services').style.display = name === 'services' ? 'block' : 'none';
-
-  const tabAbout = document.getElementById('tab-about');
-  const tabServices = document.getElementById('tab-services');
-  if (name === 'about') {
-    tabAbout.classList.remove('btn-inactive');
-    tabServices.classList.add('btn-inactive');
-  } else {
-    tabServices.classList.remove('btn-inactive');
-    tabAbout.classList.add('btn-inactive');
-  }
-}
-
-function loadMoreCases() {
-  var hidden = document.querySelectorAll('.case-hidden[style*="display: none"], .case-hidden:not([style])');
-  // Also catch case-hidden that are hidden by CSS class but have no inline style
-  var allCaseItems = document.querySelectorAll('.case-hidden');
-  var visibleCount = 0;
-  for (var i = 0; i < allCaseItems.length; i++) {
-    var s = allCaseItems[i].style;
-    if (s.display === 'block') visibleCount++;
-  }
-  // Show next 6
-  var shown = 0;
-  for (var i = 0; i < allCaseItems.length && shown < 6; i++) {
-    var s = allCaseItems[i].style;
-    if (s.display !== 'block') {
-      allCaseItems[i].style.display = 'block';
-      shown++;
+function typeWriter() {
+  var lines = ['用创意内容','赋能每一个IP'];
+  var line1 = document.getElementById('tw-line1');
+  var line2 = document.getElementById('tw-line2');
+  var cursor = document.getElementById('tw-cursor');
+  if (!line1 || !line2) return;
+  var total = lines[0].length + lines[1].length;
+  var i = 0, li = 0, ci = 0;
+  function tick() {
+    if (li < lines.length) {
+      if (ci < lines[li].length) {
+        var target = li === 0 ? line1 : line2;
+        target.textContent = lines[li].substring(0, ci + 1);
+        ci++;
+        i++;
+        var delay = 60 + Math.random() * 40;
+        setTimeout(tick, delay);
+      } else {
+        li++;
+        ci = 0;
+        setTimeout(tick, 200);
+      }
     }
   }
-  // If no more hidden cases, remove the button
-  var remainingHidden = 0;
-  for (var i = 0; i < allCaseItems.length; i++) {
-    var s = allCaseItems[i].style;
-    if (s.display !== 'block') remainingHidden++;
-  }
-  if (remainingHidden === 0) {
-    document.getElementById('load-more-btn').style.display = 'none';
-  }
-  document.getElementById('close-case-row').style.display = 'block';
+  setTimeout(tick, 300);
 }
-
-function closeExtraCases() {
-  var hidden = document.querySelectorAll('.case-hidden');
-  for (var i = 0; i < hidden.length; i++) {
-    hidden[i].style.display = 'none';
-  }
-  document.getElementById('load-more-btn').style.display = 'inline-flex';
-  document.getElementById('close-case-row').style.display = 'none';
-  window.scrollTo({ top: document.getElementById('cases-container').offsetTop - 100, behavior: 'smooth' });
+function showTab(n){
+  document.getElementById('demo-about').style.display=n==='about'?'block':'none';
+  document.getElementById('demo-services').style.display=n==='services'?'block':'none';
+  var ta=document.getElementById('tab-about'),ts=document.getElementById('tab-services');
+  if(ta)ta.classList.toggle('btn-inactive',n!=='about');
+  if(ts)ts.classList.toggle('btn-inactive',n!=='services');
 }
 </script>
 

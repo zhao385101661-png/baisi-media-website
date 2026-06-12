@@ -22,14 +22,21 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --midground: #ffac02;
-      --foreground: #f5f5f5;
-      --background: #170d02;
-      --text-secondary: rgba(255, 172, 2, 0.8);
-      --text-tertiary: rgba(255, 172, 2, 0.65);
-      --border-color: oklab(0.805203 0.0462314 0.163789 / 0.2);
-    }
+  :root {
+    --midground: #ffac02;
+    --orange: #ffac02;
+    --orange-bright: #ffac02;
+    --green: #54a87e;
+    --green-bright: #54a87e;
+    --black-deep: #000000;
+    --foreground: #f5f5f5;
+    --background: #170d02;
+    --text-secondary: rgba(255, 172, 2, 0.8);
+    --text-tertiary: rgba(255, 172, 2, 0.65);
+    --text-green: rgba(84, 168, 126, 0.85);
+    --border-color: oklab(0.805203 0.0462314 0.163789 / 0.2);
+    --border-green: rgba(84, 168, 126, 0.35);
+  }
 
     html {
       font-size: clamp(10px, 1vw * 5, 14px);
@@ -118,12 +125,13 @@
     .media-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:2rem 0; }
     .media-card { border:1px solid var(--border-color); border-radius:.75rem; padding:1.5rem; text-align:center; }
     .media-card:hover { border-color:color-mix(in srgb,var(--midground) 40%,transparent); }
-    .media-number { font-size:2.5rem; font-weight:800; color:var(--accent); font-family:"Barlow Condensed",sans-serif; line-height:1; margin-bottom:.3rem; }
+    .media-number { font-size:2.5rem; font-weight:800; color:var(--green-bright); font-family:"Barlow Condensed",sans-serif; line-height:1; margin-bottom:.3rem; }
+    .media-card:nth-child(odd) .media-number { color: var(--orange-bright); }
     .media-label { font-size:.95rem; opacity:.65; font-family:"DM Mono",monospace; text-transform:uppercase; letter-spacing:.05em; }
     .media-sub { font-size:.85rem; opacity:.45; margin-top:.3rem; font-family:"DM Mono",monospace; }
     .clock-container { position:relative; width:min(85vw,580px); height:min(85vw,580px); margin:2.5rem auto; }
     .clock-ring { position:absolute; inset:0; border-radius:50%; border:1px solid var(--border-color); }
-    .clock-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:2.5rem; height:2.5rem; border-radius:50%; background:var(--accent); opacity:.15; }
+    .clock-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:3rem; height:3rem; border-radius:50%; background:#000; border:2px solid var(--green); }
     .clock-item { position:absolute; top:50%; left:50%; width:6rem; margin-left:-3rem; text-align:center; }
     .clock-item .cy { font-family:"Barlow Condensed",sans-serif; font-size:1.4rem; font-weight:700; color:var(--accent); line-height:1; }
     .clock-item .ct { font-size:.85rem; opacity:.6; font-family:"DM Mono",monospace; line-height:1.3; margin-top:.25rem; }
@@ -133,7 +141,8 @@
     .partner-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:1rem; margin:2rem 0; }
     .partner-card { border:1px solid var(--border-color); border-radius:.75rem; padding:1.25rem; text-align:center; }
     .partner-card:hover { border-color:color-mix(in srgb,var(--midground) 40%,transparent); }
-    .partner-name { font-size:1rem; font-weight:700; margin-bottom:.3rem; }
+    .partner-name { font-size:1rem; font-weight:700; margin-bottom:.3rem; color: var(--green-bright); }
+    .partner-name::before { content: '▸ '; color: var(--orange-bright); opacity: 0.6; }
     .partner-desc { font-size:.8rem; opacity:.6; line-height:1.5; font-family:"DM Mono",monospace; }
 
     /* ── 加入我们 · 岗位卡片 ── */
@@ -144,10 +153,11 @@
     }
     .job-card:hover { border-color:color-mix(in srgb,var(--midground) 40%,transparent); transform:translateY(-3px); }
     .job-card-hr {
-      border-color:var(--accent); border-style:dashed;
+      border-color:var(--green); border-style:dashed;
+      background: rgba(84, 168, 126, 0.05);
       justify-content:center; align-items:center; text-align:center;
     }
-    .job-title { font-size:1.05rem; font-weight:700; color:var(--midground); line-height:1.3; }
+    .job-title { font-size:1.05rem; font-weight:700; color:var(--green-bright); line-height:1.3; }
     .job-tags { display:flex; gap:0.4rem; flex-wrap:wrap; }
     .job-tags span {
       font-size:.7rem; font-family:"DM Mono",monospace; letter-spacing:.05em;
@@ -286,9 +296,10 @@
 
     .hero-subtitle {
       font-family: "DM Mono", "Courier New", monospace;
-      font-size: 0.9375rem;
+      font-size: 1.1rem;
       letter-spacing: 0.1875rem;
       opacity: 0.5;
+      color: var(--green-bright);
     }
 
     .hero-title {
@@ -343,6 +354,8 @@
       height: 1px;
       background: var(--midground);
     }
+    .btn-copy { color: var(--text-green); }
+    .btn-copy:hover { color: var(--green-bright); }
     .btn-inactive {
       color: var(--text-secondary);
     }

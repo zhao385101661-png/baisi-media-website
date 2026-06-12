@@ -778,19 +778,19 @@ var _hmt = _hmt || [];
     </div>
     <div class="gc" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:1rem;">
       <div style="text-align:center;">
-        <div class="stat-number">400</div>
+        <div class="stat-number counter-num" data-target="400">0</div>
         <div class="stat-label">专业团队</div>
       </div>
       <div style="text-align:center;">
-        <div class="stat-number">200+</div>
+        <div class="stat-number counter-num" data-target="200" data-suffix="+">0+</div>
         <div class="stat-label">服务影视IP</div>
       </div>
       <div style="text-align:center;">
-        <div class="stat-number">3000+</div>
+        <div class="stat-number counter-num" data-target="3000" data-suffix="+">0+</div>
         <div class="stat-label">剧集打造</div>
       </div>
       <div style="text-align:center;">
-        <div class="stat-number">50+</div>
+        <div class="stat-number counter-num" data-target="50" data-suffix="+">0+</div>
         <div class="stat-label">一线品牌客户</div>
       </div>
     </div>
@@ -1263,12 +1263,12 @@ var _hmt = _hmt || [];
   </div></div>
   <div class="g"><div class="gc" style="grid-column:1/-1;padding:0 1rem;">
   <div class="media-grid">
-    <div class="media-card"><div class="media-number">50+</div><div class="media-label">微信自运营矩阵</div><div class="media-sub">200W+活跃粉丝 · 日均UV 1000W</div></div>
-    <div class="media-card"><div class="media-number">700+</div><div class="media-label">签约KOL</div><div class="media-sub">成员粉丝总量超5亿</div></div>
-    <div class="media-card"><div class="media-number">100亿+</div><div class="media-label">月均阅读量</div><div class="media-sub">5000+次月均上热门</div></div>
-    <div class="media-card"><div class="media-number">2400W+</div><div class="media-label">抖音粉丝</div><div class="media-sub">抖快娱乐号矩阵</div></div>
-    <div class="media-card"><div class="media-number">1200W+</div><div class="media-label">微信粉丝</div><div class="media-sub">行业类+信息流矩阵</div></div>
-    <div class="media-card"><div class="media-number">2000+</div><div class="media-label">合作自媒体</div><div class="media-sub">覆盖电影/剧综/艺人</div></div>
+    <div class="media-card"><div class="media-number counter-num" data-target="50" data-suffix="+">0+</div><div class="media-label">微信自运营矩阵</div><div class="media-sub">200W+活跃粉丝 · 日均UV 1000W</div></div>
+    <div class="media-card"><div class="media-number counter-num" data-target="700" data-suffix="+">0+</div><div class="media-label">签约KOL</div><div class="media-sub">成员粉丝总量超5亿</div></div>
+    <div class="media-card"><div class="media-number counter-num" data-target="100" data-suffix="亿+">0亿+</div><div class="media-label">月均阅读量</div><div class="media-sub">5000+次月均上热门</div></div>
+    <div class="media-card"><div class="media-number counter-num" data-target="2400" data-suffix="W+">0W+</div><div class="media-label">抖音粉丝</div><div class="media-sub">抖快娱乐号矩阵</div></div>
+    <div class="media-card"><div class="media-number counter-num" data-target="1200" data-suffix="W+">0W+</div><div class="media-label">微信粉丝</div><div class="media-sub">行业类+信息流矩阵</div></div>
+    <div class="media-card"><div class="media-number counter-num" data-target="2000" data-suffix="+">0+</div><div class="media-label">合作自媒体</div><div class="media-sub">覆盖电影/剧综/艺人</div></div>
   </div></div></div>
 
   <div class="g"><div class="gc hero-gc" style="padding-top:2rem;padding-bottom:1rem;">
@@ -1476,6 +1476,35 @@ document.addEventListener('DOMContentLoaded',function(){
   }, { threshold: 0.3 });
   var tw = document.querySelector('.typewriter-wrap');
   if (tw) twObs.observe(tw);
+
+  // Counter animation on scroll
+  var counterObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var el = entry.target;
+        var target = parseInt(el.getAttribute('data-target'));
+        var suffix = el.getAttribute('data-suffix') || '';
+        var duration = 1500;
+        var start = 0;
+        var startTime = null;
+        function step(t) {
+          if (!startTime) startTime = t;
+          var p = Math.min((t - startTime) / duration, 1);
+          // ease-out
+          var eased = 1 - Math.pow(1 - p, 3);
+          var current = Math.floor(eased * target);
+          el.textContent = current + suffix;
+          if (p < 1) requestAnimationFrame(step);
+          else el.textContent = target + suffix;
+        }
+        requestAnimationFrame(step);
+        counterObs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.counter-num').forEach(function(el) {
+    counterObs.observe(el);
+  });
   // Mobile clock fix
   if (window.innerWidth <= 768) {
     document.querySelectorAll('.clock-item').forEach(function(el) {

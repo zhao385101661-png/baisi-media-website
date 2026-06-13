@@ -1,0 +1,4612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>百思传媒旗下影视娱乐号诊断报告 - 完整合集</title>
+  <meta name="description" content="百思传媒 5 个影视娱乐小红书号诊断报告合集, 含单账号报告、横向对比、整改建议、B 账号 90 天重定位 SOP">
+  <style>/* ===== index.html ===== */
+
+:root {
+  --bg: #0d0905;
+  --bg-2: #170d02;
+  --panel: #1d1107;
+  --panel-2: #261609;
+  --border: #3a2614;
+  --orange: #ffac02;
+  --orange-dim: #c0880a;
+  --green: #54a87e;
+  --yellow: #edff45;
+  --red: #ff5e5e;
+  --text: #f5e9d5;
+  --text-dim: #a89080;
+  --text-mute: #6e5a48;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--orange); text-decoration: none; }
+a:hover { color: var(--yellow); }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #170d02 0%, #261609 50%, #170d02 100%);
+  border-bottom: 2px solid var(--orange);
+  padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,172,2,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-meta { color: var(--green); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+.hero h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
+.hero h1 .accent { color: var(--orange); }
+.hero .sub { color: var(--text-dim); font-size: 20px; max-width: 700px; }
+.hero .meta-row { display: flex; gap: 24px; margin-top: 32px; flex-wrap: wrap; }
+.hero .meta-pill {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.hero .meta-pill b { color: var(--orange); font-weight: 600; }
+
+/* NAV */
+.nav { background: var(--bg-2); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.nav-inner { display: flex; gap: 8px; padding: 16px 24px; max-width: 1280px; margin: 0 auto; align-items: center; }
+.nav-brand { color: var(--orange); font-weight: 700; font-size: 16px; margin-right: 24px; }
+.nav a.nav-link { color: var(--text-dim); padding: 6px 12px; border-radius: 4px; font-size: 14px; }
+.nav a.nav-link:hover, .nav a.nav-link.active { background: var(--panel); color: var(--orange); }
+
+/* SECTION */
+section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+.section-label { color: var(--orange); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+.section-title { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
+.section-sub { color: var(--text-dim); font-size: 16px; margin-bottom: 48px; max-width: 800px; }
+
+/* CARD */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  transition: border-color .2s;
+}
+.card:hover { border-color: var(--orange); }
+.card-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+.card-meta { color: var(--text-dim); font-size: 13px; }
+
+/* GRID */
+.grid { display: grid; gap: 24px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-5 { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 1024px) { .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .grid-4, .grid-5, .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+/* BIG NUMBER */
+.stat {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.stat::after {
+  content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%;
+  background: var(--orange);
+}
+.stat-label { color: var(--text-dim); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.stat-value { font-size: 42px; font-weight: 800; color: var(--text); }
+.stat-value .unit { font-size: 18px; color: var(--text-dim); margin-left: 4px; }
+.stat-foot { color: var(--text-mute); font-size: 12px; margin-top: 8px; }
+
+/* PROGRESS BAR */
+.bar-wrap { background: var(--bg); border-radius: 4px; height: 10px; overflow: hidden; margin: 8px 0; }
+.bar { height: 100%; background: linear-gradient(90deg, var(--orange) 0%, var(--yellow) 100%); border-radius: 4px; transition: width .3s; }
+.bar.green { background: linear-gradient(90deg, var(--green) 0%, var(--yellow) 100%); }
+.bar.red { background: linear-gradient(90deg, var(--red) 0%, var(--orange) 100%); }
+
+/* TAG */
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 2px 4px 2px 0;
+}
+.tag-orange { background: rgba(255,172,2,0.15); color: var(--orange); border: 1px solid rgba(255,172,2,0.3); }
+.tag-green { background: rgba(84,168,126,0.15); color: var(--green); border: 1px solid rgba(84,168,126,0.3); }
+.tag-red { background: rgba(255,94,94,0.15); color: var(--red); border: 1px solid rgba(255,94,94,0.3); }
+.tag-yellow { background: rgba(237,255,69,0.15); color: var(--yellow); border: 1px solid rgba(237,255,69,0.3); }
+
+/* TABLE */
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+th { color: var(--text-dim); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+tr:hover td { background: var(--panel-2); }
+
+/* ALERT */
+.alert {
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  border-left: 4px solid;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.alert-icon { font-weight: 800; font-size: 18px; }
+.alert-warn { background: rgba(255,172,2,0.08); border-color: var(--orange); }
+.alert-warn .alert-icon { color: var(--orange); }
+.alert-danger { background: rgba(255,94,94,0.08); border-color: var(--red); }
+.alert-danger .alert-icon { color: var(--red); }
+.alert-info { background: rgba(84,168,126,0.08); border-color: var(--green); }
+.alert-info .alert-icon { color: var(--green); }
+.alert-body { flex: 1; color: var(--text); }
+.alert-title { font-weight: 700; margin-bottom: 4px; }
+
+/* MEDAL */
+.medal { display: inline-block; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: 800; font-size: 14px; margin-right: 8px; }
+.medal-1 { background: linear-gradient(135deg, #ffd700, #ffac02); color: #170d02; }
+.medal-2 { background: linear-gradient(135deg, #c0c0c0, #888); color: #170d02; }
+.medal-3 { background: linear-gradient(135deg, #cd7f32, #8b4513); color: #170d02; }
+
+/* FOOTER */
+footer { background: var(--bg-2); padding: 40px 0; text-align: center; color: var(--text-mute); font-size: 13px; border-top: 1px solid var(--border); }
+
+/* LINKS BAR */
+.breadcrumb { padding: 16px 0; color: var(--text-dim); font-size: 14px; }
+.breadcrumb a { color: var(--text-dim); }
+.breadcrumb a:hover { color: var(--orange); }
+.breadcrumb .sep { margin: 0 8px; color: var(--text-mute); }
+
+/* UTILITY */
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mt-48 { margin-top: 48px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+.flex { display: flex; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.gap-8 { gap: 8px; }
+.gap-16 { gap: 16px; }
+.gap-24 { gap: 24px; }
+.text-orange { color: var(--orange); }
+.text-green { color: var(--green); }
+.text-red { color: var(--red); }
+.text-yellow { color: var(--yellow); }
+.text-dim { color: var(--text-dim); }
+.text-mute { color: var(--text-mute); }
+.text-sm { font-size: 13px; }
+.text-lg { font-size: 18px; }
+.text-xl { font-size: 24px; }
+.font-bold { font-weight: 700; }
+.font-extra { font-weight: 800; }
+
+/* PILL ROW */
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.pill {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.pill b { color: var(--orange); }
+
+/* NOTE LIST */
+.note-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.note-row:last-child { border-bottom: none; }
+.note-rank { color: var(--orange); font-weight: 800; font-size: 18px; width: 32px; }
+.note-title { flex: 1; color: var(--text); }
+.note-likes { color: var(--green); font-weight: 700; min-width: 80px; text-align: right; }
+.note-type { font-size: 12px; padding: 2px 8px; border-radius: 3px; background: var(--panel-2); color: var(--text-dim); }
+
+/* ===== B-sop.html ===== */
+
+:root {
+  --bg: #0d0905;
+  --bg-2: #170d02;
+  --panel: #1d1107;
+  --panel-2: #261609;
+  --border: #3a2614;
+  --orange: #ffac02;
+  --orange-dim: #c0880a;
+  --green: #54a87e;
+  --yellow: #edff45;
+  --red: #ff5e5e;
+  --text: #f5e9d5;
+  --text-dim: #a89080;
+  --text-mute: #6e5a48;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--orange); text-decoration: none; }
+a:hover { color: var(--yellow); }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #170d02 0%, #261609 50%, #170d02 100%);
+  border-bottom: 2px solid var(--red);
+  padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,94,94,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-meta { color: var(--red); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+.hero h1 { font-size: 52px; font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
+.hero h1 .accent { color: var(--orange); }
+.hero .sub { color: var(--text-dim); font-size: 18px; max-width: 800px; }
+.hero .meta-row { display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap; }
+.hero .meta-pill {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.hero .meta-pill b { color: var(--orange); font-weight: 600; }
+
+/* NAV */
+.nav { background: var(--bg-2); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.nav-inner { display: flex; gap: 8px; padding: 16px 24px; max-width: 1280px; margin: 0 auto; align-items: center; }
+.nav-brand { color: var(--orange); font-weight: 700; font-size: 16px; margin-right: 24px; }
+.nav a.nav-link { color: var(--text-dim); padding: 6px 12px; border-radius: 4px; font-size: 14px; }
+.nav a.nav-link:hover, .nav a.nav-link.active { background: var(--panel); color: var(--orange); }
+
+/* SECTION */
+section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+.section-label { color: var(--orange); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+.section-title { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
+.section-sub { color: var(--text-dim); font-size: 16px; margin-bottom: 48px; max-width: 800px; }
+
+/* CARD */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  transition: border-color .2s;
+}
+.card:hover { border-color: var(--orange); }
+.card-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+.card-meta { color: var(--text-dim); font-size: 13px; }
+
+/* GRID */
+.grid { display: grid; gap: 24px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1024px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+/* BIG NUMBER */
+.stat {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.stat::after {
+  content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%;
+  background: var(--orange);
+}
+.stat.red::after { background: var(--red); }
+.stat.green::after { background: var(--green); }
+.stat-label { color: var(--text-dim); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.stat-value { font-size: 42px; font-weight: 800; color: var(--text); }
+.stat-value .unit { font-size: 18px; color: var(--text-dim); margin-left: 4px; }
+.stat-foot { color: var(--text-mute); font-size: 12px; margin-top: 8px; }
+
+/* PROGRESS BAR */
+.bar-wrap { background: var(--bg); border-radius: 4px; height: 10px; overflow: hidden; margin: 8px 0; }
+.bar { height: 100%; background: linear-gradient(90deg, var(--orange) 0%, var(--yellow) 100%); border-radius: 4px; transition: width .3s; }
+.bar.green { background: linear-gradient(90deg, var(--green) 0%, var(--yellow) 100%); }
+.bar.red { background: linear-gradient(90deg, var(--red) 0%, var(--orange) 100%); }
+
+/* TAG */
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 2px 4px 2px 0;
+}
+.tag-orange { background: rgba(255,172,2,0.15); color: var(--orange); border: 1px solid rgba(255,172,2,0.3); }
+.tag-green { background: rgba(84,168,126,0.15); color: var(--green); border: 1px solid rgba(84,168,126,0.3); }
+.tag-red { background: rgba(255,94,94,0.15); color: var(--red); border: 1px solid rgba(255,94,94,0.3); }
+.tag-yellow { background: rgba(237,255,69,0.15); color: var(--yellow); border: 1px solid rgba(237,255,69,0.3); }
+
+/* TABLE */
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+th { color: var(--text-dim); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+tr:hover td { background: var(--panel-2); }
+
+/* ALERT */
+.alert {
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  border-left: 4px solid;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.alert-icon { font-weight: 800; font-size: 18px; flex-shrink: 0; }
+.alert-warn { background: rgba(255,172,2,0.08); border-color: var(--orange); }
+.alert-warn .alert-icon { color: var(--orange); }
+.alert-danger { background: rgba(255,94,94,0.08); border-color: var(--red); }
+.alert-danger .alert-icon { color: var(--red); }
+.alert-info { background: rgba(84,168,126,0.08); border-color: var(--green); }
+.alert-info .alert-icon { color: var(--green); }
+.alert-body { flex: 1; color: var(--text); }
+.alert-title { font-weight: 700; margin-bottom: 4px; }
+
+/* TIMELINE */
+.timeline { position: relative; padding-left: 32px; }
+.timeline::before {
+  content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border);
+}
+.tl-item { position: relative; padding-bottom: 32px; }
+.tl-item::before {
+  content: ''; position: absolute; left: -28px; top: 4px; width: 16px; height: 16px;
+  border-radius: 50%; background: var(--orange); border: 3px solid var(--bg);
+}
+.tl-item.critical::before { background: var(--red); }
+.tl-item.success::before { background: var(--green); }
+.tl-date { color: var(--orange); font-size: 13px; font-weight: 700; margin-bottom: 4px; letter-spacing: 1px; }
+.tl-date.critical { color: var(--red); }
+.tl-date.success { color: var(--green); }
+.tl-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.tl-body { color: var(--text-dim); font-size: 15px; }
+.tl-body ul { margin: 12px 0; padding-left: 20px; }
+.tl-body li { margin-bottom: 6px; }
+.tl-body li b { color: var(--text); }
+.tl-body li .hl-orange { color: var(--orange); font-weight: 600; }
+.tl-body li .hl-green { color: var(--green); font-weight: 600; }
+.tl-body li .hl-red { color: var(--red); font-weight: 600; }
+.tl-meta {
+  margin-top: 12px; padding: 12px; background: var(--bg); border-radius: 4px;
+  display: flex; gap: 24px; flex-wrap: wrap; font-size: 13px;
+}
+.tl-meta-item { color: var(--text-dim); }
+.tl-meta-item b { color: var(--orange); font-weight: 600; }
+
+/* STAR */
+.stars { color: var(--yellow); letter-spacing: 2px; }
+.star-empty { color: var(--text-mute); }
+
+/* CHECKLIST */
+.checklist { list-style: none; }
+.checklist li {
+  position: relative;
+  padding: 8px 0 8px 28px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-dim);
+}
+.checklist li::before {
+  content: '☐';
+  position: absolute;
+  left: 0;
+  color: var(--orange);
+  font-weight: 800;
+  font-size: 18px;
+}
+.checklist li b { color: var(--text); }
+.checklist li .hl-orange { color: var(--orange); font-weight: 600; }
+
+/* FOOTER */
+footer { background: var(--bg-2); padding: 40px 0; text-align: center; color: var(--text-mute); font-size: 13px; border-top: 1px solid var(--border); }
+
+/* UTILITY */
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mt-48 { margin-top: 48px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+.flex { display: flex; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.gap-8 { gap: 8px; }
+.gap-16 { gap: 16px; }
+.gap-24 { gap: 24px; }
+.text-orange { color: var(--orange); }
+.text-green { color: var(--green); }
+.text-red { color: var(--red); }
+.text-yellow { color: var(--yellow); }
+.text-dim { color: var(--text-dim); }
+.text-mute { color: var(--text-mute); }
+.text-sm { font-size: 13px; }
+.text-lg { font-size: 18px; }
+.text-xl { font-size: 24px; }
+.font-bold { font-weight: 700; }
+.font-extra { font-weight: 800; }
+
+/* BREADCRUMB */
+.breadcrumb { padding: 16px 0; color: var(--text-dim); font-size: 14px; }
+.breadcrumb a { color: var(--text-dim); }
+.breadcrumb a:hover { color: var(--orange); }
+.breadcrumb .sep { margin: 0 8px; color: var(--text-mute); }
+
+/* PILL ROW */
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.pill {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.pill b { color: var(--orange); }
+
+/* COMPARISON */
+.compare-now { color: var(--red); text-decoration: line-through; }
+.compare-goal { color: var(--green); font-weight: 800; font-size: 20px; }
+.compare-arrow { color: var(--text-mute); margin: 0 12px; }
+
+/* ===== B.html ===== */
+
+:root {
+  --bg: #0d0905;
+  --bg-2: #170d02;
+  --panel: #1d1107;
+  --panel-2: #261609;
+  --border: #3a2614;
+  --orange: #ffac02;
+  --orange-dim: #c0880a;
+  --green: #54a87e;
+  --yellow: #edff45;
+  --red: #ff5e5e;
+  --text: #f5e9d5;
+  --text-dim: #a89080;
+  --text-mute: #6e5a48;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--orange); text-decoration: none; }
+a:hover { color: var(--yellow); }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #170d02 0%, #261609 50%, #170d02 100%);
+  border-bottom: 2px solid var(--orange);
+  padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,172,2,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-meta { color: var(--green); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+.hero h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
+.hero h1 .accent { color: var(--orange); }
+.hero .sub { color: var(--text-dim); font-size: 20px; max-width: 700px; }
+.hero .meta-row { display: flex; gap: 24px; margin-top: 32px; flex-wrap: wrap; }
+.hero .meta-pill {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.hero .meta-pill b { color: var(--orange); font-weight: 600; }
+
+/* NAV */
+.nav { background: var(--bg-2); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.nav-inner { display: flex; gap: 8px; padding: 16px 24px; max-width: 1280px; margin: 0 auto; align-items: center; }
+.nav-brand { color: var(--orange); font-weight: 700; font-size: 16px; margin-right: 24px; }
+.nav a.nav-link { color: var(--text-dim); padding: 6px 12px; border-radius: 4px; font-size: 14px; }
+.nav a.nav-link:hover, .nav a.nav-link.active { background: var(--panel); color: var(--orange); }
+
+/* SECTION */
+section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+.section-label { color: var(--orange); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+.section-title { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
+.section-sub { color: var(--text-dim); font-size: 16px; margin-bottom: 48px; max-width: 800px; }
+
+/* CARD */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  transition: border-color .2s;
+}
+.card:hover { border-color: var(--orange); }
+.card-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+.card-meta { color: var(--text-dim); font-size: 13px; }
+
+/* GRID */
+.grid { display: grid; gap: 24px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-5 { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 1024px) { .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .grid-4, .grid-5, .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+/* BIG NUMBER */
+.stat {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.stat::after {
+  content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%;
+  background: var(--orange);
+}
+.stat-label { color: var(--text-dim); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.stat-value { font-size: 42px; font-weight: 800; color: var(--text); }
+.stat-value .unit { font-size: 18px; color: var(--text-dim); margin-left: 4px; }
+.stat-foot { color: var(--text-mute); font-size: 12px; margin-top: 8px; }
+
+/* PROGRESS BAR */
+.bar-wrap { background: var(--bg); border-radius: 4px; height: 10px; overflow: hidden; margin: 8px 0; }
+.bar { height: 100%; background: linear-gradient(90deg, var(--orange) 0%, var(--yellow) 100%); border-radius: 4px; transition: width .3s; }
+.bar.green { background: linear-gradient(90deg, var(--green) 0%, var(--yellow) 100%); }
+.bar.red { background: linear-gradient(90deg, var(--red) 0%, var(--orange) 100%); }
+
+/* TAG */
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 2px 4px 2px 0;
+}
+.tag-orange { background: rgba(255,172,2,0.15); color: var(--orange); border: 1px solid rgba(255,172,2,0.3); }
+.tag-green { background: rgba(84,168,126,0.15); color: var(--green); border: 1px solid rgba(84,168,126,0.3); }
+.tag-red { background: rgba(255,94,94,0.15); color: var(--red); border: 1px solid rgba(255,94,94,0.3); }
+.tag-yellow { background: rgba(237,255,69,0.15); color: var(--yellow); border: 1px solid rgba(237,255,69,0.3); }
+
+/* TABLE */
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+th { color: var(--text-dim); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+tr:hover td { background: var(--panel-2); }
+
+/* ALERT */
+.alert {
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  border-left: 4px solid;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.alert-icon { font-weight: 800; font-size: 18px; }
+.alert-warn { background: rgba(255,172,2,0.08); border-color: var(--orange); }
+.alert-warn .alert-icon { color: var(--orange); }
+.alert-danger { background: rgba(255,94,94,0.08); border-color: var(--red); }
+.alert-danger .alert-icon { color: var(--red); }
+.alert-info { background: rgba(84,168,126,0.08); border-color: var(--green); }
+.alert-info .alert-icon { color: var(--green); }
+.alert-body { flex: 1; color: var(--text); }
+.alert-title { font-weight: 700; margin-bottom: 4px; }
+
+/* MEDAL */
+.medal { display: inline-block; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: 800; font-size: 14px; margin-right: 8px; }
+.medal-1 { background: linear-gradient(135deg, #ffd700, #ffac02); color: #170d02; }
+.medal-2 { background: linear-gradient(135deg, #c0c0c0, #888); color: #170d02; }
+.medal-3 { background: linear-gradient(135deg, #cd7f32, #8b4513); color: #170d02; }
+
+/* FOOTER */
+footer { background: var(--bg-2); padding: 40px 0; text-align: center; color: var(--text-mute); font-size: 13px; border-top: 1px solid var(--border); }
+
+/* LINKS BAR */
+.breadcrumb { padding: 16px 0; color: var(--text-dim); font-size: 14px; }
+.breadcrumb a { color: var(--text-dim); }
+.breadcrumb a:hover { color: var(--orange); }
+.breadcrumb .sep { margin: 0 8px; color: var(--text-mute); }
+
+/* UTILITY */
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mt-48 { margin-top: 48px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+.flex { display: flex; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.gap-8 { gap: 8px; }
+.gap-16 { gap: 16px; }
+.gap-24 { gap: 24px; }
+.text-orange { color: var(--orange); }
+.text-green { color: var(--green); }
+.text-red { color: var(--red); }
+.text-yellow { color: var(--yellow); }
+.text-dim { color: var(--text-dim); }
+.text-mute { color: var(--text-mute); }
+.text-sm { font-size: 13px; }
+.text-lg { font-size: 18px; }
+.text-xl { font-size: 24px; }
+.font-bold { font-weight: 700; }
+.font-extra { font-weight: 800; }
+
+/* PILL ROW */
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.pill {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.pill b { color: var(--orange); }
+
+/* NOTE LIST */
+.note-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.note-row:last-child { border-bottom: none; }
+.note-rank { color: var(--orange); font-weight: 800; font-size: 18px; width: 32px; }
+.note-title { flex: 1; color: var(--text); }
+.note-likes { color: var(--green); font-weight: 700; min-width: 80px; text-align: right; }
+.note-type { font-size: 12px; padding: 2px 8px; border-radius: 3px; background: var(--panel-2); color: var(--text-dim); }
+
+/* ===== compare.html ===== */
+
+:root {
+  --bg: #0d0905;
+  --bg-2: #170d02;
+  --panel: #1d1107;
+  --panel-2: #261609;
+  --border: #3a2614;
+  --orange: #ffac02;
+  --orange-dim: #c0880a;
+  --green: #54a87e;
+  --yellow: #edff45;
+  --red: #ff5e5e;
+  --text: #f5e9d5;
+  --text-dim: #a89080;
+  --text-mute: #6e5a48;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--orange); text-decoration: none; }
+a:hover { color: var(--yellow); }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #170d02 0%, #261609 50%, #170d02 100%);
+  border-bottom: 2px solid var(--orange);
+  padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,172,2,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-meta { color: var(--green); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+.hero h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
+.hero h1 .accent { color: var(--orange); }
+.hero .sub { color: var(--text-dim); font-size: 20px; max-width: 700px; }
+.hero .meta-row { display: flex; gap: 24px; margin-top: 32px; flex-wrap: wrap; }
+.hero .meta-pill {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.hero .meta-pill b { color: var(--orange); font-weight: 600; }
+
+/* NAV */
+.nav { background: var(--bg-2); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.nav-inner { display: flex; gap: 8px; padding: 16px 24px; max-width: 1280px; margin: 0 auto; align-items: center; }
+.nav-brand { color: var(--orange); font-weight: 700; font-size: 16px; margin-right: 24px; }
+.nav a.nav-link { color: var(--text-dim); padding: 6px 12px; border-radius: 4px; font-size: 14px; }
+.nav a.nav-link:hover, .nav a.nav-link.active { background: var(--panel); color: var(--orange); }
+
+/* SECTION */
+section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+.section-label { color: var(--orange); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+.section-title { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
+.section-sub { color: var(--text-dim); font-size: 16px; margin-bottom: 48px; max-width: 800px; }
+
+/* CARD */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  transition: border-color .2s;
+}
+.card:hover { border-color: var(--orange); }
+.card-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+.card-meta { color: var(--text-dim); font-size: 13px; }
+
+/* GRID */
+.grid { display: grid; gap: 24px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-5 { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 1024px) { .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .grid-4, .grid-5, .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+/* BIG NUMBER */
+.stat {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.stat::after {
+  content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%;
+  background: var(--orange);
+}
+.stat-label { color: var(--text-dim); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.stat-value { font-size: 42px; font-weight: 800; color: var(--text); }
+.stat-value .unit { font-size: 18px; color: var(--text-dim); margin-left: 4px; }
+.stat-foot { color: var(--text-mute); font-size: 12px; margin-top: 8px; }
+
+/* PROGRESS BAR */
+.bar-wrap { background: var(--bg); border-radius: 4px; height: 10px; overflow: hidden; margin: 8px 0; }
+.bar { height: 100%; background: linear-gradient(90deg, var(--orange) 0%, var(--yellow) 100%); border-radius: 4px; transition: width .3s; }
+.bar.green { background: linear-gradient(90deg, var(--green) 0%, var(--yellow) 100%); }
+.bar.red { background: linear-gradient(90deg, var(--red) 0%, var(--orange) 100%); }
+
+/* TAG */
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 2px 4px 2px 0;
+}
+.tag-orange { background: rgba(255,172,2,0.15); color: var(--orange); border: 1px solid rgba(255,172,2,0.3); }
+.tag-green { background: rgba(84,168,126,0.15); color: var(--green); border: 1px solid rgba(84,168,126,0.3); }
+.tag-red { background: rgba(255,94,94,0.15); color: var(--red); border: 1px solid rgba(255,94,94,0.3); }
+.tag-yellow { background: rgba(237,255,69,0.15); color: var(--yellow); border: 1px solid rgba(237,255,69,0.3); }
+
+/* TABLE */
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+th { color: var(--text-dim); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+tr:hover td { background: var(--panel-2); }
+
+/* ALERT */
+.alert {
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  border-left: 4px solid;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.alert-icon { font-weight: 800; font-size: 18px; }
+.alert-warn { background: rgba(255,172,2,0.08); border-color: var(--orange); }
+.alert-warn .alert-icon { color: var(--orange); }
+.alert-danger { background: rgba(255,94,94,0.08); border-color: var(--red); }
+.alert-danger .alert-icon { color: var(--red); }
+.alert-info { background: rgba(84,168,126,0.08); border-color: var(--green); }
+.alert-info .alert-icon { color: var(--green); }
+.alert-body { flex: 1; color: var(--text); }
+.alert-title { font-weight: 700; margin-bottom: 4px; }
+
+/* MEDAL */
+.medal { display: inline-block; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: 800; font-size: 14px; margin-right: 8px; }
+.medal-1 { background: linear-gradient(135deg, #ffd700, #ffac02); color: #170d02; }
+.medal-2 { background: linear-gradient(135deg, #c0c0c0, #888); color: #170d02; }
+.medal-3 { background: linear-gradient(135deg, #cd7f32, #8b4513); color: #170d02; }
+
+/* FOOTER */
+footer { background: var(--bg-2); padding: 40px 0; text-align: center; color: var(--text-mute); font-size: 13px; border-top: 1px solid var(--border); }
+
+/* LINKS BAR */
+.breadcrumb { padding: 16px 0; color: var(--text-dim); font-size: 14px; }
+.breadcrumb a { color: var(--text-dim); }
+.breadcrumb a:hover { color: var(--orange); }
+.breadcrumb .sep { margin: 0 8px; color: var(--text-mute); }
+
+/* UTILITY */
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mt-48 { margin-top: 48px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+.flex { display: flex; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.gap-8 { gap: 8px; }
+.gap-16 { gap: 16px; }
+.gap-24 { gap: 24px; }
+.text-orange { color: var(--orange); }
+.text-green { color: var(--green); }
+.text-red { color: var(--red); }
+.text-yellow { color: var(--yellow); }
+.text-dim { color: var(--text-dim); }
+.text-mute { color: var(--text-mute); }
+.text-sm { font-size: 13px; }
+.text-lg { font-size: 18px; }
+.text-xl { font-size: 24px; }
+.font-bold { font-weight: 700; }
+.font-extra { font-weight: 800; }
+
+/* PILL ROW */
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.pill {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.pill b { color: var(--orange); }
+
+/* NOTE LIST */
+.note-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.note-row:last-child { border-bottom: none; }
+.note-rank { color: var(--orange); font-weight: 800; font-size: 18px; width: 32px; }
+.note-title { flex: 1; color: var(--text); }
+.note-likes { color: var(--green); font-weight: 700; min-width: 80px; text-align: right; }
+.note-type { font-size: 12px; padding: 2px 8px; border-radius: 3px; background: var(--panel-2); color: var(--text-dim); }
+
+/* ===== action.html ===== */
+
+:root {
+  --bg: #0d0905;
+  --bg-2: #170d02;
+  --panel: #1d1107;
+  --panel-2: #261609;
+  --border: #3a2614;
+  --orange: #ffac02;
+  --orange-dim: #c0880a;
+  --green: #54a87e;
+  --yellow: #edff45;
+  --red: #ff5e5e;
+  --text: #f5e9d5;
+  --text-dim: #a89080;
+  --text-mute: #6e5a48;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--orange); text-decoration: none; }
+a:hover { color: var(--yellow); }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #170d02 0%, #261609 50%, #170d02 100%);
+  border-bottom: 2px solid var(--orange);
+  padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,172,2,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-meta { color: var(--green); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+.hero h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
+.hero h1 .accent { color: var(--orange); }
+.hero .sub { color: var(--text-dim); font-size: 20px; max-width: 700px; }
+.hero .meta-row { display: flex; gap: 24px; margin-top: 32px; flex-wrap: wrap; }
+.hero .meta-pill {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.hero .meta-pill b { color: var(--orange); font-weight: 600; }
+
+/* NAV */
+.nav { background: var(--bg-2); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.nav-inner { display: flex; gap: 8px; padding: 16px 24px; max-width: 1280px; margin: 0 auto; align-items: center; }
+.nav-brand { color: var(--orange); font-weight: 700; font-size: 16px; margin-right: 24px; }
+.nav a.nav-link { color: var(--text-dim); padding: 6px 12px; border-radius: 4px; font-size: 14px; }
+.nav a.nav-link:hover, .nav a.nav-link.active { background: var(--panel); color: var(--orange); }
+
+/* SECTION */
+section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+.section-label { color: var(--orange); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+.section-title { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
+.section-sub { color: var(--text-dim); font-size: 16px; margin-bottom: 48px; max-width: 800px; }
+
+/* CARD */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  transition: border-color .2s;
+}
+.card:hover { border-color: var(--orange); }
+.card-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+.card-meta { color: var(--text-dim); font-size: 13px; }
+
+/* GRID */
+.grid { display: grid; gap: 24px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-5 { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 1024px) { .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .grid-4, .grid-5, .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+/* BIG NUMBER */
+.stat {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.stat::after {
+  content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%;
+  background: var(--orange);
+}
+.stat-label { color: var(--text-dim); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.stat-value { font-size: 42px; font-weight: 800; color: var(--text); }
+.stat-value .unit { font-size: 18px; color: var(--text-dim); margin-left: 4px; }
+.stat-foot { color: var(--text-mute); font-size: 12px; margin-top: 8px; }
+
+/* PROGRESS BAR */
+.bar-wrap { background: var(--bg); border-radius: 4px; height: 10px; overflow: hidden; margin: 8px 0; }
+.bar { height: 100%; background: linear-gradient(90deg, var(--orange) 0%, var(--yellow) 100%); border-radius: 4px; transition: width .3s; }
+.bar.green { background: linear-gradient(90deg, var(--green) 0%, var(--yellow) 100%); }
+.bar.red { background: linear-gradient(90deg, var(--red) 0%, var(--orange) 100%); }
+
+/* TAG */
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 2px 4px 2px 0;
+}
+.tag-orange { background: rgba(255,172,2,0.15); color: var(--orange); border: 1px solid rgba(255,172,2,0.3); }
+.tag-green { background: rgba(84,168,126,0.15); color: var(--green); border: 1px solid rgba(84,168,126,0.3); }
+.tag-red { background: rgba(255,94,94,0.15); color: var(--red); border: 1px solid rgba(255,94,94,0.3); }
+.tag-yellow { background: rgba(237,255,69,0.15); color: var(--yellow); border: 1px solid rgba(237,255,69,0.3); }
+
+/* TABLE */
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+th { color: var(--text-dim); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+tr:hover td { background: var(--panel-2); }
+
+/* ALERT */
+.alert {
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  border-left: 4px solid;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.alert-icon { font-weight: 800; font-size: 18px; }
+.alert-warn { background: rgba(255,172,2,0.08); border-color: var(--orange); }
+.alert-warn .alert-icon { color: var(--orange); }
+.alert-danger { background: rgba(255,94,94,0.08); border-color: var(--red); }
+.alert-danger .alert-icon { color: var(--red); }
+.alert-info { background: rgba(84,168,126,0.08); border-color: var(--green); }
+.alert-info .alert-icon { color: var(--green); }
+.alert-body { flex: 1; color: var(--text); }
+.alert-title { font-weight: 700; margin-bottom: 4px; }
+
+/* MEDAL */
+.medal { display: inline-block; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: 800; font-size: 14px; margin-right: 8px; }
+.medal-1 { background: linear-gradient(135deg, #ffd700, #ffac02); color: #170d02; }
+.medal-2 { background: linear-gradient(135deg, #c0c0c0, #888); color: #170d02; }
+.medal-3 { background: linear-gradient(135deg, #cd7f32, #8b4513); color: #170d02; }
+
+/* FOOTER */
+footer { background: var(--bg-2); padding: 40px 0; text-align: center; color: var(--text-mute); font-size: 13px; border-top: 1px solid var(--border); }
+
+/* LINKS BAR */
+.breadcrumb { padding: 16px 0; color: var(--text-dim); font-size: 14px; }
+.breadcrumb a { color: var(--text-dim); }
+.breadcrumb a:hover { color: var(--orange); }
+.breadcrumb .sep { margin: 0 8px; color: var(--text-mute); }
+
+/* UTILITY */
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mt-48 { margin-top: 48px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+.flex { display: flex; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.gap-8 { gap: 8px; }
+.gap-16 { gap: 16px; }
+.gap-24 { gap: 24px; }
+.text-orange { color: var(--orange); }
+.text-green { color: var(--green); }
+.text-red { color: var(--red); }
+.text-yellow { color: var(--yellow); }
+.text-dim { color: var(--text-dim); }
+.text-mute { color: var(--text-mute); }
+.text-sm { font-size: 13px; }
+.text-lg { font-size: 18px; }
+.text-xl { font-size: 24px; }
+.font-bold { font-weight: 700; }
+.font-extra { font-weight: 800; }
+
+/* PILL ROW */
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.pill {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.pill b { color: var(--orange); }
+
+/* NOTE LIST */
+.note-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.note-row:last-child { border-bottom: none; }
+.note-rank { color: var(--orange); font-weight: 800; font-size: 18px; width: 32px; }
+.note-title { flex: 1; color: var(--text); }
+.note-likes { color: var(--green); font-weight: 700; min-width: 80px; text-align: right; }
+.note-type { font-size: 12px; padding: 2px 8px; border-radius: 3px; background: var(--panel-2); color: var(--text-dim); }
+
+/* ===== A.html ===== */
+
+:root {
+  --bg: #0d0905;
+  --bg-2: #170d02;
+  --panel: #1d1107;
+  --panel-2: #261609;
+  --border: #3a2614;
+  --orange: #ffac02;
+  --orange-dim: #c0880a;
+  --green: #54a87e;
+  --yellow: #edff45;
+  --red: #ff5e5e;
+  --text: #f5e9d5;
+  --text-dim: #a89080;
+  --text-mute: #6e5a48;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--orange); text-decoration: none; }
+a:hover { color: var(--yellow); }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #170d02 0%, #261609 50%, #170d02 100%);
+  border-bottom: 2px solid var(--orange);
+  padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,172,2,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-meta { color: var(--green); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+.hero h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
+.hero h1 .accent { color: var(--orange); }
+.hero .sub { color: var(--text-dim); font-size: 20px; max-width: 700px; }
+.hero .meta-row { display: flex; gap: 24px; margin-top: 32px; flex-wrap: wrap; }
+.hero .meta-pill {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.hero .meta-pill b { color: var(--orange); font-weight: 600; }
+
+/* NAV */
+.nav { background: var(--bg-2); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.nav-inner { display: flex; gap: 8px; padding: 16px 24px; max-width: 1280px; margin: 0 auto; align-items: center; }
+.nav-brand { color: var(--orange); font-weight: 700; font-size: 16px; margin-right: 24px; }
+.nav a.nav-link { color: var(--text-dim); padding: 6px 12px; border-radius: 4px; font-size: 14px; }
+.nav a.nav-link:hover, .nav a.nav-link.active { background: var(--panel); color: var(--orange); }
+
+/* SECTION */
+section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+.section-label { color: var(--orange); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+.section-title { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
+.section-sub { color: var(--text-dim); font-size: 16px; margin-bottom: 48px; max-width: 800px; }
+
+/* CARD */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  transition: border-color .2s;
+}
+.card:hover { border-color: var(--orange); }
+.card-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+.card-meta { color: var(--text-dim); font-size: 13px; }
+
+/* GRID */
+.grid { display: grid; gap: 24px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-5 { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 1024px) { .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .grid-4, .grid-5, .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+/* BIG NUMBER */
+.stat {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.stat::after {
+  content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%;
+  background: var(--orange);
+}
+.stat-label { color: var(--text-dim); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.stat-value { font-size: 42px; font-weight: 800; color: var(--text); }
+.stat-value .unit { font-size: 18px; color: var(--text-dim); margin-left: 4px; }
+.stat-foot { color: var(--text-mute); font-size: 12px; margin-top: 8px; }
+
+/* PROGRESS BAR */
+.bar-wrap { background: var(--bg); border-radius: 4px; height: 10px; overflow: hidden; margin: 8px 0; }
+.bar { height: 100%; background: linear-gradient(90deg, var(--orange) 0%, var(--yellow) 100%); border-radius: 4px; transition: width .3s; }
+.bar.green { background: linear-gradient(90deg, var(--green) 0%, var(--yellow) 100%); }
+.bar.red { background: linear-gradient(90deg, var(--red) 0%, var(--orange) 100%); }
+
+/* TAG */
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 2px 4px 2px 0;
+}
+.tag-orange { background: rgba(255,172,2,0.15); color: var(--orange); border: 1px solid rgba(255,172,2,0.3); }
+.tag-green { background: rgba(84,168,126,0.15); color: var(--green); border: 1px solid rgba(84,168,126,0.3); }
+.tag-red { background: rgba(255,94,94,0.15); color: var(--red); border: 1px solid rgba(255,94,94,0.3); }
+.tag-yellow { background: rgba(237,255,69,0.15); color: var(--yellow); border: 1px solid rgba(237,255,69,0.3); }
+
+/* TABLE */
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+th { color: var(--text-dim); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+tr:hover td { background: var(--panel-2); }
+
+/* ALERT */
+.alert {
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  border-left: 4px solid;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.alert-icon { font-weight: 800; font-size: 18px; }
+.alert-warn { background: rgba(255,172,2,0.08); border-color: var(--orange); }
+.alert-warn .alert-icon { color: var(--orange); }
+.alert-danger { background: rgba(255,94,94,0.08); border-color: var(--red); }
+.alert-danger .alert-icon { color: var(--red); }
+.alert-info { background: rgba(84,168,126,0.08); border-color: var(--green); }
+.alert-info .alert-icon { color: var(--green); }
+.alert-body { flex: 1; color: var(--text); }
+.alert-title { font-weight: 700; margin-bottom: 4px; }
+
+/* MEDAL */
+.medal { display: inline-block; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: 800; font-size: 14px; margin-right: 8px; }
+.medal-1 { background: linear-gradient(135deg, #ffd700, #ffac02); color: #170d02; }
+.medal-2 { background: linear-gradient(135deg, #c0c0c0, #888); color: #170d02; }
+.medal-3 { background: linear-gradient(135deg, #cd7f32, #8b4513); color: #170d02; }
+
+/* FOOTER */
+footer { background: var(--bg-2); padding: 40px 0; text-align: center; color: var(--text-mute); font-size: 13px; border-top: 1px solid var(--border); }
+
+/* LINKS BAR */
+.breadcrumb { padding: 16px 0; color: var(--text-dim); font-size: 14px; }
+.breadcrumb a { color: var(--text-dim); }
+.breadcrumb a:hover { color: var(--orange); }
+.breadcrumb .sep { margin: 0 8px; color: var(--text-mute); }
+
+/* UTILITY */
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mt-48 { margin-top: 48px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+.flex { display: flex; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.gap-8 { gap: 8px; }
+.gap-16 { gap: 16px; }
+.gap-24 { gap: 24px; }
+.text-orange { color: var(--orange); }
+.text-green { color: var(--green); }
+.text-red { color: var(--red); }
+.text-yellow { color: var(--yellow); }
+.text-dim { color: var(--text-dim); }
+.text-mute { color: var(--text-mute); }
+.text-sm { font-size: 13px; }
+.text-lg { font-size: 18px; }
+.text-xl { font-size: 24px; }
+.font-bold { font-weight: 700; }
+.font-extra { font-weight: 800; }
+
+/* PILL ROW */
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.pill {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.pill b { color: var(--orange); }
+
+/* NOTE LIST */
+.note-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.note-row:last-child { border-bottom: none; }
+.note-rank { color: var(--orange); font-weight: 800; font-size: 18px; width: 32px; }
+.note-title { flex: 1; color: var(--text); }
+.note-likes { color: var(--green); font-weight: 700; min-width: 80px; text-align: right; }
+.note-type { font-size: 12px; padding: 2px 8px; border-radius: 3px; background: var(--panel-2); color: var(--text-dim); }
+
+/* ===== C.html ===== */
+
+:root {
+  --bg: #0d0905;
+  --bg-2: #170d02;
+  --panel: #1d1107;
+  --panel-2: #261609;
+  --border: #3a2614;
+  --orange: #ffac02;
+  --orange-dim: #c0880a;
+  --green: #54a87e;
+  --yellow: #edff45;
+  --red: #ff5e5e;
+  --text: #f5e9d5;
+  --text-dim: #a89080;
+  --text-mute: #6e5a48;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--orange); text-decoration: none; }
+a:hover { color: var(--yellow); }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #170d02 0%, #261609 50%, #170d02 100%);
+  border-bottom: 2px solid var(--orange);
+  padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,172,2,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-meta { color: var(--green); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+.hero h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
+.hero h1 .accent { color: var(--orange); }
+.hero .sub { color: var(--text-dim); font-size: 20px; max-width: 700px; }
+.hero .meta-row { display: flex; gap: 24px; margin-top: 32px; flex-wrap: wrap; }
+.hero .meta-pill {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.hero .meta-pill b { color: var(--orange); font-weight: 600; }
+
+/* NAV */
+.nav { background: var(--bg-2); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.nav-inner { display: flex; gap: 8px; padding: 16px 24px; max-width: 1280px; margin: 0 auto; align-items: center; }
+.nav-brand { color: var(--orange); font-weight: 700; font-size: 16px; margin-right: 24px; }
+.nav a.nav-link { color: var(--text-dim); padding: 6px 12px; border-radius: 4px; font-size: 14px; }
+.nav a.nav-link:hover, .nav a.nav-link.active { background: var(--panel); color: var(--orange); }
+
+/* SECTION */
+section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+.section-label { color: var(--orange); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+.section-title { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
+.section-sub { color: var(--text-dim); font-size: 16px; margin-bottom: 48px; max-width: 800px; }
+
+/* CARD */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  transition: border-color .2s;
+}
+.card:hover { border-color: var(--orange); }
+.card-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+.card-meta { color: var(--text-dim); font-size: 13px; }
+
+/* GRID */
+.grid { display: grid; gap: 24px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-5 { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 1024px) { .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .grid-4, .grid-5, .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+/* BIG NUMBER */
+.stat {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.stat::after {
+  content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%;
+  background: var(--orange);
+}
+.stat-label { color: var(--text-dim); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.stat-value { font-size: 42px; font-weight: 800; color: var(--text); }
+.stat-value .unit { font-size: 18px; color: var(--text-dim); margin-left: 4px; }
+.stat-foot { color: var(--text-mute); font-size: 12px; margin-top: 8px; }
+
+/* PROGRESS BAR */
+.bar-wrap { background: var(--bg); border-radius: 4px; height: 10px; overflow: hidden; margin: 8px 0; }
+.bar { height: 100%; background: linear-gradient(90deg, var(--orange) 0%, var(--yellow) 100%); border-radius: 4px; transition: width .3s; }
+.bar.green { background: linear-gradient(90deg, var(--green) 0%, var(--yellow) 100%); }
+.bar.red { background: linear-gradient(90deg, var(--red) 0%, var(--orange) 100%); }
+
+/* TAG */
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 2px 4px 2px 0;
+}
+.tag-orange { background: rgba(255,172,2,0.15); color: var(--orange); border: 1px solid rgba(255,172,2,0.3); }
+.tag-green { background: rgba(84,168,126,0.15); color: var(--green); border: 1px solid rgba(84,168,126,0.3); }
+.tag-red { background: rgba(255,94,94,0.15); color: var(--red); border: 1px solid rgba(255,94,94,0.3); }
+.tag-yellow { background: rgba(237,255,69,0.15); color: var(--yellow); border: 1px solid rgba(237,255,69,0.3); }
+
+/* TABLE */
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+th { color: var(--text-dim); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+tr:hover td { background: var(--panel-2); }
+
+/* ALERT */
+.alert {
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  border-left: 4px solid;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.alert-icon { font-weight: 800; font-size: 18px; }
+.alert-warn { background: rgba(255,172,2,0.08); border-color: var(--orange); }
+.alert-warn .alert-icon { color: var(--orange); }
+.alert-danger { background: rgba(255,94,94,0.08); border-color: var(--red); }
+.alert-danger .alert-icon { color: var(--red); }
+.alert-info { background: rgba(84,168,126,0.08); border-color: var(--green); }
+.alert-info .alert-icon { color: var(--green); }
+.alert-body { flex: 1; color: var(--text); }
+.alert-title { font-weight: 700; margin-bottom: 4px; }
+
+/* MEDAL */
+.medal { display: inline-block; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: 800; font-size: 14px; margin-right: 8px; }
+.medal-1 { background: linear-gradient(135deg, #ffd700, #ffac02); color: #170d02; }
+.medal-2 { background: linear-gradient(135deg, #c0c0c0, #888); color: #170d02; }
+.medal-3 { background: linear-gradient(135deg, #cd7f32, #8b4513); color: #170d02; }
+
+/* FOOTER */
+footer { background: var(--bg-2); padding: 40px 0; text-align: center; color: var(--text-mute); font-size: 13px; border-top: 1px solid var(--border); }
+
+/* LINKS BAR */
+.breadcrumb { padding: 16px 0; color: var(--text-dim); font-size: 14px; }
+.breadcrumb a { color: var(--text-dim); }
+.breadcrumb a:hover { color: var(--orange); }
+.breadcrumb .sep { margin: 0 8px; color: var(--text-mute); }
+
+/* UTILITY */
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mt-48 { margin-top: 48px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+.flex { display: flex; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.gap-8 { gap: 8px; }
+.gap-16 { gap: 16px; }
+.gap-24 { gap: 24px; }
+.text-orange { color: var(--orange); }
+.text-green { color: var(--green); }
+.text-red { color: var(--red); }
+.text-yellow { color: var(--yellow); }
+.text-dim { color: var(--text-dim); }
+.text-mute { color: var(--text-mute); }
+.text-sm { font-size: 13px; }
+.text-lg { font-size: 18px; }
+.text-xl { font-size: 24px; }
+.font-bold { font-weight: 700; }
+.font-extra { font-weight: 800; }
+
+/* PILL ROW */
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.pill {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.pill b { color: var(--orange); }
+
+/* NOTE LIST */
+.note-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.note-row:last-child { border-bottom: none; }
+.note-rank { color: var(--orange); font-weight: 800; font-size: 18px; width: 32px; }
+.note-title { flex: 1; color: var(--text); }
+.note-likes { color: var(--green); font-weight: 700; min-width: 80px; text-align: right; }
+.note-type { font-size: 12px; padding: 2px 8px; border-radius: 3px; background: var(--panel-2); color: var(--text-dim); }
+
+/* ===== D.html ===== */
+
+:root {
+  --bg: #0d0905;
+  --bg-2: #170d02;
+  --panel: #1d1107;
+  --panel-2: #261609;
+  --border: #3a2614;
+  --orange: #ffac02;
+  --orange-dim: #c0880a;
+  --green: #54a87e;
+  --yellow: #edff45;
+  --red: #ff5e5e;
+  --text: #f5e9d5;
+  --text-dim: #a89080;
+  --text-mute: #6e5a48;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--orange); text-decoration: none; }
+a:hover { color: var(--yellow); }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #170d02 0%, #261609 50%, #170d02 100%);
+  border-bottom: 2px solid var(--orange);
+  padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,172,2,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-meta { color: var(--green); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+.hero h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
+.hero h1 .accent { color: var(--orange); }
+.hero .sub { color: var(--text-dim); font-size: 20px; max-width: 700px; }
+.hero .meta-row { display: flex; gap: 24px; margin-top: 32px; flex-wrap: wrap; }
+.hero .meta-pill {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.hero .meta-pill b { color: var(--orange); font-weight: 600; }
+
+/* NAV */
+.nav { background: var(--bg-2); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.nav-inner { display: flex; gap: 8px; padding: 16px 24px; max-width: 1280px; margin: 0 auto; align-items: center; }
+.nav-brand { color: var(--orange); font-weight: 700; font-size: 16px; margin-right: 24px; }
+.nav a.nav-link { color: var(--text-dim); padding: 6px 12px; border-radius: 4px; font-size: 14px; }
+.nav a.nav-link:hover, .nav a.nav-link.active { background: var(--panel); color: var(--orange); }
+
+/* SECTION */
+section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+.section-label { color: var(--orange); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+.section-title { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
+.section-sub { color: var(--text-dim); font-size: 16px; margin-bottom: 48px; max-width: 800px; }
+
+/* CARD */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  transition: border-color .2s;
+}
+.card:hover { border-color: var(--orange); }
+.card-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+.card-meta { color: var(--text-dim); font-size: 13px; }
+
+/* GRID */
+.grid { display: grid; gap: 24px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-5 { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 1024px) { .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .grid-4, .grid-5, .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+/* BIG NUMBER */
+.stat {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.stat::after {
+  content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%;
+  background: var(--orange);
+}
+.stat-label { color: var(--text-dim); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.stat-value { font-size: 42px; font-weight: 800; color: var(--text); }
+.stat-value .unit { font-size: 18px; color: var(--text-dim); margin-left: 4px; }
+.stat-foot { color: var(--text-mute); font-size: 12px; margin-top: 8px; }
+
+/* PROGRESS BAR */
+.bar-wrap { background: var(--bg); border-radius: 4px; height: 10px; overflow: hidden; margin: 8px 0; }
+.bar { height: 100%; background: linear-gradient(90deg, var(--orange) 0%, var(--yellow) 100%); border-radius: 4px; transition: width .3s; }
+.bar.green { background: linear-gradient(90deg, var(--green) 0%, var(--yellow) 100%); }
+.bar.red { background: linear-gradient(90deg, var(--red) 0%, var(--orange) 100%); }
+
+/* TAG */
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 2px 4px 2px 0;
+}
+.tag-orange { background: rgba(255,172,2,0.15); color: var(--orange); border: 1px solid rgba(255,172,2,0.3); }
+.tag-green { background: rgba(84,168,126,0.15); color: var(--green); border: 1px solid rgba(84,168,126,0.3); }
+.tag-red { background: rgba(255,94,94,0.15); color: var(--red); border: 1px solid rgba(255,94,94,0.3); }
+.tag-yellow { background: rgba(237,255,69,0.15); color: var(--yellow); border: 1px solid rgba(237,255,69,0.3); }
+
+/* TABLE */
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+th { color: var(--text-dim); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+tr:hover td { background: var(--panel-2); }
+
+/* ALERT */
+.alert {
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  border-left: 4px solid;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.alert-icon { font-weight: 800; font-size: 18px; }
+.alert-warn { background: rgba(255,172,2,0.08); border-color: var(--orange); }
+.alert-warn .alert-icon { color: var(--orange); }
+.alert-danger { background: rgba(255,94,94,0.08); border-color: var(--red); }
+.alert-danger .alert-icon { color: var(--red); }
+.alert-info { background: rgba(84,168,126,0.08); border-color: var(--green); }
+.alert-info .alert-icon { color: var(--green); }
+.alert-body { flex: 1; color: var(--text); }
+.alert-title { font-weight: 700; margin-bottom: 4px; }
+
+/* MEDAL */
+.medal { display: inline-block; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: 800; font-size: 14px; margin-right: 8px; }
+.medal-1 { background: linear-gradient(135deg, #ffd700, #ffac02); color: #170d02; }
+.medal-2 { background: linear-gradient(135deg, #c0c0c0, #888); color: #170d02; }
+.medal-3 { background: linear-gradient(135deg, #cd7f32, #8b4513); color: #170d02; }
+
+/* FOOTER */
+footer { background: var(--bg-2); padding: 40px 0; text-align: center; color: var(--text-mute); font-size: 13px; border-top: 1px solid var(--border); }
+
+/* LINKS BAR */
+.breadcrumb { padding: 16px 0; color: var(--text-dim); font-size: 14px; }
+.breadcrumb a { color: var(--text-dim); }
+.breadcrumb a:hover { color: var(--orange); }
+.breadcrumb .sep { margin: 0 8px; color: var(--text-mute); }
+
+/* UTILITY */
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mt-48 { margin-top: 48px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+.flex { display: flex; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.gap-8 { gap: 8px; }
+.gap-16 { gap: 16px; }
+.gap-24 { gap: 24px; }
+.text-orange { color: var(--orange); }
+.text-green { color: var(--green); }
+.text-red { color: var(--red); }
+.text-yellow { color: var(--yellow); }
+.text-dim { color: var(--text-dim); }
+.text-mute { color: var(--text-mute); }
+.text-sm { font-size: 13px; }
+.text-lg { font-size: 18px; }
+.text-xl { font-size: 24px; }
+.font-bold { font-weight: 700; }
+.font-extra { font-weight: 800; }
+
+/* PILL ROW */
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.pill {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.pill b { color: var(--orange); }
+
+/* NOTE LIST */
+.note-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.note-row:last-child { border-bottom: none; }
+.note-rank { color: var(--orange); font-weight: 800; font-size: 18px; width: 32px; }
+.note-title { flex: 1; color: var(--text); }
+.note-likes { color: var(--green); font-weight: 700; min-width: 80px; text-align: right; }
+.note-type { font-size: 12px; padding: 2px 8px; border-radius: 3px; background: var(--panel-2); color: var(--text-dim); }
+
+/* ===== E.html ===== */
+
+:root {
+  --bg: #0d0905;
+  --bg-2: #170d02;
+  --panel: #1d1107;
+  --panel-2: #261609;
+  --border: #3a2614;
+  --orange: #ffac02;
+  --orange-dim: #c0880a;
+  --green: #54a87e;
+  --yellow: #edff45;
+  --red: #ff5e5e;
+  --text: #f5e9d5;
+  --text-dim: #a89080;
+  --text-mute: #6e5a48;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--orange); text-decoration: none; }
+a:hover { color: var(--yellow); }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #170d02 0%, #261609 50%, #170d02 100%);
+  border-bottom: 2px solid var(--orange);
+  padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,172,2,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-meta { color: var(--green); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+.hero h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
+.hero h1 .accent { color: var(--orange); }
+.hero .sub { color: var(--text-dim); font-size: 20px; max-width: 700px; }
+.hero .meta-row { display: flex; gap: 24px; margin-top: 32px; flex-wrap: wrap; }
+.hero .meta-pill {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.hero .meta-pill b { color: var(--orange); font-weight: 600; }
+
+/* NAV */
+.nav { background: var(--bg-2); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.nav-inner { display: flex; gap: 8px; padding: 16px 24px; max-width: 1280px; margin: 0 auto; align-items: center; }
+.nav-brand { color: var(--orange); font-weight: 700; font-size: 16px; margin-right: 24px; }
+.nav a.nav-link { color: var(--text-dim); padding: 6px 12px; border-radius: 4px; font-size: 14px; }
+.nav a.nav-link:hover, .nav a.nav-link.active { background: var(--panel); color: var(--orange); }
+
+/* SECTION */
+section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+.section-label { color: var(--orange); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+.section-title { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
+.section-sub { color: var(--text-dim); font-size: 16px; margin-bottom: 48px; max-width: 800px; }
+
+/* CARD */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  transition: border-color .2s;
+}
+.card:hover { border-color: var(--orange); }
+.card-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+.card-meta { color: var(--text-dim); font-size: 13px; }
+
+/* GRID */
+.grid { display: grid; gap: 24px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-5 { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 1024px) { .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .grid-4, .grid-5, .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+/* BIG NUMBER */
+.stat {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.stat::after {
+  content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%;
+  background: var(--orange);
+}
+.stat-label { color: var(--text-dim); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.stat-value { font-size: 42px; font-weight: 800; color: var(--text); }
+.stat-value .unit { font-size: 18px; color: var(--text-dim); margin-left: 4px; }
+.stat-foot { color: var(--text-mute); font-size: 12px; margin-top: 8px; }
+
+/* PROGRESS BAR */
+.bar-wrap { background: var(--bg); border-radius: 4px; height: 10px; overflow: hidden; margin: 8px 0; }
+.bar { height: 100%; background: linear-gradient(90deg, var(--orange) 0%, var(--yellow) 100%); border-radius: 4px; transition: width .3s; }
+.bar.green { background: linear-gradient(90deg, var(--green) 0%, var(--yellow) 100%); }
+.bar.red { background: linear-gradient(90deg, var(--red) 0%, var(--orange) 100%); }
+
+/* TAG */
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 2px 4px 2px 0;
+}
+.tag-orange { background: rgba(255,172,2,0.15); color: var(--orange); border: 1px solid rgba(255,172,2,0.3); }
+.tag-green { background: rgba(84,168,126,0.15); color: var(--green); border: 1px solid rgba(84,168,126,0.3); }
+.tag-red { background: rgba(255,94,94,0.15); color: var(--red); border: 1px solid rgba(255,94,94,0.3); }
+.tag-yellow { background: rgba(237,255,69,0.15); color: var(--yellow); border: 1px solid rgba(237,255,69,0.3); }
+
+/* TABLE */
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+th { color: var(--text-dim); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+tr:hover td { background: var(--panel-2); }
+
+/* ALERT */
+.alert {
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  border-left: 4px solid;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.alert-icon { font-weight: 800; font-size: 18px; }
+.alert-warn { background: rgba(255,172,2,0.08); border-color: var(--orange); }
+.alert-warn .alert-icon { color: var(--orange); }
+.alert-danger { background: rgba(255,94,94,0.08); border-color: var(--red); }
+.alert-danger .alert-icon { color: var(--red); }
+.alert-info { background: rgba(84,168,126,0.08); border-color: var(--green); }
+.alert-info .alert-icon { color: var(--green); }
+.alert-body { flex: 1; color: var(--text); }
+.alert-title { font-weight: 700; margin-bottom: 4px; }
+
+/* MEDAL */
+.medal { display: inline-block; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: 800; font-size: 14px; margin-right: 8px; }
+.medal-1 { background: linear-gradient(135deg, #ffd700, #ffac02); color: #170d02; }
+.medal-2 { background: linear-gradient(135deg, #c0c0c0, #888); color: #170d02; }
+.medal-3 { background: linear-gradient(135deg, #cd7f32, #8b4513); color: #170d02; }
+
+/* FOOTER */
+footer { background: var(--bg-2); padding: 40px 0; text-align: center; color: var(--text-mute); font-size: 13px; border-top: 1px solid var(--border); }
+
+/* LINKS BAR */
+.breadcrumb { padding: 16px 0; color: var(--text-dim); font-size: 14px; }
+.breadcrumb a { color: var(--text-dim); }
+.breadcrumb a:hover { color: var(--orange); }
+.breadcrumb .sep { margin: 0 8px; color: var(--text-mute); }
+
+/* UTILITY */
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mt-48 { margin-top: 48px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+.flex { display: flex; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.gap-8 { gap: 8px; }
+.gap-16 { gap: 16px; }
+.gap-24 { gap: 24px; }
+.text-orange { color: var(--orange); }
+.text-green { color: var(--green); }
+.text-red { color: var(--red); }
+.text-yellow { color: var(--yellow); }
+.text-dim { color: var(--text-dim); }
+.text-mute { color: var(--text-mute); }
+.text-sm { font-size: 13px; }
+.text-lg { font-size: 18px; }
+.text-xl { font-size: 24px; }
+.font-bold { font-weight: 700; }
+.font-extra { font-weight: 800; }
+
+/* PILL ROW */
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.pill {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.pill b { color: var(--orange); }
+
+/* NOTE LIST */
+.note-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.note-row:last-child { border-bottom: none; }
+.note-rank { color: var(--orange); font-weight: 800; font-size: 18px; width: 32px; }
+.note-title { flex: 1; color: var(--text); }
+.note-likes { color: var(--green); font-weight: 700; min-width: 80px; text-align: right; }
+.note-type { font-size: 12px; padding: 2px 8px; border-radius: 3px; background: var(--panel-2); color: var(--text-dim); }
+
+
+    .top-toc {
+      position: sticky; top: 0; z-index: 999;
+      background: #170d02; border-bottom: 2px solid #ffac02;
+      padding: 16px 0;
+    }
+    .toc-inner {
+      max-width: 1280px; margin: 0 auto; padding: 0 24px;
+    }
+    .top-toc h2 {
+      color: #ffac02; font-size: 18px; margin-bottom: 12px;
+    }
+    .toc-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    }
+    .toc-grid a {
+      display: block; padding: 10px 12px;
+      background: #1d1107; border: 1px solid #3a2614;
+      border-radius: 4px; color: #f5e9d5; font-size: 14px;
+      text-decoration: none; transition: all .2s;
+    }
+    .toc-grid a:hover {
+      border-color: #ffac02; color: #ffac02; transform: translateY(-1px);
+    }
+    .toc-foot {
+      color: #6e5a48; font-size: 12px; margin-top: 12px;
+    }
+    .merged-section {
+      scroll-margin-top: 220px;
+    }
+    .top-toc .toc-inner a[href="#top"] {
+      display: inline-block; background: #ffac02; color: #170d02;
+      padding: 4px 10px; border-radius: 3px; font-weight: 700;
+      margin-bottom: 8px;
+    }
+    /* 顶部快速返回按钮 */
+    .back-to-top {
+      position: fixed; bottom: 24px; right: 24px;
+      background: #ffac02; color: #170d02;
+      width: 48px; height: 48px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 18px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      text-decoration: none; z-index: 998;
+    }
+    .back-to-top:hover { background: #edff45; color: #170d02; }
+    @media (max-width: 768px) {
+      .toc-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .toc-grid { grid-template-columns: 1fr; }
+    }
+    </style>
+</head>
+<body>
+
+    <nav class="top-toc" id="top">
+      <div class="toc-inner">
+        <h2>📂 9 个报告目录 (点击跳转)</h2>
+        <div class="toc-grid">
+          <a href="#r-index">📄 总览</a><a href="#r-B-sop">📄 B 账号重定位 SOP</a><a href="#r-B">📄 B 西湖边的夏雨荷</a><a href="#r-compare">📄 5号横向对比</a><a href="#r-action">📄 整改建议</a><a href="#r-A">📄 A 满级观众</a><a href="#r-C">📄 C 一个奈斯的观众</a><a href="#r-D">📄 D 没错我是高贵路人</a><a href="#r-E">📄 E 追娱少女</a>
+        </div>
+        <p class="toc-foot">百思传媒旗下影视娱乐号诊断报告 · 共 9 份 · 生成于 2026-06-13</p>
+      </div>
+    </nav>
+    
+<main>
+<section id="r-index" class="merged-section">
+
+
+    <header class="hero">
+      <div class="container">
+        <div class="hero-meta">百思传媒 · 旗下影视娱乐号诊断</div>
+        <h1>5 个影视娱乐号 <span class="accent">诊断报告</span></h1>
+        <p class="sub">基于小红书公开页 30-32 篇样本数据，对每个账号做内容诊断、爆款分析、整改建议，并附矩阵资源分配方案</p>
+        <div class="meta-row">
+          <div class="meta-pill">5 个 <b>账号</b></div>
+          <div class="meta-pill">~155 篇 <b>笔记样本</b></div>
+          <div class="meta-pill"><b>同质化</b> 矩阵</div>
+          <div class="meta-pill">数据 <b>2026-06-13</b></div>
+        </div>
+      </div>
+    </header>
+    
+
+<main>
+
+    <div class="container">
+      <section>
+        <div class="section-label">OVERVIEW</div>
+        <h1 class="section-title">5 个影视娱乐号 <span class="text-orange">同质化矩阵</span></h1>
+        <p class="section-sub">这 5 个账号由同一公司运营（IP 山西、@Yanan 小助理、影视娱乐赛道），存在严重的同质化风险与单账号（西湖边的夏雨荷）已近算法降权边缘问题。本报告基于小红书公开页 30-32 条笔记数据，对每个号做单账号诊断，并给出矩阵资源分配建议。</p>
+
+        <div class="grid grid-4 mt-32">
+          <div class="stat">
+            <div class="stat-label">覆盖账号</div>
+            <div class="stat-value">5<span class="unit">个</span></div>
+            <div class="stat-foot">全部影视娱乐赛道</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">样本笔记</div>
+            <div class="stat-value">158<span class="unit">篇</span></div>
+            <div class="stat-foot">最新 30-32 篇 / 号</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">同质化</div>
+            <div class="stat-value text-red">100<span class="unit">%</span></div>
+            <div class="stat-foot">5 号简介/小助理/IP 全部一致</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">矩阵预警</div>
+            <div class="stat-value text-red">高<span class="unit">风险</span></div>
+            <div class="stat-foot">B 号已近被降权边缘</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-label">ACCOUNTS</div>
+        <h2 class="section-title">5 个账号</h2>
+        <p class="section-sub">点击进入单账号报告</p>
+        <div class="grid grid-3">
+        <a href="A.html" style="text-decoration:none; color:inherit;">
+          <div class="card" style="cursor:pointer;">
+            <div class="flex-between">
+              <div class="card-title">A. 满级观众</div>
+              <span class="tag tag-green">健康</span>
+            </div>
+            <div class="text-sm text-dim mt-8">粉丝 1万+ · 笔记 32 篇</div>
+            <div class="mt-16">
+              <div class="flex-between text-sm">
+                <span class="text-dim">单篇均赞</span>
+                <span class="text-orange font-bold">3872</span>
+              </div>
+              <div class="bar-wrap"><div class="bar" style="width: 48.4%;"></div></div>
+            </div>
+            <div class="mt-8">
+              <div class="flex-between text-sm">
+                <span class="text-dim">爆款率</span>
+                <span class="text-green font-bold">9%</span>
+              </div>
+              <div class="bar-wrap"><div class="bar green" style="width: 45%;"></div></div>
+            </div>
+          </div>
+        </a>
+        
+        <a href="B.html" style="text-decoration:none; color:inherit;">
+          <div class="card" style="cursor:pointer;">
+            <div class="flex-between">
+              <div class="card-title">B. 西湖边的夏雨荷</div>
+              <span class="tag tag-red">需重整</span>
+            </div>
+            <div class="text-sm text-dim mt-8">粉丝 1千+ · 笔记 30 篇</div>
+            <div class="mt-16">
+              <div class="flex-between text-sm">
+                <span class="text-dim">单篇均赞</span>
+                <span class="text-orange font-bold">57</span>
+              </div>
+              <div class="bar-wrap"><div class="bar" style="width: 0.7125%;"></div></div>
+            </div>
+            <div class="mt-8">
+              <div class="flex-between text-sm">
+                <span class="text-dim">爆款率</span>
+                <span class="text-green font-bold">3%</span>
+              </div>
+              <div class="bar-wrap"><div class="bar green" style="width: 15%;"></div></div>
+            </div>
+          </div>
+        </a>
+        
+        <a href="C.html" style="text-decoration:none; color:inherit;">
+          <div class="card" style="cursor:pointer;">
+            <div class="flex-between">
+              <div class="card-title">C. 一个奈斯的观众</div>
+              <span class="tag tag-green">健康</span>
+            </div>
+            <div class="text-sm text-dim mt-8">粉丝 1万+ · 笔记 32 篇</div>
+            <div class="mt-16">
+              <div class="flex-between text-sm">
+                <span class="text-dim">单篇均赞</span>
+                <span class="text-orange font-bold">6183</span>
+              </div>
+              <div class="bar-wrap"><div class="bar" style="width: 77.2875%;"></div></div>
+            </div>
+            <div class="mt-8">
+              <div class="flex-between text-sm">
+                <span class="text-dim">爆款率</span>
+                <span class="text-green font-bold">12%</span>
+              </div>
+              <div class="bar-wrap"><div class="bar green" style="width: 60%;"></div></div>
+            </div>
+          </div>
+        </a>
+        
+        <a href="D.html" style="text-decoration:none; color:inherit;">
+          <div class="card" style="cursor:pointer;">
+            <div class="flex-between">
+              <div class="card-title">D. 没错我是高贵路人</div>
+              <span class="tag tag-yellow">观察</span>
+            </div>
+            <div class="text-sm text-dim mt-8">粉丝 1万+ · 笔记 32 篇</div>
+            <div class="mt-16">
+              <div class="flex-between text-sm">
+                <span class="text-dim">单篇均赞</span>
+                <span class="text-orange font-bold">6118</span>
+              </div>
+              <div class="bar-wrap"><div class="bar" style="width: 76.475%;"></div></div>
+            </div>
+            <div class="mt-8">
+              <div class="flex-between text-sm">
+                <span class="text-dim">爆款率</span>
+                <span class="text-green font-bold">6%</span>
+              </div>
+              <div class="bar-wrap"><div class="bar green" style="width: 30%;"></div></div>
+            </div>
+          </div>
+        </a>
+        
+        <a href="E.html" style="text-decoration:none; color:inherit;">
+          <div class="card" style="cursor:pointer;">
+            <div class="flex-between">
+              <div class="card-title">E. 追娱少女</div>
+              <span class="tag tag-green">健康</span>
+            </div>
+            <div class="text-sm text-dim mt-8">粉丝 1万+ · 笔记 32 篇</div>
+            <div class="mt-16">
+              <div class="flex-between text-sm">
+                <span class="text-dim">单篇均赞</span>
+                <span class="text-orange font-bold">1982</span>
+              </div>
+              <div class="bar-wrap"><div class="bar" style="width: 24.775%;"></div></div>
+            </div>
+            <div class="mt-8">
+              <div class="flex-between text-sm">
+                <span class="text-dim">爆款率</span>
+                <span class="text-green font-bold">9%</span>
+              </div>
+              <div class="bar-wrap"><div class="bar green" style="width: 45%;"></div></div>
+            </div>
+          </div>
+        </a>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-label">QUICK LINKS</div>
+        <h2 class="section-title">下一步</h2>
+        <div class="grid grid-3">
+          <a href="compare.html" style="text-decoration:none; color:inherit;">
+            <div class="card">
+              <div class="card-title">📊 5 号横向对比</div>
+              <p class="text-dim text-sm mt-8">数据矩阵 + 横向对比表</p>
+            </div>
+          </a>
+          <a href="action.html" style="text-decoration:none; color:inherit;">
+            <div class="card">
+              <div class="card-title">🚨 整改优先级</div>
+              <p class="text-dim text-sm mt-8">P0/P1/P2 行动清单 + 资源分配</p>
+            </div>
+          </a>
+          <a href="B.html" style="text-decoration:none; color:inherit;">
+            <div class="card" style="border-color: var(--red);">
+              <div class="card-title text-red">⚠️ 最弱号 (B) 急救方案</div>
+              <p class="text-dim text-sm mt-8">已近算法降权，建议立即介入</p>
+            </div>
+          </a>
+        </div>
+      </section>
+    </div>
+    
+</main>
+<footer>
+  <div class="container">
+    <p>百思传媒旗下影视娱乐号诊断报告 · 生成于 2026-06-13 12:47 · 数据来源: 小红书公开页</p>
+    <p class="text-mute text-sm mt-8">评论/收藏数小红书对未登录访问者隐藏 · 建议登录后台复查真实互动数据</p>
+  </div>
+</footer>
+
+</section><section id="r-B-sop" class="merged-section">
+
+
+    <header class="hero">
+      <div class="container">
+        <div class="hero-meta">B 账号急救计划 · 重定位 SOP</div>
+        <h1>西湖边的夏雨荷<br><span class="accent">90 天重生手册</span></h1>
+        <p class="sub">从均赞 57 / 爆款率 3% / 30 篇笔记里有 12 篇低赞, 到 90 天后均赞 500 / 5,000 粉 / 10% 爆款率. 每一步可执行, 每个节点有决策开关.</p>
+        <div class="meta-row">
+          <div class="meta-pill">D+0 <b>急停</b></div>
+          <div class="meta-pill">D+7 <b>试发</b></div>
+          <div class="meta-pill">D+30 <b>第一决策点</b></div>
+          <div class="meta-pill">D+90 <b>最终复盘</b></div>
+        </div>
+      </div>
+    </header>
+    
+
+<main>
+
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">总览</a><span class="sep">/</span>
+        <a href="B.html">B 西湖边的夏雨荷</a><span class="sep">/</span>
+        <span>重定位 SOP</span>
+      </div>
+
+      <section>
+        <div class="section-label">RESCUE PLAN</div>
+        <h1 class="section-title">B 账号 <span class="text-red">急救 + 重定位 SOP</span></h1>
+        <p class="section-sub">从 D+0 停发养号, 到 D+90 达到 5,000 粉 + 500 均赞的完整执行手册. 每一步有具体动作、可验收指标、退出条件.</p>
+
+        <div class="grid grid-4">
+          <div class="stat red">
+            <div class="stat-label">D+0 状态</div>
+            <div class="stat-value">57<span class="unit">均赞</span></div>
+            <div class="stat-foot">30 篇 · 12 篇低赞 · 6 篇死</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">90 天目标</div>
+            <div class="stat-value">500<span class="unit">均赞</span></div>
+            <div class="stat-foot">8.8x 提升</div>
+          </div>
+          <div class="stat green">
+            <div class="stat-label">粉丝目标</div>
+            <div class="stat-value">5,000<span class="unit">+</span></div>
+            <div class="stat-foot">4.0x 增长</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">关键节点</div>
+            <div class="stat-value text-orange">3<span class="unit">个</span></div>
+            <div class="stat-foot">D+30 / D+60 / D+90 决策点</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-label">POSITIONING</div>
+        <h2 class="section-title">第一步: 选赛道 (3 个候选)</h2>
+        <p class="section-sub">基于 B 现有爆款规律 (明星+商业代言 409 赞, 古典/CP 类高赞) 推断的 3 个方向. <b class="text-green">推荐 P1 古装剧女主</b>.</p>
+        
+        <div class="card" style="border-color: var(--green); border-width: 2px;">
+          <div class="flex-between">
+            <div class="card-title">P1. 古装剧女主人设解读 (垂直剧情号)</div>
+            <div class="mt-16"><span class="tag tag-green" style="font-size:14px; padding:6px 14px;">★ 推荐方案</span></div>
+          </div>
+          <div class="text-sm text-orange mt-8" style="font-style: italic;">"古装剧女主天花板大赏 | 一部剧一个女主命"</div>
+          <p class="text-sm text-dim mt-16">定位: 古装剧女主切片 + 女主人设深度解读, 不追热点追女主</p>
+          <div class="grid grid-2 mt-16" style="gap:12px;">
+            <div>
+              <div class="text-sm text-green font-bold mb-8">优势</div>
+              <ul class="text-sm" style="padding-left: 20px; list-style: none;"><li>✓ <b class="text-green">与现有爆款(E榜)重合度低</b></li><li>✓ <b class="text-green">切女性向影视最强细分赛道</b></li><li>✓ <b class="text-green">封面可统一: 古装剧女主头像 + 强情绪文案</b></li></ul>
+            </div>
+            <div>
+              <div class="text-sm text-red font-bold mb-8">风险</div>
+              <ul class="text-sm text-dim" style="padding-left: 20px; list-style: none;"><li>✗ 需要持续追新剧</li><li>✗ 古装剧周期性强, 淡季选题难</li></ul>
+            </div>
+          </div>
+          <p class="text-sm mt-16"><b class="text-orange">适合场景：</b><span class="text-dim">B 现有粉丝画像偏女性, 转古装女主风险最低</span></p>
+          <div class="mt-16" style="display: flex; gap: 24px; font-size: 13px;">
+            <div>
+              <span class="text-dim">执行难度</span>
+              <span class="stars">★★<span class="star-empty">★★</span></span>
+            </div>
+            <div>
+              <span class="text-dim">增长潜力</span>
+              <span class="stars">★★★★<span class="star-empty"></span></span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" style="">
+          <div class="flex-between">
+            <div class="card-title">P2. 明星商业代言合集号 (种草+娱乐跨界)</div>
+            
+          </div>
+          <div class="text-sm text-orange mt-8" style="font-style: italic;">"明星代言图鉴 | 今天谁又美疯了"</div>
+          <p class="text-sm text-dim mt-16">定位: 明星+商业代言/品牌合作切片+轻吐槽</p>
+          <div class="grid grid-2 mt-16" style="gap:12px;">
+            <div>
+              <div class="text-sm text-green font-bold mb-8">优势</div>
+              <ul class="text-sm" style="padding-left: 20px; list-style: none;"><li>✓ <b class="text-green">B 唯一爆款(409 赞)就是这个方向</b></li><li>✓ <b class="text-green">商业价值高, 容易接广告</b></li><li>✓ <b class="text-green">选题从热搜抓, 不依赖剧情进度</b></li></ul>
+            </div>
+            <div>
+              <div class="text-sm text-red font-bold mb-8">风险</div>
+              <ul class="text-sm text-dim" style="padding-left: 20px; list-style: none;"><li>✗ 需平衡品牌敏感度</li><li>✗ 可复制性高, 容易被其他号抢</li></ul>
+            </div>
+          </div>
+          <p class="text-sm mt-16"><b class="text-orange">适合场景：</b><span class="text-dim">B 爆款规律已经验证, 顺势做最容易</span></p>
+          <div class="mt-16" style="display: flex; gap: 24px; font-size: 13px;">
+            <div>
+              <span class="text-dim">执行难度</span>
+              <span class="stars">★<span class="star-empty">★★★</span></span>
+            </div>
+            <div>
+              <span class="text-dim">增长潜力</span>
+              <span class="stars">★★★<span class="star-empty">★</span></span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" style="">
+          <div class="flex-between">
+            <div class="card-title">P3. 二创剧情混剪号 (剪辑技术流)</div>
+            
+          </div>
+          <div class="text-sm text-orange mt-8" style="font-style: italic;">"一剪刀一个名场面 | 重新混剪经典"</div>
+          <p class="text-sm text-dim mt-16">定位: 影视经典片段二创混剪+原创转场+配乐</p>
+          <div class="grid grid-2 mt-16" style="gap:12px;">
+            <div>
+              <div class="text-sm text-green font-bold mb-8">优势</div>
+              <ul class="text-sm" style="padding-left: 20px; list-style: none;"><li>✓ <b class="text-green">差异化最强, 不是单纯搬运</b></li><li>✓ <b class="text-green">剪辑技术门槛带来壁垒</b></li><li>✓ <b class="text-green">可横向扩到 MV/综艺混剪</b></li></ul>
+            </div>
+            <div>
+              <div class="text-sm text-red font-bold mb-8">风险</div>
+              <ul class="text-sm text-dim" style="padding-left: 20px; list-style: none;"><li>✗ 对剪辑能力要求高</li><li>✗ 版权风险(尤其抖音/小红书现在严打二创)</li><li>✗ 起号周期长</li></ul>
+            </div>
+          </div>
+          <p class="text-sm mt-16"><b class="text-orange">适合场景：</b><span class="text-dim">如果团队有剪辑高手, 这是壁垒最高的路</span></p>
+          <div class="mt-16" style="display: flex; gap: 24px; font-size: 13px;">
+            <div>
+              <span class="text-dim">执行难度</span>
+              <span class="stars">★★★★<span class="star-empty"></span></span>
+            </div>
+            <div>
+              <span class="text-dim">增长潜力</span>
+              <span class="stars">★★★★<span class="star-empty"></span></span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card mt-24" style="background: var(--panel-2); border-color: var(--green);">
+          <div class="card-title text-green">💡 为什么是 P1?</div>
+          <ul class="text-sm mt-16" style="padding-left: 20px;">
+            <li>B 末位 5 篇里 3 篇是古装剧(翘楚/南部档案/宋妙华), 验证了这个赛道读者喜欢</li>
+            <li>古装剧女主在影视娱乐细分赛道里是女性向最强垂类, 流量稳定, 复购率高</li>
+            <li>与现有矩阵号 (A 偏"剪刀手"剪辑向) 不撞赛道, 起到补位作用</li>
+            <li>人设 IP 化空间大: 博主可以"自居"古装剧女主解读专家, 后续做付费课程/书都自然</li>
+            <li>商业化空间大: 古装剧宣发期有大量品牌合作需求, 5,000 粉就能接到</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-label">TIMELINE</div>
+        <h2 class="section-title">第二步: 90 天时间线</h2>
+        <p class="section-sub">6 个阶段, 急停 → 准备 → 试发 → 加速 → 复制 → 突破</p>
+        
+    <div class="timeline">
+
+      <!-- D+0 停发养号 -->
+      <div class="tl-item critical">
+        <div class="tl-date critical">D+0 (今天 06-13) · 48 小时内必须完成</div>
+        <div class="tl-title">🛑 紧急停发 + 删死笔记 + 改简介</div>
+        <div class="tl-body">
+          <p class="text-dim mb-16">账号已经过劳/过载, 算法对"高频低质"账号有降权惩罚. 必须先止血再谈定位.</p>
+          <ul>
+            <li><b>立即停止发文 7 天</b>, 让算法"遗忘"过去 30 天的低质数据</li>
+            <li><b>隐藏 0~10 赞的死笔记</b> (12 篇) - 不是删除, 是设为"仅自己可见"</li>
+            <li><b>改简介</b> - 删掉 "小助理@Yanan" 这类矩阵暴露信息, 改成"商务合作私信"或加个人简介铺垫</li>
+            <li><b>改头像/昵称/IP 属地</b> - 5 个号里 4 个简介都带"@Yanan", 换掉</li>
+            <li><b>退出所有矩阵号互赞群/互关群</b> - 否则重发也白搭</li>
+          </ul>
+          <div class="tl-meta">
+            <div class="tl-meta-item">⏱ 预计耗时: <b>2-3 小时</b></div>
+            <div class="tl-meta-item">📉 风险: <b>短期数据更难看</b></div>
+            <div class="tl-meta-item">✅ 验收: <b>7 天内不发布新内容</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- D+0~7 准备期 -->
+      <div class="tl-item">
+        <div class="tl-date">D+0 ~ D+7 (06-13 → 06-20) · 养号 + 内容储备</div>
+        <div class="tl-title">📚 养号期 7 天: 选赛道 + 攒选题 + 储备素材</div>
+        <div class="tl-body">
+          <p class="text-dim mb-16">这 7 天不更新, 但要做大量准备工作. <b class="text-orange">不浪费每一天.</b></p>
+          <ul>
+            <li><b>Day 1-2 选赛道</b>: 团队 3 人对 3 个定位方向(P1/P2/P3)各出 5 条选题, 老板选定 P1 古装剧女主</li>
+            <li><b>Day 3 锁定人设</b>: 取个新昵称(避开"夏雨荷"), 写 200 字简介, 头像用古装剧女主意象(花瓣/扇子/古风滤镜)</li>
+            <li><b>Day 4-5 攒 20 个选题</b>: 从近 1 年古装剧里挑 20 个"女主人设天花板"瞬间, 列出剧名+集数+时间码</li>
+            <li><b>Day 6 拍/剪 5 条样片</b>: 4 个剪辑师各做 1 条, 内部投票选最优模板</li>
+            <li><b>Day 7 写 SOP 文档</b>: 把选题/剪辑/封面/标题/发布时机拆成 5 个步骤的 SOP, 后 90 天照着做</li>
+          </ul>
+          <div class="tl-meta">
+            <div class="tl-meta-item">📦 产出: <b>1 份选题库 + 1 份剪辑 SOP + 5 条样片</b></div>
+            <div class="tl-meta-item">👥 参与: <b>老板/运营/剪辑/文案</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- D+7~14 试发期 -->
+      <div class="tl-item">
+        <div class="tl-date">D+7 ~ D+14 (06-20 → 06-27) · 试发 5 条</div>
+        <div class="tl-title">🎯 试发期: 测算法 + 测粉丝反应</div>
+        <div class="tl-body">
+          <p class="text-dim mb-16">恢复发布但要谨慎, 5 条全做古装剧女主方向, 看算法给不给流量.</p>
+          <ul>
+            <li><b>发 5 条, 不发多</b>: 一周 5 条, 留出间隔观察数据</li>
+            <li><b>每条精心做</b>: 封面统一(古装女主侧脸+强情绪文案), 时长 30~60s, 标题用 5 个套路之一</li>
+            <li><b>每条发布后 24h 记录数据</b>: 曝光/点赞/收藏/评论/涨粉</li>
+            <li><b>第 14 天开周会复盘</b>: 5 条里哪 2 条表现最好, 为什么? 调整第 15-30 天的选题</li>
+          </ul>
+          <div class="tl-meta">
+            <div class="tl-meta-item">📊 目标: <b>5 条均赞 ≥ 200 (现在 57)</b></div>
+            <div class="tl-meta-item">📈 关键指标: <b>如果 5 条均赞 < 100, 立即换定位</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- D+14~30 加速期 -->
+      <div class="tl-item">
+        <div class="tl-date">D+14 ~ D+30 (06-27 → 07-13) · 加速期</div>
+        <div class="tl-title">🚀 加速期: 周更 5 → 7 条, 复制爆款</div>
+        <div class="tl-body">
+          <p class="text-dim mb-16">如果试发期数据正向, 进入加速. <b class="text-green">这一阶段要的是"押爆款".</b></p>
+          <ul>
+            <li><b>频率从周 5 → 周 7 条</b>: 1 天 1 条, 选 19-21 点发(用户活跃高峰)</li>
+            <li><b>建立爆款复制机制</b>: 每周复盘 TOP 3 笔记, 找出共同元素(剧/女主/标题套路/封面), 下周 3 条里复用</li>
+            <li><b>追新剧</b>: 当周开播的 3 部以上古装剧, 第 2 天必须出 1 条女主切片(抢首发流量)</li>
+            <li><b>铺封面库</b>: 设计 3 套模板(强情绪/弱情绪/对比), 形成视觉记忆</li>
+            <li><b>评论运营</b>: 主动回复前 50 条评论(每条都回), 拉互动率</li>
+          </ul>
+          <div class="tl-meta">
+            <div class="tl-meta-item">📊 目标: <b>总粉丝 2,500+, 单篇均赞 300</b></div>
+            <div class="tl-meta-item">🎯 关键节点: <b>D+30 前做出 1 条 1,000+ 赞的爆款</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- D+30~60 复制期 -->
+      <div class="tl-item success">
+        <div class="tl-date success">D+30 ~ D+60 (07-13 → 08-12) · 复制期</div>
+        <div class="tl-title">📈 复制期: 复制爆款公式 + 矩阵化</div>
+        <div class="tl-body">
+          <p class="text-dim mb-16">到 D+30 应该已经摸到 1-2 个爆款套路, 这一阶段是把套路量产.</p>
+          <ul>
+            <li><b>套路标准化</b>: 写出 3 个爆款公式(例: 剧名+女主+金句+情绪) - 任何剪辑照着填</li>
+            <li><b>开放流水线</b>: 1 个剪辑师独立出片, 1 个文案独立出标题, 1 个运营独立做数据</li>
+            <li><b>复制到 B 的"子号"</b>: 主号做古装女主, 子号做古装男主人设(差异化), 测试矩阵</li>
+            <li><b>开始变现</b>: 粉丝 ≥ 5,000 后接第一个品牌合作(从剧情类品牌开始, 如视频平台/影业宣发)</li>
+          </ul>
+          <div class="tl-meta">
+            <div class="tl-meta-item">📊 目标: <b>总粉丝 4,000+, 单篇均赞 500, 爆款率 8%</b></div>
+            <div class="tl-meta-item">💰 商业: <b>接第 1 条品牌合作</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- D+60~90 突破期 -->
+      <div class="tl-item success">
+        <div class="tl-date success">D+60 ~ D+90 (08-12 → 09-11) · 突破期</div>
+        <div class="tl-title">🏆 突破期: 冲万粉 + 商业化</div>
+        <div class="tl-body">
+          <p class="text-dim mb-16">目标: 90 天达到 <b class="text-green">5,000+ 粉丝 / 单篇均赞 500 / 爆款率 10%</b>.</p>
+          <ul>
+            <li><b>继续日更</b>, 保持节奏</li>
+            <li><b>差异化升级</b>: 加上"影评/解读"内容, 把博主从"切片号"升级为"古装剧解读号"</li>
+            <li><b>做 1-2 次爆款活动</b>: 例 "古装女主天花板投票" UGC 互动, 拉新粉</li>
+            <li><b>商业化加速</b>: 粉丝 5k 后, 单条广告 2,000-5,000 元, 月接 3-4 条 = 月入 1-2 万</li>
+          </ul>
+          <div class="tl-meta">
+            <div class="tl-meta-item">📊 最终目标: <b>5,000 粉 / 500 均赞 / 10% 爆款率</b></div>
+            <div class="tl-meta-item">⚖️ D+90 复盘: <b>达成 → 加大投入; 未达成 → 弃号重启</b></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+      </section>
+
+      <section>
+        <div class="section-label">CONTENT TEMPLATE</div>
+        <h2 class="section-title">第三步: 内容模板 (套路化生产)</h2>
+        <p class="section-sub">5 个标题套路 + 3 套封面 + 5 段视频结构, 流水线作业</p>
+        
+    <div class="grid grid-2">
+
+      <div class="card">
+        <div class="card-title">📝 标题模板 (5 个套路循环用)</div>
+        <p class="text-sm text-dim mt-8">不要每次新想, 套路化才能测试哪个最有效.</p>
+        <ul class="text-sm mt-16" style="padding-left: 20px; list-style: none;">
+          <li class="mt-8">① <b class="text-orange">"XX 女主天花板, 她的命比剧情还惨"</b> (例: 赵丽颖/花千骨)</li>
+          <li class="mt-8">② <b class="text-orange">"XX 看到这一幕终于黑化, 观众直呼爽!"</b></li>
+          <li class="mt-8">③ <b class="text-orange">"全剧最惨的 XX, 连 XX 都救不了她"</b></li>
+          <li class="mt-8">④ <b class="text-orange">"这个眼神, 我磕到 XX 的命"</b> (CP 类)</li>
+          <li class="mt-8">⑤ <b class="text-orange">"XX 部剧 XX 个女主, 只有一个让我看哭"</b> (盘点类)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🎨 封面模板 (3 套循环用)</div>
+        <p class="text-sm text-dim mt-8">用户刷到先看封面, 封面统一才有"系列感".</p>
+        <ul class="text-sm mt-16" style="padding-left: 20px; list-style: none;">
+          <li class="mt-8"><b class="text-green">模板 A (强情绪):</b> 古装女主侧脸 + 表情夸张 + 大字标题 (例: 哭/怒/惊)</li>
+          <li class="mt-8"><b class="text-green">模板 B (弱情绪):</b> 古装女主正面 + 表情克制 + 小字标题 (例: 凝视/含泪)</li>
+          <li class="mt-8"><b class="text-green">模板 C (对比):</b> 左右两图, 左古装剧里 / 右演员本人 (例: 虞书欣/云为衫 vs 本人)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🎬 视频结构 (固定 5 段)</div>
+        <p class="text-sm text-dim mt-8">每条都按这个结构, 不用临场发挥.</p>
+        <ul class="text-sm mt-16" style="padding-left: 20px; list-style: none;">
+          <li class="mt-8"><b class="text-orange">0-3s 钩子:</b> 1 句最炸的台词/画面 (例: "我终于不用再忍了")</li>
+          <li class="mt-8"><b class="text-orange">3-10s 背景:</b> 1 句话介绍女主处境 (例: "被全家灭门, 她藏了 10 年")</li>
+          <li class="mt-8"><b class="text-orange">10-40s 主体:</b> 2-3 个名场面 + 解说</li>
+          <li class="mt-8"><b class="text-orange">40-50s 升华:</b> 1 句金句点题 (例: "她不是为了复仇, 是为了活成自己想活的人")</li>
+          <li class="mt-8"><b class="text-orange">50-60s CTA:</b> 引导关注/评论 (例: "你心中的古装女主天花板是谁? 评论区告诉我")</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">⏰ 发布时机 + 频率</div>
+        <p class="text-sm text-dim mt-8">数据是看出来的, 节奏固定才稳定.</p>
+        <ul class="text-sm mt-16" style="padding-left: 20px; list-style: none;">
+          <li class="mt-8"><b class="text-orange">频率:</b> 试发期 5 条/周, 加速期 7 条/周 (1 天 1 条)</li>
+          <li class="mt-8"><b class="text-orange">发布时段:</b> 19:00 / 21:00 / 22:00 三个黄金时段轮换</li>
+          <li class="mt-8"><b class="text-orange">互动窗口:</b> 发布后 1h 集中回评论, 拉互动率</li>
+          <li class="mt-8"><b class="text-orange">追新剧:</b> 每周新开播剧第 2 天出切片, 抢首发流量</li>
+        </ul>
+      </div>
+
+    </div>
+    
+      </section>
+
+      <section>
+        <div class="section-label">METRICS</div>
+        <h2 class="section-title">第四步: 关键指标对照</h2>
+        <p class="section-sub">每 7 天对一次数据, 偏离目标立即调整</p>
+        
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>指标</th>
+            <th>当前</th>
+            <th></th>
+            <th>90 天目标</th>
+            <th>增长倍数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>粉丝数</b></td>
+            <td><span class="compare-now">1 千+</span></td>
+            <td class="compare-arrow">→</td>
+            <td><span class="compare-goal">5,000+</span></td>
+            <td class="text-green font-bold">4.0x</td>
+          </tr>
+          <tr>
+            <td><b>单篇均赞</b></td>
+            <td><span class="compare-now">57</span></td>
+            <td class="compare-arrow">→</td>
+            <td><span class="compare-goal">500</span></td>
+            <td class="text-green font-bold">8.8x</td>
+          </tr>
+          <tr>
+            <td><b>爆款率</b></td>
+            <td><span class="compare-now">3%</span></td>
+            <td class="compare-arrow">→</td>
+            <td><span class="compare-goal">10%</span></td>
+            <td class="text-green font-bold">3.3x</td>
+          </tr>
+          <tr>
+            <td><b>低赞笔记占比</b></td>
+            <td><span class="compare-now">40% (12/30)</span></td>
+            <td class="compare-arrow">→</td>
+            <td><span class="compare-goal">15%</span></td>
+            <td class="text-green font-bold">2.7x 改善</td>
+          </tr>
+          <tr>
+            <td><b>视频占比</b></td>
+            <td><span class="compare-now">67%</span></td>
+            <td class="compare-arrow">→</td>
+            <td><span class="compare-goal">95%</span></td>
+            <td class="text-green font-bold">+28pp</td>
+          </tr>
+          <tr>
+            <td><b>更新频率</b></td>
+            <td><span class="compare-now">不规律</span></td>
+            <td class="compare-arrow">→</td>
+            <td><span class="compare-goal">1 天 1 条</span></td>
+            <td class="text-green font-bold">稳定输出</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+      </section>
+
+      <section>
+        <div class="section-label">DECISION POINTS</div>
+        <h2 class="section-title">第五步: 决策开关 (知道什么时候该放弃)</h2>
+        <p class="section-sub">不是所有号都值得救, 设好止损点</p>
+        
+    <div class="grid grid-3">
+      <div class="card" style="border-color: var(--orange);">
+        <div class="card-title text-orange">🛑 D+30 决策点</div>
+        <p class="text-sm text-dim mt-8">3 个选 1 个</p>
+        <ul class="text-sm mt-16" style="padding-left: 20px;">
+          <li class="text-green">✅ 单篇均赞 ≥ 300 + 1 条爆款 1000+ → 加大投入, 推子号</li>
+          <li class="text-orange">⚠️ 单篇均赞 100-300 + 0 爆款 → 调内容/标题/封面, 再给 30 天</li>
+          <li class="text-red">❌ 单篇均赞 < 100 → 弃号, 重新起新号</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color: var(--green);">
+        <div class="card-title text-green">📈 D+60 决策点</div>
+        <p class="text-sm text-dim mt-8">2 个选 1 个</p>
+        <ul class="text-sm mt-16" style="padding-left: 20px;">
+          <li class="text-green">✅ 粉丝 4,000+ + 均赞 500 → 接广告变现, 起子号矩阵化</li>
+          <li class="text-red">❌ 粉丝 < 2,000 + 均赞 < 200 → 复盘选错定位, 弃号</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color: var(--yellow);">
+        <div class="card-title text-yellow">🏁 D+90 决策点</div>
+        <p class="text-sm text-dim mt-8">终极裁决</p>
+        <ul class="text-sm mt-16" style="padding-left: 20px;">
+          <li class="text-green">✅ 全部达标 → 把 B 纳入主号矩阵, 配置独立团队</li>
+          <li class="text-orange">⚠️ 达标 2/5 → 再给 90 天观察</li>
+          <li class="text-red">❌ 达标 < 2/5 → 弃号, 资源转新号孵化</li>
+        </ul>
+      </div>
+    </div>
+    
+      </section>
+
+      <section>
+        <div class="section-label">PITFALLS</div>
+        <h2 class="section-title">第六步: 避坑清单</h2>
+        
+    <div class="card">
+      <div class="card-title">🚫 必避坑 (踩一个就前功尽弃)</div>
+      <ul class="checklist">
+        <li><b>不要</b>一边养号一边发"其他内容"试探 — 算法会判定定位模糊, 继续降权</li>
+        <li><b>不要</b>用矩阵号 (A/C/D/E) 给 B 互赞互关 — 平台能识别同 IP 设备, 反而拉低权重</li>
+        <li><b>不要</b>用 0 粉号买粉买赞 — 小红书 2024 后对"虚假流量"零容忍, 一次违规直接限流</li>
+        <li><b>不要</b>把简介/头像改得和新定位无关 — 比如新定位"古装剧女主", 头像就别用现代照片</li>
+        <li><b>不要</b>追错热点 — 影视娱乐号追娱乐八卦可以, 但要追"剧情/角色"相关, 别追明星私生活</li>
+        <li><b>不要</b>用 AI 生成视频/图片 (太明显) — 用户一眼能看出, 反而掉粉</li>
+        <li><b>不要</b>搬运其他博主内容 — 二次创作必须加自己的解说/混剪, 单纯搬运扣权重</li>
+        <li><b>不要</b>3 个月内尝试变现 — 1 万粉之前接广告, 商家会压价, 也会让用户觉得"商业化太早"</li>
+      </ul>
+    </div>
+    
+      </section>
+
+      <section>
+        <div class="section-label">BUDGET</div>
+        <h2 class="section-title">第七步: 资源投入估算</h2>
+        <p class="section-sub">90 天里这个号需要的人/钱</p>
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="card-title">👥 人力 (90 天)</div>
+            <ul class="text-sm mt-16" style="padding-left: 20px;">
+              <li>运营 (1人, 兼): <b class="text-orange">45 天 × 0.5 = 22.5 工时</b></li>
+              <li>剪辑 (1人, 兼): <b class="text-orange">约 60 条 × 4h = 240 工时</b></li>
+              <li>文案 (1人, 兼): <b class="text-orange">60 条标题 + 5 个 SOP = 80 工时</b></li>
+              <li>老板决策: <b class="text-orange">3 次决策会 × 1h</b></li>
+            </ul>
+            <p class="text-sm text-dim mt-16">总人力成本估算: 折合 1.5-2 万元 (按外包价)</p>
+          </div>
+          <div class="card">
+            <div class="card-title">💰 资金 (90 天)</div>
+            <ul class="text-sm mt-16" style="padding-left: 20px;">
+              <li>剪辑软件 (剪映会员): <b class="text-orange">约 200 元</b></li>
+              <li>封面字体/模板: <b class="text-orange">约 500 元</b></li>
+              <li>新剧版权 (如有): <b class="text-orange">0 元 (合理使用)</b></li>
+              <li>小红书运营课 (可选): <b class="text-orange">500-2000 元</b></li>
+              <li>测试投放 (如做): <b class="text-orange">约 2000 元</b></li>
+            </ul>
+            <p class="text-sm text-dim mt-16">总资金成本: 约 <b class="text-green">3,000-5,000 元</b>, 远低于重启新号的时间成本</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="alert alert-info">
+          <div class="alert-icon">📋</div>
+          <div class="alert-body">
+            <div class="alert-title">下一步行动</div>
+            1) 看完这页 → 2) 老板确认选 P1 还是其他方案 → 3) 召集 3 个相关人开 1 小时启动会 → 4) 48 小时内完成 D+0 的 5 个动作
+          </div>
+        </div>
+      </section>
+
+    </div>
+    
+</main>
+<footer>
+  <div class="container">
+    <p>B 账号重定位 SOP · 生成于 2026-06-13 12:47 · 数据来源: B 号公开页 30 篇笔记</p>
+    <p class="text-mute text-sm mt-8">基于 B 号爆款规律 (明星 CP/古装剧/剧情切片) 推断的定位方向 · 实际选择需老板确认</p>
+  </div>
+</footer>
+
+</section><section id="r-B" class="merged-section">
+
+
+    <header class="hero">
+      <div class="container">
+        <div class="hero-meta">账号 B · 影视娱乐</div>
+        <h1>西湖边的夏雨荷<br><span class="accent">单账号诊断报告</span></h1>
+        <p class="sub">粉丝 1千+ · 笔记 30 篇 · 单篇均赞 57 · 爆款率 3%</p>
+        <div class="meta-row">
+          <div class="meta-pill">IP <b>山西</b></div>
+          <div class="meta-pill">小红书号 <b>6719427625</b></div>
+          <div class="meta-pill">视频占比 <b>67%</b></div>
+          <div class="meta-pill">爆款 <b>1 篇</b></div>
+        </div>
+      </div>
+    </header>
+    
+
+<main>
+
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">总览</a><span class="sep">/</span>
+        <span>B 西湖边的夏雨荷</span>
+      </div>
+
+      <section>
+        <div class="section-label">ACCOUNT REPORT</div>
+        <h1 class="section-title">B · 西湖边的夏雨荷</h1>
+        <p class="section-sub">单账号诊断报告 · 含数据画像、爆款分析、问题诊断、改进建议</p>
+        
+    <div class="grid grid-4">
+      <div class="stat">
+        <div class="stat-label">粉丝数</div>
+        <div class="stat-value">1千+</div>
+        <div class="stat-foot">关注 10+ · 获赞 1万+</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">总笔记数</div>
+        <div class="stat-value">30<span class="unit">篇</span></div>
+        <div class="stat-foot">视频 20 · 图文 10</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">单篇均赞</div>
+        <div class="stat-value">57</div>
+        <div class="stat-foot">中位 31 · 最高 409</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">爆款率 (≥3×均赞)</div>
+        <div class="stat-value">3<span class="unit">%</span></div>
+        <div class="stat-foot">1 篇爆款</div>
+      </div>
+    </div>
+    
+        <div class="mt-32">
+          
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-title">账号信息</div>
+        <div class="text-sm text-dim mt-16">
+          <p><b class="text-orange">昵称：</b>西湖边的夏雨荷</p>
+          <p class="mt-8"><b class="text-orange">小红书号：</b>6719427625</p>
+          <p class="mt-8"><b class="text-orange">IP 属地：</b>山西 · <b class="text-orange">性别：</b>女</p>
+          <p class="mt-8"><b class="text-orange">UserId：</b>635f3f4f000000001802b7d0</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">简介</div>
+        <div class="text-sm text-dim mt-16" style="white-space: pre-wrap;">抬头观星✨低头观心❤️
+分享就是所有浪漫和热情的本身💕
+小助理@Yanan</div>
+      </div>
+    </div>
+    
+        </div>
+      </section>
+
+      <section>
+        <div class="section-label">CONTENT</div>
+        <h2 class="section-title">内容画像</h2>
+        <div class="grid grid-2">
+          <div>
+            <div class="card"><div class="card-title mb-24">📊 标题套路分布</div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>明星直接点名</span>
+            <span class="text-dim">30 篇 · 100%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 100%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>反差/反转</span>
+            <span class="text-dim">3 篇 · 10%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 10%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>剧情概括</span>
+            <span class="text-dim">3 篇 · 10%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 10%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>CP情感</span>
+            <span class="text-dim">2 篇 · 7%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 7%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>情绪感叹</span>
+            <span class="text-dim">2 篇 · 7%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 7%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>种草/盘点</span>
+            <span class="text-dim">2 篇 · 7%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 7%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>疑问互动</span>
+            <span class="text-dim">1 篇 · 3%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 3%;"></div></div>
+        </div></div>
+          </div>
+          <div>
+            <div class="card">
+              <div class="card-title mb-24">📐 内容特征</div>
+              <div class="text-sm">
+                <p class="mt-8"><b class="text-orange">视频占比：</b>67%</p>
+                <p class="mt-8"><b class="text-orange">标题平均长度：</b>16 字</p>
+                <p class="mt-8"><b class="text-orange">含 emoji：</b>17%</p>
+                <p class="mt-8"><b class="text-orange">含问号：</b>7%</p>
+                <p class="mt-8"><b class="text-orange">含感叹号：</b>40%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-32">
+          <div class="card"><div class="card-title mb-24">🏆 点赞 TOP 10</div>
+        <div class="note-row">
+          <span class="medal medal-1">1</span>
+          <span class="note-type">video</span>
+          <span class="note-title">赵露思TOP TOY代言美疯了！</span>
+          <span class="note-likes">👍 409</span>
+        </div>
+        <div class="note-row">
+          <span class="medal medal-2">2</span>
+          <span class="note-type">video</span>
+          <span class="note-title">等不及了 莫离你到底还有多少反转❓❗️</span>
+          <span class="note-likes">👍 151</span>
+        </div>
+        <div class="note-row">
+          <span class="medal medal-3">3</span>
+          <span class="note-type">video</span>
+          <span class="note-title">不是吧 丁程鑫拿到了女主剧本吗❓</span>
+          <span class="note-likes">👍 149</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">4</span>
+          <span class="note-type">video</span>
+          <span class="note-title">还有谁没看过虞书欣当高能量女老师的日常！</span>
+          <span class="note-likes">👍 138</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">5</span>
+          <span class="note-type">normal</span>
+          <span class="note-title">救命！文俊辉模仿李小冉《心愿便利贴》</span>
+          <span class="note-likes">👍 127</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">6</span>
+          <span class="note-type">video</span>
+          <span class="note-title">张凌赫你到底看了多少短剧！</span>
+          <span class="note-likes">👍 120</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">7</span>
+          <span class="note-type">video</span>
+          <span class="note-title">报告！这个家业大事很妙！</span>
+          <span class="note-likes">👍 86</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">8</span>
+          <span class="note-type">video</span>
+          <span class="note-title">野狗骨头明天就播 行吗？行！</span>
+          <span class="note-likes">👍 67</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">9</span>
+          <span class="note-type">video</span>
+          <span class="note-title">磕不磕的都能看 南部档案邀您一起品鉴！</span>
+          <span class="note-likes">👍 51</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">10</span>
+          <span class="note-type">video</span>
+          <span class="note-title">张凌赫 原来你吃醋是这样啊‼️</span>
+          <span class="note-likes">👍 50</span>
+        </div></div>
+        </div>
+        <div class="card mt-24"><div class="card-title">📉 末位 5 篇（疑似拖后腿笔记）</div>
+        <div class="note-row">
+          <span class="note-type">normal</span>
+          <span class="note-title">母亲节礼物还没买？送她去看李健！</span>
+          <span class="note-likes text-red">👍 </span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">normal</span>
+          <span class="note-title">面试想要脱颖而出，看这期《合伙人》就懂了</span>
+          <span class="note-likes text-red">👍 </span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">normal</span>
+          <span class="note-title">看完这档芒果音综，理解了文化交流的意义</span>
+          <span class="note-likes text-red">👍 1</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">normal</span>
+          <span class="note-title">老白不语，只是一味地爆灯</span>
+          <span class="note-likes text-red">👍 2</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">normal</span>
+          <span class="note-title">居然有一天被短剧温暖到了😭😭😭</span>
+          <span class="note-likes text-red">👍 2</span>
+        </div></div>
+      </section>
+
+      <section>
+        <div class="section-label">DIAGNOSIS</div>
+        <h2 class="section-title">诊断与改进建议</h2>
+        
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-title">💪 优势</div>
+        <div class="alert alert-info mt-8"><div class="alert-icon">✓</div><div class="alert-body">唯一亮点：赵露思代言那条 409 赞，证明 '明星+商业代言' 方向有戏</div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">⚠️ 问题</div>
+        <div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">⚠️ 严重警告：30 篇笔记中 12 篇点赞 ≤10，其中 6 篇 ≤5 赞。账号接近被算法降权边缘</div></div><div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">视频占比仅 67%，图文和视频混杂，平台算法对视频加权更高</div></div><div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">6 篇笔记点赞 <10，占 20%，算法会判断为低质账号降低推荐权重</div></div><div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">爆款率仅 3%，缺乏让算法识别的爆款样本</div></div><div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">评论/收藏数获取为 0（小红书对未登录访问者隐藏），需用达人账号登录后台看真实互动</div></div><div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">简介带 '小助理@Yanan'，暴露多账号矩阵关系，易被风控认定为营销号</div></div>
+      </div>
+    </div>
+    
+        <div class="card mt-24"><div class="card-title">🚨 立即行动 (本周)</div><div class="alert alert-danger mt-8"><div class="alert-icon">▶</div><div class="alert-body">本周紧急：立即停止发文 7 天（养号），同时把 0-10 赞的死笔记全隐藏</div></div><div class="alert alert-danger mt-8"><div class="alert-icon">▶</div><div class="alert-body">把图文笔记全部升级为视频（图文转视频动画/PPT朗读/口播），或删掉 0 赞死笔记</div></div><div class="alert alert-danger mt-8"><div class="alert-icon">▶</div><div class="alert-body">立即隐藏/删除点赞 <10 的笔记（6 篇），防止拉低账号权重</div></div><div class="alert alert-danger mt-8"><div class="alert-icon">▶</div><div class="alert-body">用登录态的内部账号复查每条笔记的评论/收藏/转发，找出隐藏的高互动低点赞笔记（算法更看互动率）</div></div><div class="alert alert-danger mt-8"><div class="alert-icon">▶</div><div class="alert-body">立刻把简介里的 @Yanan 改成『咨询合作请私信』或『商务 wx：xxxxx』</div></div></div><div class="card mt-24"><div class="card-title">⏱️ 短期 (1 月内)</div><div class="alert alert-warn mt-8"><div class="alert-icon">▶</div><div class="alert-body">重做账号定位：当前选题从明星到广告到综艺，跨度太大。建议砍掉综艺/广告/剧情解说，专注 1 个垂直赛道（如：古装剧男女主 CP 切片）</div></div></div><div class="card mt-24"><div class="card-title">📈 中期 (1 季度内)</div><div class="alert alert-info mt-8"><div class="alert-icon">▶</div><div class="alert-body">若 2 周内自然流量仍不恢复（单篇均赞 <30），考虑弃号重新起新号</div></div><div class="alert alert-info mt-8"><div class="alert-icon">▶</div><div class="alert-body">建立爆款复制机制：每月挑 1 个爆款账号的爆款做改编，做 3-5 条相似选题</div></div><div class="alert alert-info mt-8"><div class="alert-icon">▶</div><div class="alert-body">部分账号切换登录城市 / 用不同手机养号，打散 IP 属地</div></div></div><div class="card mt-24"><div class="card-title">🚫 风险提示 (不要做)</div><div class="alert alert-danger mt-8"><div class="alert-icon">✗</div><div class="alert-body">5 个账号 IP 都显示山西，矩阵关系过于明显，平台判定同主体账号后会限制流量分发</div></div></div>
+      </section>
+
+      <section>
+        <div class="alert alert-danger">
+          <div class="alert-icon">🆘</div>
+          <div class="alert-body">
+            <div class="alert-title">需要执行方案？</div>
+            <p class="mt-8">本报告只做了诊断. 如果要救 B 账号, 看 <a href="B-sop.html" style="color: var(--orange); font-weight: 800;">→ B 账号重定位 SOP (90 天重生手册)</a>, 含 6 阶段时间线 + 3 个决策开关 + 选题/封面/视频模板.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    
+</main>
+<footer>
+  <div class="container">
+    <p>百思传媒旗下影视娱乐号诊断报告 · 生成于 2026-06-13 12:47 · 数据来源: 小红书公开页</p>
+    <p class="text-mute text-sm mt-8">评论/收藏数小红书对未登录访问者隐藏 · 建议登录后台复查真实互动数据</p>
+  </div>
+</footer>
+
+</section><section id="r-compare" class="merged-section">
+
+
+    <header class="hero">
+      <div class="container">
+        <div class="hero-meta">COMPARE</div>
+        <h1>5 号 <span class="accent">横向对比</span></h1>
+        <p class="sub">数据矩阵 + 健康度排名 + 定位差异</p>
+      </div>
+    </header>
+    
+
+<main>
+
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">总览</a><span class="sep">/</span>
+        <span>5号对比</span>
+      </div>
+
+      <section>
+        <div class="section-label">COMPARE</div>
+        <h1 class="section-title">5 号横向 <span class="text-orange">对比矩阵</span></h1>
+        <p class="section-sub">单核心数据 + 健康度对比</p>
+
+        <div class="card">
+          <table>
+            <thead>
+              <tr>
+                <th>号</th>
+                <th>昵称</th>
+                <th>粉丝</th>
+                <th>获赞</th>
+                <th>笔记数</th>
+                <th>视频占比</th>
+                <th>单篇均赞</th>
+                <th>爆款率</th>
+                <th>最高赞</th>
+                <th>中位赞</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr>
+          <td><b class="text-orange">A</b></td>
+          <td><a href="A.html">满级观众</a></td>
+          <td>1万+</td>
+          <td>1万+</td>
+          <td>32</td>
+          <td>97%</td>
+          <td><b>3872</b></td>
+          <td><b class="text-green">9%</b></td>
+          <td>36000</td>
+          <td>1582</td>
+        </tr>
+        
+        <tr>
+          <td><b class="text-orange">B</b></td>
+          <td><a href="B.html">西湖边的夏雨荷</a></td>
+          <td>1千+</td>
+          <td>1万+</td>
+          <td>30</td>
+          <td>67%</td>
+          <td><b>57</b></td>
+          <td><b class="text-green">3%</b></td>
+          <td>409</td>
+          <td>31</td>
+        </tr>
+        
+        <tr>
+          <td><b class="text-orange">C</b></td>
+          <td><a href="C.html">一个奈斯的观众</a></td>
+          <td>1万+</td>
+          <td>1万+</td>
+          <td>32</td>
+          <td>94%</td>
+          <td><b>6183</b></td>
+          <td><b class="text-green">12%</b></td>
+          <td>100000</td>
+          <td>259</td>
+        </tr>
+        
+        <tr>
+          <td><b class="text-orange">D</b></td>
+          <td><a href="D.html">没错我是高贵路人</a></td>
+          <td>1万+</td>
+          <td>1万+</td>
+          <td>32</td>
+          <td>97%</td>
+          <td><b>6118</b></td>
+          <td><b class="text-green">6%</b></td>
+          <td>100000</td>
+          <td>445</td>
+        </tr>
+        
+        <tr>
+          <td><b class="text-orange">E</b></td>
+          <td><a href="E.html">追娱少女</a></td>
+          <td>1万+</td>
+          <td>1万+</td>
+          <td>32</td>
+          <td>97%</td>
+          <td><b>1982</b></td>
+          <td><b class="text-green">9%</b></td>
+          <td>26000</td>
+          <td>127</td>
+        </tr>
+        </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-label">RANKING</div>
+        <h2 class="section-title">健康度排名</h2>
+        <p class="section-sub">综合单篇均赞、爆款率、内容方向稳定性</p>
+        <div class="grid grid-2">
+    
+          <div class="card">
+            <div class="flex-between">
+              <div><span class="medal medal-1">1</span> <b>C 一个奈斯的观众</b></div>
+              <span class="text-orange font-bold">均赞 6183</span>
+            </div>
+            <div class="text-sm text-dim mt-8">爆款率 12% · 视频占比 94% · 粉丝 1万+</div>
+            <div class="mt-16">
+              <span class="tag tag-orange">谁在栽赃谁在陷害？姐带着新爆发戏走来了！</span>
+            </div>
+          </div>
+        
+          <div class="card">
+            <div class="flex-between">
+              <div><span class="medal medal-2">2</span> <b>D 没错我是高贵路人</b></div>
+              <span class="text-orange font-bold">均赞 6118</span>
+            </div>
+            <div class="text-sm text-dim mt-8">爆款率 6% · 视频占比 97% · 粉丝 1万+</div>
+            <div class="mt-16">
+              <span class="tag tag-orange">小地球你升华了😭谁懂龚俊这句“中国的”</span>
+            </div>
+          </div>
+        
+          <div class="card">
+            <div class="flex-between">
+              <div><span class="medal medal-3">3</span> <b>A 满级观众</b></div>
+              <span class="text-orange font-bold">均赞 3872</span>
+            </div>
+            <div class="text-sm text-dim mt-8">爆款率 9% · 视频占比 97% · 粉丝 1万+</div>
+            <div class="mt-16">
+              <span class="tag tag-orange">蒋峤西说粤语好苏啊！女朋友那句听不够！</span>
+            </div>
+          </div>
+        
+          <div class="card">
+            <div class="flex-between">
+              <div><span class="note-rank">4</span> <b>E 追娱少女</b></div>
+              <span class="text-orange font-bold">均赞 1982</span>
+            </div>
+            <div class="text-sm text-dim mt-8">爆款率 9% · 视频占比 97% · 粉丝 1万+</div>
+            <div class="mt-16">
+              <span class="tag tag-orange">小花猫舞狮外卖火锅已送达❗️还是鸳鸯锅</span>
+            </div>
+          </div>
+        
+          <div class="card">
+            <div class="flex-between">
+              <div><span class="note-rank">5</span> <b>B 西湖边的夏雨荷</b></div>
+              <span class="text-orange font-bold">均赞 57</span>
+            </div>
+            <div class="text-sm text-dim mt-8">爆款率 3% · 视频占比 67% · 粉丝 1千+</div>
+            <div class="mt-16">
+              <span class="tag tag-orange">赵露思TOP TOY代言美疯了！</span>
+            </div>
+          </div>
+        </div></section>
+      <section>
+        <div class="section-label">DIFFERENTIATION</div>
+        <h2 class="section-title">5 号定位差异 <span class="text-red">(同质化预警)</span></h2>
+        <p class="section-sub">理论上 5 个号应该有差异化人设和赛道，实际从数据看严重重叠</p>
+        <div class="grid grid-2">
+    
+          <div class="card">
+            <div class="card-title">A. 满级观众</div>
+            <p class="text-sm text-dim mt-8">简介: ✂️剪刀手爱德华的赛博亲戚在此  
+🎬爆梗+神转场，专治深夜剧荒EMO  
+👋快</p>
+            <p class="text-sm mt-16"><b class="text-orange">Top 3 选题:</b></p>
+            <ul class="text-sm mt-8" style="padding-left: 20px;">
+              <li>蒋峤西说粤语好苏啊！女朋友那句听不够！</li><li>谁注意到藏海给老婆采花还藏背后了！好浪漫</li><li>笑疯，苟师每天为娥暴走，开启“嘴pao”模式😂</li>
+            </ul>
+          </div>
+        
+          <div class="card">
+            <div class="card-title">B. 西湖边的夏雨荷</div>
+            <p class="text-sm text-dim mt-8">简介: 抬头观星✨低头观心❤️
+分享就是所有浪漫和热情的本身💕
+小助理@Yanan</p>
+            <p class="text-sm mt-16"><b class="text-orange">Top 3 选题:</b></p>
+            <ul class="text-sm mt-8" style="padding-left: 20px;">
+              <li>赵露思TOP TOY代言美疯了！</li><li>等不及了 莫离你到底还有多少反转❓❗️</li><li>不是吧 丁程鑫拿到了女主剧本吗❓</li>
+            </ul>
+          </div>
+        
+          <div class="card">
+            <div class="card-title">C. 一个奈斯的观众</div>
+            <p class="text-sm text-dim mt-8">简介: 没有粉籍的一枚观众~有什么说什么~
+🍒喜欢追剧和综艺的朋友可以关注我~
+有需要👉</p>
+            <p class="text-sm mt-16"><b class="text-orange">Top 3 选题:</b></p>
+            <ul class="text-sm mt-8" style="padding-left: 20px;">
+              <li>谁在栽赃谁在陷害？姐带着新爆发戏走来了！</li><li>相框就算了，枕头都是专属，花姨当亲闺女宠的</li><li>谁懂这段女性的力量！来弟还那么小却好善良</li>
+            </ul>
+          </div>
+        
+          <div class="card">
+            <div class="card-title">D. 没错我是高贵路人</div>
+            <p class="text-sm text-dim mt-8">简介: 无粉籍，墙头草，路人但高贵😇
+请期待本路人踩翻娱乐圈
+小助理@Yanan</p>
+            <p class="text-sm mt-16"><b class="text-orange">Top 3 选题:</b></p>
+            <ul class="text-sm mt-8" style="padding-left: 20px;">
+              <li>小地球你升华了😭谁懂龚俊这句“中国的”</li><li>我就走了个神，怎么就长大啦？？？</li><li>楚嘉禾就这样看着crush烂掉了</li>
+            </ul>
+          </div>
+        
+          <div class="card">
+            <div class="card-title">E. 追娱少女</div>
+            <p class="text-sm text-dim mt-8">简介: 想起什么说什么🗣
+看到什么说什么👁
+一些追📺追🐟碎碎念～
+欢迎一起叭叭叭🧚‍♀️</p>
+            <p class="text-sm mt-16"><b class="text-orange">Top 3 选题:</b></p>
+            <ul class="text-sm mt-8" style="padding-left: 20px;">
+              <li>小花猫舞狮外卖火锅已送达❗️还是鸳鸯锅</li><li>做过蕞亲密的事❗️怎么就突然夹生了呢</li><li>楚朝：这才哪到哪呀❗️谢燕来就已经沦陷了</li>
+            </ul>
+          </div>
+        </div></section></div>
+</main>
+<footer>
+  <div class="container">
+    <p>百思传媒旗下影视娱乐号诊断报告 · 生成于 2026-06-13 12:47 · 数据来源: 小红书公开页</p>
+    <p class="text-mute text-sm mt-8">评论/收藏数小红书对未登录访问者隐藏 · 建议登录后台复查真实互动数据</p>
+  </div>
+</footer>
+
+</section><section id="r-action" class="merged-section">
+
+
+    <header class="hero">
+      <div class="container">
+        <div class="hero-meta">ACTION PLAN</div>
+        <h1>整改建议 · <span class="accent">优先级排序</span></h1>
+        <p class="sub">P0/P1/P2 行动清单 + 资源分配 + 风险提示</p>
+      </div>
+    </header>
+    
+
+<main>
+
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">总览</a><span class="sep">/</span>
+        <span>整改建议</span>
+      </div>
+
+      <section>
+        <div class="section-label">ACTION PLAN</div>
+        <h1 class="section-title">整改建议 · <span class="text-orange">资源分配方案</span></h1>
+        <p class="section-sub">基于 5 个账号的诊断结论，按 P0/P1/P2 优先级排布行动，并给出 100% 资源分配建议</p>
+
+        <div class="alert alert-danger mb-24">
+          <div class="alert-icon">⚠</div>
+          <div class="alert-body">
+            <div class="alert-title">同质化矩阵风险 + 简介暴露 + 选题无差异化 + B 账号已近被降权</div>
+            5 个账号全部由同一公司运营（IP 山西 / @Yanan 小助理 / 影视娱乐），高度同质化矩阵
+          </div>
+        </div>
+
+        <div class="card"><div class="card-title text-red">🚨 P0 · 立刻（24-72 小时内）</div><div class="alert alert-danger mt-8"><div class="alert-icon">▶</div><div class="alert-body"><b>立刻：</b>B 账号养号 + 删死笔记 + 改简介去 @Yanan</div></div><div class="alert alert-danger mt-8"><div class="alert-icon">▶</div><div class="alert-body"><b>立刻：</b>所有账号简介里去掉 @Yanan 暴露信息</div></div></div>
+        <div class="card mt-24"><div class="card-title text-orange">⏱️ P1 · 本周</div><div class="alert alert-warn mt-8"><div class="alert-icon">▶</div><div class="alert-body"><b>本周：</b>A/C/D 加倍资源（爆款率高），E 重定位或合并，B 观察 2 周后决定弃留</div></div><div class="alert alert-warn mt-8"><div class="alert-icon">▶</div><div class="alert-body"><b>本周：</b>所有账号建立选题去重表，防止 5 个号发同一条热搜</div></div></div>
+        <div class="card mt-24"><div class="card-title text-yellow">📈 P2 · 本月/本季度</div><div class="alert alert-info mt-8"><div class="alert-icon">▶</div><div class="alert-body"><b>本月：</b>孵化 1-2 个差异化新号（行业视角/深度解读/男粉向），避免与现有号撞赛道</div></div><div class="alert alert-info mt-8"><div class="alert-icon">▶</div><div class="alert-body"><b>本月：</b>建立爆款 SOP：把 C 账号的爆款逻辑提炼成可复用的选题/标题/封面模板</div></div></div>
+        <div class="card mt-24"><div class="card-title">💰 资源分配建议（100% = 当前投入）</div>
+        <div class="mt-16">
+          <div class="flex-between">
+            <span><b>A 满级观众</b></span>
+            <span class="text-orange font-bold">30%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 30%;"></div></div>
+          <p class="text-sm text-dim mt-8">风格最稳, 人设IP化, 爆款率健康, 应做主号</p>
+        </div>
+        
+        <div class="mt-16">
+          <div class="flex-between">
+            <span><b>C 一个奈斯的观众</b></span>
+            <span class="text-orange font-bold">25%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 25%;"></div></div>
+          <p class="text-sm text-dim mt-8">爆款率最高, 调性稳定, 应做标杆</p>
+        </div>
+        
+        <div class="mt-16">
+          <div class="flex-between">
+            <span><b>D 没错我是高贵路人</b></span>
+            <span class="text-orange font-bold">20%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 20%;"></div></div>
+          <p class="text-sm text-dim mt-8">差异化人设, 反讽风格有爆款公式</p>
+        </div>
+        
+        <div class="mt-16">
+          <div class="flex-between">
+            <span><b>E 追娱少女</b></span>
+            <span class="text-orange font-bold">10%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 10%;"></div></div>
+          <p class="text-sm text-dim mt-8">男性向稀缺位, 但选题太散需重定位</p>
+        </div>
+        
+        <div class="mt-16">
+          <div class="flex-between">
+            <span><b>B 西湖边的夏雨荷</b></span>
+            <span class="text-orange font-bold">5%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 5%;"></div></div>
+          <p class="text-sm text-dim mt-8">近降权边缘, 暂停投入, 观察后决定</p>
+        </div>
+        
+        <div class="mt-16">
+          <div class="flex-between">
+            <span><b>新号孵化(行业视角/男粉向)</b></span>
+            <span class="text-orange font-bold">10%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 10%;"></div></div>
+          <p class="text-sm text-dim mt-8">矩阵同质化严重, 必须开新赛道</p>
+        </div>
+        </div>
+      </section>
+    </div>
+    
+</main>
+<footer>
+  <div class="container">
+    <p>百思传媒旗下影视娱乐号诊断报告 · 生成于 2026-06-13 12:47 · 数据来源: 小红书公开页</p>
+    <p class="text-mute text-sm mt-8">评论/收藏数小红书对未登录访问者隐藏 · 建议登录后台复查真实互动数据</p>
+  </div>
+</footer>
+
+</section><section id="r-A" class="merged-section">
+
+
+    <header class="hero">
+      <div class="container">
+        <div class="hero-meta">账号 A · 影视娱乐</div>
+        <h1>满级观众<br><span class="accent">单账号诊断报告</span></h1>
+        <p class="sub">粉丝 1万+ · 笔记 32 篇 · 单篇均赞 3872 · 爆款率 9%</p>
+        <div class="meta-row">
+          <div class="meta-pill">IP <b>山西</b></div>
+          <div class="meta-pill">小红书号 <b>3854239955</b></div>
+          <div class="meta-pill">视频占比 <b>97%</b></div>
+          <div class="meta-pill">爆款 <b>3 篇</b></div>
+        </div>
+      </div>
+    </header>
+    
+
+<main>
+
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">总览</a><span class="sep">/</span>
+        <span>A 满级观众</span>
+      </div>
+
+      <section>
+        <div class="section-label">ACCOUNT REPORT</div>
+        <h1 class="section-title">A · 满级观众</h1>
+        <p class="section-sub">单账号诊断报告 · 含数据画像、爆款分析、问题诊断、改进建议</p>
+        
+    <div class="grid grid-4">
+      <div class="stat">
+        <div class="stat-label">粉丝数</div>
+        <div class="stat-value">1万+</div>
+        <div class="stat-foot">关注 10+ · 获赞 1万+</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">总笔记数</div>
+        <div class="stat-value">32<span class="unit">篇</span></div>
+        <div class="stat-foot">视频 31 · 图文 1</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">单篇均赞</div>
+        <div class="stat-value">3872</div>
+        <div class="stat-foot">中位 1582 · 最高 36000</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">爆款率 (≥3×均赞)</div>
+        <div class="stat-value">9<span class="unit">%</span></div>
+        <div class="stat-foot">3 篇爆款</div>
+      </div>
+    </div>
+    
+        <div class="mt-32">
+          
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-title">账号信息</div>
+        <div class="text-sm text-dim mt-16">
+          <p><b class="text-orange">昵称：</b>满级观众</p>
+          <p class="mt-8"><b class="text-orange">小红书号：</b>3854239955</p>
+          <p class="mt-8"><b class="text-orange">IP 属地：</b>山西 · <b class="text-orange">性别：</b>女</p>
+          <p class="mt-8"><b class="text-orange">UserId：</b>638d64e20000000023024231</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">简介</div>
+        <div class="text-sm text-dim mt-16" style="white-space: pre-wrap;">✂️剪刀手爱德华的赛博亲戚在此  
+🎬爆梗+神转场，专治深夜剧荒EMO  
+👋快和我一起解锁追剧追影追综艺追星的108种姿势吧！
+🍠→小助理@Yanan</div>
+      </div>
+    </div>
+    
+        </div>
+      </section>
+
+      <section>
+        <div class="section-label">CONTENT</div>
+        <h2 class="section-title">内容画像</h2>
+        <div class="grid grid-2">
+          <div>
+            <div class="card"><div class="card-title mb-24">📊 标题套路分布</div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>明星直接点名</span>
+            <span class="text-dim">29 篇 · 91%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 100%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>CP情感</span>
+            <span class="text-dim">10 篇 · 31%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 34%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>情绪感叹</span>
+            <span class="text-dim">7 篇 · 22%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 24%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>反差/反转</span>
+            <span class="text-dim">3 篇 · 9%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 10%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>人设/状态形容</span>
+            <span class="text-dim">3 篇 · 9%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 10%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>疑问互动</span>
+            <span class="text-dim">2 篇 · 6%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 7%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>其他</span>
+            <span class="text-dim">1 篇 · 3%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 3%;"></div></div>
+        </div></div>
+          </div>
+          <div>
+            <div class="card">
+              <div class="card-title mb-24">📐 内容特征</div>
+              <div class="text-sm">
+                <p class="mt-8"><b class="text-orange">视频占比：</b>97%</p>
+                <p class="mt-8"><b class="text-orange">标题平均长度：</b>19 字</p>
+                <p class="mt-8"><b class="text-orange">含 emoji：</b>6%</p>
+                <p class="mt-8"><b class="text-orange">含问号：</b>0%</p>
+                <p class="mt-8"><b class="text-orange">含感叹号：</b>41%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-32">
+          <div class="card"><div class="card-title mb-24">🏆 点赞 TOP 10</div>
+        <div class="note-row">
+          <span class="medal medal-1">1</span>
+          <span class="note-type">video</span>
+          <span class="note-title">蒋峤西说粤语好苏啊！女朋友那句听不够！</span>
+          <span class="note-likes">👍 3.6万</span>
+        </div>
+        <div class="note-row">
+          <span class="medal medal-2">2</span>
+          <span class="note-type">video</span>
+          <span class="note-title">谁注意到藏海给老婆采花还藏背后了！好浪漫</span>
+          <span class="note-likes">👍 1.6万</span>
+        </div>
+        <div class="note-row">
+          <span class="medal medal-3">3</span>
+          <span class="note-type">video</span>
+          <span class="note-title">笑疯，苟师每天为娥暴走，开启“嘴pao”模式😂</span>
+          <span class="note-likes">👍 1.4万</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">4</span>
+          <span class="note-type">video</span>
+          <span class="note-title">啊啊这对也好嗑啊！青娥发脾气红兵嬉皮笑脸</span>
+          <span class="note-likes">👍 7,882</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">5</span>
+          <span class="note-type">video</span>
+          <span class="note-title">好心痛😭发生危险时宋师离得蕞远却跑得蕞快</span>
+          <span class="note-likes">👍 7,501</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">6</span>
+          <span class="note-type">video</span>
+          <span class="note-title">舅舅准舅妈对视我嗑亖，老辈子暧昧没轻没重</span>
+          <span class="note-likes">👍 5,433</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">7</span>
+          <span class="note-type">video</span>
+          <span class="note-title">一向淡定的娥都红了眼眶，老友相见太好哭了</span>
+          <span class="note-likes">👍 5,268</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">8</span>
+          <span class="note-type">video</span>
+          <span class="note-title">我们初恋组如此“甜蜜又酸涩”舞台对视好虐</span>
+          <span class="note-likes">👍 4,272</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">9</span>
+          <span class="note-type">video</span>
+          <span class="note-title">细节是团里长辈都把易青娥当女儿一样爱护</span>
+          <span class="note-likes">👍 3,254</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">10</span>
+          <span class="note-type">video</span>
+          <span class="note-title">恋爱住一起属实太甜了啊啊！谁懂那个抱！</span>
+          <span class="note-likes">👍 3,134</span>
+        </div></div>
+        </div>
+        <div class="card mt-24"><div class="card-title">📉 末位 5 篇（疑似拖后腿笔记）</div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">🆘强制心动竟有这么让人上头的cp</span>
+          <span class="note-likes text-red">👍 46</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">她就那么守着信件过了一辈子，不识字却能</span>
+          <span class="note-likes text-red">👍 100</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">谢燕来怎么不解释啊！又看见阿朝像以前一样</span>
+          <span class="note-likes text-red">👍 129</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">谢燕来吃醋楚朝一秒哄好，太会钓了</span>
+          <span class="note-likes text-red">👍 135</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">楚朝好会训啊！谁懂他前进她后退那幕张力！</span>
+          <span class="note-likes text-red">👍 148</span>
+        </div></div>
+      </section>
+
+      <section>
+        <div class="section-label">DIAGNOSIS</div>
+        <h2 class="section-title">诊断与改进建议</h2>
+        
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-title">💪 优势</div>
+        <div class="alert alert-info mt-8"><div class="alert-icon">✓</div><div class="alert-body">风格最稳：'剪刀手爱德华' 的人设 IP 化做得最成功，爆款率 9% 健康</div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">⚠️ 问题</div>
+        <div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">评论/收藏数获取为 0（小红书对未登录访问者隐藏），需用达人账号登录后台看真实互动</div></div><div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">简介带 '小助理@Yanan'，暴露多账号矩阵关系，易被风控认定为营销号</div></div><div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">'爆梗+神转场' 描述暗示二次创作较多，需注意版权风险</div></div>
+      </div>
+    </div>
+    
+        <div class="card mt-24"><div class="card-title">🚨 立即行动 (本周)</div><div class="alert alert-danger mt-8"><div class="alert-icon">▶</div><div class="alert-body">用登录态的内部账号复查每条笔记的评论/收藏/转发，找出隐藏的高互动低点赞笔记（算法更看互动率）</div></div><div class="alert alert-danger mt-8"><div class="alert-icon">▶</div><div class="alert-body">立刻把简介里的 @Yanan 改成『咨询合作请私信』或『商务 wx：xxxxx』</div></div></div><div class="card mt-24"><div class="card-title">📈 中期 (1 季度内)</div><div class="alert alert-info mt-8"><div class="alert-icon">▶</div><div class="alert-body">部分账号切换登录城市 / 用不同手机养号，打散 IP 属地</div></div><div class="alert alert-info mt-8"><div class="alert-icon">▶</div><div class="alert-body">A 应该定位为矩阵里的『主号』，享受最多资源倾斜，孵化 1-2 个垂类子号</div></div></div><div class="card mt-24"><div class="card-title">🚫 风险提示 (不要做)</div><div class="alert alert-danger mt-8"><div class="alert-icon">✗</div><div class="alert-body">5 个账号 IP 都显示山西，矩阵关系过于明显，平台判定同主体账号后会限制流量分发</div></div></div>
+      </section>
+
+      <section>
+        <div class="alert alert-danger">
+          <div class="alert-icon">🆘</div>
+          <div class="alert-body">
+            <div class="alert-title">需要执行方案？</div>
+            <p class="mt-8">本报告只做了诊断. 如果要救 B 账号, 看 <a href="B-sop.html" style="color: var(--orange); font-weight: 800;">→ B 账号重定位 SOP (90 天重生手册)</a>, 含 6 阶段时间线 + 3 个决策开关 + 选题/封面/视频模板.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    
+</main>
+<footer>
+  <div class="container">
+    <p>百思传媒旗下影视娱乐号诊断报告 · 生成于 2026-06-13 12:47 · 数据来源: 小红书公开页</p>
+    <p class="text-mute text-sm mt-8">评论/收藏数小红书对未登录访问者隐藏 · 建议登录后台复查真实互动数据</p>
+  </div>
+</footer>
+
+</section><section id="r-C" class="merged-section">
+
+
+    <header class="hero">
+      <div class="container">
+        <div class="hero-meta">账号 C · 影视娱乐</div>
+        <h1>一个奈斯的观众<br><span class="accent">单账号诊断报告</span></h1>
+        <p class="sub">粉丝 1万+ · 笔记 32 篇 · 单篇均赞 6183 · 爆款率 12%</p>
+        <div class="meta-row">
+          <div class="meta-pill">IP <b>山西</b></div>
+          <div class="meta-pill">小红书号 <b>5659142545</b></div>
+          <div class="meta-pill">视频占比 <b>94%</b></div>
+          <div class="meta-pill">爆款 <b>4 篇</b></div>
+        </div>
+      </div>
+    </header>
+    
+
+<main>
+
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">总览</a><span class="sep">/</span>
+        <span>C 一个奈斯的观众</span>
+      </div>
+
+      <section>
+        <div class="section-label">ACCOUNT REPORT</div>
+        <h1 class="section-title">C · 一个奈斯的观众</h1>
+        <p class="section-sub">单账号诊断报告 · 含数据画像、爆款分析、问题诊断、改进建议</p>
+        
+    <div class="grid grid-4">
+      <div class="stat">
+        <div class="stat-label">粉丝数</div>
+        <div class="stat-value">1万+</div>
+        <div class="stat-foot">关注 10+ · 获赞 1万+</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">总笔记数</div>
+        <div class="stat-value">32<span class="unit">篇</span></div>
+        <div class="stat-foot">视频 30 · 图文 2</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">单篇均赞</div>
+        <div class="stat-value">6183</div>
+        <div class="stat-foot">中位 259 · 最高 100000</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">爆款率 (≥3×均赞)</div>
+        <div class="stat-value">12<span class="unit">%</span></div>
+        <div class="stat-foot">4 篇爆款</div>
+      </div>
+    </div>
+    
+        <div class="mt-32">
+          
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-title">账号信息</div>
+        <div class="text-sm text-dim mt-16">
+          <p><b class="text-orange">昵称：</b>一个奈斯的观众</p>
+          <p class="mt-8"><b class="text-orange">小红书号：</b>5659142545</p>
+          <p class="mt-8"><b class="text-orange">IP 属地：</b>山西 · <b class="text-orange">性别：</b>女</p>
+          <p class="mt-8"><b class="text-orange">UserId：</b>628deb000000000021026476</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">简介</div>
+        <div class="text-sm text-dim mt-16" style="white-space: pre-wrap;">没有粉籍的一枚观众~有什么说什么~
+🍒喜欢追剧和综艺的朋友可以关注我~
+有需要👉@Yanan</div>
+      </div>
+    </div>
+    
+        </div>
+      </section>
+
+      <section>
+        <div class="section-label">CONTENT</div>
+        <h2 class="section-title">内容画像</h2>
+        <div class="grid grid-2">
+          <div>
+            <div class="card"><div class="card-title mb-24">📊 标题套路分布</div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>明星直接点名</span>
+            <span class="text-dim">31 篇 · 97%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 100%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>反差/反转</span>
+            <span class="text-dim">3 篇 · 9%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 10%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>CP情感</span>
+            <span class="text-dim">3 篇 · 9%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 10%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>疑问互动</span>
+            <span class="text-dim">2 篇 · 6%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 6%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>人设/状态形容</span>
+            <span class="text-dim">2 篇 · 6%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 6%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>情绪感叹</span>
+            <span class="text-dim">1 篇 · 3%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 3%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>剧情概括</span>
+            <span class="text-dim">1 篇 · 3%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 3%;"></div></div>
+        </div></div>
+          </div>
+          <div>
+            <div class="card">
+              <div class="card-title mb-24">📐 内容特征</div>
+              <div class="text-sm">
+                <p class="mt-8"><b class="text-orange">视频占比：</b>94%</p>
+                <p class="mt-8"><b class="text-orange">标题平均长度：</b>19 字</p>
+                <p class="mt-8"><b class="text-orange">含 emoji：</b>3%</p>
+                <p class="mt-8"><b class="text-orange">含问号：</b>3%</p>
+                <p class="mt-8"><b class="text-orange">含感叹号：</b>25%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-32">
+          <div class="card"><div class="card-title mb-24">🏆 点赞 TOP 10</div>
+        <div class="note-row">
+          <span class="medal medal-1">1</span>
+          <span class="note-type">video</span>
+          <span class="note-title">谁在栽赃谁在陷害？姐带着新爆发戏走来了！</span>
+          <span class="note-likes">👍 10万+</span>
+        </div>
+        <div class="note-row">
+          <span class="medal medal-2">2</span>
+          <span class="note-type">video</span>
+          <span class="note-title">相框就算了，枕头都是专属，花姨当亲闺女宠的</span>
+          <span class="note-likes">👍 2.5万</span>
+        </div>
+        <div class="note-row">
+          <span class="medal medal-3">3</span>
+          <span class="note-type">video</span>
+          <span class="note-title">谁懂这段女性的力量！来弟还那么小却好善良</span>
+          <span class="note-likes">👍 2.4万</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">4</span>
+          <span class="note-type">video</span>
+          <span class="note-title">春姐真的夯爆了！太英勇了！</span>
+          <span class="note-likes">👍 2.3万</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">5</span>
+          <span class="note-type">video</span>
+          <span class="note-title">小娥的“老气”，更加证明她被师傅们养得很好</span>
+          <span class="note-likes">👍 6,422</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">6</span>
+          <span class="note-type">video</span>
+          <span class="note-title">娇生惯养的碎冰冰吃娥的剩饭，简直婚后日常</span>
+          <span class="note-likes">👍 5,818</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">7</span>
+          <span class="note-type">video</span>
+          <span class="note-title">田曦薇最后那个眼神，完全把张局当偶像来的</span>
+          <span class="note-likes">👍 3,141</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">8</span>
+          <span class="note-type">video</span>
+          <span class="note-title">细节是结尾碎碎冰身上穿的衣服，她早就爱了</span>
+          <span class="note-likes">👍 2,714</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">9</span>
+          <span class="note-type">video</span>
+          <span class="note-title">这个陈都灵太对味儿，眼里的野心根本藏不住</span>
+          <span class="note-likes">👍 2,470</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">10</span>
+          <span class="note-type">video</span>
+          <span class="note-title">那个年代不说爱，却连指缝里都藏着深情</span>
+          <span class="note-likes">👍 1,173</span>
+        </div></div>
+        </div>
+        <div class="card mt-24"><div class="card-title">📉 末位 5 篇（疑似拖后腿笔记）</div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">苍莽原野上的赤红之花｜张可盈演尽女性倔强</span>
+          <span class="note-likes text-red">👍 11</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">谁懂陈都灵反撩后的得瑟小表情，她好会啊！</span>
+          <span class="note-likes text-red">👍 29</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">normal</span>
+          <span class="note-title">看完《主角》才发现，是真的好！吃！</span>
+          <span class="note-likes text-red">👍 29</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">主打一个不吃压力，打工人就该多看这种剧</span>
+          <span class="note-likes text-red">👍 32</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">努力那么多还是救不了父亲，楚朝太难了</span>
+          <span class="note-likes text-red">👍 37</span>
+        </div></div>
+      </section>
+
+      <section>
+        <div class="section-label">DIAGNOSIS</div>
+        <h2 class="section-title">诊断与改进建议</h2>
+        
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-title">💪 优势</div>
+        <div class="alert alert-info mt-8"><div class="alert-icon">✓</div><div class="alert-body">爆款率 12%，高于行业基准（3-5%），说明内容方向是对的</div></div><div class="alert alert-info mt-8"><div class="alert-icon">✓</div><div class="alert-body">均赞 6183、爆款率 12%，是矩阵里的标杆号</div></div><div class="alert alert-info mt-8"><div class="alert-icon">✓</div><div class="alert-body">标题套路清晰（'小娥/苟师' 剧情向），账号调性稳定</div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">⚠️ 问题</div>
+        <div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">评论/收藏数获取为 0（小红书对未登录访问者隐藏），需用达人账号登录后台看真实互动</div></div><div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">简介带 '小助理@Yanan'，暴露多账号矩阵关系，易被风控认定为营销号</div></div>
+      </div>
+    </div>
+    
+        <div class="card mt-24"><div class="card-title">🚨 立即行动 (本周)</div><div class="alert alert-danger mt-8"><div class="alert-icon">▶</div><div class="alert-body">用登录态的内部账号复查每条笔记的评论/收藏/转发，找出隐藏的高互动低点赞笔记（算法更看互动率）</div></div><div class="alert alert-danger mt-8"><div class="alert-icon">▶</div><div class="alert-body">立刻把简介里的 @Yanan 改成『咨询合作请私信』或『商务 wx：xxxxx』</div></div></div><div class="card mt-24"><div class="card-title">⏱️ 短期 (1 月内)</div><div class="alert alert-warn mt-8"><div class="alert-icon">▶</div><div class="alert-body">把 C 的爆款逻辑写成 SOP，复制到 A/D/E 三个号</div></div></div><div class="card mt-24"><div class="card-title">📈 中期 (1 季度内)</div><div class="alert alert-info mt-8"><div class="alert-icon">▶</div><div class="alert-body">部分账号切换登录城市 / 用不同手机养号，打散 IP 属地</div></div><div class="alert alert-info mt-8"><div class="alert-icon">▶</div><div class="alert-body">引导 C 走向商业化（粉丝 1 万+已具备接广告门槛），优先接剧情类品牌植入</div></div></div><div class="card mt-24"><div class="card-title">🚫 风险提示 (不要做)</div><div class="alert alert-danger mt-8"><div class="alert-icon">✗</div><div class="alert-body">5 个账号 IP 都显示山西，矩阵关系过于明显，平台判定同主体账号后会限制流量分发</div></div></div>
+      </section>
+
+      <section>
+        <div class="alert alert-danger">
+          <div class="alert-icon">🆘</div>
+          <div class="alert-body">
+            <div class="alert-title">需要执行方案？</div>
+            <p class="mt-8">本报告只做了诊断. 如果要救 B 账号, 看 <a href="B-sop.html" style="color: var(--orange); font-weight: 800;">→ B 账号重定位 SOP (90 天重生手册)</a>, 含 6 阶段时间线 + 3 个决策开关 + 选题/封面/视频模板.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    
+</main>
+<footer>
+  <div class="container">
+    <p>百思传媒旗下影视娱乐号诊断报告 · 生成于 2026-06-13 12:47 · 数据来源: 小红书公开页</p>
+    <p class="text-mute text-sm mt-8">评论/收藏数小红书对未登录访问者隐藏 · 建议登录后台复查真实互动数据</p>
+  </div>
+</footer>
+
+</section><section id="r-D" class="merged-section">
+
+
+    <header class="hero">
+      <div class="container">
+        <div class="hero-meta">账号 D · 影视娱乐</div>
+        <h1>没错我是高贵路人<br><span class="accent">单账号诊断报告</span></h1>
+        <p class="sub">粉丝 1万+ · 笔记 32 篇 · 单篇均赞 6118 · 爆款率 6%</p>
+        <div class="meta-row">
+          <div class="meta-pill">IP <b>山西</b></div>
+          <div class="meta-pill">小红书号 <b>6281640422</b></div>
+          <div class="meta-pill">视频占比 <b>97%</b></div>
+          <div class="meta-pill">爆款 <b>2 篇</b></div>
+        </div>
+      </div>
+    </header>
+    
+
+<main>
+
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">总览</a><span class="sep">/</span>
+        <span>D 没错我是高贵路人</span>
+      </div>
+
+      <section>
+        <div class="section-label">ACCOUNT REPORT</div>
+        <h1 class="section-title">D · 没错我是高贵路人</h1>
+        <p class="section-sub">单账号诊断报告 · 含数据画像、爆款分析、问题诊断、改进建议</p>
+        
+    <div class="grid grid-4">
+      <div class="stat">
+        <div class="stat-label">粉丝数</div>
+        <div class="stat-value">1万+</div>
+        <div class="stat-foot">关注 10+ · 获赞 1万+</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">总笔记数</div>
+        <div class="stat-value">32<span class="unit">篇</span></div>
+        <div class="stat-foot">视频 31 · 图文 1</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">单篇均赞</div>
+        <div class="stat-value">6118</div>
+        <div class="stat-foot">中位 445 · 最高 100000</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">爆款率 (≥3×均赞)</div>
+        <div class="stat-value">6<span class="unit">%</span></div>
+        <div class="stat-foot">2 篇爆款</div>
+      </div>
+    </div>
+    
+        <div class="mt-32">
+          
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-title">账号信息</div>
+        <div class="text-sm text-dim mt-16">
+          <p><b class="text-orange">昵称：</b>没错我是高贵路人</p>
+          <p class="mt-8"><b class="text-orange">小红书号：</b>6281640422</p>
+          <p class="mt-8"><b class="text-orange">IP 属地：</b>山西 · <b class="text-orange">性别：</b>女</p>
+          <p class="mt-8"><b class="text-orange">UserId：</b>628ba7e30000000021026c41</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">简介</div>
+        <div class="text-sm text-dim mt-16" style="white-space: pre-wrap;">无粉籍，墙头草，路人但高贵😇
+请期待本路人踩翻娱乐圈
+小助理@Yanan</div>
+      </div>
+    </div>
+    
+        </div>
+      </section>
+
+      <section>
+        <div class="section-label">CONTENT</div>
+        <h2 class="section-title">内容画像</h2>
+        <div class="grid grid-2">
+          <div>
+            <div class="card"><div class="card-title mb-24">📊 标题套路分布</div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>明星直接点名</span>
+            <span class="text-dim">30 篇 · 94%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 100%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>剧情概括</span>
+            <span class="text-dim">3 篇 · 9%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 10%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>情绪感叹</span>
+            <span class="text-dim">3 篇 · 9%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 10%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>疑问互动</span>
+            <span class="text-dim">2 篇 · 6%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 7%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>CP情感</span>
+            <span class="text-dim">2 篇 · 6%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 7%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>对比/并列</span>
+            <span class="text-dim">1 篇 · 3%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 3%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>人设/状态形容</span>
+            <span class="text-dim">1 篇 · 3%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 3%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>其他</span>
+            <span class="text-dim">1 篇 · 3%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 3%;"></div></div>
+        </div></div>
+          </div>
+          <div>
+            <div class="card">
+              <div class="card-title mb-24">📐 内容特征</div>
+              <div class="text-sm">
+                <p class="mt-8"><b class="text-orange">视频占比：</b>97%</p>
+                <p class="mt-8"><b class="text-orange">标题平均长度：</b>16 字</p>
+                <p class="mt-8"><b class="text-orange">含 emoji：</b>16%</p>
+                <p class="mt-8"><b class="text-orange">含问号：</b>9%</p>
+                <p class="mt-8"><b class="text-orange">含感叹号：</b>28%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-32">
+          <div class="card"><div class="card-title mb-24">🏆 点赞 TOP 10</div>
+        <div class="note-row">
+          <span class="medal medal-1">1</span>
+          <span class="note-type">video</span>
+          <span class="note-title">小地球你升华了😭谁懂龚俊这句“中国的”</span>
+          <span class="note-likes">👍 10万+</span>
+        </div>
+        <div class="note-row">
+          <span class="medal medal-2">2</span>
+          <span class="note-type">video</span>
+          <span class="note-title">我就走了个神，怎么就长大啦？？？</span>
+          <span class="note-likes">👍 6.4万</span>
+        </div>
+        <div class="note-row">
+          <span class="medal medal-3">3</span>
+          <span class="note-type">video</span>
+          <span class="note-title">楚嘉禾就这样看着crush烂掉了</span>
+          <span class="note-likes">👍 8,841</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">4</span>
+          <span class="note-type">video</span>
+          <span class="note-title">我们青娥也开始珍惜着这份明目张胆的偏爱</span>
+          <span class="note-likes">👍 8,184</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">5</span>
+          <span class="note-type">video</span>
+          <span class="note-title">余鸣终于把内心的积压发泄出来了！！</span>
+          <span class="note-likes">👍 2,983</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">6</span>
+          <span class="note-type">video</span>
+          <span class="note-title">答案或许，已经在忆秦娥心里</span>
+          <span class="note-likes">👍 1,705</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">7</span>
+          <span class="note-type">video</span>
+          <span class="note-title">张杰一首《天下》，唱出对音乐的新理解</span>
+          <span class="note-likes">👍 1,601</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">8</span>
+          <span class="note-type">video</span>
+          <span class="note-title">刘红兵，咋没看出来你还是个喜剧人呢么</span>
+          <span class="note-likes">👍 1,092</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">9</span>
+          <span class="note-type">video</span>
+          <span class="note-title">其实你俩本质也是一样的人吧</span>
+          <span class="note-likes">👍 1,040</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">10</span>
+          <span class="note-type">video</span>
+          <span class="note-title">叶英健，一款全自动学霸追踪仪</span>
+          <span class="note-likes">👍 879</span>
+        </div></div>
+        </div>
+        <div class="card mt-24"><div class="card-title">📉 末位 5 篇（疑似拖后腿笔记）</div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">张可盈主演话剧《原野》本轮演出圆满成功！</span>
+          <span class="note-likes text-red">👍 5</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">normal</span>
+          <span class="note-title">们《主角》就这样，用实力说话！！</span>
+          <span class="note-likes text-red">👍 22</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">“时间很长，车马很远，我还记得你”</span>
+          <span class="note-likes text-red">👍 45</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">对于小青娥来说，生长痛是什么呢？</span>
+          <span class="note-likes text-red">👍 48</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">我说你们两个要不要这么甜啊喂！</span>
+          <span class="note-likes text-red">👍 58</span>
+        </div></div>
+      </section>
+
+      <section>
+        <div class="section-label">DIAGNOSIS</div>
+        <h2 class="section-title">诊断与改进建议</h2>
+        
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-title">💪 优势</div>
+        <div class="alert alert-info mt-8"><div class="alert-icon">✓</div><div class="alert-body">路人视角差异化（'高贵路人'人设），'踩翻娱乐圈' 是爆款公式</div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">⚠️ 问题</div>
+        <div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">1 篇笔记点赞 <10，占 3%，算法会判断为低质账号降低推荐权重</div></div><div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">评论/收藏数获取为 0（小红书对未登录访问者隐藏），需用达人账号登录后台看真实互动</div></div><div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">简介带 '小助理@Yanan'，暴露多账号矩阵关系，易被风控认定为营销号</div></div><div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">互动率数据缺失，无法判断高赞是否真的高互动</div></div>
+      </div>
+    </div>
+    
+        <div class="card mt-24"><div class="card-title">🚨 立即行动 (本周)</div><div class="alert alert-danger mt-8"><div class="alert-icon">▶</div><div class="alert-body">立即隐藏/删除点赞 <10 的笔记（1 篇），防止拉低账号权重</div></div><div class="alert alert-danger mt-8"><div class="alert-icon">▶</div><div class="alert-body">用登录态的内部账号复查每条笔记的评论/收藏/转发，找出隐藏的高互动低点赞笔记（算法更看互动率）</div></div><div class="alert alert-danger mt-8"><div class="alert-icon">▶</div><div class="alert-body">立刻把简介里的 @Yanan 改成『咨询合作请私信』或『商务 wx：xxxxx』</div></div></div><div class="card mt-24"><div class="card-title">⏱️ 短期 (1 月内)</div><div class="alert alert-warn mt-8"><div class="alert-icon">▶</div><div class="alert-body">复制 D 的'反讽/吐槽'风格到新号，可考虑孵化 '毒舌影评人' 子账号</div></div></div><div class="card mt-24"><div class="card-title">📈 中期 (1 季度内)</div><div class="alert alert-info mt-8"><div class="alert-icon">▶</div><div class="alert-body">部分账号切换登录城市 / 用不同手机养号，打散 IP 属地</div></div></div><div class="card mt-24"><div class="card-title">🚫 风险提示 (不要做)</div><div class="alert alert-danger mt-8"><div class="alert-icon">✗</div><div class="alert-body">5 个账号 IP 都显示山西，矩阵关系过于明显，平台判定同主体账号后会限制流量分发</div></div></div>
+      </section>
+
+      <section>
+        <div class="alert alert-danger">
+          <div class="alert-icon">🆘</div>
+          <div class="alert-body">
+            <div class="alert-title">需要执行方案？</div>
+            <p class="mt-8">本报告只做了诊断. 如果要救 B 账号, 看 <a href="B-sop.html" style="color: var(--orange); font-weight: 800;">→ B 账号重定位 SOP (90 天重生手册)</a>, 含 6 阶段时间线 + 3 个决策开关 + 选题/封面/视频模板.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    
+</main>
+<footer>
+  <div class="container">
+    <p>百思传媒旗下影视娱乐号诊断报告 · 生成于 2026-06-13 12:47 · 数据来源: 小红书公开页</p>
+    <p class="text-mute text-sm mt-8">评论/收藏数小红书对未登录访问者隐藏 · 建议登录后台复查真实互动数据</p>
+  </div>
+</footer>
+
+</section><section id="r-E" class="merged-section">
+
+
+    <header class="hero">
+      <div class="container">
+        <div class="hero-meta">账号 E · 影视娱乐</div>
+        <h1>追娱少女<br><span class="accent">单账号诊断报告</span></h1>
+        <p class="sub">粉丝 1万+ · 笔记 32 篇 · 单篇均赞 1982 · 爆款率 9%</p>
+        <div class="meta-row">
+          <div class="meta-pill">IP <b>山西</b></div>
+          <div class="meta-pill">小红书号 <b>5614681814</b></div>
+          <div class="meta-pill">视频占比 <b>97%</b></div>
+          <div class="meta-pill">爆款 <b>3 篇</b></div>
+        </div>
+      </div>
+    </header>
+    
+
+<main>
+
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">总览</a><span class="sep">/</span>
+        <span>E 追娱少女</span>
+      </div>
+
+      <section>
+        <div class="section-label">ACCOUNT REPORT</div>
+        <h1 class="section-title">E · 追娱少女</h1>
+        <p class="section-sub">单账号诊断报告 · 含数据画像、爆款分析、问题诊断、改进建议</p>
+        
+    <div class="grid grid-4">
+      <div class="stat">
+        <div class="stat-label">粉丝数</div>
+        <div class="stat-value">1万+</div>
+        <div class="stat-foot">关注 10+ · 获赞 1万+</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">总笔记数</div>
+        <div class="stat-value">32<span class="unit">篇</span></div>
+        <div class="stat-foot">视频 31 · 图文 1</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">单篇均赞</div>
+        <div class="stat-value">1982</div>
+        <div class="stat-foot">中位 127 · 最高 26000</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">爆款率 (≥3×均赞)</div>
+        <div class="stat-value">9<span class="unit">%</span></div>
+        <div class="stat-foot">3 篇爆款</div>
+      </div>
+    </div>
+    
+        <div class="mt-32">
+          
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-title">账号信息</div>
+        <div class="text-sm text-dim mt-16">
+          <p><b class="text-orange">昵称：</b>追娱少女</p>
+          <p class="mt-8"><b class="text-orange">小红书号：</b>5614681814</p>
+          <p class="mt-8"><b class="text-orange">IP 属地：</b>山西 · <b class="text-orange">性别：</b>男</p>
+          <p class="mt-8"><b class="text-orange">UserId：</b>62c8d9a3000000000e00c263</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">简介</div>
+        <div class="text-sm text-dim mt-16" style="white-space: pre-wrap;">想起什么说什么🗣
+看到什么说什么👁
+一些追📺追🐟碎碎念～
+欢迎一起叭叭叭🧚‍♀️
+有需要@Yanan</div>
+      </div>
+    </div>
+    
+        </div>
+      </section>
+
+      <section>
+        <div class="section-label">CONTENT</div>
+        <h2 class="section-title">内容画像</h2>
+        <div class="grid grid-2">
+          <div>
+            <div class="card"><div class="card-title mb-24">📊 标题套路分布</div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>明星直接点名</span>
+            <span class="text-dim">31 篇 · 97%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 100%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>疑问互动</span>
+            <span class="text-dim">6 篇 · 19%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 19%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>情绪感叹</span>
+            <span class="text-dim">4 篇 · 12%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 13%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>人设/状态形容</span>
+            <span class="text-dim">3 篇 · 9%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 10%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>CP情感</span>
+            <span class="text-dim">3 篇 · 9%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 10%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>反差/反转</span>
+            <span class="text-dim">2 篇 · 6%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 6%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>剧情概括</span>
+            <span class="text-dim">1 篇 · 3%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 3%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>种草/盘点</span>
+            <span class="text-dim">1 篇 · 3%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 3%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>其他</span>
+            <span class="text-dim">1 篇 · 3%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 3%;"></div></div>
+        </div></div>
+          </div>
+          <div>
+            <div class="card">
+              <div class="card-title mb-24">📐 内容特征</div>
+              <div class="text-sm">
+                <p class="mt-8"><b class="text-orange">视频占比：</b>97%</p>
+                <p class="mt-8"><b class="text-orange">标题平均长度：</b>18 字</p>
+                <p class="mt-8"><b class="text-orange">含 emoji：</b>88%</p>
+                <p class="mt-8"><b class="text-orange">含问号：</b>0%</p>
+                <p class="mt-8"><b class="text-orange">含感叹号：</b>3%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-32">
+          <div class="card"><div class="card-title mb-24">🏆 点赞 TOP 10</div>
+        <div class="note-row">
+          <span class="medal medal-1">1</span>
+          <span class="note-type">video</span>
+          <span class="note-title">小花猫舞狮外卖火锅已送达❗️还是鸳鸯锅</span>
+          <span class="note-likes">👍 2.6万</span>
+        </div>
+        <div class="note-row">
+          <span class="medal medal-2">2</span>
+          <span class="note-type">video</span>
+          <span class="note-title">做过蕞亲密的事❗️怎么就突然夹生了呢</span>
+          <span class="note-likes">👍 1.6万</span>
+        </div>
+        <div class="note-row">
+          <span class="medal medal-3">3</span>
+          <span class="note-type">video</span>
+          <span class="note-title">楚朝：这才哪到哪呀❗️谢燕来就已经沦陷了</span>
+          <span class="note-likes">👍 6,556</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">4</span>
+          <span class="note-type">video</span>
+          <span class="note-title">忆秦娥走不出阴霾不敢开口唱❗️用录音教宋雨</span>
+          <span class="note-likes">👍 5,846</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">5</span>
+          <span class="note-type">video</span>
+          <span class="note-title">是生活压垮了两人，无奈才走到了这一步❗️</span>
+          <span class="note-likes">👍 3,607</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">6</span>
+          <span class="note-type">video</span>
+          <span class="note-title">这气场和状态❗️完全就是姐的统治区啊</span>
+          <span class="note-likes">👍 905</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">7</span>
+          <span class="note-type">video</span>
+          <span class="note-title">没有什么事是“离”解决不了的❗️还走吗</span>
+          <span class="note-likes">👍 739</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">8</span>
+          <span class="note-type">video</span>
+          <span class="note-title">赵露思×TOP TOY 六一宠粉封神</span>
+          <span class="note-likes">👍 730</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">9</span>
+          <span class="note-type">video</span>
+          <span class="note-title">天赋这种东西是与生俱来的❗️</span>
+          <span class="note-likes">👍 508</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">10</span>
+          <span class="note-type">video</span>
+          <span class="note-title">他们之间真的有点玄学啊❗️嘴巴都挺厉害的</span>
+          <span class="note-likes">👍 474</span>
+        </div></div>
+        </div>
+        <div class="card mt-24"><div class="card-title">📉 末位 5 篇（疑似拖后腿笔记）</div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">话剧《原野》本轮演出收官！</span>
+          <span class="note-likes text-red">👍 24</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">大女主来的单枪匹马就这样拿下了霄南王❓</span>
+          <span class="note-likes text-red">👍 30</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">你俩不要再吵了❗️我下的行了吗不行我吃了</span>
+          <span class="note-likes text-red">👍 43</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">邢武你就承认吧❗️你已经沦陷了…</span>
+          <span class="note-likes text-red">👍 56</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">翘楚这是周五福利大放送吗❗️上演校园风</span>
+          <span class="note-likes text-red">👍 57</span>
+        </div></div>
+      </section>
+
+      <section>
+        <div class="section-label">DIAGNOSIS</div>
+        <h2 class="section-title">诊断与改进建议</h2>
+        
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-title">💪 优势</div>
+        <div class="alert alert-info mt-8"><div class="alert-icon">✓</div><div class="alert-body">男性向人设是矩阵里的稀缺位（其他 4 个都是女性向）</div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">⚠️ 问题</div>
+        <div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">评论/收藏数获取为 0（小红书对未登录访问者隐藏），需用达人账号登录后台看真实互动</div></div><div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">简介带 '小助理@Yanan'，暴露多账号矩阵关系，易被风控认定为营销号</div></div><div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">均赞 1982 远低于 A/C/D，'想起什么说什么' 的选题太随机</div></div>
+      </div>
+    </div>
+    
+        <div class="card mt-24"><div class="card-title">🚨 立即行动 (本周)</div><div class="alert alert-danger mt-8"><div class="alert-icon">▶</div><div class="alert-body">用登录态的内部账号复查每条笔记的评论/收藏/转发，找出隐藏的高互动低点赞笔记（算法更看互动率）</div></div><div class="alert alert-danger mt-8"><div class="alert-icon">▶</div><div class="alert-body">立刻把简介里的 @Yanan 改成『咨询合作请私信』或『商务 wx：xxxxx』</div></div></div><div class="card mt-24"><div class="card-title">⏱️ 短期 (1 月内)</div><div class="alert alert-warn mt-8"><div class="alert-icon">▶</div><div class="alert-body">E 重新定位：要么彻底做『男粉向影视解读』（稀缺位），要么放弃并入其他号</div></div></div><div class="card mt-24"><div class="card-title">📈 中期 (1 季度内)</div><div class="alert alert-info mt-8"><div class="alert-icon">▶</div><div class="alert-body">部分账号切换登录城市 / 用不同手机养号，打散 IP 属地</div></div></div><div class="card mt-24"><div class="card-title">🚫 风险提示 (不要做)</div><div class="alert alert-danger mt-8"><div class="alert-icon">✗</div><div class="alert-body">5 个账号 IP 都显示山西，矩阵关系过于明显，平台判定同主体账号后会限制流量分发</div></div></div>
+      </section>
+
+      <section>
+        <div class="alert alert-danger">
+          <div class="alert-icon">🆘</div>
+          <div class="alert-body">
+            <div class="alert-title">需要执行方案？</div>
+            <p class="mt-8">本报告只做了诊断. 如果要救 B 账号, 看 <a href="B-sop.html" style="color: var(--orange); font-weight: 800;">→ B 账号重定位 SOP (90 天重生手册)</a>, 含 6 阶段时间线 + 3 个决策开关 + 选题/封面/视频模板.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    
+</main>
+<footer>
+  <div class="container">
+    <p>百思传媒旗下影视娱乐号诊断报告 · 生成于 2026-06-13 12:47 · 数据来源: 小红书公开页</p>
+    <p class="text-mute text-sm mt-8">评论/收藏数小红书对未登录访问者隐藏 · 建议登录后台复查真实互动数据</p>
+  </div>
+</footer>
+
+</section>
+</main>
+<a href="#top" class="back-to-top" title="返回目录">↑</a>
+<footer style="background:#170d02; padding:40px 0; text-align:center; color:#6e5a48; font-size:13px; border-top:1px solid #3a2614;">
+  <div style="max-width:1280px; margin:0 auto; padding:0 24px;">
+    <p>百思传媒旗下影视娱乐号诊断报告 · 合集 · 生成于 2026-06-13</p>
+    <p style="color:#3a2614; margin-top:8px; font-size:12px;">数据来源: 小红书公开页 · 建议登录后台复查真实互动数据</p>
+  </div>
+</footer>
+</body>
+</html>

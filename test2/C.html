@@ -237,99 +237,28 @@ footer { background: var(--bg-2); padding: 40px 0; text-align: center; color: va
         font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
         font-size: 14px;
       }
-      .subpage-nav a { color: #ffac02; text-decoration: none; }
+      .subpage-nav a { color: #ffac02; text-decoration: none; font-weight: 600; }
       .subpage-nav a:hover { color: #edff45; }
       .subpage-nav .title { color: #f5e9d5; font-weight: 700; flex: 1; }
       .subpage-nav .lock-btn {
         background: #1d1107; border: 1px solid #3a2614; color: #a89080;
         padding: 4px 10px; border-radius: 4px; font-size: 12px; cursor: pointer;
+        font-family: inherit;
       }
       .subpage-nav .lock-btn:hover { border-color: #ff5e5e; color: #ff5e5e; }
-      .pwd-overlay {
-        position: fixed; inset: 0;
-        background: rgba(13, 9, 5, 0.97);
-        display: flex; align-items: center; justify-content: center;
-        z-index: 9999; padding: 24px;
-      }
-      .pwd-overlay.hidden { display: none; }
-      .pwd-box {
-        background: #1d1107; border: 1px solid #3a2614; border-radius: 12px;
-        padding: 40px; max-width: 420px; width: 100%;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-        font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
-      }
-      .pwd-box h2 { color: #ffac02; font-size: 22px; margin-bottom: 8px; text-align: center; }
-      .pwd-box p { color: #a89080; font-size: 13px; text-align: center; margin-bottom: 24px; }
-      .pwd-box input {
-        width: 100%; background: #0d0905; border: 1px solid #3a2614;
-        border-radius: 6px; padding: 12px 14px; color: #f5e9d5;
-        font-size: 15px; outline: none; margin-bottom: 12px;
-      }
-      .pwd-box input:focus { border-color: #ffac02; }
-      .pwd-box button {
-        width: 100%; background: linear-gradient(135deg, #ffac02 0%, #edff45 100%);
-        border: none; border-radius: 6px; padding: 12px;
-        color: #170d02; font-size: 15px; font-weight: 700; cursor: pointer;
-      }
-      .pwd-box .err { color: #ff5e5e; font-size: 12px; text-align: center; min-height: 16px; margin-top: 8px; }
     </style>
     <script>
-      async function sha256(text) {
-        const buf = new TextEncoder().encode(text);
-        const hash = await crypto.subtle.digest('SHA-256', buf);
-        return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
+      // 共享 localStorage 标志 - 入口页解锁后所有子页免输密码
+      if (localStorage.getItem('baisi_unlocked') !== '1') {
+        window.location.href = '../test2.html';
       }
-      const CORRECT_HASH = "69d8a2ba4486e494382d1ccbe890fb8c1724c7600f3450785fbdc959bfac19a6";
-      const SESSION_KEY = "baisi_pwd_ok";
-      const SESSION_HASH = "baisi_pwd_hash";
-
-      async function checkSubPwd() {
-        const inp = document.getElementById('subPwd');
-        const err = document.getElementById('subErr');
-        const v = inp.value;
-        err.textContent = '';
-        const h = await sha256(v);
-        if (h === CORRECT_HASH) {
-          sessionStorage.setItem(SESSION_KEY, '1');
-          sessionStorage.setItem(SESSION_HASH, h);
-          document.getElementById('pwdOverlay').classList.add('hidden');
-          inp.value = '';
-        } else {
-          err.textContent = '密码错误';
-          inp.value = '';
-          inp.focus();
-        }
-      }
-
       function subLogout() {
-        sessionStorage.removeItem(SESSION_KEY);
-        sessionStorage.removeItem(SESSION_HASH);
-        location.reload();
+        localStorage.removeItem('baisi_unlocked');
+        window.location.href = '../test2.html';
       }
-
-      (async function() {
-        if (sessionStorage.getItem(SESSION_KEY) === '1' && sessionStorage.getItem(SESSION_HASH) === CORRECT_HASH) {
-          const ov = document.getElementById('pwdOverlay');
-          if (ov) ov.classList.add('hidden');
-        } else {
-          setTimeout(() => {
-            const inp = document.getElementById('subPwd');
-            if (inp) inp.focus();
-          }, 100);
-        }
-      })();
     </script>
     </head>
 <body>
-    <div class="pwd-overlay" id="pwdOverlay">
-      <div class="pwd-box">
-        <h2>🔒 内部资料</h2>
-        <p>C 一个奈斯的观众 - 单号报告 · 需要密码访问</p>
-        <input type="password" id="subPwd" placeholder="请输入密码" onkeydown="if(event.key==='Enter')checkSubPwd()">
-        <button onclick="checkSubPwd()">🔓 解锁</button>
-        <div class="err" id="subErr"></div>
-      </div>
-    </div>
     <div class="subpage-nav">
       <a href="../test2.html">← 返回目录</a>
       <span class="title">C 一个奈斯的观众 - 单号报告</span>

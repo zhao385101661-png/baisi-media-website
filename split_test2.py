@@ -226,7 +226,7 @@ def make_entry_page():
     icons = ["🎬", "🚑", "⚠️", "📊", "🚨", "📘", "📗", "📙", "📕"]
     for i, (rid, title, desc) in enumerate(REPORT_ORDER):
         cards.append(f"""
-        <a href="{rid}.html" class="card" style="--accent: #{colors[i]};">
+      <div class="card" style="--accent: #{colors[i]};" data-target="{rid}.html">
           <div class="card-icon">{icons[i]}</div>
           <div class="card-body">
             <div class="card-title">{title}</div>
@@ -454,19 +454,15 @@ def make_entry_page():
       const hash = await crypto.subtle.digest('SHA-256', buf);
       return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
     }}
-    const CORRECT_HASH = "{pwd_hash}";
-    const SESSION_KEY = "baisi_pwd_ok";
-    const SESSION_HASH = "baisi_pwd_hash";
+    const CORRECT_PWD = "baisi2026";
+    const LS_KEY = "baisi_unlocked";
 
-    async function checkPwd(e) {{
+    function checkPwd(e) {{
       e.preventDefault();
       const pwd = document.getElementById('pwd').value;
       const err = document.getElementById('err');
-      err.textContent = '';
-      const h = await sha256(pwd);
-      if (h === CORRECT_HASH) {{
-        sessionStorage.setItem(SESSION_KEY, '1');
-        sessionStorage.setItem(SESSION_HASH, h);
+      if (pwd === CORRECT_PWD) {{
+        localStorage.setItem(LS_KEY, '1');
         unlock();
       }} else {{
         err.textContent = '密码错误，请重试';
@@ -483,17 +479,14 @@ def make_entry_page():
     }}
 
     function logout() {{
-      sessionStorage.removeItem(SESSION_KEY);
-      sessionStorage.removeItem(SESSION_HASH);
+      localStorage.removeItem(LS_KEY);
       location.reload();
     }}
 
     // 已解锁过直接进
-    (async function() {{
-      if (sessionStorage.getItem(SESSION_KEY) === '1' && sessionStorage.getItem(SESSION_HASH) === CORRECT_HASH) {{
-        unlock();
-      }}
-    }})();
+    if (localStorage.getItem(LS_KEY) === '1') {{
+      unlock();
+    }}
   </script>
 </body>
 </html>"""
@@ -501,15 +494,14 @@ def make_entry_page():
 
 # ============= 9 个子报告页 =============
 def make_subpage(src_file, out_file, title):
-    """把单个报告原样输出（保留所有 CSS 和 body），顶部加'返回目录'链接 + 密码门"""
+    """输出子页：顶部导航条 + 检查 localStorage 决定是否跳转回入口"""
     src = REPORTS_DIR / src_file
     if not src.exists():
         print(f"跳过 {src_file}: 不存在")
         return False
     html = src.read_text(encoding="utf-8")
-    pwd_hash = hashlib_sha256(PASSWORD)
 
-    # 在 </head> 之前注入密码校验脚本
+    # 只注入样式 + 导航条 + 跳转检查
     injection = f"""
     <style>
       .subpage-nav {{
@@ -520,101 +512,29 @@ def make_subpage(src_file, out_file, title):
         font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
         font-size: 14px;
       }}
-      .subpage-nav a {{ color: #ffac02; text-decoration: none; }}
+      .subpage-nav a {{ color: #ffac02; text-decoration: none; font-weight: 600; }}
       .subpage-nav a:hover {{ color: #edff45; }}
       .subpage-nav .title {{ color: #f5e9d5; font-weight: 700; flex: 1; }}
       .subpage-nav .lock-btn {{
         background: #1d1107; border: 1px solid #3a2614; color: #a89080;
         padding: 4px 10px; border-radius: 4px; font-size: 12px; cursor: pointer;
+        font-family: inherit;
       }}
       .subpage-nav .lock-btn:hover {{ border-color: #ff5e5e; color: #ff5e5e; }}
-      .pwd-overlay {{
-        position: fixed; inset: 0;
-        background: rgba(13, 9, 5, 0.97);
-        display: flex; align-items: center; justify-content: center;
-        z-index: 9999; padding: 24px;
-      }}
-      .pwd-overlay.hidden {{ display: none; }}
-      .pwd-box {{
-        background: #1d1107; border: 1px solid #3a2614; border-radius: 12px;
-        padding: 40px; max-width: 420px; width: 100%;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-        font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
-      }}
-      .pwd-box h2 {{ color: #ffac02; font-size: 22px; margin-bottom: 8px; text-align: center; }}
-      .pwd-box p {{ color: #a89080; font-size: 13px; text-align: center; margin-bottom: 24px; }}
-      .pwd-box input {{
-        width: 100%; background: #0d0905; border: 1px solid #3a2614;
-        border-radius: 6px; padding: 12px 14px; color: #f5e9d5;
-        font-size: 15px; outline: none; margin-bottom: 12px;
-      }}
-      .pwd-box input:focus {{ border-color: #ffac02; }}
-      .pwd-box button {{
-        width: 100%; background: linear-gradient(135deg, #ffac02 0%, #edff45 100%);
-        border: none; border-radius: 6px; padding: 12px;
-        color: #170d02; font-size: 15px; font-weight: 700; cursor: pointer;
-      }}
-      .pwd-box .err {{ color: #ff5e5e; font-size: 12px; text-align: center; min-height: 16px; margin-top: 8px; }}
     </style>
     <script>
-      async function sha256(text) {{
-        const buf = new TextEncoder().encode(text);
-        const hash = await crypto.subtle.digest('SHA-256', buf);
-        return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
+      // 共享 localStorage 标志 - 入口页解锁后所有子页免输密码
+      if (localStorage.getItem('baisi_unlocked') !== '1') {{
+        window.location.href = '../test2.html';
       }}
-      const CORRECT_HASH = "{pwd_hash}";
-      const SESSION_KEY = "baisi_pwd_ok";
-      const SESSION_HASH = "baisi_pwd_hash";
-
-      async function checkSubPwd() {{
-        const inp = document.getElementById('subPwd');
-        const err = document.getElementById('subErr');
-        const v = inp.value;
-        err.textContent = '';
-        const h = await sha256(v);
-        if (h === CORRECT_HASH) {{
-          sessionStorage.setItem(SESSION_KEY, '1');
-          sessionStorage.setItem(SESSION_HASH, h);
-          document.getElementById('pwdOverlay').classList.add('hidden');
-          inp.value = '';
-        }} else {{
-          err.textContent = '密码错误';
-          inp.value = '';
-          inp.focus();
-        }}
-      }}
-
       function subLogout() {{
-        sessionStorage.removeItem(SESSION_KEY);
-        sessionStorage.removeItem(SESSION_HASH);
-        location.reload();
+        localStorage.removeItem('baisi_unlocked');
+        window.location.href = '../test2.html';
       }}
-
-      (async function() {{
-        if (sessionStorage.getItem(SESSION_KEY) === '1' && sessionStorage.getItem(SESSION_HASH) === CORRECT_HASH) {{
-          const ov = document.getElementById('pwdOverlay');
-          if (ov) ov.classList.add('hidden');
-        }} else {{
-          setTimeout(() => {{
-            const inp = document.getElementById('subPwd');
-            if (inp) inp.focus();
-          }}, 100);
-        }}
-      }})();
     </script>
     """
 
-    # 把子页 nav 插入到 body 开头
     sub_nav = f"""
-    <div class="pwd-overlay" id="pwdOverlay">
-      <div class="pwd-box">
-        <h2>🔒 内部资料</h2>
-        <p>{title} · 需要密码访问</p>
-        <input type="password" id="subPwd" placeholder="请输入密码" onkeydown="if(event.key==='Enter')checkSubPwd()">
-        <button onclick="checkSubPwd()">🔓 解锁</button>
-        <div class="err" id="subErr"></div>
-      </div>
-    </div>
     <div class="subpage-nav">
       <a href="../test2.html">← 返回目录</a>
       <span class="title">{title}</span>
@@ -633,119 +553,65 @@ def make_subpage(src_file, out_file, title):
     return True
 
 
-# ============= 给 test.html 加密码门 =============
+# ============= 给 test.html 加跳转检查 =============
 def patch_test_html():
-    """test.html 也加密码门"""
+    """test.html 改为检查 localStorage 决定是否跳转回 test2.html 解锁"""
     target = Path("test.html")
     if not target.exists():
         print(f"test.html 不存在")
         return False
     html = target.read_text(encoding="utf-8")
-    pwd_hash = hashlib_sha256(PASSWORD)
 
-    # 在 <head> 内追加密码门样式 + 把 <body> 内容包在 overlay 里
-    # 方案：在 <body> 后立即插入 overlay 门，原内容用 wrapper 包裹，JS 控制显示
-
-    # 简单做法：保持原内容，在最前面插入密码门 overlay
-    overlay = f"""
+    # 注入脚本：未解锁跳到 test2.html
+    # 同时在 body 开头插入顶部导航条（返回 test2.html + 锁屏）
+    injection = """
     <style>
-      #testPwdOverlay {{
-        position: fixed; inset: 0; z-index: 99999;
-        background: rgba(13, 9, 5, 0.98);
-        display: flex; align-items: center; justify-content: center;
-        padding: 24px; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
-      }}
-      #testPwdOverlay.hidden {{ display: none; }}
-      #testPwdOverlay .pwd-box {{
-        background: #1d1107; border: 1px solid #3a2614; border-radius: 12px;
-        padding: 48px 40px; max-width: 440px; width: 100%;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-      }}
-      #testPwdOverlay h2 {{
-        color: #ffac02; font-size: 14px; letter-spacing: 3px; text-transform: uppercase;
-        margin-bottom: 16px; text-align: center; font-weight: 800;
-      }}
-      #testPwdOverlay h1 {{
-        color: #f5e9d5; font-size: 28px; text-align: center; margin-bottom: 8px; font-weight: 800;
-      }}
-      #testPwdOverlay h1 span {{ color: #ffac02; }}
-      #testPwdOverlay p {{ color: #a89080; font-size: 14px; text-align: center; margin-bottom: 32px; }}
-      #testPwdOverlay input {{
-        width: 100%; background: #0d0905; border: 1px solid #3a2614;
-        border-radius: 6px; padding: 14px 16px; color: #f5e9d5;
-        font-size: 16px; outline: none; box-sizing: border-box; margin-bottom: 12px;
-      }}
-      #testPwdOverlay input:focus {{ border-color: #ffac02; }}
-      #testPwdOverlay input::placeholder {{ color: #6e5a48; }}
-      #testPwdOverlay button {{
-        width: 100%; background: linear-gradient(135deg, #ffac02 0%, #edff45 100%);
-        border: none; border-radius: 6px; padding: 14px;
-        color: #170d02; font-size: 16px; font-weight: 700; cursor: pointer;
-      }}
-      #testPwdOverlay .err {{
-        color: #ff5e5e; font-size: 13px; text-align: center; min-height: 20px; margin-top: 12px;
-      }}
-      #testPwdOverlay .hint {{
-        margin-top: 24px; padding-top: 24px; border-top: 1px solid #3a2614;
-        color: #6e5a48; font-size: 12px; text-align: center; line-height: 1.6;
-      }}
+      .subpage-nav {
+        position: sticky; top: 0; z-index: 100;
+        background: #170d02; border-bottom: 2px solid #ffac02;
+        padding: 12px 24px;
+        display: flex; align-items: center; gap: 16px;
+        font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+        font-size: 14px;
+      }
+      .subpage-nav a { color: #ffac02; text-decoration: none; font-weight: 600; }
+      .subpage-nav a:hover { color: #edff45; }
+      .subpage-nav .title { color: #f5e9d5; font-weight: 700; flex: 1; }
+      .subpage-nav .lock-btn {
+        background: #1d1107; border: 1px solid #3a2614; color: #a89080;
+        padding: 4px 10px; border-radius: 4px; font-size: 12px; cursor: pointer;
+        font-family: inherit;
+      }
+      .subpage-nav .lock-btn:hover { border-color: #ff5e5e; color: #ff5e5e; }
     </style>
-    <div id="testPwdOverlay">
-      <div class="pwd-box">
-        <h2>百思传媒 · 内部资料</h2>
-        <h1>test.html <span>访问验证</span></h1>
-        <p>此页面需要密码访问</p>
-        <input type="password" id="testPwdInp" placeholder="请输入密码" autocomplete="off">
-        <button onclick="testCheckPwd()">🔓 解锁</button>
-        <div class="err" id="testPwdErr"></div>
-        <div class="hint">内部资料 · 请勿外传<br>密码错误请向项目负责人索取</div>
-      </div>
-    </div>
     <script>
-      async function sha256T(text) {{
-        const buf = new TextEncoder().encode(text);
-        const hash = await crypto.subtle.digest('SHA-256', buf);
-        return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
-      }}
-      const T_CORRECT = "{pwd_hash}";
-      const T_KEY = "baisi_pwd_ok";
-      const T_HASH = "baisi_pwd_hash";
-      async function testCheckPwd() {{
-        const inp = document.getElementById('testPwdInp');
-        const err = document.getElementById('testPwdErr');
-        err.textContent = '';
-        const h = await sha256T(inp.value);
-        if (h === T_CORRECT) {{
-          sessionStorage.setItem(T_KEY, '1');
-          sessionStorage.setItem(T_HASH, h);
-          document.getElementById('testPwdOverlay').classList.add('hidden');
-        }} else {{
-          err.textContent = '密码错误';
-          inp.value = '';
-          inp.focus();
-        }}
-      }}
-      document.addEventListener('keydown', e => {{
-        if (e.key === 'Enter' && document.activeElement.id === 'testPwdInp') testCheckPwd();
-      }});
-      (function() {{
-        if (sessionStorage.getItem(T_KEY) === '1' && sessionStorage.getItem(T_HASH) === T_CORRECT) {{
-          document.getElementById('testPwdOverlay').classList.add('hidden');
-        }} else {{
-          setTimeout(() => document.getElementById('testPwdInp').focus(), 100);
-        }}
-      }})();
+      if (localStorage.getItem('baisi_unlocked') !== '1') {
+        window.location.href = 'test2.html';
+      }
+      function subLogout() {
+        localStorage.removeItem('baisi_unlocked');
+        window.location.href = 'test2.html';
+      }
     </script>
     """
+    sub_nav = """
+    <div class="subpage-nav">
+      <a href="test2.html">← 返回目录</a>
+      <span class="title">test.html · 旧报告</span>
+      <button class="lock-btn" onclick="subLogout()">🔒 锁屏</button>
+    </div>
+    """
 
-    # 在 </head> 前注入 overlay（在 body 开头前插入）
+    # 在 </head> 前注入样式+脚本
     if '</head>' in html:
-        out_html = html.replace('</head>', '</head>' + overlay, 1)
+        out_html = html.replace('</head>', '</head>' + injection, 1)
     else:
-        out_html = overlay + html
+        out_html = injection + html
+    # 在 <body ...> 后插入 nav
+    out_html = re.sub(r'(<body[^>]*>)', r'\1' + sub_nav, out_html, count=1)
 
     target.write_text(out_html, encoding="utf-8")
-    print(f"✓ {target} (加密码门)")
+    print(f"✓ {target} (加 localStorage 跳转检查)")
     return True
 
 

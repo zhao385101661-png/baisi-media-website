@@ -172,7 +172,7 @@
 
         <div class="grid">
           
-        <a href="test2/index.html" class="card" style="--accent: #ffac02;">
+      <div class="card" style="--accent: #ffac02;" data-target="index.html">
           <div class="card-icon">🎬</div>
           <div class="card-body">
             <div class="card-title">总览</div>
@@ -181,7 +181,7 @@
           <div class="card-arrow">→</div>
         </a>
         
-        <a href="test2/B-sop.html" class="card" style="--accent: #54a87e;">
+      <div class="card" style="--accent: #54a87e;" data-target="B-sop.html">
           <div class="card-icon">🚑</div>
           <div class="card-body">
             <div class="card-title">B 账号 90 天 SOP</div>
@@ -190,7 +190,7 @@
           <div class="card-arrow">→</div>
         </a>
         
-        <a href="test2/B.html" class="card" style="--accent: #edff45;">
+      <div class="card" style="--accent: #edff45;" data-target="B.html">
           <div class="card-icon">⚠️</div>
           <div class="card-body">
             <div class="card-title">B 西湖边的夏雨荷</div>
@@ -199,7 +199,7 @@
           <div class="card-arrow">→</div>
         </a>
         
-        <a href="test2/compare.html" class="card" style="--accent: #ff5e5e;">
+      <div class="card" style="--accent: #ff5e5e;" data-target="compare.html">
           <div class="card-icon">📊</div>
           <div class="card-body">
             <div class="card-title">5 号横向对比</div>
@@ -208,7 +208,7 @@
           <div class="card-arrow">→</div>
         </a>
         
-        <a href="test2/action.html" class="card" style="--accent: #ffac02;">
+      <div class="card" style="--accent: #ffac02;" data-target="action.html">
           <div class="card-icon">🚨</div>
           <div class="card-body">
             <div class="card-title">整改建议</div>
@@ -217,7 +217,7 @@
           <div class="card-arrow">→</div>
         </a>
         
-        <a href="test2/A.html" class="card" style="--accent: #54a87e;">
+      <div class="card" style="--accent: #54a87e;" data-target="A.html">
           <div class="card-icon">📘</div>
           <div class="card-body">
             <div class="card-title">A 满级观众</div>
@@ -226,7 +226,7 @@
           <div class="card-arrow">→</div>
         </a>
         
-        <a href="test2/C.html" class="card" style="--accent: #edff45;">
+      <div class="card" style="--accent: #edff45;" data-target="C.html">
           <div class="card-icon">📗</div>
           <div class="card-body">
             <div class="card-title">C 一个奈斯的观众</div>
@@ -235,7 +235,7 @@
           <div class="card-arrow">→</div>
         </a>
         
-        <a href="test2/D.html" class="card" style="--accent: #ff5e5e;">
+      <div class="card" style="--accent: #ff5e5e;" data-target="D.html">
           <div class="card-icon">📙</div>
           <div class="card-body">
             <div class="card-title">D 没错我是高贵路人</div>
@@ -244,7 +244,7 @@
           <div class="card-arrow">→</div>
         </a>
         
-        <a href="test2/E.html" class="card" style="--accent: #ffac02;">
+      <div class="card" style="--accent: #ffac02;" data-target="E.html">
           <div class="card-icon">📕</div>
           <div class="card-body">
             <div class="card-title">E 追娱少女</div>
@@ -297,19 +297,15 @@
       const hash = await crypto.subtle.digest('SHA-256', buf);
       return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
     }
-    const CORRECT_HASH = "69d8a2ba4486e494382d1ccbe890fb8c1724c7600f3450785fbdc959bfac19a6";
-    const SESSION_KEY = "baisi_pwd_ok";
-    const SESSION_HASH = "baisi_pwd_hash";
+    const CORRECT_PWD = "baisi2026";
+    const LS_KEY = "baisi_unlocked";
 
-    async function checkPwd(e) {
+    function checkPwd(e) {
       e.preventDefault();
       const pwd = document.getElementById('pwd').value;
       const err = document.getElementById('err');
-      err.textContent = '';
-      const h = await sha256(pwd);
-      if (h === CORRECT_HASH) {
-        sessionStorage.setItem(SESSION_KEY, '1');
-        sessionStorage.setItem(SESSION_HASH, h);
+      if (pwd === CORRECT_PWD) {
+        localStorage.setItem(LS_KEY, '1');
         unlock();
       } else {
         err.textContent = '密码错误，请重试';
@@ -326,17 +322,14 @@
     }
 
     function logout() {
-      sessionStorage.removeItem(SESSION_KEY);
-      sessionStorage.removeItem(SESSION_HASH);
+      localStorage.removeItem(LS_KEY);
       location.reload();
     }
 
     // 已解锁过直接进
-    (async function() {
-      if (sessionStorage.getItem(SESSION_KEY) === '1' && sessionStorage.getItem(SESSION_HASH) === CORRECT_HASH) {
-        unlock();
-      }
-    })();
+    if (localStorage.getItem(LS_KEY) === '1') {
+      unlock();
+    }
   </script>
 </body>
 </html>

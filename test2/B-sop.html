@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B 账号重定位 SOP - 百思传媒旗下影视娱乐号诊断</title>
+  <style>
+:root {
+  --bg: #0d0905;
+  --bg-2: #170d02;
+  --panel: #1d1107;
+  --panel-2: #261609;
+  --border: #3a2614;
+  --orange: #ffac02;
+  --orange-dim: #c0880a;
+  --green: #54a87e;
+  --yellow: #edff45;
+  --red: #ff5e5e;
+  --text: #f5e9d5;
+  --text-dim: #a89080;
+  --text-mute: #6e5a48;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--orange); text-decoration: none; }
+a:hover { color: var(--yellow); }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #170d02 0%, #261609 50%, #170d02 100%);
+  border-bottom: 2px solid var(--red);
+  padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,94,94,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-meta { color: var(--red); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+.hero h1 { font-size: 52px; font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
+.hero h1 .accent { color: var(--orange); }
+.hero .sub { color: var(--text-dim); font-size: 18px; max-width: 800px; }
+.hero .meta-row { display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap; }
+.hero .meta-pill {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.hero .meta-pill b { color: var(--orange); font-weight: 600; }
+
+/* NAV */
+.nav { background: var(--bg-2); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.nav-inner { display: flex; gap: 8px; padding: 16px 24px; max-width: 1280px; margin: 0 auto; align-items: center; }
+.nav-brand { color: var(--orange); font-weight: 700; font-size: 16px; margin-right: 24px; }
+.nav a.nav-link { color: var(--text-dim); padding: 6px 12px; border-radius: 4px; font-size: 14px; }
+.nav a.nav-link:hover, .nav a.nav-link.active { background: var(--panel); color: var(--orange); }
+
+/* SECTION */
+section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+.section-label { color: var(--orange); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+.section-title { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
+.section-sub { color: var(--text-dim); font-size: 16px; margin-bottom: 48px; max-width: 800px; }
+
+/* CARD */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  transition: border-color .2s;
+}
+.card:hover { border-color: var(--orange); }
+.card-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+.card-meta { color: var(--text-dim); font-size: 13px; }
+
+/* GRID */
+.grid { display: grid; gap: 24px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1024px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+/* BIG NUMBER */
+.stat {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.stat::after {
+  content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%;
+  background: var(--orange);
+}
+.stat.red::after { background: var(--red); }
+.stat.green::after { background: var(--green); }
+.stat-label { color: var(--text-dim); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.stat-value { font-size: 42px; font-weight: 800; color: var(--text); }
+.stat-value .unit { font-size: 18px; color: var(--text-dim); margin-left: 4px; }
+.stat-foot { color: var(--text-mute); font-size: 12px; margin-top: 8px; }
+
+/* PROGRESS BAR */
+.bar-wrap { background: var(--bg); border-radius: 4px; height: 10px; overflow: hidden; margin: 8px 0; }
+.bar { height: 100%; background: linear-gradient(90deg, var(--orange) 0%, var(--yellow) 100%); border-radius: 4px; transition: width .3s; }
+.bar.green { background: linear-gradient(90deg, var(--green) 0%, var(--yellow) 100%); }
+.bar.red { background: linear-gradient(90deg, var(--red) 0%, var(--orange) 100%); }
+
+/* TAG */
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 2px 4px 2px 0;
+}
+.tag-orange { background: rgba(255,172,2,0.15); color: var(--orange); border: 1px solid rgba(255,172,2,0.3); }
+.tag-green { background: rgba(84,168,126,0.15); color: var(--green); border: 1px solid rgba(84,168,126,0.3); }
+.tag-red { background: rgba(255,94,94,0.15); color: var(--red); border: 1px solid rgba(255,94,94,0.3); }
+.tag-yellow { background: rgba(237,255,69,0.15); color: var(--yellow); border: 1px solid rgba(237,255,69,0.3); }
+
+/* TABLE */
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+th { color: var(--text-dim); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+tr:hover td { background: var(--panel-2); }
+
+/* ALERT */
+.alert {
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  border-left: 4px solid;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.alert-icon { font-weight: 800; font-size: 18px; flex-shrink: 0; }
+.alert-warn { background: rgba(255,172,2,0.08); border-color: var(--orange); }
+.alert-warn .alert-icon { color: var(--orange); }
+.alert-danger { background: rgba(255,94,94,0.08); border-color: var(--red); }
+.alert-danger .alert-icon { color: var(--red); }
+.alert-info { background: rgba(84,168,126,0.08); border-color: var(--green); }
+.alert-info .alert-icon { color: var(--green); }
+.alert-body { flex: 1; color: var(--text); }
+.alert-title { font-weight: 700; margin-bottom: 4px; }
+
+/* TIMELINE */
+.timeline { position: relative; padding-left: 32px; }
+.timeline::before {
+  content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border);
+}
+.tl-item { position: relative; padding-bottom: 32px; }
+.tl-item::before {
+  content: ''; position: absolute; left: -28px; top: 4px; width: 16px; height: 16px;
+  border-radius: 50%; background: var(--orange); border: 3px solid var(--bg);
+}
+.tl-item.critical::before { background: var(--red); }
+.tl-item.success::before { background: var(--green); }
+.tl-date { color: var(--orange); font-size: 13px; font-weight: 700; margin-bottom: 4px; letter-spacing: 1px; }
+.tl-date.critical { color: var(--red); }
+.tl-date.success { color: var(--green); }
+.tl-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.tl-body { color: var(--text-dim); font-size: 15px; }
+.tl-body ul { margin: 12px 0; padding-left: 20px; }
+.tl-body li { margin-bottom: 6px; }
+.tl-body li b { color: var(--text); }
+.tl-body li .hl-orange { color: var(--orange); font-weight: 600; }
+.tl-body li .hl-green { color: var(--green); font-weight: 600; }
+.tl-body li .hl-red { color: var(--red); font-weight: 600; }
+.tl-meta {
+  margin-top: 12px; padding: 12px; background: var(--bg); border-radius: 4px;
+  display: flex; gap: 24px; flex-wrap: wrap; font-size: 13px;
+}
+.tl-meta-item { color: var(--text-dim); }
+.tl-meta-item b { color: var(--orange); font-weight: 600; }
+
+/* STAR */
+.stars { color: var(--yellow); letter-spacing: 2px; }
+.star-empty { color: var(--text-mute); }
+
+/* CHECKLIST */
+.checklist { list-style: none; }
+.checklist li {
+  position: relative;
+  padding: 8px 0 8px 28px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-dim);
+}
+.checklist li::before {
+  content: '☐';
+  position: absolute;
+  left: 0;
+  color: var(--orange);
+  font-weight: 800;
+  font-size: 18px;
+}
+.checklist li b { color: var(--text); }
+.checklist li .hl-orange { color: var(--orange); font-weight: 600; }
+
+/* FOOTER */
+footer { background: var(--bg-2); padding: 40px 0; text-align: center; color: var(--text-mute); font-size: 13px; border-top: 1px solid var(--border); }
+
+/* UTILITY */
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mt-48 { margin-top: 48px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+.flex { display: flex; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.gap-8 { gap: 8px; }
+.gap-16 { gap: 16px; }
+.gap-24 { gap: 24px; }
+.text-orange { color: var(--orange); }
+.text-green { color: var(--green); }
+.text-red { color: var(--red); }
+.text-yellow { color: var(--yellow); }
+.text-dim { color: var(--text-dim); }
+.text-mute { color: var(--text-mute); }
+.text-sm { font-size: 13px; }
+.text-lg { font-size: 18px; }
+.text-xl { font-size: 24px; }
+.font-bold { font-weight: 700; }
+.font-extra { font-weight: 800; }
+
+/* BREADCRUMB */
+.breadcrumb { padding: 16px 0; color: var(--text-dim); font-size: 14px; }
+.breadcrumb a { color: var(--text-dim); }
+.breadcrumb a:hover { color: var(--orange); }
+.breadcrumb .sep { margin: 0 8px; color: var(--text-mute); }
+
+/* PILL ROW */
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.pill {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.pill b { color: var(--orange); }
+
+/* COMPARISON */
+.compare-now { color: var(--red); text-decoration: line-through; }
+.compare-goal { color: var(--green); font-weight: 800; font-size: 20px; }
+.compare-arrow { color: var(--text-mute); margin: 0 12px; }
+</style>
+
+    <style>
+      .subpage-nav {
+        position: sticky; top: 0; z-index: 100;
+        background: #170d02; border-bottom: 2px solid #ffac02;
+        padding: 12px 24px;
+        display: flex; align-items: center; gap: 16px;
+        font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+        font-size: 14px;
+      }
+      .subpage-nav a { color: #ffac02; text-decoration: none; }
+      .subpage-nav a:hover { color: #edff45; }
+      .subpage-nav .title { color: #f5e9d5; font-weight: 700; flex: 1; }
+      .subpage-nav .lock-btn {
+        background: #1d1107; border: 1px solid #3a2614; color: #a89080;
+        padding: 4px 10px; border-radius: 4px; font-size: 12px; cursor: pointer;
+      }
+      .subpage-nav .lock-btn:hover { border-color: #ff5e5e; color: #ff5e5e; }
+      .pwd-overlay {
+        position: fixed; inset: 0;
+        background: rgba(13, 9, 5, 0.97);
+        display: flex; align-items: center; justify-content: center;
+        z-index: 9999; padding: 24px;
+      }
+      .pwd-overlay.hidden { display: none; }
+      .pwd-box {
+        background: #1d1107; border: 1px solid #3a2614; border-radius: 12px;
+        padding: 40px; max-width: 420px; width: 100%;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      }
+      .pwd-box h2 { color: #ffac02; font-size: 22px; margin-bottom: 8px; text-align: center; }
+      .pwd-box p { color: #a89080; font-size: 13px; text-align: center; margin-bottom: 24px; }
+      .pwd-box input {
+        width: 100%; background: #0d0905; border: 1px solid #3a2614;
+        border-radius: 6px; padding: 12px 14px; color: #f5e9d5;
+        font-size: 15px; outline: none; margin-bottom: 12px;
+      }
+      .pwd-box input:focus { border-color: #ffac02; }
+      .pwd-box button {
+        width: 100%; background: linear-gradient(135deg, #ffac02 0%, #edff45 100%);
+        border: none; border-radius: 6px; padding: 12px;
+        color: #170d02; font-size: 15px; font-weight: 700; cursor: pointer;
+      }
+      .pwd-box .err { color: #ff5e5e; font-size: 12px; text-align: center; min-height: 16px; margin-top: 8px; }
+    </style>
+    <script>
+      async function sha256(text) {
+        const buf = new TextEncoder().encode(text);
+        const hash = await crypto.subtle.digest('SHA-256', buf);
+        return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
+      }
+      const CORRECT_HASH = "69d8a2ba4486e494382d1ccbe890fb8c1724c7600f3450785fbdc959bfac19a6";
+      const SESSION_KEY = "baisi_pwd_ok";
+      const SESSION_HASH = "baisi_pwd_hash";
+
+      async function checkSubPwd() {
+        const inp = document.getElementById('subPwd');
+        const err = document.getElementById('subErr');
+        const v = inp.value;
+        err.textContent = '';
+        const h = await sha256(v);
+        if (h === CORRECT_HASH) {
+          sessionStorage.setItem(SESSION_KEY, '1');
+          sessionStorage.setItem(SESSION_HASH, h);
+          document.getElementById('pwdOverlay').classList.add('hidden');
+          inp.value = '';
+        } else {
+          err.textContent = '密码错误';
+          inp.value = '';
+          inp.focus();
+        }
+      }
+
+      function subLogout() {
+        sessionStorage.removeItem(SESSION_KEY);
+        sessionStorage.removeItem(SESSION_HASH);
+        location.reload();
+      }
+
+      (async function() {
+        if (sessionStorage.getItem(SESSION_KEY) === '1' && sessionStorage.getItem(SESSION_HASH) === CORRECT_HASH) {
+          const ov = document.getElementById('pwdOverlay');
+          if (ov) ov.classList.add('hidden');
+        } else {
+          setTimeout(() => {
+            const inp = document.getElementById('subPwd');
+            if (inp) inp.focus();
+          }, 100);
+        }
+      })();
+    </script>
+    </head>
+<body>
+    <div class="pwd-overlay" id="pwdOverlay">
+      <div class="pwd-box">
+        <h2>🔒 内部资料</h2>
+        <p>B 账号 90 天重生 SOP · 需要密码访问</p>
+        <input type="password" id="subPwd" placeholder="请输入密码" onkeydown="if(event.key==='Enter')checkSubPwd()">
+        <button onclick="checkSubPwd()">🔓 解锁</button>
+        <div class="err" id="subErr"></div>
+      </div>
+    </div>
+    <div class="subpage-nav">
+      <a href="../test2.html">← 返回目录</a>
+      <span class="title">B 账号 90 天重生 SOP</span>
+      <button class="lock-btn" onclick="subLogout()">🔒 锁屏</button>
+    </div>
+    
+
+    <header class="hero">
+      <div class="container">
+        <div class="hero-meta">B 账号急救计划 · 重定位 SOP</div>
+        <h1>西湖边的夏雨荷<br><span class="accent">90 天重生手册</span></h1>
+        <p class="sub">从均赞 57 / 爆款率 3% / 30 篇笔记里有 12 篇低赞, 到 90 天后均赞 500 / 5,000 粉 / 10% 爆款率. 每一步可执行, 每个节点有决策开关.</p>
+        <div class="meta-row">
+          <div class="meta-pill">D+0 <b>急停</b></div>
+          <div class="meta-pill">D+7 <b>试发</b></div>
+          <div class="meta-pill">D+30 <b>第一决策点</b></div>
+          <div class="meta-pill">D+90 <b>最终复盘</b></div>
+        </div>
+      </div>
+    </header>
+    
+<nav class="nav"><div class="nav-inner">
+<div class="nav-brand">🎬 影视娱乐号诊断报告</div>
+<a class="nav-link" href="index.html">总览</a>
+<a class="nav-link" href="compare.html">5号对比</a>
+<a class="nav-link" href="action.html">整改建议</a>
+<a class="nav-link" href="B.html">B 单号报告</a>
+<a class="nav-link active" href="B-sop.html">B 重定位 SOP</a>
+</div></nav>
+<main>
+
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">总览</a><span class="sep">/</span>
+        <a href="B.html">B 西湖边的夏雨荷</a><span class="sep">/</span>
+        <span>重定位 SOP</span>
+      </div>
+
+      <section>
+        <div class="section-label">RESCUE PLAN</div>
+        <h1 class="section-title">B 账号 <span class="text-red">急救 + 重定位 SOP</span></h1>
+        <p class="section-sub">从 D+0 停发养号, 到 D+90 达到 5,000 粉 + 500 均赞的完整执行手册. 每一步有具体动作、可验收指标、退出条件.</p>
+
+        <div class="grid grid-4">
+          <div class="stat red">
+            <div class="stat-label">D+0 状态</div>
+            <div class="stat-value">57<span class="unit">均赞</span></div>
+            <div class="stat-foot">30 篇 · 12 篇低赞 · 6 篇死</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">90 天目标</div>
+            <div class="stat-value">500<span class="unit">均赞</span></div>
+            <div class="stat-foot">8.8x 提升</div>
+          </div>
+          <div class="stat green">
+            <div class="stat-label">粉丝目标</div>
+            <div class="stat-value">5,000<span class="unit">+</span></div>
+            <div class="stat-foot">4.0x 增长</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">关键节点</div>
+            <div class="stat-value text-orange">3<span class="unit">个</span></div>
+            <div class="stat-foot">D+30 / D+60 / D+90 决策点</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-label">POSITIONING</div>
+        <h2 class="section-title">第一步: 选赛道 (3 个候选)</h2>
+        <p class="section-sub">基于 B 现有爆款规律 (明星+商业代言 409 赞, 古典/CP 类高赞) 推断的 3 个方向. <b class="text-green">推荐 P1 古装剧女主</b>.</p>
+        
+        <div class="card" style="border-color: var(--green); border-width: 2px;">
+          <div class="flex-between">
+            <div class="card-title">P1. 古装剧女主人设解读 (垂直剧情号)</div>
+            <div class="mt-16"><span class="tag tag-green" style="font-size:14px; padding:6px 14px;">★ 推荐方案</span></div>
+          </div>
+          <div class="text-sm text-orange mt-8" style="font-style: italic;">"古装剧女主天花板大赏 | 一部剧一个女主命"</div>
+          <p class="text-sm text-dim mt-16">定位: 古装剧女主切片 + 女主人设深度解读, 不追热点追女主</p>
+          <div class="grid grid-2 mt-16" style="gap:12px;">
+            <div>
+              <div class="text-sm text-green font-bold mb-8">优势</div>
+              <ul class="text-sm" style="padding-left: 20px; list-style: none;"><li>✓ <b class="text-green">与现有爆款(E榜)重合度低</b></li><li>✓ <b class="text-green">切女性向影视最强细分赛道</b></li><li>✓ <b class="text-green">封面可统一: 古装剧女主头像 + 强情绪文案</b></li></ul>
+            </div>
+            <div>
+              <div class="text-sm text-red font-bold mb-8">风险</div>
+              <ul class="text-sm text-dim" style="padding-left: 20px; list-style: none;"><li>✗ 需要持续追新剧</li><li>✗ 古装剧周期性强, 淡季选题难</li></ul>
+            </div>
+          </div>
+          <p class="text-sm mt-16"><b class="text-orange">适合场景：</b><span class="text-dim">B 现有粉丝画像偏女性, 转古装女主风险最低</span></p>
+          <div class="mt-16" style="display: flex; gap: 24px; font-size: 13px;">
+            <div>
+              <span class="text-dim">执行难度</span>
+              <span class="stars">★★<span class="star-empty">★★</span></span>
+            </div>
+            <div>
+              <span class="text-dim">增长潜力</span>
+              <span class="stars">★★★★<span class="star-empty"></span></span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" style="">
+          <div class="flex-between">
+            <div class="card-title">P2. 明星商业代言合集号 (种草+娱乐跨界)</div>
+            
+          </div>
+          <div class="text-sm text-orange mt-8" style="font-style: italic;">"明星代言图鉴 | 今天谁又美疯了"</div>
+          <p class="text-sm text-dim mt-16">定位: 明星+商业代言/品牌合作切片+轻吐槽</p>
+          <div class="grid grid-2 mt-16" style="gap:12px;">
+            <div>
+              <div class="text-sm text-green font-bold mb-8">优势</div>
+              <ul class="text-sm" style="padding-left: 20px; list-style: none;"><li>✓ <b class="text-green">B 唯一爆款(409 赞)就是这个方向</b></li><li>✓ <b class="text-green">商业价值高, 容易接广告</b></li><li>✓ <b class="text-green">选题从热搜抓, 不依赖剧情进度</b></li></ul>
+            </div>
+            <div>
+              <div class="text-sm text-red font-bold mb-8">风险</div>
+              <ul class="text-sm text-dim" style="padding-left: 20px; list-style: none;"><li>✗ 需平衡品牌敏感度</li><li>✗ 可复制性高, 容易被其他号抢</li></ul>
+            </div>
+          </div>
+          <p class="text-sm mt-16"><b class="text-orange">适合场景：</b><span class="text-dim">B 爆款规律已经验证, 顺势做最容易</span></p>
+          <div class="mt-16" style="display: flex; gap: 24px; font-size: 13px;">
+            <div>
+              <span class="text-dim">执行难度</span>
+              <span class="stars">★<span class="star-empty">★★★</span></span>
+            </div>
+            <div>
+              <span class="text-dim">增长潜力</span>
+              <span class="stars">★★★<span class="star-empty">★</span></span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" style="">
+          <div class="flex-between">
+            <div class="card-title">P3. 二创剧情混剪号 (剪辑技术流)</div>
+            
+          </div>
+          <div class="text-sm text-orange mt-8" style="font-style: italic;">"一剪刀一个名场面 | 重新混剪经典"</div>
+          <p class="text-sm text-dim mt-16">定位: 影视经典片段二创混剪+原创转场+配乐</p>
+          <div class="grid grid-2 mt-16" style="gap:12px;">
+            <div>
+              <div class="text-sm text-green font-bold mb-8">优势</div>
+              <ul class="text-sm" style="padding-left: 20px; list-style: none;"><li>✓ <b class="text-green">差异化最强, 不是单纯搬运</b></li><li>✓ <b class="text-green">剪辑技术门槛带来壁垒</b></li><li>✓ <b class="text-green">可横向扩到 MV/综艺混剪</b></li></ul>
+            </div>
+            <div>
+              <div class="text-sm text-red font-bold mb-8">风险</div>
+              <ul class="text-sm text-dim" style="padding-left: 20px; list-style: none;"><li>✗ 对剪辑能力要求高</li><li>✗ 版权风险(尤其抖音/小红书现在严打二创)</li><li>✗ 起号周期长</li></ul>
+            </div>
+          </div>
+          <p class="text-sm mt-16"><b class="text-orange">适合场景：</b><span class="text-dim">如果团队有剪辑高手, 这是壁垒最高的路</span></p>
+          <div class="mt-16" style="display: flex; gap: 24px; font-size: 13px;">
+            <div>
+              <span class="text-dim">执行难度</span>
+              <span class="stars">★★★★<span class="star-empty"></span></span>
+            </div>
+            <div>
+              <span class="text-dim">增长潜力</span>
+              <span class="stars">★★★★<span class="star-empty"></span></span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card mt-24" style="background: var(--panel-2); border-color: var(--green);">
+          <div class="card-title text-green">💡 为什么是 P1?</div>
+          <ul class="text-sm mt-16" style="padding-left: 20px;">
+            <li>B 末位 5 篇里 3 篇是古装剧(翘楚/南部档案/宋妙华), 验证了这个赛道读者喜欢</li>
+            <li>古装剧女主在影视娱乐细分赛道里是女性向最强垂类, 流量稳定, 复购率高</li>
+            <li>与现有矩阵号 (A 偏"剪刀手"剪辑向) 不撞赛道, 起到补位作用</li>
+            <li>人设 IP 化空间大: 博主可以"自居"古装剧女主解读专家, 后续做付费课程/书都自然</li>
+            <li>商业化空间大: 古装剧宣发期有大量品牌合作需求, 5,000 粉就能接到</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-label">TIMELINE</div>
+        <h2 class="section-title">第二步: 90 天时间线</h2>
+        <p class="section-sub">6 个阶段, 急停 → 准备 → 试发 → 加速 → 复制 → 突破</p>
+        
+    <div class="timeline">
+
+      <!-- D+0 停发养号 -->
+      <div class="tl-item critical">
+        <div class="tl-date critical">D+0 (今天 06-13) · 48 小时内必须完成</div>
+        <div class="tl-title">🛑 紧急停发 + 删死笔记 + 改简介</div>
+        <div class="tl-body">
+          <p class="text-dim mb-16">账号已经过劳/过载, 算法对"高频低质"账号有降权惩罚. 必须先止血再谈定位.</p>
+          <ul>
+            <li><b>立即停止发文 7 天</b>, 让算法"遗忘"过去 30 天的低质数据</li>
+            <li><b>隐藏 0~10 赞的死笔记</b> (12 篇) - 不是删除, 是设为"仅自己可见"</li>
+            <li><b>改简介</b> - 删掉 "小助理@Yanan" 这类矩阵暴露信息, 改成"商务合作私信"或加个人简介铺垫</li>
+            <li><b>改头像/昵称/IP 属地</b> - 5 个号里 4 个简介都带"@Yanan", 换掉</li>
+            <li><b>退出所有矩阵号互赞群/互关群</b> - 否则重发也白搭</li>
+          </ul>
+          <div class="tl-meta">
+            <div class="tl-meta-item">⏱ 预计耗时: <b>2-3 小时</b></div>
+            <div class="tl-meta-item">📉 风险: <b>短期数据更难看</b></div>
+            <div class="tl-meta-item">✅ 验收: <b>7 天内不发布新内容</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- D+0~7 准备期 -->
+      <div class="tl-item">
+        <div class="tl-date">D+0 ~ D+7 (06-13 → 06-20) · 养号 + 内容储备</div>
+        <div class="tl-title">📚 养号期 7 天: 选赛道 + 攒选题 + 储备素材</div>
+        <div class="tl-body">
+          <p class="text-dim mb-16">这 7 天不更新, 但要做大量准备工作. <b class="text-orange">不浪费每一天.</b></p>
+          <ul>
+            <li><b>Day 1-2 选赛道</b>: 团队 3 人对 3 个定位方向(P1/P2/P3)各出 5 条选题, 老板选定 P1 古装剧女主</li>
+            <li><b>Day 3 锁定人设</b>: 取个新昵称(避开"夏雨荷"), 写 200 字简介, 头像用古装剧女主意象(花瓣/扇子/古风滤镜)</li>
+            <li><b>Day 4-5 攒 20 个选题</b>: 从近 1 年古装剧里挑 20 个"女主人设天花板"瞬间, 列出剧名+集数+时间码</li>
+            <li><b>Day 6 拍/剪 5 条样片</b>: 4 个剪辑师各做 1 条, 内部投票选最优模板</li>
+            <li><b>Day 7 写 SOP 文档</b>: 把选题/剪辑/封面/标题/发布时机拆成 5 个步骤的 SOP, 后 90 天照着做</li>
+          </ul>
+          <div class="tl-meta">
+            <div class="tl-meta-item">📦 产出: <b>1 份选题库 + 1 份剪辑 SOP + 5 条样片</b></div>
+            <div class="tl-meta-item">👥 参与: <b>老板/运营/剪辑/文案</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- D+7~14 试发期 -->
+      <div class="tl-item">
+        <div class="tl-date">D+7 ~ D+14 (06-20 → 06-27) · 试发 5 条</div>
+        <div class="tl-title">🎯 试发期: 测算法 + 测粉丝反应</div>
+        <div class="tl-body">
+          <p class="text-dim mb-16">恢复发布但要谨慎, 5 条全做古装剧女主方向, 看算法给不给流量.</p>
+          <ul>
+            <li><b>发 5 条, 不发多</b>: 一周 5 条, 留出间隔观察数据</li>
+            <li><b>每条精心做</b>: 封面统一(古装女主侧脸+强情绪文案), 时长 30~60s, 标题用 5 个套路之一</li>
+            <li><b>每条发布后 24h 记录数据</b>: 曝光/点赞/收藏/评论/涨粉</li>
+            <li><b>第 14 天开周会复盘</b>: 5 条里哪 2 条表现最好, 为什么? 调整第 15-30 天的选题</li>
+          </ul>
+          <div class="tl-meta">
+            <div class="tl-meta-item">📊 目标: <b>5 条均赞 ≥ 200 (现在 57)</b></div>
+            <div class="tl-meta-item">📈 关键指标: <b>如果 5 条均赞 < 100, 立即换定位</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- D+14~30 加速期 -->
+      <div class="tl-item">
+        <div class="tl-date">D+14 ~ D+30 (06-27 → 07-13) · 加速期</div>
+        <div class="tl-title">🚀 加速期: 周更 5 → 7 条, 复制爆款</div>
+        <div class="tl-body">
+          <p class="text-dim mb-16">如果试发期数据正向, 进入加速. <b class="text-green">这一阶段要的是"押爆款".</b></p>
+          <ul>
+            <li><b>频率从周 5 → 周 7 条</b>: 1 天 1 条, 选 19-21 点发(用户活跃高峰)</li>
+            <li><b>建立爆款复制机制</b>: 每周复盘 TOP 3 笔记, 找出共同元素(剧/女主/标题套路/封面), 下周 3 条里复用</li>
+            <li><b>追新剧</b>: 当周开播的 3 部以上古装剧, 第 2 天必须出 1 条女主切片(抢首发流量)</li>
+            <li><b>铺封面库</b>: 设计 3 套模板(强情绪/弱情绪/对比), 形成视觉记忆</li>
+            <li><b>评论运营</b>: 主动回复前 50 条评论(每条都回), 拉互动率</li>
+          </ul>
+          <div class="tl-meta">
+            <div class="tl-meta-item">📊 目标: <b>总粉丝 2,500+, 单篇均赞 300</b></div>
+            <div class="tl-meta-item">🎯 关键节点: <b>D+30 前做出 1 条 1,000+ 赞的爆款</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- D+30~60 复制期 -->
+      <div class="tl-item success">
+        <div class="tl-date success">D+30 ~ D+60 (07-13 → 08-12) · 复制期</div>
+        <div class="tl-title">📈 复制期: 复制爆款公式 + 矩阵化</div>
+        <div class="tl-body">
+          <p class="text-dim mb-16">到 D+30 应该已经摸到 1-2 个爆款套路, 这一阶段是把套路量产.</p>
+          <ul>
+            <li><b>套路标准化</b>: 写出 3 个爆款公式(例: 剧名+女主+金句+情绪) - 任何剪辑照着填</li>
+            <li><b>开放流水线</b>: 1 个剪辑师独立出片, 1 个文案独立出标题, 1 个运营独立做数据</li>
+            <li><b>复制到 B 的"子号"</b>: 主号做古装女主, 子号做古装男主人设(差异化), 测试矩阵</li>
+            <li><b>开始变现</b>: 粉丝 ≥ 5,000 后接第一个品牌合作(从剧情类品牌开始, 如视频平台/影业宣发)</li>
+          </ul>
+          <div class="tl-meta">
+            <div class="tl-meta-item">📊 目标: <b>总粉丝 4,000+, 单篇均赞 500, 爆款率 8%</b></div>
+            <div class="tl-meta-item">💰 商业: <b>接第 1 条品牌合作</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- D+60~90 突破期 -->
+      <div class="tl-item success">
+        <div class="tl-date success">D+60 ~ D+90 (08-12 → 09-11) · 突破期</div>
+        <div class="tl-title">🏆 突破期: 冲万粉 + 商业化</div>
+        <div class="tl-body">
+          <p class="text-dim mb-16">目标: 90 天达到 <b class="text-green">5,000+ 粉丝 / 单篇均赞 500 / 爆款率 10%</b>.</p>
+          <ul>
+            <li><b>继续日更</b>, 保持节奏</li>
+            <li><b>差异化升级</b>: 加上"影评/解读"内容, 把博主从"切片号"升级为"古装剧解读号"</li>
+            <li><b>做 1-2 次爆款活动</b>: 例 "古装女主天花板投票" UGC 互动, 拉新粉</li>
+            <li><b>商业化加速</b>: 粉丝 5k 后, 单条广告 2,000-5,000 元, 月接 3-4 条 = 月入 1-2 万</li>
+          </ul>
+          <div class="tl-meta">
+            <div class="tl-meta-item">📊 最终目标: <b>5,000 粉 / 500 均赞 / 10% 爆款率</b></div>
+            <div class="tl-meta-item">⚖️ D+90 复盘: <b>达成 → 加大投入; 未达成 → 弃号重启</b></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+      </section>
+
+      <section>
+        <div class="section-label">CONTENT TEMPLATE</div>
+        <h2 class="section-title">第三步: 内容模板 (套路化生产)</h2>
+        <p class="section-sub">5 个标题套路 + 3 套封面 + 5 段视频结构, 流水线作业</p>
+        
+    <div class="grid grid-2">
+
+      <div class="card">
+        <div class="card-title">📝 标题模板 (5 个套路循环用)</div>
+        <p class="text-sm text-dim mt-8">不要每次新想, 套路化才能测试哪个最有效.</p>
+        <ul class="text-sm mt-16" style="padding-left: 20px; list-style: none;">
+          <li class="mt-8">① <b class="text-orange">"XX 女主天花板, 她的命比剧情还惨"</b> (例: 赵丽颖/花千骨)</li>
+          <li class="mt-8">② <b class="text-orange">"XX 看到这一幕终于黑化, 观众直呼爽!"</b></li>
+          <li class="mt-8">③ <b class="text-orange">"全剧最惨的 XX, 连 XX 都救不了她"</b></li>
+          <li class="mt-8">④ <b class="text-orange">"这个眼神, 我磕到 XX 的命"</b> (CP 类)</li>
+          <li class="mt-8">⑤ <b class="text-orange">"XX 部剧 XX 个女主, 只有一个让我看哭"</b> (盘点类)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🎨 封面模板 (3 套循环用)</div>
+        <p class="text-sm text-dim mt-8">用户刷到先看封面, 封面统一才有"系列感".</p>
+        <ul class="text-sm mt-16" style="padding-left: 20px; list-style: none;">
+          <li class="mt-8"><b class="text-green">模板 A (强情绪):</b> 古装女主侧脸 + 表情夸张 + 大字标题 (例: 哭/怒/惊)</li>
+          <li class="mt-8"><b class="text-green">模板 B (弱情绪):</b> 古装女主正面 + 表情克制 + 小字标题 (例: 凝视/含泪)</li>
+          <li class="mt-8"><b class="text-green">模板 C (对比):</b> 左右两图, 左古装剧里 / 右演员本人 (例: 虞书欣/云为衫 vs 本人)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🎬 视频结构 (固定 5 段)</div>
+        <p class="text-sm text-dim mt-8">每条都按这个结构, 不用临场发挥.</p>
+        <ul class="text-sm mt-16" style="padding-left: 20px; list-style: none;">
+          <li class="mt-8"><b class="text-orange">0-3s 钩子:</b> 1 句最炸的台词/画面 (例: "我终于不用再忍了")</li>
+          <li class="mt-8"><b class="text-orange">3-10s 背景:</b> 1 句话介绍女主处境 (例: "被全家灭门, 她藏了 10 年")</li>
+          <li class="mt-8"><b class="text-orange">10-40s 主体:</b> 2-3 个名场面 + 解说</li>
+          <li class="mt-8"><b class="text-orange">40-50s 升华:</b> 1 句金句点题 (例: "她不是为了复仇, 是为了活成自己想活的人")</li>
+          <li class="mt-8"><b class="text-orange">50-60s CTA:</b> 引导关注/评论 (例: "你心中的古装女主天花板是谁? 评论区告诉我")</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">⏰ 发布时机 + 频率</div>
+        <p class="text-sm text-dim mt-8">数据是看出来的, 节奏固定才稳定.</p>
+        <ul class="text-sm mt-16" style="padding-left: 20px; list-style: none;">
+          <li class="mt-8"><b class="text-orange">频率:</b> 试发期 5 条/周, 加速期 7 条/周 (1 天 1 条)</li>
+          <li class="mt-8"><b class="text-orange">发布时段:</b> 19:00 / 21:00 / 22:00 三个黄金时段轮换</li>
+          <li class="mt-8"><b class="text-orange">互动窗口:</b> 发布后 1h 集中回评论, 拉互动率</li>
+          <li class="mt-8"><b class="text-orange">追新剧:</b> 每周新开播剧第 2 天出切片, 抢首发流量</li>
+        </ul>
+      </div>
+
+    </div>
+    
+      </section>
+
+      <section>
+        <div class="section-label">METRICS</div>
+        <h2 class="section-title">第四步: 关键指标对照</h2>
+        <p class="section-sub">每 7 天对一次数据, 偏离目标立即调整</p>
+        
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>指标</th>
+            <th>当前</th>
+            <th></th>
+            <th>90 天目标</th>
+            <th>增长倍数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>粉丝数</b></td>
+            <td><span class="compare-now">1 千+</span></td>
+            <td class="compare-arrow">→</td>
+            <td><span class="compare-goal">5,000+</span></td>
+            <td class="text-green font-bold">4.0x</td>
+          </tr>
+          <tr>
+            <td><b>单篇均赞</b></td>
+            <td><span class="compare-now">57</span></td>
+            <td class="compare-arrow">→</td>
+            <td><span class="compare-goal">500</span></td>
+            <td class="text-green font-bold">8.8x</td>
+          </tr>
+          <tr>
+            <td><b>爆款率</b></td>
+            <td><span class="compare-now">3%</span></td>
+            <td class="compare-arrow">→</td>
+            <td><span class="compare-goal">10%</span></td>
+            <td class="text-green font-bold">3.3x</td>
+          </tr>
+          <tr>
+            <td><b>低赞笔记占比</b></td>
+            <td><span class="compare-now">40% (12/30)</span></td>
+            <td class="compare-arrow">→</td>
+            <td><span class="compare-goal">15%</span></td>
+            <td class="text-green font-bold">2.7x 改善</td>
+          </tr>
+          <tr>
+            <td><b>视频占比</b></td>
+            <td><span class="compare-now">67%</span></td>
+            <td class="compare-arrow">→</td>
+            <td><span class="compare-goal">95%</span></td>
+            <td class="text-green font-bold">+28pp</td>
+          </tr>
+          <tr>
+            <td><b>更新频率</b></td>
+            <td><span class="compare-now">不规律</span></td>
+            <td class="compare-arrow">→</td>
+            <td><span class="compare-goal">1 天 1 条</span></td>
+            <td class="text-green font-bold">稳定输出</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+      </section>
+
+      <section>
+        <div class="section-label">DECISION POINTS</div>
+        <h2 class="section-title">第五步: 决策开关 (知道什么时候该放弃)</h2>
+        <p class="section-sub">不是所有号都值得救, 设好止损点</p>
+        
+    <div class="grid grid-3">
+      <div class="card" style="border-color: var(--orange);">
+        <div class="card-title text-orange">🛑 D+30 决策点</div>
+        <p class="text-sm text-dim mt-8">3 个选 1 个</p>
+        <ul class="text-sm mt-16" style="padding-left: 20px;">
+          <li class="text-green">✅ 单篇均赞 ≥ 300 + 1 条爆款 1000+ → 加大投入, 推子号</li>
+          <li class="text-orange">⚠️ 单篇均赞 100-300 + 0 爆款 → 调内容/标题/封面, 再给 30 天</li>
+          <li class="text-red">❌ 单篇均赞 < 100 → 弃号, 重新起新号</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color: var(--green);">
+        <div class="card-title text-green">📈 D+60 决策点</div>
+        <p class="text-sm text-dim mt-8">2 个选 1 个</p>
+        <ul class="text-sm mt-16" style="padding-left: 20px;">
+          <li class="text-green">✅ 粉丝 4,000+ + 均赞 500 → 接广告变现, 起子号矩阵化</li>
+          <li class="text-red">❌ 粉丝 < 2,000 + 均赞 < 200 → 复盘选错定位, 弃号</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color: var(--yellow);">
+        <div class="card-title text-yellow">🏁 D+90 决策点</div>
+        <p class="text-sm text-dim mt-8">终极裁决</p>
+        <ul class="text-sm mt-16" style="padding-left: 20px;">
+          <li class="text-green">✅ 全部达标 → 把 B 纳入主号矩阵, 配置独立团队</li>
+          <li class="text-orange">⚠️ 达标 2/5 → 再给 90 天观察</li>
+          <li class="text-red">❌ 达标 < 2/5 → 弃号, 资源转新号孵化</li>
+        </ul>
+      </div>
+    </div>
+    
+      </section>
+
+      <section>
+        <div class="section-label">PITFALLS</div>
+        <h2 class="section-title">第六步: 避坑清单</h2>
+        
+    <div class="card">
+      <div class="card-title">🚫 必避坑 (踩一个就前功尽弃)</div>
+      <ul class="checklist">
+        <li><b>不要</b>一边养号一边发"其他内容"试探 — 算法会判定定位模糊, 继续降权</li>
+        <li><b>不要</b>用矩阵号 (A/C/D/E) 给 B 互赞互关 — 平台能识别同 IP 设备, 反而拉低权重</li>
+        <li><b>不要</b>用 0 粉号买粉买赞 — 小红书 2024 后对"虚假流量"零容忍, 一次违规直接限流</li>
+        <li><b>不要</b>把简介/头像改得和新定位无关 — 比如新定位"古装剧女主", 头像就别用现代照片</li>
+        <li><b>不要</b>追错热点 — 影视娱乐号追娱乐八卦可以, 但要追"剧情/角色"相关, 别追明星私生活</li>
+        <li><b>不要</b>用 AI 生成视频/图片 (太明显) — 用户一眼能看出, 反而掉粉</li>
+        <li><b>不要</b>搬运其他博主内容 — 二次创作必须加自己的解说/混剪, 单纯搬运扣权重</li>
+        <li><b>不要</b>3 个月内尝试变现 — 1 万粉之前接广告, 商家会压价, 也会让用户觉得"商业化太早"</li>
+      </ul>
+    </div>
+    
+      </section>
+
+      <section>
+        <div class="section-label">BUDGET</div>
+        <h2 class="section-title">第七步: 资源投入估算</h2>
+        <p class="section-sub">90 天里这个号需要的人/钱</p>
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="card-title">👥 人力 (90 天)</div>
+            <ul class="text-sm mt-16" style="padding-left: 20px;">
+              <li>运营 (1人, 兼): <b class="text-orange">45 天 × 0.5 = 22.5 工时</b></li>
+              <li>剪辑 (1人, 兼): <b class="text-orange">约 60 条 × 4h = 240 工时</b></li>
+              <li>文案 (1人, 兼): <b class="text-orange">60 条标题 + 5 个 SOP = 80 工时</b></li>
+              <li>老板决策: <b class="text-orange">3 次决策会 × 1h</b></li>
+            </ul>
+            <p class="text-sm text-dim mt-16">总人力成本估算: 折合 1.5-2 万元 (按外包价)</p>
+          </div>
+          <div class="card">
+            <div class="card-title">💰 资金 (90 天)</div>
+            <ul class="text-sm mt-16" style="padding-left: 20px;">
+              <li>剪辑软件 (剪映会员): <b class="text-orange">约 200 元</b></li>
+              <li>封面字体/模板: <b class="text-orange">约 500 元</b></li>
+              <li>新剧版权 (如有): <b class="text-orange">0 元 (合理使用)</b></li>
+              <li>小红书运营课 (可选): <b class="text-orange">500-2000 元</b></li>
+              <li>测试投放 (如做): <b class="text-orange">约 2000 元</b></li>
+            </ul>
+            <p class="text-sm text-dim mt-16">总资金成本: 约 <b class="text-green">3,000-5,000 元</b>, 远低于重启新号的时间成本</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="alert alert-info">
+          <div class="alert-icon">📋</div>
+          <div class="alert-body">
+            <div class="alert-title">下一步行动</div>
+            1) 看完这页 → 2) 老板确认选 P1 还是其他方案 → 3) 召集 3 个相关人开 1 小时启动会 → 4) 48 小时内完成 D+0 的 5 个动作
+          </div>
+        </div>
+      </section>
+
+    </div>
+    
+</main>
+<footer>
+  <div class="container">
+    <p>B 账号重定位 SOP · 生成于 2026-06-13 12:47 · 数据来源: B 号公开页 30 篇笔记</p>
+    <p class="text-mute text-sm mt-8">基于 B 号爆款规律 (明星 CP/古装剧/剧情切片) 推断的定位方向 · 实际选择需老板确认</p>
+  </div>
+</footer>
+</body>
+</html>

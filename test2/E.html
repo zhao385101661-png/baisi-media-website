@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E 追娱少女 - 百思传媒旗下影视娱乐号诊断</title>
+  <style>
+:root {
+  --bg: #0d0905;
+  --bg-2: #170d02;
+  --panel: #1d1107;
+  --panel-2: #261609;
+  --border: #3a2614;
+  --orange: #ffac02;
+  --orange-dim: #c0880a;
+  --green: #54a87e;
+  --yellow: #edff45;
+  --red: #ff5e5e;
+  --text: #f5e9d5;
+  --text-dim: #a89080;
+  --text-mute: #6e5a48;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--orange); text-decoration: none; }
+a:hover { color: var(--yellow); }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #170d02 0%, #261609 50%, #170d02 100%);
+  border-bottom: 2px solid var(--orange);
+  padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,172,2,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-meta { color: var(--green); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+.hero h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
+.hero h1 .accent { color: var(--orange); }
+.hero .sub { color: var(--text-dim); font-size: 20px; max-width: 700px; }
+.hero .meta-row { display: flex; gap: 24px; margin-top: 32px; flex-wrap: wrap; }
+.hero .meta-pill {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.hero .meta-pill b { color: var(--orange); font-weight: 600; }
+
+/* NAV */
+.nav { background: var(--bg-2); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.nav-inner { display: flex; gap: 8px; padding: 16px 24px; max-width: 1280px; margin: 0 auto; align-items: center; }
+.nav-brand { color: var(--orange); font-weight: 700; font-size: 16px; margin-right: 24px; }
+.nav a.nav-link { color: var(--text-dim); padding: 6px 12px; border-radius: 4px; font-size: 14px; }
+.nav a.nav-link:hover, .nav a.nav-link.active { background: var(--panel); color: var(--orange); }
+
+/* SECTION */
+section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+.section-label { color: var(--orange); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+.section-title { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
+.section-sub { color: var(--text-dim); font-size: 16px; margin-bottom: 48px; max-width: 800px; }
+
+/* CARD */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  transition: border-color .2s;
+}
+.card:hover { border-color: var(--orange); }
+.card-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+.card-meta { color: var(--text-dim); font-size: 13px; }
+
+/* GRID */
+.grid { display: grid; gap: 24px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-5 { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 1024px) { .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .grid-4, .grid-5, .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+/* BIG NUMBER */
+.stat {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.stat::after {
+  content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%;
+  background: var(--orange);
+}
+.stat-label { color: var(--text-dim); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.stat-value { font-size: 42px; font-weight: 800; color: var(--text); }
+.stat-value .unit { font-size: 18px; color: var(--text-dim); margin-left: 4px; }
+.stat-foot { color: var(--text-mute); font-size: 12px; margin-top: 8px; }
+
+/* PROGRESS BAR */
+.bar-wrap { background: var(--bg); border-radius: 4px; height: 10px; overflow: hidden; margin: 8px 0; }
+.bar { height: 100%; background: linear-gradient(90deg, var(--orange) 0%, var(--yellow) 100%); border-radius: 4px; transition: width .3s; }
+.bar.green { background: linear-gradient(90deg, var(--green) 0%, var(--yellow) 100%); }
+.bar.red { background: linear-gradient(90deg, var(--red) 0%, var(--orange) 100%); }
+
+/* TAG */
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 2px 4px 2px 0;
+}
+.tag-orange { background: rgba(255,172,2,0.15); color: var(--orange); border: 1px solid rgba(255,172,2,0.3); }
+.tag-green { background: rgba(84,168,126,0.15); color: var(--green); border: 1px solid rgba(84,168,126,0.3); }
+.tag-red { background: rgba(255,94,94,0.15); color: var(--red); border: 1px solid rgba(255,94,94,0.3); }
+.tag-yellow { background: rgba(237,255,69,0.15); color: var(--yellow); border: 1px solid rgba(237,255,69,0.3); }
+
+/* TABLE */
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+th { color: var(--text-dim); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+tr:hover td { background: var(--panel-2); }
+
+/* ALERT */
+.alert {
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  border-left: 4px solid;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.alert-icon { font-weight: 800; font-size: 18px; }
+.alert-warn { background: rgba(255,172,2,0.08); border-color: var(--orange); }
+.alert-warn .alert-icon { color: var(--orange); }
+.alert-danger { background: rgba(255,94,94,0.08); border-color: var(--red); }
+.alert-danger .alert-icon { color: var(--red); }
+.alert-info { background: rgba(84,168,126,0.08); border-color: var(--green); }
+.alert-info .alert-icon { color: var(--green); }
+.alert-body { flex: 1; color: var(--text); }
+.alert-title { font-weight: 700; margin-bottom: 4px; }
+
+/* MEDAL */
+.medal { display: inline-block; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: 800; font-size: 14px; margin-right: 8px; }
+.medal-1 { background: linear-gradient(135deg, #ffd700, #ffac02); color: #170d02; }
+.medal-2 { background: linear-gradient(135deg, #c0c0c0, #888); color: #170d02; }
+.medal-3 { background: linear-gradient(135deg, #cd7f32, #8b4513); color: #170d02; }
+
+/* FOOTER */
+footer { background: var(--bg-2); padding: 40px 0; text-align: center; color: var(--text-mute); font-size: 13px; border-top: 1px solid var(--border); }
+
+/* LINKS BAR */
+.breadcrumb { padding: 16px 0; color: var(--text-dim); font-size: 14px; }
+.breadcrumb a { color: var(--text-dim); }
+.breadcrumb a:hover { color: var(--orange); }
+.breadcrumb .sep { margin: 0 8px; color: var(--text-mute); }
+
+/* UTILITY */
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mt-48 { margin-top: 48px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+.flex { display: flex; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.gap-8 { gap: 8px; }
+.gap-16 { gap: 16px; }
+.gap-24 { gap: 24px; }
+.text-orange { color: var(--orange); }
+.text-green { color: var(--green); }
+.text-red { color: var(--red); }
+.text-yellow { color: var(--yellow); }
+.text-dim { color: var(--text-dim); }
+.text-mute { color: var(--text-mute); }
+.text-sm { font-size: 13px; }
+.text-lg { font-size: 18px; }
+.text-xl { font-size: 24px; }
+.font-bold { font-weight: 700; }
+.font-extra { font-weight: 800; }
+
+/* PILL ROW */
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.pill {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.pill b { color: var(--orange); }
+
+/* NOTE LIST */
+.note-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.note-row:last-child { border-bottom: none; }
+.note-rank { color: var(--orange); font-weight: 800; font-size: 18px; width: 32px; }
+.note-title { flex: 1; color: var(--text); }
+.note-likes { color: var(--green); font-weight: 700; min-width: 80px; text-align: right; }
+.note-type { font-size: 12px; padding: 2px 8px; border-radius: 3px; background: var(--panel-2); color: var(--text-dim); }
+</style>
+
+    <style>
+      .subpage-nav {
+        position: sticky; top: 0; z-index: 100;
+        background: #170d02; border-bottom: 2px solid #ffac02;
+        padding: 12px 24px;
+        display: flex; align-items: center; gap: 16px;
+        font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+        font-size: 14px;
+      }
+      .subpage-nav a { color: #ffac02; text-decoration: none; }
+      .subpage-nav a:hover { color: #edff45; }
+      .subpage-nav .title { color: #f5e9d5; font-weight: 700; flex: 1; }
+      .subpage-nav .lock-btn {
+        background: #1d1107; border: 1px solid #3a2614; color: #a89080;
+        padding: 4px 10px; border-radius: 4px; font-size: 12px; cursor: pointer;
+      }
+      .subpage-nav .lock-btn:hover { border-color: #ff5e5e; color: #ff5e5e; }
+      .pwd-overlay {
+        position: fixed; inset: 0;
+        background: rgba(13, 9, 5, 0.97);
+        display: flex; align-items: center; justify-content: center;
+        z-index: 9999; padding: 24px;
+      }
+      .pwd-overlay.hidden { display: none; }
+      .pwd-box {
+        background: #1d1107; border: 1px solid #3a2614; border-radius: 12px;
+        padding: 40px; max-width: 420px; width: 100%;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      }
+      .pwd-box h2 { color: #ffac02; font-size: 22px; margin-bottom: 8px; text-align: center; }
+      .pwd-box p { color: #a89080; font-size: 13px; text-align: center; margin-bottom: 24px; }
+      .pwd-box input {
+        width: 100%; background: #0d0905; border: 1px solid #3a2614;
+        border-radius: 6px; padding: 12px 14px; color: #f5e9d5;
+        font-size: 15px; outline: none; margin-bottom: 12px;
+      }
+      .pwd-box input:focus { border-color: #ffac02; }
+      .pwd-box button {
+        width: 100%; background: linear-gradient(135deg, #ffac02 0%, #edff45 100%);
+        border: none; border-radius: 6px; padding: 12px;
+        color: #170d02; font-size: 15px; font-weight: 700; cursor: pointer;
+      }
+      .pwd-box .err { color: #ff5e5e; font-size: 12px; text-align: center; min-height: 16px; margin-top: 8px; }
+    </style>
+    <script>
+      async function sha256(text) {
+        const buf = new TextEncoder().encode(text);
+        const hash = await crypto.subtle.digest('SHA-256', buf);
+        return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
+      }
+      const CORRECT_HASH = "69d8a2ba4486e494382d1ccbe890fb8c1724c7600f3450785fbdc959bfac19a6";
+      const SESSION_KEY = "baisi_pwd_ok";
+      const SESSION_HASH = "baisi_pwd_hash";
+
+      async function checkSubPwd() {
+        const inp = document.getElementById('subPwd');
+        const err = document.getElementById('subErr');
+        const v = inp.value;
+        err.textContent = '';
+        const h = await sha256(v);
+        if (h === CORRECT_HASH) {
+          sessionStorage.setItem(SESSION_KEY, '1');
+          sessionStorage.setItem(SESSION_HASH, h);
+          document.getElementById('pwdOverlay').classList.add('hidden');
+          inp.value = '';
+        } else {
+          err.textContent = '密码错误';
+          inp.value = '';
+          inp.focus();
+        }
+      }
+
+      function subLogout() {
+        sessionStorage.removeItem(SESSION_KEY);
+        sessionStorage.removeItem(SESSION_HASH);
+        location.reload();
+      }
+
+      (async function() {
+        if (sessionStorage.getItem(SESSION_KEY) === '1' && sessionStorage.getItem(SESSION_HASH) === CORRECT_HASH) {
+          const ov = document.getElementById('pwdOverlay');
+          if (ov) ov.classList.add('hidden');
+        } else {
+          setTimeout(() => {
+            const inp = document.getElementById('subPwd');
+            if (inp) inp.focus();
+          }, 100);
+        }
+      })();
+    </script>
+    </head>
+<body>
+    <div class="pwd-overlay" id="pwdOverlay">
+      <div class="pwd-box">
+        <h2>🔒 内部资料</h2>
+        <p>E 追娱少女 - 单号报告 · 需要密码访问</p>
+        <input type="password" id="subPwd" placeholder="请输入密码" onkeydown="if(event.key==='Enter')checkSubPwd()">
+        <button onclick="checkSubPwd()">🔓 解锁</button>
+        <div class="err" id="subErr"></div>
+      </div>
+    </div>
+    <div class="subpage-nav">
+      <a href="../test2.html">← 返回目录</a>
+      <span class="title">E 追娱少女 - 单号报告</span>
+      <button class="lock-btn" onclick="subLogout()">🔒 锁屏</button>
+    </div>
+    
+
+    <header class="hero">
+      <div class="container">
+        <div class="hero-meta">账号 E · 影视娱乐</div>
+        <h1>追娱少女<br><span class="accent">单账号诊断报告</span></h1>
+        <p class="sub">粉丝 1万+ · 笔记 32 篇 · 单篇均赞 1982 · 爆款率 9%</p>
+        <div class="meta-row">
+          <div class="meta-pill">IP <b>山西</b></div>
+          <div class="meta-pill">小红书号 <b>5614681814</b></div>
+          <div class="meta-pill">视频占比 <b>97%</b></div>
+          <div class="meta-pill">爆款 <b>3 篇</b></div>
+        </div>
+      </div>
+    </header>
+    
+<nav class="nav"><div class="nav-inner">
+<div class="nav-brand">🎬 影视娱乐号诊断报告</div>
+<a class="nav-link" href="index.html">总览</a>
+<a class="nav-link" href="compare.html">5号对比</a>
+<a class="nav-link" href="action.html">整改建议</a>
+<a class="nav-link" href="A.html">A 满级观众</a>
+<a class="nav-link" href="B.html">B 西湖边的夏雨荷</a>
+<a class="nav-link" href="C.html">C 一个奈斯的观众</a>
+<a class="nav-link" href="D.html">D 没错我是高贵路人</a>
+<a class="nav-link active" href="E.html">E 追娱少女</a>
+<a class="nav-link" href="B-sop.html">B 重定位 SOP</a>
+</div></nav>
+<main>
+
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">总览</a><span class="sep">/</span>
+        <span>E 追娱少女</span>
+      </div>
+
+      <section>
+        <div class="section-label">ACCOUNT REPORT</div>
+        <h1 class="section-title">E · 追娱少女</h1>
+        <p class="section-sub">单账号诊断报告 · 含数据画像、爆款分析、问题诊断、改进建议</p>
+        
+    <div class="grid grid-4">
+      <div class="stat">
+        <div class="stat-label">粉丝数</div>
+        <div class="stat-value">1万+</div>
+        <div class="stat-foot">关注 10+ · 获赞 1万+</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">总笔记数</div>
+        <div class="stat-value">32<span class="unit">篇</span></div>
+        <div class="stat-foot">视频 31 · 图文 1</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">单篇均赞</div>
+        <div class="stat-value">1982</div>
+        <div class="stat-foot">中位 127 · 最高 26000</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">爆款率 (≥3×均赞)</div>
+        <div class="stat-value">9<span class="unit">%</span></div>
+        <div class="stat-foot">3 篇爆款</div>
+      </div>
+    </div>
+    
+        <div class="mt-32">
+          
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-title">账号信息</div>
+        <div class="text-sm text-dim mt-16">
+          <p><b class="text-orange">昵称：</b>追娱少女</p>
+          <p class="mt-8"><b class="text-orange">小红书号：</b>5614681814</p>
+          <p class="mt-8"><b class="text-orange">IP 属地：</b>山西 · <b class="text-orange">性别：</b>男</p>
+          <p class="mt-8"><b class="text-orange">UserId：</b>62c8d9a3000000000e00c263</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">简介</div>
+        <div class="text-sm text-dim mt-16" style="white-space: pre-wrap;">想起什么说什么🗣
+看到什么说什么👁
+一些追📺追🐟碎碎念～
+欢迎一起叭叭叭🧚‍♀️
+有需要@Yanan</div>
+      </div>
+    </div>
+    
+        </div>
+      </section>
+
+      <section>
+        <div class="section-label">CONTENT</div>
+        <h2 class="section-title">内容画像</h2>
+        <div class="grid grid-2">
+          <div>
+            <div class="card"><div class="card-title mb-24">📊 标题套路分布</div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>明星直接点名</span>
+            <span class="text-dim">31 篇 · 97%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 100%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>疑问互动</span>
+            <span class="text-dim">6 篇 · 19%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 19%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>情绪感叹</span>
+            <span class="text-dim">4 篇 · 12%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 13%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>人设/状态形容</span>
+            <span class="text-dim">3 篇 · 9%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 10%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>CP情感</span>
+            <span class="text-dim">3 篇 · 9%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 10%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>反差/反转</span>
+            <span class="text-dim">2 篇 · 6%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 6%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>剧情概括</span>
+            <span class="text-dim">1 篇 · 3%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 3%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>种草/盘点</span>
+            <span class="text-dim">1 篇 · 3%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 3%;"></div></div>
+        </div>
+        <div class="mt-8">
+          <div class="flex-between text-sm">
+            <span>其他</span>
+            <span class="text-dim">1 篇 · 3%</span>
+          </div>
+          <div class="bar-wrap"><div class="bar" style="width: 3%;"></div></div>
+        </div></div>
+          </div>
+          <div>
+            <div class="card">
+              <div class="card-title mb-24">📐 内容特征</div>
+              <div class="text-sm">
+                <p class="mt-8"><b class="text-orange">视频占比：</b>97%</p>
+                <p class="mt-8"><b class="text-orange">标题平均长度：</b>18 字</p>
+                <p class="mt-8"><b class="text-orange">含 emoji：</b>88%</p>
+                <p class="mt-8"><b class="text-orange">含问号：</b>0%</p>
+                <p class="mt-8"><b class="text-orange">含感叹号：</b>3%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-32">
+          <div class="card"><div class="card-title mb-24">🏆 点赞 TOP 10</div>
+        <div class="note-row">
+          <span class="medal medal-1">1</span>
+          <span class="note-type">video</span>
+          <span class="note-title">小花猫舞狮外卖火锅已送达❗️还是鸳鸯锅</span>
+          <span class="note-likes">👍 2.6万</span>
+        </div>
+        <div class="note-row">
+          <span class="medal medal-2">2</span>
+          <span class="note-type">video</span>
+          <span class="note-title">做过蕞亲密的事❗️怎么就突然夹生了呢</span>
+          <span class="note-likes">👍 1.6万</span>
+        </div>
+        <div class="note-row">
+          <span class="medal medal-3">3</span>
+          <span class="note-type">video</span>
+          <span class="note-title">楚朝：这才哪到哪呀❗️谢燕来就已经沦陷了</span>
+          <span class="note-likes">👍 6,556</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">4</span>
+          <span class="note-type">video</span>
+          <span class="note-title">忆秦娥走不出阴霾不敢开口唱❗️用录音教宋雨</span>
+          <span class="note-likes">👍 5,846</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">5</span>
+          <span class="note-type">video</span>
+          <span class="note-title">是生活压垮了两人，无奈才走到了这一步❗️</span>
+          <span class="note-likes">👍 3,607</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">6</span>
+          <span class="note-type">video</span>
+          <span class="note-title">这气场和状态❗️完全就是姐的统治区啊</span>
+          <span class="note-likes">👍 905</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">7</span>
+          <span class="note-type">video</span>
+          <span class="note-title">没有什么事是“离”解决不了的❗️还走吗</span>
+          <span class="note-likes">👍 739</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">8</span>
+          <span class="note-type">video</span>
+          <span class="note-title">赵露思×TOP TOY 六一宠粉封神</span>
+          <span class="note-likes">👍 730</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">9</span>
+          <span class="note-type">video</span>
+          <span class="note-title">天赋这种东西是与生俱来的❗️</span>
+          <span class="note-likes">👍 508</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">10</span>
+          <span class="note-type">video</span>
+          <span class="note-title">他们之间真的有点玄学啊❗️嘴巴都挺厉害的</span>
+          <span class="note-likes">👍 474</span>
+        </div></div>
+        </div>
+        <div class="card mt-24"><div class="card-title">📉 末位 5 篇（疑似拖后腿笔记）</div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">话剧《原野》本轮演出收官！</span>
+          <span class="note-likes text-red">👍 24</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">大女主来的单枪匹马就这样拿下了霄南王❓</span>
+          <span class="note-likes text-red">👍 30</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">你俩不要再吵了❗️我下的行了吗不行我吃了</span>
+          <span class="note-likes text-red">👍 43</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">邢武你就承认吧❗️你已经沦陷了…</span>
+          <span class="note-likes text-red">👍 56</span>
+        </div>
+        <div class="note-row">
+          <span class="note-type">video</span>
+          <span class="note-title">翘楚这是周五福利大放送吗❗️上演校园风</span>
+          <span class="note-likes text-red">👍 57</span>
+        </div></div>
+      </section>
+
+      <section>
+        <div class="section-label">DIAGNOSIS</div>
+        <h2 class="section-title">诊断与改进建议</h2>
+        
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-title">💪 优势</div>
+        <div class="alert alert-info mt-8"><div class="alert-icon">✓</div><div class="alert-body">男性向人设是矩阵里的稀缺位（其他 4 个都是女性向）</div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">⚠️ 问题</div>
+        <div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">评论/收藏数获取为 0（小红书对未登录访问者隐藏），需用达人账号登录后台看真实互动</div></div><div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">简介带 '小助理@Yanan'，暴露多账号矩阵关系，易被风控认定为营销号</div></div><div class="alert alert-warn mt-8"><div class="alert-icon">!</div><div class="alert-body">均赞 1982 远低于 A/C/D，'想起什么说什么' 的选题太随机</div></div>
+      </div>
+    </div>
+    
+        <div class="card mt-24"><div class="card-title">🚨 立即行动 (本周)</div><div class="alert alert-danger mt-8"><div class="alert-icon">▶</div><div class="alert-body">用登录态的内部账号复查每条笔记的评论/收藏/转发，找出隐藏的高互动低点赞笔记（算法更看互动率）</div></div><div class="alert alert-danger mt-8"><div class="alert-icon">▶</div><div class="alert-body">立刻把简介里的 @Yanan 改成『咨询合作请私信』或『商务 wx：xxxxx』</div></div></div><div class="card mt-24"><div class="card-title">⏱️ 短期 (1 月内)</div><div class="alert alert-warn mt-8"><div class="alert-icon">▶</div><div class="alert-body">E 重新定位：要么彻底做『男粉向影视解读』（稀缺位），要么放弃并入其他号</div></div></div><div class="card mt-24"><div class="card-title">📈 中期 (1 季度内)</div><div class="alert alert-info mt-8"><div class="alert-icon">▶</div><div class="alert-body">部分账号切换登录城市 / 用不同手机养号，打散 IP 属地</div></div></div><div class="card mt-24"><div class="card-title">🚫 风险提示 (不要做)</div><div class="alert alert-danger mt-8"><div class="alert-icon">✗</div><div class="alert-body">5 个账号 IP 都显示山西，矩阵关系过于明显，平台判定同主体账号后会限制流量分发</div></div></div>
+      </section>
+
+      <section>
+        <div class="alert alert-danger">
+          <div class="alert-icon">🆘</div>
+          <div class="alert-body">
+            <div class="alert-title">需要执行方案？</div>
+            <p class="mt-8">本报告只做了诊断. 如果要救 B 账号, 看 <a href="B-sop.html" style="color: var(--orange); font-weight: 800;">→ B 账号重定位 SOP (90 天重生手册)</a>, 含 6 阶段时间线 + 3 个决策开关 + 选题/封面/视频模板.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    
+</main>
+<footer>
+  <div class="container">
+    <p>百思传媒旗下影视娱乐号诊断报告 · 生成于 2026-06-13 12:47 · 数据来源: 小红书公开页</p>
+    <p class="text-mute text-sm mt-8">评论/收藏数小红书对未登录访问者隐藏 · 建议登录后台复查真实互动数据</p>
+  </div>
+</footer>
+</body>
+</html>

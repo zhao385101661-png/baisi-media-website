@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V2 深度版 · 30岁前游历全国 | 百思传媒</title>
+<style>
+:root{--bg:#170d02;--bg-2:#1f1206;--bg-3:#2a1a0a;--orange:#ffac02;--orange-2:#ff8a00;--yellow:#edff45;--green:#54a87e;--text:#f5f5f5;--text-dim:#b8a890;--text-mute:#7a6a55;--line:#3a2a18;--red:#ff4444;--green-b:#4ade80;--blue:#60a5fa}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;overflow-x:hidden}
+::selection{background:var(--orange);color:var(--bg)}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at top,#2a1a0a 0%,#170d02 70%);padding:4rem 2rem}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,172,2,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,172,2,0.03) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
+.hero-content{max-width:1100px;width:100%;text-align:center;position:relative;z-index:1}
+.brand-tag{display:inline-block;padding:.4rem 1.2rem;border:1px solid var(--orange);color:var(--orange);font-size:.8rem;letter-spacing:.3em;margin-bottom:2rem;font-weight:600}
+.hero h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:900;letter-spacing:-.02em;margin-bottom:1rem;background:linear-gradient(135deg,#fff 0%,var(--orange) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .subtitle{font-size:clamp(1.2rem,2.5vw,1.8rem);color:var(--text-dim);margin-bottom:3rem;font-weight:300}
+.hero-meta{display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin-top:3rem;font-size:.9rem;color:var(--text-mute)}
+.hero-meta span strong{color:var(--orange);font-weight:600;display:block;font-size:1.1rem;margin-top:.3rem}
+section{max-width:1200px;margin:0 auto;padding:4rem 2rem}
+.section-num{color:var(--orange);font-size:.9rem;font-weight:700;letter-spacing:.3em;margin-bottom:.5rem}
+.section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:1rem;color:#fff}
+.divider{width:60px;height:3px;background:var(--orange);margin:1rem 0 2rem}
+.section-sub{color:var(--text-dim);font-size:1.1rem;margin-bottom:3rem;max-width:700px}
+.card{background:var(--bg-2);border:1px solid var(--line);padding:2rem;margin-bottom:1.5rem}
+.card h3{color:var(--orange);font-size:1.2rem;margin-bottom:1rem}
+table{width:100%;border-collapse:collapse;margin:1.5rem 0;background:var(--bg-2)}
+th,td{padding:.7rem .8rem;text-align:left;border-bottom:1px solid var(--line);font-size:.85rem}
+th{background:var(--bg-3);color:var(--orange);font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;position:sticky;top:0;z-index:5}
+tr:hover td{background:rgba(255,172,2,0.05)}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+td.title-cell{max-width:280px;line-height:1.4}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem;margin:2rem 0}
+.stat{padding:2rem 1.5rem;background:linear-gradient(135deg,var(--bg-2) 0%,var(--bg-3) 100%);border:1px solid var(--line);text-align:center;position:relative;overflow:hidden}
+.stat::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--orange)}
+.stat-num{font-size:2.5rem;font-weight:900;color:var(--orange);line-height:1}
+.stat.green::before{background:var(--green)}.stat.green .stat-num{color:var(--green)}
+.stat.yellow::before{background:var(--yellow)}.stat.yellow .stat-num{color:var(--yellow)}
+.stat.red::before{background:var(--red)}.stat.red .stat-num{color:var(--red)}
+.stat-label{color:var(--text-dim);font-size:.9rem;margin-top:.5rem}
+.stat-desc{color:var(--text-mute);font-size:.75rem;margin-top:.5rem}
+.progress-row{display:flex;align-items:center;margin:.8rem 0;gap:1rem}
+.progress-label{width:140px;color:var(--text-dim);font-size:.9rem}
+.progress-bar{flex:1;height:28px;background:var(--bg-3);position:relative;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--orange-2),var(--orange));display:flex;align-items:center;justify-content:flex-end;padding-right:.8rem;color:var(--bg);font-weight:700;font-size:.85rem}
+.progress-value{width:80px;text-align:right;color:var(--orange);font-weight:700;font-size:.9rem}
+.alert{padding:1.5rem;margin:1.5rem 0;border-left:4px solid}
+.alert-warn{background:rgba(255,68,68,.1);border-color:var(--red)}
+.alert-warn h4{color:var(--red)}
+.alert-success{background:rgba(74,222,128,.1);border-color:var(--green-b)}
+.alert-success h4{color:var(--green-b)}
+.alert-info{background:rgba(96,165,250,.1);border-color:var(--blue)}
+.alert-info h4{color:var(--blue)}
+.alert-special{background:rgba(237,255,69,.08);border-color:var(--yellow)}
+.alert-special h4{color:var(--yellow)}
+.quote{border-left:4px solid var(--orange);padding:1.5rem 2rem;background:var(--bg-2);margin:2rem 0;font-style:italic;color:var(--text-dim);position:relative}
+.quote::before{content:'"';position:absolute;top:-10px;left:10px;font-size:4rem;color:var(--orange);opacity:.3;font-family:Georgia,serif}
+.top-list{list-style:none}
+.top-list li{display:flex;align-items:center;padding:.8rem 1rem;background:var(--bg-2);margin-bottom:.4rem;border-left:3px solid var(--bg-3);gap:1rem}
+.rank{width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:var(--bg-3);color:var(--text-dim);font-weight:900;font-size:1rem;flex-shrink:0}
+.rank-1{background:var(--orange);color:var(--bg)}
+.rank-2{background:#c0c0c0;color:var(--bg)}
+.rank-3{background:#cd7f32;color:var(--bg)}
+.top-content{flex:1;min-width:0}
+.top-content .title{color:#fff;font-weight:600;font-size:.92rem;margin-bottom:.2rem;line-height:1.4}
+.top-content .meta{color:var(--text-mute);font-size:.75rem}
+.top-likes{color:var(--orange);font-weight:900;font-size:1rem;flex-shrink:0}
+.top-save{color:var(--green);font-weight:700;font-size:.85rem;flex-shrink:0}
+.top-share{color:var(--yellow);font-weight:700;font-size:.85rem;flex-shrink:0}
+.three-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin:2rem 0}
+.col{padding:2rem;background:var(--bg-2);border-top:3px solid var(--orange)}
+.col.green{border-top-color:var(--green)}
+.col.green h4{color:var(--green)}
+.col.yellow{border-top-color:var(--yellow)}
+.col.yellow h4{color:var(--yellow)}
+.col.red{border-top-color:var(--red)}
+.col.red h4{color:var(--red)}
+.col h4{color:var(--orange);margin-bottom:1rem;font-size:1.1rem}
+.col ul{list-style:none}
+.col ul li{padding:.5rem 0;padding-left:1.2rem;position:relative;color:var(--text-dim);font-size:.92rem;line-height:1.5}
+.col ul li::before{content:'▸';position:absolute;left:0;color:var(--orange)}
+.col.green ul li::before{color:var(--green)}
+.col.yellow ul li::before{color:var(--yellow)}
+.col.red ul li::before{color:var(--red)}
+.note-card{background:var(--bg-2);border:1px solid var(--line);padding:1.5rem;margin-bottom:1rem;border-left:4px solid var(--orange)}
+.note-card.rank-1,.note-card.rank-2,.note-card.rank-3{border-left-width:6px}
+.note-card.rank-1{border-left-color:var(--orange);background:linear-gradient(90deg,rgba(255,172,2,.08) 0%,var(--bg-2) 30%)}
+.note-card.rank-2{border-left-color:#c0c0c0}
+.note-card.rank-3{border-left-color:#cd7f32}
+.note-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;flex-wrap:wrap}
+.note-rank{font-size:1.5rem;font-weight:900;color:var(--orange);min-width:50px}
+.note-rank.top1{color:var(--orange)}
+.note-rank.top2{color:#c0c0c0}
+.note-rank.top3{color:#cd7f32}
+.note-stats{display:flex;gap:1rem;flex-wrap:wrap;font-size:.8rem;color:var(--text-mute);margin-bottom:.5rem}
+.note-stats strong{color:var(--orange);font-weight:700}
+.note-stats .save{color:var(--green)}
+.note-stats .share{color:var(--yellow)}
+.note-title{font-size:1.2rem;color:#fff;font-weight:700;margin-bottom:.6rem;line-height:1.4}
+.note-tags{margin:.8rem 0;line-height:1.8}
+.note-tag{display:inline-block;padding:.2rem .6rem;background:var(--bg-3);color:var(--text-dim);font-size:.75rem;margin:.15rem .3rem .15rem 0;border-radius:3px;border:1px solid var(--line)}
+.note-tag.hot{color:var(--orange);border-color:var(--orange)}
+.note-desc{color:var(--text-dim);font-size:.9rem;line-height:1.7;background:var(--bg-3);padding:1rem;margin-top:.6rem;border-radius:4px;border:1px solid var(--line)}
+.note-desc p{margin:.4rem 0}
+.note-footer{margin-top:.8rem;font-size:.78rem;color:var(--text-mute);display:flex;gap:1rem;flex-wrap:wrap}
+.note-footer .url{color:var(--blue);text-decoration:none}
+.note-footer .url:hover{text-decoration:underline}
+footer{text-align:center;padding:3rem 2rem;color:var(--text-mute);font-size:.85rem;border-top:1px solid var(--line);margin-top:4rem}
+footer .brand{color:var(--orange);font-weight:700;letter-spacing:.2em}
+.tag-row{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0}
+.search-box{position:sticky;top:0;z-index:10;background:var(--bg);padding:1rem 2rem;border-bottom:1px solid var(--line);margin-bottom:2rem}
+.search-box input{width:100%;max-width:500px;padding:.7rem 1rem;background:var(--bg-2);border:1px solid var(--line);color:var(--text);font-size:.95rem;border-radius:4px}
+.search-box input:focus{outline:none;border-color:var(--orange)}
+@media(max-width:768px){
+.stat-num{font-size:1.8rem}
+.progress-label{width:90px;font-size:.8rem}
+.progress-value{width:50px}
+section{padding:3rem 1.2rem}
+.hero-meta{gap:1rem}
+table{font-size:.8rem}
+th,td{padding:.5rem .4rem}
+}
+</style>
+</head>
+<body>
+
+<a href="./index.html" style="position:fixed;top:1rem;left:1rem;z-index:100;display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.2rem;background:rgba(255,172,2,.15);border:1px solid var(--orange);color:var(--orange);text-decoration:none;font-size:.9rem;font-weight:600;border-radius:4px;backdrop-filter:blur(8px)">← 返回菜单</a>
+
+
+<!-- HERO -->
+<header class="hero">
+<div class="hero-content">
+<span class="brand-tag">百思传媒 · 竞品研究院</span>
+<h1>30岁前游历全国</h1>
+<p class="subtitle">对标账号 · 全量深度分析报告</p>
+<div class="hero-meta">
+<span>数据规模<strong>32 篇笔记</strong></span>
+<span>累计点赞<strong>27,364</strong></span>
+<span>累计收藏<strong>21,786</strong></span>
+<span>累计评论<strong>1,985</strong></span>
+<span>累计分享<strong>10,945</strong></span>
+<span>配图总量<strong>526 张</strong></span>
+<span>分析维度<strong>10 大模块</strong></span>
+<span>数据来源<strong>MediaCrawler 登录抓取</strong></span>
+</div>
+</div>
+</header>
+
+<!-- TOC -->
+<nav class="toc" style="max-width:1200px;margin:0 auto;padding:5rem 2rem 3rem">
+<h2 style="font-size:2rem;color:var(--orange);margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--line)">📑 报告目录</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem">
+<a href="#s1" style="padding:1.2rem 1.5rem;background:var(--bg-2);border-left:3px solid var(--orange);color:var(--text);text-decoration:none">01 账号定位拆解</a>
+<a href="#s2" style="padding:1.2rem 1.5rem;background:var(--bg-2);border-left:3px solid var(--orange);color:var(--text);text-decoration:none">02 数据画像</a>
+<a href="#s3" style="padding:1.2rem 1.5rem;background:var(--bg-2);border-left:3px solid var(--orange);color:var(--text);text-decoration:none">03 互动率深度拆解</a>
+<a href="#s4" style="padding:1.2rem 1.5rem;background:var(--bg-2);border-left:3px solid var(--orange);color:var(--text);text-decoration:none">04 标题套路</a>
+<a href="#s5" style="padding:1.2rem 1.5rem;background:var(--bg-2);border-left:3px solid var(--orange);color:var(--text);text-decoration:none">05 文案结构与模板</a>
+<a href="#s6" style="padding:1.2rem 1.5rem;background:var(--bg-2);border-left:3px solid var(--orange);color:var(--text);text-decoration:none">06 视觉系统（配图分析）</a>
+<a href="#s7" style="padding:1.2rem 1.5rem;background:var(--bg-2);border-left:3px solid var(--orange);color:var(--text);text-decoration:none">07 话题标签策略</a>
+<a href="#s8" style="padding:1.2rem 1.5rem;background:var(--bg-2);border-left:3px solid var(--orange);color:var(--text);text-decoration:none">08 32 篇完整数据表</a>
+<a href="#s9" style="padding:1.2rem 1.5rem;background:var(--bg-2);border-left:3px solid var(--yellow);color:var(--text);text-decoration:none">09 商业化线索（商单识别）</a>
+<a href="#s10" style="padding:1.2rem 1.5rem;background:var(--bg-2);border-left:3px solid var(--green);color:var(--text);text-decoration:none">10 百思差异化建议</a>
+</div>
+</nav>
+
+<!-- 01 账号定位 -->
+<section id="s1">
+<div class="section-num">CHAPTER 01</div>
+<h2 class="section-title">账号定位拆解</h2>
+<div class="divider"></div>
+<p class="section-sub">基于账号元数据 + 32 篇笔记内容反推。</p>
+
+<table>
+<thead><tr><th>维度</th><th>实际信息</th><th>解读</th></tr></thead>
+<tbody>
+<tr><td>昵称</td><td><strong>30岁前游历全国</strong></td><td>时间窗口+任务明确，名字本身就是承诺型钩子</td></tr>
+<tr><td>小红书号</td><td>4944173357</td><td>普通数字号（个人 IP 起家，未做品牌化）</td></tr>
+<tr><td>性别/年龄</td><td>男 / 98年生 (~27岁)</td><td>"特种兵旅行"主力人群，与目标受众年龄重合</td></tr>
+<tr><td>核心身份</td><td>P人攻略狂魔 · 特种兵 · 爱摄影</td><td>MBTI 梗 + 旅行强度 + 摄影技能 三重身份</td></tr>
+<tr><td>核心承诺</td><td>100 个国内小众旅行地更新中</td><td>用百篇系列建立长期期待感，钩住关注</td></tr>
+<tr><td>内容形式</td><td><strong>100% 图文笔记（normal）</strong></td><td>0 视频 ← 视频化是空白赛道，差异化机会</td></tr>
+<tr><td>配图习惯</td><td><strong>每篇 9-18 张，平均 16.4 张</strong></td><td>卡着小红书图文上限发（信息密度爆表）</td></tr>
+<tr><td>IP 属地</td><td>未填写</td><td>无地域限制，全国内容可发</td></tr>
+<tr><td>更新周期</td><td>20 个月 × 32 篇 ≈ 双周更</td><td>稳定双周更，比多数博主规律</td></tr>
+</tbody>
+</table>
+
+<div class="quote">一个 98 年的男生，把"30 岁前游遍全国"当作人生项目做，靠图文攻略+摄影技能在小红书做到 1 万粉、爆款率 25%、累计 27K 赞。</div>
+
+<div class="alert alert-info">
+<h4>💡 核心洞察</h4>
+<p>他的<strong>护城河不是标题套路</strong>（62% 含数字、59% 含 ❗️ 这些谁都能学），而是<strong>摄影技能 + 持续更新的执行力</strong>。这意味着百思传媒做对标，<strong>不能纯学标题</strong>，需要建立自己的内容生产节奏。</p>
+</div>
+</section>
+
+<!-- 02 数据画像 -->
+<section id="s2">
+<div class="section-num">CHAPTER 02</div>
+<h2 class="section-title">数据画像</h2>
+<div class="divider"></div>
+<p class="section-sub">基于 32 篇笔记全量数据（之前报告只有点赞维度，现在多了收藏/评论/分享/发布时间/标签）。</p>
+
+<div class="stat-grid">
+<div class="stat"><div class="stat-num">32</div><div class="stat-label">笔记总数</div></div>
+<div class="stat yellow"><div class="stat-num">27,364</div><div class="stat-label">累计点赞</div></div>
+<div class="stat green"><div class="stat-num">21,786</div><div class="stat-label">累计收藏</div></div>
+<div class="stat"><div class="stat-num">1,985</div><div class="stat-label">累计评论</div></div>
+<div class="stat red"><div class="stat-num">10,945</div><div class="stat-label">累计分享</div></div>
+<div class="stat"><div class="stat-num">855</div><div class="stat-label">平均点赞</div></div>
+</div>
+
+<div class="three-col">
+<div class="col">
+<h4>📊 互动维度</h4>
+<ul>
+<li><strong>收藏率 79.6%</strong>（收藏/点赞）—— 用户主要行为是"收藏攻略"</li>
+<li><strong>分享率 40.0%</strong>（分享/点赞）—— 分享给朋友意愿极强</li>
+<li><strong>评论率 7.3%</strong>（评论/点赞）—— 评论较少，符合攻略类特征</li>
+<li><strong>爆款率 25%</strong>（≥1000 赞 8 篇）—— 行业 5-10% 的 2 倍以上</li>
+</ul>
+</div>
+<div class="col green">
+<h4>📅 时间分布</h4>
+<ul>
+<li>2023-09：1 篇（冷启动）</li>
+<li>2024-09 ~ 2025-05：稳定双周更</li>
+<li>2025-02：5 篇（春节前后爆发）</li>
+<li>最近 2 月仅 4 篇，更新放缓</li>
+</ul>
+</div>
+<div class="col yellow">
+<h4>🎯 头部高度集中</h4>
+<ul>
+<li>TOP3 占总赞 49.5%（13,924 / 27,364）</li>
+<li>TOP10 占总赞 81.8%</li>
+<li>长尾 22 篇笔记仅占 18.2%</li>
+<li><strong>中位数笔记仅 252 赞</strong>，断崖式分布</li>
+</ul>
+</div>
+</div>
+
+<div class="alert alert-warn">
+<h4>⚠️ 数据陷阱提示</h4>
+<p>虽然 32 篇累计 27K 赞看着不错，但<strong>中位数笔记只有 252 赞</strong>，且断崖式分布（TOP3 占总赞一半）。<br>
+→ 这说明账号"靠爆款撑场"，没有稳定的腰部内容。<br>
+→ <strong>对百思的启示</strong>：模仿时不要只看 TOP1，更要分析"中位数笔记为什么只有 252 赞"，避开它的低质选题。</p>
+</div>
+</section>
+
+<!-- 03 互动率拆解 -->
+<section id="s3">
+<div class="section-num">CHAPTER 03</div>
+<h2 class="section-title">互动率深度拆解</h2>
+<div class="divider"></div>
+<p class="section-sub">之前无登录拿不到的真实数据：收藏率、分享率、互动率。</p>
+
+<p style="color:var(--text-dim);margin-bottom:1rem"><strong>关键发现</strong>：他的"互动率"远高于行业基准，<strong>用户主要行为是收藏+分享</strong>，不是点赞——这跟一般娱乐内容（点赞为主）完全不同。</p>
+
+<h3 style="color:var(--orange);margin:2rem 0 1rem">🏆 TOP 10 互动榜（按互动率排序）</h3>
+<table>
+<thead><tr><th>排名</th><th>标题</th><th>点赞</th><th>收藏</th><th>评论</th><th>分享</th><th>收藏率</th><th>互动率</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td class="title-cell">朋友圈以为我去柬埔寨❗️其实就在成都周边❗️</td><td class="num"><strong>2114</strong></td><td class="num">1743</td><td class="num">167</td><td class="num"><strong>2957</strong></td><td class="num" style="color:var(--green)">82.5%</td><td class="num" style="color:var(--yellow)">230.2%</td></tr>
+<tr><td class="num">2</td><td class="title-cell">放弃了桂林，旁边的贺州才是人间仙境❗️</td><td class="num">580</td><td class="num">737</td><td class="num">102</td><td class="num">482</td><td class="num" style="color:var(--green)">127.1%</td><td class="num" style="color:var(--yellow)">227.8%</td></tr>
+<tr><td class="num">3</td><td class="title-cell">Citywalk🚶🏻广州这条街1公里走过百年历史</td><td class="num">4320</td><td class="num">4700</td><td class="num">76</td><td class="num">2431</td><td class="num" style="color:var(--green)">108.8%</td><td class="num" style="color:var(--yellow)">166.8%</td></tr>
+<tr><td class="num">4</td><td class="title-cell">为了15天走遍山西晋中南，我做了个计划书❗️</td><td class="num">628</td><td class="num">815</td><td class="num">67</td><td class="num">73</td><td class="num" style="color:var(--green)">129.8%</td><td class="num" style="color:var(--yellow)">152.1%</td></tr>
+<tr><td class="num">5</td><td class="title-cell">澳门不走回头路🚶‍➡️一天打卡2️⃣0️⃣个地方</td><td class="num">1264</td><td class="num">1449</td><td class="num">70</td><td class="num">362</td><td class="num" style="color:var(--green)">114.6%</td><td class="num" style="color:var(--yellow)">148.8%</td></tr>
+<tr><td class="num">6</td><td class="title-cell">这不是AI❗️这是震惊世界的现实"万佛天国"</td><td class="num">1542</td><td class="num">1057</td><td class="num">319</td><td class="num">713</td><td class="num" style="color:var(--green)">68.5%</td><td class="num" style="color:var(--yellow)">135.5%</td></tr>
+<tr><td class="num">7</td><td class="title-cell">都在说《黑悟空》，而我在山西寻找贾樟柯。</td><td class="num">1122</td><td class="num">850</td><td class="num">75</td><td class="num">279</td><td class="num" style="color:var(--green)">75.8%</td><td class="num" style="color:var(--yellow)">107.3%</td></tr>
+<tr><td class="num">8</td><td class="title-cell">为了这1️⃣5️⃣张照片，我专门飞了趟厦门❗️</td><td class="num">2007</td><td class="num">1237</td><td class="num">98</td><td class="num">629</td><td class="num" style="color:var(--green)">61.6%</td><td class="num" style="color:var(--yellow)">97.9%</td></tr>
+<tr><td class="num">9</td><td class="title-cell">为了这1️⃣2️⃣张照片，在澳门暴走4小时❗️</td><td class="num">1061</td><td class="num">730</td><td class="num">56</td><td class="num">152</td><td class="num" style="color:var(--green)">68.8%</td><td class="num" style="color:var(--yellow)">88.4%</td></tr>
+<tr><td class="num">10</td><td class="title-cell">在24年，我旅行了广东2️⃣1️⃣个城市🔥</td><td class="num">7490</td><td class="num">4356</td><td class="num">256</td><td class="num">1555</td><td class="num" style="color:var(--green)">58.2%</td><td class="num" style="color:var(--yellow)">82.3%</td></tr>
+</tbody>
+</table>
+
+<div class="alert alert-special">
+<h4>📌 互动率解读（这是商业价值核心）</h4>
+<p><strong>互动率 = (收藏+评论+分享) / 点赞</strong></p>
+<ul style="margin-top:.6rem;line-height:1.8">
+<li><strong>行业基准互动率 30-50%</strong>（娱乐/颜值内容）</li>
+<li><strong>他的互动率 79.6%</strong> —— <strong>比娱乐内容高 2-3 倍</strong></li>
+<li>TOP1"柬埔寨→成都"互动率 230% —— <strong>分享数比点赞还多</strong>！用户主动传播</li>
+</ul>
+<p style="margin-top:.6rem;color:var(--yellow)"><strong>商业含义</strong>：广告主最看重的指标不是点赞，是<strong>收藏+分享</strong>。攻略类内容是天然的高收藏+高分享品类，<strong>品牌投放 ROI 远超娱乐内容</strong>。</p>
+</div>
+
+<div class="three-col">
+<div class="col green">
+<h4>💚 收藏型爆款（攻略类）</h4>
+<ul>
+<li>《广州百年街 Citywalk》4700 收藏</li>
+<li>《澳门打卡 20 个》1449 收藏</li>
+<li>《柬埔寨→成都周边》1743 收藏</li>
+<li>特征：<strong>路线明确、机位具体、可执行</strong></li>
+</ul>
+</div>
+<div class="col yellow">
+<h4>💛 分享型爆款（社交类）</h4>
+<ul>
+<li>《柬埔寨→成都》2957 分享</li>
+<li>《广州百年街》2431 分享</li>
+<li>《广东21城》1555 分享</li>
+<li>特征：<strong>反差感强、能炫耀"我去过"</strong></li>
+</ul>
+</div>
+<div class="col">
+<h4>❤️ 点赞型爆款（情绪类）</h4>
+<ul>
+<li>《震撼系列》（万佛天国）319 评论</li>
+<li>《柬埔寨》167 评论</li>
+<li>《广东21城》256 评论</li>
+<li>特征：<strong>情绪强烈、有话想说</strong></li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- 04 标题套路 -->
+<section id="s4">
+<div class="section-num">CHAPTER 04</div>
+<h2 class="section-title">标题套路</h2>
+<div class="divider"></div>
+<p class="section-sub">32 篇标题全量分析（不只 TOP10，含死笔记）。</p>
+
+<div class="progress-row">
+<span class="progress-label">含具体数字</span>
+<div class="progress-bar"><div class="progress-fill" style="width:62%">62%</div></div>
+<span class="progress-value">20/32 篇</span>
+</div>
+<div class="progress-row">
+<span class="progress-label">含 ❗️/‼️</span>
+<div class="progress-bar"><div class="progress-fill" style="width:59%">59%</div></div>
+<span class="progress-value">19/32 篇</span>
+</div>
+<div class="progress-row">
+<span class="progress-label">"我"字开头</span>
+<div class="progress-bar"><div class="progress-fill" style="width:41%">41%</div></div>
+<span class="progress-value">13/32 篇</span>
+</div>
+<div class="progress-row">
+<span class="progress-label">"为了..."句式</span>
+<div class="progress-bar"><div class="progress-fill" style="width:22%">22%</div></div>
+<span class="progress-value">7/32 篇</span>
+</div>
+<div class="progress-row">
+<span class="progress-label">"不在 X 就在 Y"反差</span>
+<div class="progress-bar"><div class="progress-fill" style="width:9%;background:linear-gradient(90deg,var(--green),var(--green))">9%</div></div>
+<span class="progress-value">3/32 篇</span>
+</div>
+
+<h3 style="color:var(--orange);margin:2rem 0 1rem">🎯 三大爆款标题公式</h3>
+<ol class="formula-list">
+<li><strong>"我花了 N 时间，做了 N 件事"（总结型）</strong> — TOP1 "在24年，我旅行了广东2️⃣1️⃣个城市"（7490赞）、TOP10"为了这1️⃣5️⃣张照片，专门飞厦门"（2007赞）。特征：数字 + 第一人称承诺 + 时间成本</li>
+<li><strong>"反差地理型"</strong> — "朋友圈以为我去柬埔寨❗️其实就在成都周边❗️"（2114赞，互动率230%）、"放弃了桂林，旁边的贺州才是人间仙境❗️"（580赞，互动率227%）。特征：用户主动传播"我去过/我知道"</li>
+<li><strong>"震撼视觉型"</strong> — "这不是AI❗️这是震惊世界的现实'万佛天国'"（1542赞）、"我很少用'震撼'形容一个地方"系列。特征：情绪钩子 + 反常识</li>
+</ol>
+
+<div class="alert alert-warn">
+<h4>⚠️ 死笔记的标题规律（避坑）</h4>
+<p>32 篇里 7 篇 &lt;100 赞，分析它们的标题：</p>
+<ul style="margin-top:.5rem">
+<li><strong>缺乏具体数字</strong>："我到东莞了" (80赞)、"迄今为止，我最爱的城市出现了" (112赞)</li>
+<li><strong>主题过于文艺</strong>："不在青岛❗️99%人都没去过惠州的这片海港" (72赞) — 缺乏反差冲击力</li>
+<li><strong>商单痕迹明显</strong>："博主揭秘，年化3.13%的稳利宝赚旅行基金" (107赞) — 标题像广告</li>
+<li><strong>地点太冷门</strong>："应县木塔的旁边，有一片满是垃圾的废墟" (27赞) — 缺乏攻略价值</li>
+</ul>
+<p style="margin-top:.8rem;color:var(--red)"><strong>结论</strong>：他的死笔记 = <strong>没数字 + 不攻略 + 不反差</strong>。百思对标时避开这三个坑。</p>
+</div>
+</section>
+
+<!-- 05 文案结构 -->
+<section id="s5">
+<div class="section-num">CHAPTER 05</div>
+<h2 class="section-title">文案结构与模板</h2>
+<div class="divider"></div>
+<p class="section-sub">基于 32 篇 desc 全量分析（每篇平均 850 字），提炼出 6 大段落模板。</p>
+
+<div class="three-col">
+<div class="col">
+<h4>📏 文案长度</h4>
+<ul>
+<li>最短 512 字</li>
+<li>中位 917 字</li>
+<li>最长 1013 字</li>
+<li>平均 850 字</li>
+<li><strong>总字数 27,198 字</strong></li>
+</ul>
+</div>
+<div class="col green">
+<h4>🔤 排版符号 Top 5</h4>
+<ul>
+<li>➡️ 箭头：<strong>201 次</strong>（景点串联）</li>
+<li>📍 定位：32 次</li>
+<li>🌟 强调：23 次</li>
+<li>❗️ 感叹：14 次</li>
+<li>🕙 时长：11 次</li>
+</ul>
+</div>
+<div class="col yellow">
+<h4>📝 段落分隔</h4>
+<ul>
+<li>大段分隔符 (\n\t\n)：<strong>245 次</strong></li>
+<li>几乎每篇都有"自我介绍段"</li>
+<li>几乎每篇都有"路线/景点段"</li>
+<li>几乎每篇都有"引导下篇段"</li>
+</ul>
+</div>
+</div>
+
+<h3 style="color:var(--orange);margin:2.5rem 0 1rem">📐 6 大段落结构模板</h3>
+
+<div class="card">
+<h3>模板 1：钩子段（开头 50 字）</h3>
+<p style="color:var(--text-dim);margin-bottom:.8rem">目的：3 秒抓住注意力</p>
+<p style="background:var(--bg-3);padding:1rem;border-radius:4px;color:var(--text-dim)">
+"24年还剩50天，我完成了一件大事❗️"（TOP1 广东21城）<br>
+"今天推荐我亲自踩线的广州半日/一日游路线"（TOP2 Citywalk）<br>
+"这组照片发的朋友圈，别人都以为我去了柬埔寨的吴哥窟"（TOP3 成都周边）<br>
+"谁能想到在四川的绵阳，藏着现实版的'万佛天国'"（TOP5 万佛天国）
+</p>
+<p style="margin-top:.8rem;color:var(--orange)"><strong>核心套路</strong>：时间紧迫感 + 第一人称投入 + 反差/数字 + 情绪标点</p>
+</div>
+
+<div class="card">
+<h3>模板 2：自我介绍段（建立信任）</h3>
+<p style="color:var(--text-dim);margin-bottom:.8rem">目的：建立 IP 信任感</p>
+<p style="background:var(--bg-3);padding:1rem;border-radius:4px;color:var(--text-dim)">
+"我是@30岁前游历全国，24年发布了30➕篇广东旅行攻略，出了好多百赞、千赞爆文🔥粉丝也快突破1W了！"<br><br>
+"Hi，我是@30岁前游历全国。因为《黑悟空》，山西迎来了泼天流量。"（TOP7 黑悟空）
+</p>
+<p style="margin-top:.8rem;color:var(--orange)"><strong>核心套路</strong>：报昵称 + 历史成绩 + 蹭热点话题 钩子</p>
+</div>
+
+<div class="card">
+<h3>模板 3：路线/景点段（核心干货）</h3>
+<p style="color:var(--text-dim);margin-bottom:.8rem">目的：提供攻略价值（用户收藏的核心原因）</p>
+<p style="background:var(--bg-3);padding:1rem;border-radius:4px;color:var(--text-dim)">
+🌟广州<br>
+🕙3-5天<br>
+📍关键词：大都市、羊城、岭南文化<br>
+陈家祠 ➡️ 大佛寺 ➡️ 北京路 ➡️ 广州塔 ➡️ 石室圣心教堂 ➡️ 南越王 ➡️ 永庆坊<br><br>
+🌟珠海<br>
+🕐2天<br>
+📍浪漫海岸线、百岛之市、海边漫步<br>
+珠海渔女 ➡️ 情侣路 ➡️ 海滨公园 ➡️ 珠海大剧院 ➡️ 圆明新园 ➡️ 还可以顺路去澳门
+</p>
+<p style="margin-top:.8rem;color:var(--orange)"><strong>核心套路</strong>：🌟城市名 + 🕙时长 + 📍关键词 + ➡️ 景点链（4-7 个）</p>
+</div>
+
+<div class="card">
+<h3>模板 4：交通/门票段（实用信息）</h3>
+<p style="color:var(--text-dim);margin-bottom:.8rem">目的：降低决策成本</p>
+<p style="background:var(--bg-3);padding:1rem;border-radius:4px;color:var(--text-dim)">
+📍地址：平武报恩寺<br>
+🚌交通：大巴直达景区门口<br>
+🎫门票：40元<br>
+🕐开放时间：8点 - 17点（16点30分停止入园）<br>
+参观路线推荐：天王殿 ➡️ 大雄宝殿 ➡️ 万佛阁 ➡️ 大悲殿 ➡️ 华严殿
+</p>
+<p style="margin-top:.8rem;color:var(--orange)"><strong>核心套路</strong>：地址/交通/门票/时间/路线 5 项缺一不可</p>
+</div>
+
+<div class="card">
+<h3>模板 5：情感共鸣段（制造"我也要去"）</h3>
+<p style="color:var(--text-dim);margin-bottom:.8rem">目的：激发情绪 + 引导下步行动</p>
+<p style="background:var(--bg-3);padding:1rem;border-radius:4px;color:var(--text-dim)">
+"作为古建筑深度爱好者，去年10月在山西游历了大半个月，当地的古建筑让我沉醉其中。本以为很难再找到能让我如此心动的地方，没想到四川平武报恩寺出现了。"（TOP5 万佛天国）<br><br>
+"24年了，山西一直在无数人心中种下了种子……其实24年前，山西就在无数人心中种下了种子…"（TOP7 黑悟空，贾樟柯部分）
+</p>
+<p style="margin-top:.8rem;color:var(--orange)"><strong>核心套路</strong>：个人故事 + 时间线 + 文化 IP 钩子</p>
+</div>
+
+<div class="card">
+<h3>模板 6：引导下篇段（拉新关注）</h3>
+<p style="color:var(--text-dim);margin-bottom:.8rem">目的：制造持续关注理由</p>
+<p style="background:var(--bg-3);padding:1rem;border-radius:4px;color:var(--text-dim)">
+"我是@30岁前游历全国，一篇写不下了，下篇继续…"（TOP1）<br>
+"今天的澳门攻略就到这里，下一篇写 ✍️ 澳门美食地图"（澳门打卡系列）<br>
+"如果你也想去成都周边，点个关注，下篇写德阳石刻深度攻略"（TOP3）
+</p>
+<p style="margin-top:.8rem;color:var(--orange)"><strong>核心套路</strong>：自我重复 + 下篇预告 + 引导关注/点赞/收藏</p>
+</div>
+
+<div class="alert alert-success">
+<h4>✓ 文案模板的核心原则</h4>
+<p><strong>每篇 ≈ 6 个段落模板 × 1.5 次复用</strong> = 平均 9 段，约 850 字。<br>
+所有 32 篇文案<strong>高度同构化</strong>——这是账号高产的秘密。<br>
+百思做对标时，<strong>不需要原创结构</strong>，套这 6 个模板即可。</p>
+</div>
+</section>
+
+<!-- 06 视觉系统 -->
+<section id="s6">
+<div class="section-num">CHAPTER 06</div>
+<h2 class="section-title">视觉系统（配图分析）</h2>
+<div class="divider"></div>
+<p class="section-sub">基于 526 张原始配图（每篇 9-18 张，平均 16.4 张）+ vision_analyze TOP1 封面。</p>
+
+<div class="alert alert-special">
+<h4>🎯 颠覆性发现</h4>
+<p>之前报告（基于 8 张封面）推测他是"<strong>摄影师视角</strong>"，<strong>错了</strong>。<br>
+看了完整 526 张配图后发现：他的内容有<strong>3 种配图策略</strong>，根据笔记类型切换——</p>
+</div>
+
+<h3 style="color:var(--orange);margin:2rem 0 1rem">📸 三大配图策略</h3>
+
+<div class="three-col">
+<div class="col">
+<h4>① 总结型（21-宫格拼图）</h4>
+<p style="color:var(--text-dim);font-size:.85rem;margin-bottom:.8rem">典型：广东21城、澳门20个景点、太原20个地方</p>
+<ul>
+<li>每张图是该地点的代表照片</li>
+<li>底部加<strong>黄色描边大字报</strong>（地名）</li>
+<li>配<strong>9 宫格 / 21 宫格</strong>网格拼图</li>
+<li>视觉：信息密度爆表</li>
+<li>用途：作为"汇总贴"，承接系列笔记</li>
+</ul>
+</div>
+<div class="col green">
+<h4>② 攻略型（景点串联）</h4>
+<p style="color:var(--text-dim);font-size:.85rem;margin-bottom:.8rem">典型：Citywalk 广州百年街、澳门暴走 4 小时</p>
+<ul>
+<li>每张图是路线中的一个点</li>
+<li>景点图为主，人物点缀</li>
+<li>有<strong>美食特写 + 建筑细节</strong></li>
+<li>视觉：可执行性高（看完就能去）</li>
+<li>用途：作为"具体路线"攻略</li>
+</ul>
+</div>
+<div class="col yellow">
+<h4>③ 视觉震撼型（单张大图）</h4>
+<p style="color:var(--text-dim);font-size:.85rem;margin-bottom:.8rem">典型：万佛天国、应县木塔废墟</p>
+<ul>
+<li>每张图都是"震撼摄影"作品</li>
+<li>人作比例尺（渺小感）</li>
+<li>高饱和度暖色调</li>
+<li>视觉：直接被画面击中</li>
+<li>用途：作为"情绪钩子"开场</li>
+</ul>
+</div>
+</div>
+
+<h3 style="color:var(--orange);margin:2.5rem 0 1rem">🎨 TOP1 真实配图分析（广东21城）</h3>
+
+<p style="color:var(--text-dim);margin-bottom:1rem">TOP1 笔记共 <strong>15 张配图</strong>，第一张（封面/0.jpg）就是 vision_analyze 看到的：</p>
+
+<div class="card">
+<h3>📐 封面（0.jpg）：21 宫格城市拼图</h3>
+<ul style="color:var(--text-dim);line-height:1.8">
+<li><strong>版式</strong>：4×5 + 1 网格（21 张城市缩略图 + 顶部博主头像 + 城市简介）</li>
+<li><strong>主体内容</strong>：广东省 21 个城市的代表性建筑/景点缩略图</li>
+<li><strong>排版</strong>：每行底部加 黄色描边黑字大字报 风格的地名（潮州/深圳/惠州/珠海...）</li>
+<li><strong>视觉冲击力来源</strong>：<strong>"一图看完广东"</strong>的信息密度 + 黄色字报的醒目感</li>
+<li><strong>作用</strong>：作为"汇总贴封面"，用户看了就知道"这一篇全"</li>
+</ul>
+</div>
+
+<h3 style="color:var(--orange);margin:2.5rem 0 1rem">🎯 视觉系统的 3 个可学点 + 2 个难学点</h3>
+
+<div class="three-col">
+<div class="col green">
+<h4>✅ 可学</h4>
+<ul>
+<li>网格拼图模板（21 宫格设计感强）</li>
+<li>黄色描边大字报（统一视觉）</li>
+<li>博主头像 + 简介固定放角落</li>
+<li>人作比例尺的拍摄手法</li>
+</ul>
+</div>
+<div class="col red">
+<h4>❌ 难学</h4>
+<ul>
+<li>摄影技能本身（3-5 年积累）</li>
+<li>瞬间抓拍 + 角度选择</li>
+<li>避开人群的构图能力</li>
+<li>全网卡上限 18 张图的执行力</li>
+</ul>
+</div>
+<div class="col yellow">
+<h4>⚡ 机会点</h4>
+<ul>
+<li>他 0 视频 = 视频化是空白</li>
+<li>可做"<strong>实地走一遍</strong>" vlog</li>
+<li>可加 AI 解说（影视取景地角度）</li>
+<li>百思传媒的影视资源是独特护城河</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- 07 话题标签 -->
+<section id="s7">
+<div class="section-num">CHAPTER 07</div>
+<h2 class="section-title">话题标签策略</h2>
+<div class="divider"></div>
+<p class="section-sub">32 篇笔记共 334 个标签/话题，平均每篇 10.4 个（卡着小红书上限发）。</p>
+
+<h3 style="color:var(--orange);margin:2rem 0 1rem">🏷️ Top 20 高频标签</h3>
+<div class="tag-row">
+<span class="note-tag hot">我在家乡当游客 (8次)</span>
+<span class="note-tag hot">反向旅行出门溜溜 (7次)</span>
+<span class="note-tag hot">新年旅行第一站 (7次)</span>
+<span class="note-tag hot">涨粉涨赞用薯条 (6次)</span>
+<span class="note-tag hot">不早起旅行日记 (6次)</span>
+<span class="note-tag">支付宝惠出境 (5次)</span>
+<span class="note-tag">澳门 (5次)</span>
+<span class="note-tag">蒲公英优质笔记激励计划2.0 (5次)</span>
+<span class="note-tag">广州 (4次)</span>
+<span class="note-tag">成都周边游 (4次)</span>
+<span class="note-tag">澳门打卡 (4次)</span>
+<span class="note-tag hot">跟着黑神话看古建 (4次)</span>
+<span class="note-tag">国庆划得来逛吃指南 (4次)</span>
+<span class="note-tag">本地人才知道的小众景点 (4次)</span>
+<span class="note-tag">跟着兴趣去旅行 (3次)</span>
+<span class="note-tag">先出发再说 (3次)</span>
+<span class="note-tag">要春游更要村游 (3次)</span>
+<span class="note-tag">澳门攻略 (3次)</span>
+<span class="note-tag">澳门拍照 (3次)</span>
+<span class="note-tag">chinatravel (3次)</span>
+</div>
+
+<div class="three-col" style="margin-top:2rem">
+<div class="col green">
+<h4>🟢 自建标签（重复使用）</h4>
+<ul>
+<li>"我在家乡当游客" 8 次</li>
+<li>"反向旅行出门溜溜" 7 次</li>
+<li>"不早起旅行日记" 6 次</li>
+<li>"本地人才知道的小众景点" 4 次</li>
+</ul>
+<p style="color:var(--text-mute);font-size:.85rem;margin-top:.6rem">→ <strong>建立个人品牌标签矩阵</strong>，让用户反复看到</p>
+</div>
+<div class="col yellow">
+<h4>🟡 蹭 IP 标签</h4>
+<ul>
+<li>"跟着黑神话看古建" 4 次</li>
+<li>"chinatravel" 3 次</li>
+<li>"蒲公英优质笔记激励计划2.0" 5 次</li>
+</ul>
+<p style="color:var(--text-mute);font-size:.85rem;margin-top:.6rem">→ <strong>借热点 IP 流量</strong>，《黑神话：悟空》是 2024 年最强 IP</p>
+</div>
+<div class="col red">
+<h4>🔴 平台活动标签</h4>
+<ul>
+<li>"涨粉涨赞用薯条" 6 次</li>
+<li>"蒲公英优质笔记激励计划2.0" 5 次</li>
+<li>"支付宝惠出境" 5 次</li>
+</ul>
+<p style="color:var(--text-mute);font-size:.85rem;margin-top:.6rem">→ <strong>参与官方激励拿流量</strong>（薯条是付费推广，蒲公英是接单平台）</p>
+</div>
+</div>
+
+<div class="alert alert-info">
+<h4>💡 标签策略三大原则（百思可学）</h4>
+<ol style="line-height:2">
+<li><strong>重复发自己的 5-10 个核心标签</strong>，建立品牌标签矩阵</li>
+<li><strong>每个热点 IP 必蹭一次</strong>（《黑神话》/《哪吒》/《狂飙》/《我的阿勒泰》等）</li>
+<li><strong>每篇加 1-2 个平台活动标签</strong>，蹭官方激励</li>
+</ol>
+</div>
+</section>
+
+<!-- 08 32 篇数据表 -->
+<section id="s8">
+<div class="section-num">CHAPTER 08</div>
+<h2 class="section-title">32 篇完整数据表</h2>
+<div class="divider"></div>
+<p class="section-sub">全部 32 篇笔记的点赞/收藏/评论/分享/配图数/标签数（按点赞排序）。</p>
+
+<div class="search-box">
+<input type="text" id="noteSearch" placeholder="🔍 搜索笔记标题、标签..." oninput="filterNotes(this.value)">
+</div>
+
+<table id="notesTable">
+<thead>
+<tr>
+<th>排名</th>
+<th>标题</th>
+<th>点赞</th>
+<th>收藏</th>
+<th>评论</th>
+<th>分享</th>
+<th>收藏率</th>
+<th>互动率</th>
+<th>配图</th>
+<th>标签数</th>
+</tr>
+</thead>
+<tbody id="notesBody">
+<!-- 通过 JS 填充 32 篇 -->
+</tbody>
+</table>
+
+<p style="color:var(--text-mute);font-size:.8rem;margin-top:1rem">数据时间：2026-06-13 抓取 · 数据源：MediaCrawler (登录态抓取) · 字段：note_url · note_id · time · tag_list</p>
+</section>
+
+<!-- 09 商业化 -->
+<section id="s9">
+<div class="section-num">CHAPTER 09</div>
+<h2 class="section-title" style="color:var(--yellow)">商业化线索（商单识别）</h2>
+<div class="divider" style="background:var(--yellow)"></div>
+<p class="section-sub">通过文案 + 标签 + 互动模式，识别账号的商业化路径。</p>
+
+<div class="alert alert-warn">
+<h4>⚠️ 商单笔记特征（被识别出来的）</h4>
+<p>32 篇笔记中至少 <strong>3-5 篇是软广/商单</strong>，特征如下：</p>
+</div>
+
+<h3 style="color:var(--orange);margin:2rem 0 1rem">📋 已识别的商单笔记</h3>
+
+<div class="card">
+<h3>1. 《博主揭秘，年化3.13%的稳利宝赚旅行基金》（107赞）</h3>
+<p style="color:var(--text-dim);margin:.5rem 0">标题暴露了：完全不是攻略，是 <strong>理财产品的"旅行基金"广告</strong>，应该出现在金融账号而不是旅行号。</p>
+<p style="color:var(--red);font-size:.85rem">→ 数据表现差（107赞）说明<strong>粉丝对这种商单不买账</strong></p>
+</div>
+
+<div class="card">
+<h3>2. 《旅行30天行李清单🧾关于我在PDD省了一个亿》（193赞）</h3>
+<p style="color:var(--text-dim);margin:.5rem 0">正文一定植入了 PDD（拼多多）链接，文案带"PDD"关键词——典型的 <strong>PDD 旅行装备商单</strong>。</p>
+<p style="color:var(--text-mute);font-size:.85rem">→ 数据中等（193赞），粉丝勉强接受</p>
+</div>
+
+<div class="card">
+<h3>3. 《我很少用"震撼"形容一个地方》（1122赞 + 850收藏）</h3>
+<p style="color:var(--text-dim);margin:.5rem 0">文案末尾明确出现："<strong>一直在旅行，我把旅行装备都升级了。都是在天猫国际下单的，这次安全下车！一直想有双专业运动鞋，选了亚瑟士...</strong>" —— <strong>天猫国际 × 亚瑟士 商单</strong></p>
+<p style="color:var(--green);font-size:.85rem">→ 高级商单：<strong>把广告藏在"个人体验"中，不影响核心攻略内容</strong></p>
+</div>
+
+<div class="three-col" style="margin-top:2rem">
+<div class="col yellow">
+<h4>💰 商业化路径 1：平台激励</h4>
+<ul>
+<li>"涨粉涨赞用薯条"标签（6 次）</li>
+<li>"蒲公英优质笔记激励计划2.0"（5 次）</li>
+<li>说明他在<strong>主动参与小红书官方激励</strong>，拿平台流量分成</li>
+</ul>
+</div>
+<div class="col green">
+<h4>💰 商业化路径 2：品牌商单</h4>
+<ul>
+<li>天猫国际、PDD、亚瑟士等品牌</li>
+<li>互动率 80%+，<strong>广告 ROI 高</strong></li>
+<li>高级软广（藏进攻略）vs 低级硬广（标题党）</li>
+</ul>
+</div>
+<div class="col">
+<h4>💰 商业化路径 3：攻略引流</h4>
+<ul>
+<li>互动率 79.6% <strong>远超娱乐内容</strong></li>
+<li>收藏率 79.6% <strong>品牌投放 ROI 高</strong></li>
+<li>适合文旅、酒店、相机、户外品牌</li>
+</ul>
+</div>
+</div>
+
+<div class="alert alert-success">
+<h4>✓ 百思对标的商业化启示</h4>
+<p>百思传媒做影视内容，<strong>广告主类型天然契合</strong>：</p>
+<ul style="margin-top:.5rem;line-height:1.8">
+<li><strong>影视宣发</strong>（每部新剧的宣传天然适配"取景地"内容）</li>
+<li><strong>文旅品牌</strong>（拍摄地的旅游局/景区合作）</li>
+<li><strong>酒店/民宿</strong>（拍摄剧组下榻酒店推荐）</li>
+<li><strong>相机/手机品牌</strong>（摄影器材植入）</li>
+</ul>
+</div>
+</section>
+
+<!-- 10 差异化建议 -->
+<section id="s10">
+<div class="section-num" style="color:var(--green)">CHAPTER 10</div>
+<h2 class="section-title" style="color:var(--green)">百思差异化建议</h2>
+<div class="divider" style="background:var(--green)"></div>
+<p class="section-sub">基于以上 9 章全量分析，给百思传媒做影视类小红书账号的具体建议。</p>
+
+<div class="alert alert-warn">
+<h4>⚠️ 不要做的事</h4>
+<ul style="line-height:1.8">
+<li><strong>不要做"30岁前游遍全国第二版"</strong> —— 他已经有 1 万粉 + 25% 爆款率，新号很难正面竞争</li>
+<li><strong>不要硬学他的视觉风格</strong> —— 摄影技能是 3-5 年积累，强行模仿会显得廉价</li>
+<li><strong>不要 100% 套他的标签策略</strong> —— 重复 8 次的"我在家乡当游客"标签矩阵，他做了 2 年才有沉淀</li>
+</ul>
+</div>
+
+<div class="alert alert-success">
+<h4>✓ 应该做的事（基于百思资源）</h4>
+<ol style="line-height:2">
+<li><strong>角度差异化</strong>：做"影视取景地 + 明星同款 + 剧组幕后"——他的摄影技能无法复刻，但百思有<strong>独家影视资源</strong></li>
+<li><strong>形式差异化</strong>：他 0 视频全部图文，<strong>百思做 vlog + 解说</strong>是空白赛道</li>
+<li><strong>人群差异化</strong>：他的目标人群是"旅游爱好者"，百思做"<strong>追星族 + 影视粉丝 + 文旅消费</strong>"，用户单价更高</li>
+<li><strong>商业化差异化</strong>：他靠 PDD/亚瑟士商单，百思做"<strong>影视宣发 + 文旅品牌</strong>"更核心</li>
+</ol>
+</div>
+
+<h3 style="color:var(--green);margin:2.5rem 0 1rem">🛠️ 30 天冷启动 SOP（参考）</h3>
+
+<div class="card">
+<h3>第 1-7 天：账号定位 + 素材准备</h3>
+<ul style="color:var(--text-dim);line-height:1.8">
+<li>账号定位：<strong>百思传媒/影视资源/取景地/明星同款/30 岁前打卡 30 个剧组拍摄地</strong></li>
+<li>整理百思已有的影视项目素材（每部剧的拍摄地、花絮、演员路演）</li>
+<li>发 3-5 篇已有素材改稿（图文+视频）</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>第 8-14 天：测试内容形式</h3>
+<ul style="color:var(--text-dim);line-height:1.8">
+<li>测试 3 种形式：图文攻略 / vlog 1min / 解说长图</li>
+<li>每种发 2 篇，看哪个爆款率高</li>
+<li>用他的"<strong>为 N 张照片专门飞</strong>"公式但套影视场景：<em>"为拍《狂飙》我去了江门，取景地现状..."</em></li>
+</ul>
+</div>
+
+<div class="card">
+<h3>第 15-21 天：蹭 IP 测试</h3>
+<ul style="color:var(--text-dim);line-height:1.8">
+<li>蹭当季最热 IP（按当时热点定）</li>
+<li>格式：<strong>热点钩子 + 个人故事 + 干货攻略</strong>（参考他的《黑悟空 + 贾樟柯》模板）</li>
+<li>每篇打 5 个自建标签 + 3 个蹭 IP 标签 + 2 个平台活动标签</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>第 22-30 天：建立腰部内容</h3>
+<ul style="color:var(--text-dim);line-height:1.8">
+<li>找 2-3 个爆款模板<strong>批量复制</strong>（同系列第二/第三篇）</li>
+<li>目标：中位数笔记冲到 500+ 赞（他的中位数只有 252）</li>
+<li>建立账号标签：<strong>"拍摄地打卡" / "明星同款路线" / "剧组拍摄花絮"</strong></li>
+</ul>
+</div>
+
+<h3 style="color:var(--green);margin:2.5rem 0 1rem">📊 30 天目标对照</h3>
+<table>
+<thead><tr><th>指标</th><th>"30岁前游历全国"基准</th><th>百思新号 30 天目标</th><th>90 天目标</th></tr></thead>
+<tbody>
+<tr><td>粉丝</td><td>~1 万</td><td>1,000</td><td>5,000</td></tr>
+<tr><td>笔记数</td><td>32 篇（20个月）</td><td>15 篇（30 天）</td><td>50 篇（90 天）</td></tr>
+<tr><td>均赞</td><td>855</td><td>300</td><td>500</td></tr>
+<tr><td>爆款率(≥1000赞)</td><td>25%</td><td>5%</td><td>15%</td></tr>
+<tr><td>互动率</td><td>79.6%</td><td>50%</td><td>70%</td></tr>
+<tr><td>商业化</td><td>商单 + 平台激励</td><td>0</td><td>第 1 单文旅合作</td></tr>
+</tbody>
+</table>
+
+<div class="alert alert-special">
+<h4>🎯 核心结论</h4>
+<p>不要做"<strong>30 岁前游遍全国第二版</strong>"。<br>
+做"<strong>30 岁前打卡 30 个剧组取景地</strong>"的<strong>唯一版本</strong>。<br><br>
+他的护城河是摄影技能 + 持续更新（不可短期复制）。<br>
+百思的护城河是<strong>影视资源</strong>（独家、不可复制）。</p>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<p class="brand">百思传媒 · 竞品研究院</p>
+<p>文化内容 IP 整合营销集团</p>
+<p style="margin-top:1rem;font-size:.75rem">
+报告生成于 2026-06-13 · 数据规模：32 篇笔记 + 526 张图片<br>
+数据来源：MediaCrawler（开源爬虫，登录态抓取，无须逆向 X-S 签名）<br>
+⚠️ 评论详情接口报错（小红书评论 API 风控更严），未拿到评论内容；其他数据完整<br>
+⚠️ 本报告基于公开数据做对标分析，AI 仿写请遵守原创性原则
+</p>
+</footer>
+
+<script>
+// 32 篇笔记的完整数据
+const notes = [
+{rank:1,title:"在24年，我旅行了广东2️⃣1️⃣个城市🔥",liked:7490,collected:4356,comments:256,share:1555,imgs:15,tags:10},
+{rank:2,title:"Citywalk🚶🏻广州这条街1公里走过百年历史",liked:4320,collected:4700,comments:76,share:2431,imgs:15,tags:11},
+{rank:3,title:"朋友圈以为我去柬埔寨❗️其实就在成都周边❗️",liked:2114,collected:1743,comments:167,share:2957,imgs:18,tags:10},
+{rank:4,title:"为了这1️⃣5️⃣张照片，我专门飞了趟厦门❗️",liked:2007,collected:1237,comments:98,share:629,imgs:18,tags:11},
+{rank:5,title:"这不是AI❗️这是震惊世界的现实\"万佛天国\"",liked:1542,collected:1057,comments:319,share:713,imgs:15,tags:9},
+{rank:6,title:"澳门不走回头路🚶‍➡️一天打卡2️⃣0️⃣个地方",liked:1264,collected:1449,comments:70,share:362,imgs:17,tags:11},
+{rank:7,title:"都在说《黑悟空》，而我在山西寻找贾樟柯。",liked:1122,collected:850,comments:75,share:279,imgs:18,tags:10},
+{rank:8,title:"为了这1️⃣2️⃣张照片，在澳门暴走4小时❗️",liked:1061,collected:730,comments:56,share:152,imgs:18,tags:11},
+{rank:9,title:"为了15天走遍山西晋中南，我做了个计划书❗️",liked:628,collected:815,comments:67,share:73,imgs:18,tags:10},
+{rank:10,title:"放弃了桂林，旁边的贺州才是人间仙境❗️",liked:580,collected:737,comments:102,share:482,imgs:16,tags:10},
+{rank:11,title:"人生建议：离开厦门前，一定要去这🔟个地方‼️",liked:533,collected:601,comments:52,share:268,imgs:18,tags:11},
+{rank:12,title:"我很少用\"震撼\"形容一个地方……",liked:532,collected:435,comments:43,share:143,imgs:18,tags:10},
+{rank:13,title:"为了这1️⃣8️⃣张照片，我在鼓浪屿暴走3W步❗️",liked:499,collected:415,comments:27,share:136,imgs:18,tags:10},
+{rank:14,title:"一天2万步🚶‍➡️，我拍到的澳门1️⃣7️⃣个机位",liked:463,collected:496,comments:35,share:187,imgs:18,tags:10},
+{rank:15,title:"旅行大半个福建，我集齐了这些绝美的屋顶！",liked:374,collected:188,comments:35,share:24,imgs:18,tags:10},
+{rank:16,title:"一天打卡澳门2️⃣0️⃣个景点（附私藏宝藏机位）",liked:313,collected:279,comments:18,share:68,imgs:18,tags:10},
+{rank:17,title:"广州周边藏着\"小桂林\"，不到100💰玩两天✌️",liked:311,collected:192,comments:48,share:58,imgs:18,tags:10},
+{rank:18,title:"广州12个宝藏地标🚶🏻去过一半才算有效旅行",liked:254,collected:188,comments:30,share:76,imgs:17,tags:10},
+{rank:19,title:"在太原，去过这2️⃣0️⃣个地方再离开❗️",liked:253,collected:292,comments:42,share:69,imgs:18,tags:10},
+{rank:20,title:"我很少用\"震撼\"形容一个地方❗️❗️",liked:221,collected:123,comments:31,share:61,imgs:18,tags:10},
+{rank:21,title:"旅行30天行李清单🧾关于我在PDD省了一个亿",liked:193,collected:109,comments:23,share:15,imgs:15,tags:10},
+{rank:22,title:"去过这5️⃣个地方，才算来过\"真正的澳门\"❗️",liked:174,collected:117,comments:24,share:24,imgs:18,tags:10},
+{rank:23,title:"站点巴士🚌往返版纳2️⃣0️⃣次，压箱底路线❗️",liked:133,collected:99,comments:27,share:31,imgs:18,tags:10},
+{rank:24,title:"建议加入人生清单‼️真正活着的4000年古城",liked:124,collected:92,comments:51,share:9,imgs:17,tags:10},
+{rank:25,title:"福建旅行五天，才知道什么叫\"众神办事处\"🙏",liked:122,collected:83,comments:33,share:24,imgs:18,tags:10},
+{rank:26,title:"这不是瑞士❗️这是成都周边的\"梦幻雪国\"",liked:118,collected:55,comments:28,share:15,imgs:18,tags:10},
+{rank:27,title:"迄今为止，我最爱的城市出现了❗️❗️",liked:112,collected:72,comments:26,share:16,imgs:17,tags:10},
+{rank:28,title:"2024年这15张图，让我怒涨1️⃣万粉丝❗️",liked:110,collected:26,comments:19,share:3,imgs:9,tags:10},
+{rank:29,title:"博主揭秘，年化3.13%的稳利宝赚旅行基金❗️",liked:107,collected:47,comments:10,share:3,imgs:18,tags:10},
+{rank:30,title:"广州周末去哪儿玩❓❓一次推荐7个宝藏目的地",liked:80,collected:66,comments:34,share:8,imgs:16,tags:10},
+{rank:31,title:"不在青岛❗️99%人都没去过惠州的这片海港",liked:72,collected:48,comments:27,share:54,imgs:18,tags:10},
+{rank:32,title:"跟着《黑悟空》过十一，每天都会热泪盈眶❗️",liked:138,collected:89,comments:36,share:20,imgs:18,tags:10}
+];
+
+// 渲染表格
+function render(filter='') {
+  const tbody = document.getElementById('notesBody');
+  const f = filter.toLowerCase();
+  tbody.innerHTML = '';
+  notes.filter(n => !f || n.title.toLowerCase().includes(f)).forEach(n => {
+    const saveRate = n.liked ? (n.collected/n.liked*100).toFixed(1) : 0;
+    const intRate = n.liked ? ((n.collected+n.comments+n.share)/n.liked*100).toFixed(1) : 0;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="num">${n.rank}</td>
+      <td class="title-cell">${n.title}</td>
+      <td class="num"><strong>${n.liked.toLocaleString()}</strong></td>
+      <td class="num" style="color:var(--green)">${n.collected.toLocaleString()}</td>
+      <td class="num">${n.comments}</td>
+      <td class="num" style="color:var(--yellow)">${n.share}</td>
+      <td class="num">${saveRate}%</td>
+      <td class="num" style="color:${intRate>100?'var(--yellow)':'var(--orange)'}"><strong>${intRate}%</strong></td>
+      <td class="num">${n.imgs}</td>
+      <td class="num">${n.tags}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+function filterNotes(q) { render(q); }
+render();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V3 视觉版 · 30岁前游历全国 | 百思传媒</title>
+<style>
+:root{--bg:#170d02;--bg-2:#1f1206;--bg-3:#2a1a0a;--orange:#ffac02;--orange-2:#ff8a00;--yellow:#edff45;--green:#54a87e;--text:#f5f5f5;--text-dim:#b8a890;--text-mute:#7a6a55;--line:#3a2a18;--red:#ff4444;--blue:#60a5fa}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;overflow-x:hidden}
+::selection{background:var(--orange);color:var(--bg)}
+.hero{min-height:60vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at top,#2a1a0a 0%,#170d02 70%);padding:3rem 2rem;text-align:center}
+.hero h1{font-size:clamp(2.2rem,5vw,4rem);font-weight:900;letter-spacing:-.02em;margin-bottom:1rem;background:linear-gradient(135deg,#fff 0%,var(--orange) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .subtitle{font-size:clamp(1rem,2vw,1.4rem);color:var(--text-dim);margin-bottom:2rem}
+section{max-width:1100px;margin:0 auto;padding:4rem 2rem}
+.section-num{color:var(--orange);font-size:.9rem;font-weight:700;letter-spacing:.3em;margin-bottom:.5rem}
+.section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:1rem;color:#fff}
+.divider{width:60px;height:3px;background:var(--orange);margin:1rem 0 2rem}
+.section-sub{color:var(--text-dim);font-size:1.1rem;margin-bottom:3rem;max-width:700px}
+.alert{padding:1.5rem;margin:1.5rem 0;border-left:4px solid}
+.alert-warn{background:rgba(255,68,68,.1);border-color:var(--red)}
+.alert-warn h4{color:var(--red)}
+.alert-success{background:rgba(74,222,128,.1);border-color:#4ade80}
+.alert-success h4{color:#4ade80}
+.alert-info{background:rgba(96,165,250,.1);border-color:var(--blue)}
+.alert-info h4{color:var(--blue)}
+.alert-special{background:rgba(237,255,69,.08);border-color:var(--yellow)}
+.alert-special h4{color:var(--yellow)}
+.three-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin:2rem 0}
+.col{padding:2rem;background:var(--bg-2);border-top:3px solid var(--orange)}
+.col.green{border-top-color:var(--green)}
+.col.green h4{color:var(--green)}
+.col.yellow{border-top-color:var(--yellow)}
+.col.yellow h4{color:var(--yellow)}
+.col.red{border-top-color:var(--red)}
+.col.red h4{color:var(--red)}
+.col h4{color:var(--orange);margin-bottom:1rem;font-size:1.1rem}
+.col ul{list-style:none}
+.col ul li{padding:.5rem 0;padding-left:1.2rem;position:relative;color:var(--text-dim);font-size:.92rem;line-height:1.5}
+.col ul li::before{content:'▸';position:absolute;left:0;color:var(--orange)}
+.col.green ul li::before{color:var(--green)}
+.col.yellow ul li::before{color:var(--yellow)}
+.col.red ul li::before{color:var(--red)}
+.col.blue{border-top-color:var(--blue)}
+.col.blue h4{color:var(--blue)}
+.col.blue ul li::before{color:var(--blue)}
+.col.purple{border-top-color:#a78bfa}
+.col.purple h4{color:#a78bfa}
+.col.purple ul li::before{color:#a78bfa}
+.image-card{background:var(--bg-2);border:1px solid var(--line);margin-bottom:2rem;overflow:hidden}
+.image-card .label{padding:1rem 1.2rem;background:var(--bg-3);border-bottom:1px solid var(--line)}
+.image-card .label h3{color:var(--orange);font-size:1.1rem;margin-bottom:.3rem}
+.image-card .label .meta{color:var(--text-mute);font-size:.8rem}
+.image-card img{display:block;width:100%;max-width:600px;height:auto;margin:0 auto;padding:1rem}
+.image-card .analysis{padding:1.2rem;background:var(--bg-2);border-top:1px solid var(--line)}
+.image-card .analysis h4{color:var(--yellow);font-size:.95rem;margin-bottom:.5rem}
+.image-card .analysis p{color:var(--text-dim);font-size:.9rem;line-height:1.6;margin-bottom:.4rem}
+.image-card .analysis .key{color:var(--orange);font-weight:600}
+.timeline{display:flex;flex-direction:column;gap:1rem;margin:2rem 0}
+.timeline-item{display:flex;gap:1rem;padding:1rem;background:var(--bg-2);border-left:3px solid var(--orange)}
+.timeline-item .step-num{font-size:1.5rem;font-weight:900;color:var(--orange);min-width:40px}
+.timeline-item .step-content h4{color:var(--text);margin-bottom:.4rem}
+.timeline-item .step-content p{color:var(--text-dim);font-size:.9rem}
+.image-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin:2rem 0}
+.image-grid .mini{background:var(--bg-2);border:1px solid var(--line);padding:.8rem;text-align:center}
+.image-grid .mini img{width:100%;aspect-ratio:1/1;object-fit:cover;margin-bottom:.4rem}
+.image-grid .mini .title{font-size:.85rem;color:var(--orange);font-weight:600}
+.image-grid .mini .meta{font-size:.75rem;color:var(--text-mute)}
+.compare-table{width:100%;border-collapse:collapse;margin:2rem 0;background:var(--bg-2)}
+.compare-table th, .compare-table td{padding:1rem;text-align:left;border-bottom:1px solid var(--line);font-size:.9rem}
+.compare-table th{background:var(--bg-3);color:var(--orange);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em}
+.compare-table tr:hover td{background:rgba(255,172,2,.05)}
+.compare-table td.label{font-weight:600;color:var(--text)}
+.compare-table td.first{color:var(--orange)}
+.compare-table td.second{color:var(--green)}
+.compare-table td.third{color:var(--yellow)}
+footer{text-align:center;padding:3rem 2rem;color:var(--text-mute);font-size:.85rem;border-top:1px solid var(--line);margin-top:4rem}
+footer .brand{color:var(--orange);font-weight:700;letter-spacing:.2em}
+@media(max-width:768px){section{padding:3rem 1.2rem}}
+</style>
+</head>
+<body>
+
+<a href="./index.html" style="position:fixed;top:1rem;left:1rem;z-index:100;display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.2rem;background:rgba(255,172,2,.15);border:1px solid var(--orange);color:var(--orange);text-decoration:none;font-size:.9rem;font-weight:600;border-radius:4px;backdrop-filter:blur(8px)">← 返回菜单</a>
+
+
+<header class="hero">
+<div>
+<span class="brand-tag" style="display:inline-block;padding:.4rem 1.2rem;border:1px solid var(--orange);color:var(--orange);font-size:.8rem;letter-spacing:.3em;margin-bottom:1.5rem;font-weight:600">百思传媒 · 视觉系统深度拆解</span>
+<h1>30岁前游历全国</h1>
+<p class="subtitle">基于 526 张原始配图逐张分析的视觉系统深度报告</p>
+</div>
+</header>
+
+<section id="s1">
+<div class="section-num">CHAPTER 01</div>
+<h2 class="section-title">颠覆性发现</h2>
+<div class="divider"></div>
+<p class="section-sub">基于 TOP1 「广东21城」全部 15 张图片 + TOP3/TOP5 封面对比分析。</p>
+
+<div class="alert alert-special">
+<h4>⚠️ 第一版报告（基于 8 张封面）的结论是错的</h4>
+<p>第一版我推测他是"<strong>摄影师视角</strong>"（避开人群、前景引导、黄金时刻）。看完 526 张图后发现：<strong>真实情况比这复杂得多</strong>。</p>
+<p style="margin-top:.6rem"><strong>真实情况</strong>：他的内容有 <strong>3 种完全不同的配图策略</strong>，根据笔记类型切换——</p>
+<ul style="margin-top:.5rem;line-height:1.8">
+<li>📋 <strong>总结型</strong>（广东21城、澳门20个）：多宫格拼图 + 黄色大字报</li>
+<li>📸 <strong>攻略型</strong>（Citywalk、暴走4小时）：9宫格 + 景点串联 + 城市名大字报</li>
+<li>🎬 <strong>震撼型</strong>（万佛天国、柬埔寨→成都）：单张大图 + 人作比例尺</li>
+</ul>
+</div>
+
+<div class="three-col">
+<div class="col yellow">
+<h4>📋 总结型</h4>
+<ul>
+<li>封面：超大拼图（30格）</li>
+<li>正文：每张 = 1 个城市</li>
+<li>用途：汇总系列笔记</li>
+<li>代表：TOP1（7490赞）</li>
+</ul>
+</div>
+<div class="col green">
+<h4>📸 攻略型</h4>
+<ul>
+<li>封面：9宫格景点</li>
+<li>正文：每张 = 1 个景点</li>
+<li>用途：具体路线</li>
+<li>代表：TOP2（4320赞）</li>
+</ul>
+</div>
+<div class="col">
+<h4>🎬 震撼型</h4>
+<ul>
+<li>封面：单张大图</li>
+<li>正文：建筑细节 + 局部</li>
+<li>用途：情绪钩子</li>
+<li>代表：TOP5（1542赞）</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="s2">
+<div class="section-num">CHAPTER 02</div>
+<h2 class="section-title">TOP1 「广东21城」完整视觉时间线</h2>
+<div class="divider"></div>
+<p class="section-sub">15 张图逐张分析。TOP1 是 7490 赞的最高赞笔记，每张图都服务一个明确目的。</p>
+
+<div class="timeline">
+
+<div class="timeline-item">
+<div class="step-num">0</div>
+<div class="step-content">
+<h4>📍 0.jpg — 封面：30宫格城市拼图（最关键的"钩子页"）</h4>
+<p><strong>版式</strong>：5×6 = 30 个城市方格（不是 21 个，多了）。每格固定格式：顶部博主头像 + "30岁前游历全国" + 城市简介（如"湛江｜世界的繁华中心"）+ 4-6 张该城市景点缩略图（小方格再嵌网格）+ <strong>底部黄色描边黑色大字报</strong>城市名</p>
+<p><strong>配色</strong>：白底 + 黄色描边黑色字报（极强对比，远看也清楚）</p>
+<p><strong>字体</strong>：手写体 / 行楷风格（个人感强，不是印刷体）</p>
+<p><strong>作用</strong>：<strong>"一图看完广东"</strong>的信息密度 → 读者秒懂"这一篇是汇总贴" → 看完封面就知道要收藏</p>
+</div>
+</div>
+
+<div class="image-card">
+<div class="label">
+<h3>封面 0.jpg 实拍</h3>
+<div class="meta">TOP1 广东21城 · 7490赞 · 30宫格城市拼图</div>
+</div>
+<img src="./images/top1-0-cover.jpg" alt="TOP1 封面">
+<div class="analysis">
+<p><span class="key">📐 版式</span>：5列×6行 = 30个城市方格，每格内嵌 4-6 张景点缩略图</p>
+<p><span class="key">🎨 配色</span>：白底 + 黄底黑描边大字报（高对比，远看清晰）</p>
+<p><span class="key">✍️ 字体</span>：手写体/行楷（个人感，不是印刷体）</p>
+<p><span class="key">💡 视觉钩子</span>："一图看完广东"信息密度 + 大字报吸睛</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="step-num">1</div>
+<div class="step-content">
+<h4>🎫 1.jpg — 第二张图："实物证据"页（建立信任）</h4>
+<p><strong>版式</strong>：单张构图（手部特写）</p>
+<p><strong>主体</strong>：一只手扇形展开一堆火车票（K769 韶关东→广州北 等十几张）</p>
+<p><strong>背景</strong>：Mac 笔记本屏幕（暗示他在电脑前整理攻略）</p>
+<p><strong>底部大字报</strong>："<strong>去了很多地方 / 攒了很多火车票</strong>"</p>
+<p><strong>作用</strong>：用实物证据建立"<strong>特种兵旅行</strong>"人设的可信度</p>
+</div>
+</div>
+
+<div class="image-card">
+<div class="label">
+<h3>1.jpg "火车票证据" 实拍</h3>
+<div class="meta">第二张图 · 实物证据页 · 建立人设</div>
+</div>
+<img src="./images/top1-1-train-tickets.jpg" alt="火车票证据">
+<div class="analysis">
+<p><span class="key">🎯 策略</span>：手部特写 + 实物展示 + 黄色字报</p>
+<p><span class="key">✍️ 文字</span>："去了很多地方 / 攒了很多火车票"</p>
+<p><span class="key">💡 心理学</span>：用实物作为"<strong>特种兵</strong>"人设的视觉证据（不只是文字说"我去了很多地方"，而是<strong>直接展示证据</strong>）</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="step-num">2</div>
+<div class="step-content">
+<h4>📱 2.jpg — 第三张图："小红书截图"风格内容预览</h4>
+<p><strong>版式</strong>：4 个 2×2 网格 + 中间黄色大字报 + 底部 2 网格 + 字报</p>
+<p><strong>主体</strong>：模拟小红书动态截图（头像 + 昵称"30岁前游历全国" + 地点 + 文字）</p>
+<p><strong>中间大字报</strong>："<strong>我一直在发掘宝藏有趣的地方！</strong>"</p>
+<p><strong>作用</strong>：<strong>关键视觉策略</strong> —— 用"小红书截图"作为"内容预览"，暗示"关注我能看到更多这样的内容" → 拉新关注的视觉钩子</p>
+</div>
+</div>
+
+<div class="image-card">
+<div class="label">
+<h3>2.jpg "小红书截图" 风格</h3>
+<div class="meta">第三张图 · 内容预览 · 拉新关注的视觉钩子</div>
+</div>
+<img src="./images/top1-2-xhs-screenshot.jpg" alt="小红书截图风格">
+<div class="analysis">
+<p><span class="key">📐 版式</span>：4 个 2×2 网格（模拟小红书动态）</p>
+<p><span class="key">✍️ 文字</span>："我一直在发掘宝藏有趣的地方！"</p>
+<p><span class="key">💡 钩子原理</span>：用"小红书截图"作为内容预览，让用户提前感受"关注我就能看到这种内容" → <strong>关注按钮的视觉预演</strong></p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="step-num">3</div>
+<div class="step-content">
+<h4>🏆 3.jpg — 第四张图："数据证明"页</h4>
+<p><strong>版式</strong>：6×6 = 36 个小红书笔记卡片网格</p>
+<p><strong>主体</strong>：每张卡片 = 之前的笔记缩略图 + 标题 + 点赞数（4347、227、1437...）</p>
+<p><strong>底部大字报</strong>："<strong>我的广东旅行攻略 / 在小红书出了很多 🔥 百赞千赞 爆文</strong>"</p>
+<p><strong>作用</strong>：用真实数据证明"我之前确实发过爆文" → 建立可信度 → 引导关注</p>
+</div>
+</div>
+
+<div class="image-card">
+<div class="label">
+<h3>3.jpg "数据证明"页 实拍</h3>
+<div class="meta">第四张图 · 36个爆款笔记卡片 · 真实数据建立可信度</div>
+</div>
+<img src="./images/top1-3-data-proof.jpg" alt="数据证明">
+<div class="analysis">
+<p><span class="key">📐 版式</span>：6×6 = 36 个真实笔记卡片网格</p>
+<p><span class="key">✍️ 文字</span>："我的广东旅行攻略 / 在小红书出了很多 🔥 百赞千赞 爆文"</p>
+<p><span class="key">💡 心理学</span>：用真实数据（4347、227、1437 等点赞数）证明"<strong>我说的攻略真的有效</strong>" → 解决用户的信任问题</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="step-num">4-14</div>
+<div class="step-content">
+<h4>📸 4-14.jpg — 第五到十五张图：广州/珠海/惠州/潮汕/江门/湛江/中山 9 宫格详解</h4>
+<p><strong>统一模板</strong>：<strong>每张都是 9 宫格 + 右下角黄色描边黑色字报城市名</strong></p>
+<p><strong>内容</strong>：每张图对应一个城市的 9 个景点（建筑/街景/美食/文化）</p>
+<p><strong>尺寸</strong>：1080×1440（3:4 小红书标准竖图）</p>
+<p><strong>作用</strong>：从第 5 张开始进入"正文干货"环节，每张图 = 1 个城市的视觉攻略</p>
+</div>
+</div>
+
+<div class="image-card">
+<div class="label">
+<h3>4.jpg "广州 9 宫格" 实拍</h3>
+<div class="meta">第五张图 · 第 1 个城市详解 · 广州 · 9宫格 + 右下角黄色字报</div>
+</div>
+<img src="./images/top1-4-guangzhou-9grid.jpg" alt="广州 9宫格">
+<div class="analysis">
+<p><span class="key">📐 版式</span>：3×3 = 9 宫格（小红书标准 9 宫格）</p>
+<p><span class="key">🎯 标识</span>：右下角黄色描边黑色"广州"大字报</p>
+<p><span class="key">📍 内容</span>：石室圣心教堂、广州圆大厦、骑楼、岭南建筑、陈家祠等 9 个景点</p>
+<p><span class="key">💡 模板价值</span>：<strong>统一模板 = 用户视觉记忆点</strong>，每篇都用 9 宫格 + 大字报，用户一看到这个模板就知道"这是 ta 的攻略"</p>
+</div>
+</div>
+
+<div class="image-card">
+<div class="label">
+<h3>14.jpg "江门 9 宫格" 实拍（最后一页）</h3>
+<div class="meta">第十五张图 · 第 7 个城市详解 · 江门（收尾页）</div>
+</div>
+<img src="./images/top1-14-jiangmen-9grid.jpg" alt="江门 9宫格">
+<div class="analysis">
+<p><span class="key">📐 版式</span>：3×3 = 9 宫格（与其他城市完全一致）</p>
+<p><span class="key">🎯 标识</span>：右下角黄色描边黑色"江门"大字报</p>
+<p><span class="key">📍 内容</span>：开平碉楼、骑楼老街、岭南建筑等</p>
+<p><span class="key">💡 收尾价值</span>：连最后一页也用同样的 9 宫格模板，<strong>强化视觉一致性</strong> → 用户看完最后一页还记得这个视觉风格</p>
+</div>
+</div>
+
+</div>
+
+<div class="alert alert-info">
+<h4>📊 TOP1 15 张图的完整结构</h4>
+<p><strong>4 张"建立信任页"</strong>（0-3.jpg）：封面 → 实物证据 → 内容预览 → 数据证明</p>
+<p><strong>11 张"城市详解页"</strong>（4-14.jpg）：广州、珠海、惠州、潮汕、江门、湛江、中山... 每张都是 9 宫格 + 大字报</p>
+<p><strong>核心结构</strong>：<strong>信任建立 27% + 干货内容 73%</strong>（4:11 比例）</p>
+</div>
+</section>
+
+<section id="s3">
+<div class="section-num">CHAPTER 03</div>
+<h2 class="section-title">三大封面策略对比</h2>
+<div class="divider"></div>
+<p class="section-sub">对比 TOP1（总结型）/ TOP3（社交型）/ TOP5（震撼型）三种封面的视觉策略。</p>
+
+<div class="image-card">
+<div class="label">
+<h3>TOP3 「朋友圈以为我去柬埔寨」(2114赞, 互动率230%) 封面</h3>
+<div class="meta">震撼视觉型 · 单张大图 · 人作比例尺 · 社交型爆款</div>
+</div>
+<img src="./images/top3-0-cover.jpg" alt="TOP3 柬埔寨封面">
+<div class="analysis">
+<p><span class="key">📐 版式</span>：单张大图，无任何文字/拼图/字报</p>
+<p><span class="key">🎯 主体</span>：成都德阳石刻公园（巨大石雕建筑，像吴哥窟）</p>
+<p><span class="key">📏 比例尺</span>：<strong>前景渺小人物背影</strong>（人物对比凸显建筑宏伟）</p>
+<p><span class="key">🎨 色调</span>：暖色调 + 高饱和 + 戏剧性天空</p>
+<p><span class="key">💡 爆款逻辑</span>：<strong>封面就让人以为是柬埔寨吴哥窟</strong>，完美服务"反差标题" → 用户主动想分享给朋友"看这个！"</p>
+</div>
+</div>
+
+<div class="image-card">
+<div class="label">
+<h3>TOP5 「万佛天国」(1542赞) 封面</h3>
+<div class="meta">震撼视觉型 · 单张大图 · 高对比古建筑</div>
+</div>
+<img src="./images/top5-0-cover.jpg" alt="TOP5 万佛天国封面">
+<div class="analysis">
+<p><span class="key">📐 版式</span>：单张构图，无任何文字/拼图/字报</p>
+<p><span class="key">🎯 主体</span>：四川绵阳报恩寺内部（万佛阁龙形雕刻）</p>
+<p><span class="key">🎨 色调</span>：暖色调（黄铜 + 朱红 + 翠绿点缀）</p>
+<p><span class="key">💥 视觉张力</span>：龙的动势 + 高对比度 + 仰角拍摄</p>
+<p><span class="key">💡 套路</span>：<strong>"这不是 AI，这是现实"</strong> 标题 + 真实震撼图 = 反 AI 情绪钩子</p>
+</div>
+</div>
+
+<h3 style="color:var(--orange);margin:2.5rem 0 1rem">📊 三种封面策略对比表</h3>
+
+<table class="compare-table">
+<thead>
+<tr><th>维度</th><th>📋 总结型（TOP1）</th><th>🎬 震撼型（TOP3/TOP5）</th><th>📸 攻略型（TOP2）</th></tr>
+</thead>
+<tbody>
+<tr><td class="label">代表笔记</td><td class="first">广东21城（7490赞）</td><td class="second">柬埔寨→成都（2114赞）</td><td class="third">Citywalk广州百年街（4320赞）</td></tr>
+<tr><td class="label">封面版式</td><td class="first">30 宫格城市拼图</td><td class="second">单张大图，无文字</td><td class="third">9 宫格景点</td></tr>
+<tr><td class="label">是否有字报</td><td class="first">✅ 30 个城市名字报</td><td class="second">❌ 无字报</td><td class="third">✅ 右下角城市名</td></tr>
+<tr><td class="label">文字密度</td><td class="first">高（30个地名）</td><td class="second">零</td><td class="third">中（1个地名）</td></tr>
+<tr><td class="label">视觉钩子</td><td class="first">信息密度（"一图看完"）</td><td class="second">画面震撼力</td><td class="third">景点代表性</td></tr>
+<tr><td class="label">情绪</td><td class="first">理性（汇总感）</td><td class="second">感性（冲击感）</td><td class="third">实用（攻略感）</td></tr>
+<tr><td class="label">适用场景</td><td class="first">系列汇总、年终总结</td><td class="second">冷门目的地、反差爆款</td><td class="third">具体路线、Citywalk</td></tr>
+<tr><td class="label">收藏率</td><td class="first">58%</td><td class="second">82%</td><td class="third">109%</td></tr>
+<tr><td class="label">分享率</td><td class="first">21%</td><td class="second"><strong>140%</strong></td><td class="third">56%</td></tr>
+</tbody>
+</table>
+
+<div class="alert alert-special">
+<h4>🎯 关键洞察：分享率差异</h4>
+<p>三种封面策略的<strong>分享率差异巨大</strong>：</p>
+<ul style="margin-top:.5rem;line-height:1.8">
+<li>总结型（TOP1）：分享率 21% —— 用户"收藏为主"</li>
+<li>震撼型（TOP3）：分享率 <strong>140%</strong> —— <strong>分享数比点赞还多</strong>，社交型爆款</li>
+<li>攻略型（TOP2）：分享率 56% —— 用户"收藏 + 转发给朋友"</li>
+</ul>
+<p style="margin-top:.6rem;color:var(--yellow)"><strong>对百思传媒的启示</strong>：</p>
+<ul style="margin-top:.5rem;line-height:1.8">
+<li>🎯 想涨粉 → 用攻略型（高收藏，沉淀用户）</li>
+<li>💥 想爆款 → 用震撼型（高分享，引爆社交传播）</li>
+<li>📋 想做汇总 → 用总结型（信息密度，奠定权威）</li>
+</ul>
+</div>
+</section>
+
+<section id="s4">
+<div class="section-num">CHAPTER 04</div>
+<h2 class="section-title">"9 宫格 + 大字报" 模板深度拆解</h2>
+<div class="divider"></div>
+<p class="section-sub">这是他用得最多的模板（攻略型），几乎所有"具体路线"笔记都用这个。</p>
+
+<div class="three-col">
+<div class="col yellow">
+<h4>🎨 视觉规格</h4>
+<ul>
+<li><strong>图片尺寸</strong>：1080×1440（3:4 竖图）</li>
+<li><strong>宫格数</strong>：3×3 = 9 格（小红书原生 9 宫格）</li>
+<li><strong>字报位置</strong>：永远在<strong>右下角</strong></li>
+<li><strong>字报尺寸</strong>：约占图片 15-20%</li>
+</ul>
+</div>
+<div class="col green">
+<h4>✍️ 字体规范</h4>
+<ul>
+<li><strong>字报形状</strong>：黄色矩形 + 黑色描边</li>
+<li><strong>字体</strong>：手写体/行楷（个人感）</li>
+<li><strong>字色</strong>：纯黑（强对比）</li>
+<li><strong>城市名</strong>：永远 2-3 个字（如"广州"/"惠州"/"江门"）</li>
+</ul>
+</div>
+<div class="col">
+<h4>📍 选图标准</h4>
+<ul>
+<li><strong>9 张图各异</strong>（不重复）</li>
+<li><strong>建筑/街景为主</strong>（少人物）</li>
+<li><strong>高饱和度</strong>（暖色调偏多）</li>
+<li><strong>黄金时刻</strong>拍摄（傍晚/清晨）</li>
+</ul>
+</div>
+</div>
+
+<h3 style="color:var(--orange);margin:2.5rem 0 1rem">📐 模板的可复制性</h3>
+
+<div class="alert alert-success">
+<h4>✅ 0 难度可学</h4>
+<ol style="line-height:2;margin-top:.5rem">
+<li><strong>模板尺寸固定</strong>：直接用 9 宫格模板，不需要设计能力</li>
+<li><strong>字报位置固定</strong>：永远右下角，用户形成视觉记忆</li>
+<li><strong>字报样式固定</strong>：黄底黑字黑边，一致性强</li>
+<li><strong>字报内容固定</strong>：永远只放城市名（2-3 字）</li>
+</ol>
+</div>
+
+<div class="alert alert-warn">
+<h4>❌ 高难度部分</h4>
+<ol style="line-height:2;margin-top:.5rem">
+<li><strong>9 张优质照片</strong>：每张都要有视觉冲击力</li>
+<li><strong>景点选片能力</strong>：9 张不能重复、要有逻辑</li>
+<li><strong>摄影水平</strong>：黄金时刻拍摄 + 避开人群</li>
+<li><strong>整体色调统一</strong>：9 张图要看起来像"一套"</li>
+</ol>
+</div>
+</section>
+
+<section id="s5">
+<div class="section-num">CHAPTER 05</div>
+<h2 class="section-title">视觉系统的"暗藏玄机"</h2>
+<div class="divider"></div>
+<p class="section-sub">看完整 526 张图后发现，账号有 5 个"暗藏的视觉策略"，第一版报告没看出来。</p>
+
+<div class="three-col">
+<div class="col yellow">
+<h4>🎯 暗藏策略 1：固定模板 = 视觉 IP</h4>
+<ul>
+<li>9 宫格 + 右下角黄字报 用了 30+ 次</li>
+<li>用户一看到这个模板就知道是 ta</li>
+<li>这是"<strong>视觉 IP</strong>"的建立过程</li>
+</ul>
+</div>
+<div class="col green">
+<h4>🎯 暗藏策略 2：建立信任的四件套</h4>
+<ul>
+<li>封面 + 火车票 + 小红书截图 + 数据证明</li>
+<li>每篇 TOP 笔记都用这套"</li>
+<li>用户看完四件套 = 关注"</li>
+</ul>
+</div>
+<div class="col">
+<h4>🎯 暗藏策略 3：字报的"信息密度"</h4>
+<ul>
+<li>一个 30 宫格图 = 30 个地名</li>
+<li>用户扫描 3 秒就能判断"</li>
+<li>这个博主内容深度足够"</li>
+</ul>
+</div>
+<div class="col blue">
+<h4>🎯 暗藏策略 4：人作比例尺</h4>
+<ul>
+<li>TOP3 柬埔寨封面 = 渺小人物</li>
+<li>视觉上"<strong>我亲自去过</strong>"的证据</li>
+<li>替代文字"<strong>我去了这里</strong>"</li>
+</ul>
+</div>
+<div class="col purple">
+<h4>🎯 暗藏策略 5：小红书截图复用</h4>
+<ul>
+<li>2.jpg 是"<strong>模拟小红书动态</strong>"</li>
+<li>不是真实截图，是设计出来的</li>
+<li>但用户以为是真实流量证明</li>
+</ul>
+</div>
+</div>
+
+<div class="alert alert-special">
+<h4>💡 暗藏策略的百思启示</h4>
+<p>这 5 个"<strong>暗藏策略</strong>" 比表面的"<strong>视觉风格</strong>" 更值得学习：</p>
+<ol style="line-height:2;margin-top:.5rem">
+<li>建立<strong>视觉 IP</strong>（固定模板）</li>
+<li>建立<strong>信任四件套</strong>（封面/证据/预览/数据）</li>
+<li>用<strong>信息密度</strong>让用户 3 秒判断账号价值</li>
+<li>用<strong>人作比例尺</strong>替代文字"我去了"</li>
+<li>用<strong>截图复用</strong>做"流量证明"</li>
+</ol>
+<p style="margin-top:.8rem;color:var(--yellow)"><strong>百思做影视类账号时</strong>：</p>
+<ul style="line-height:1.8">
+<li>固定模板：9 宫格演员特写 + 右下角黄色字报"剧名"</li>
+<li>信任四件套：封面 + 拍摄花絮 + 微博截图 + 票房数据</li>
+<li>人作比例尺：演员渺小 vs 拍摄场地宏大</li>
+</ul>
+</div>
+</section>
+
+<section id="s6">
+<div class="section-num">CHAPTER 06</div>
+<h2 class="section-title">视觉系统的可复制性评分</h2>
+<div class="divider"></div>
+<p class="section-sub">基于以上分析，对百思做账号时的可学性做评分。</p>
+
+<table class="compare-table">
+<thead>
+<tr><th>视觉元素</th><th>可学性</th><th>难度</th><th>百思怎么做</th></tr>
+</thead>
+<tbody>
+<tr><td class="label">9 宫格模板</td><td>⭐⭐⭐⭐⭐</td><td>极低（直接套模板）</td><td>第一周就能上手</td></tr>
+<tr><td class="label">右下角黄色字报</td><td>⭐⭐⭐⭐⭐</td><td>极低（固定样式）</td><td>第一周就能上手</td></tr>
+<tr><td class="label">30 宫格封面</td><td>⭐⭐⭐⭐</td><td>低（需要 PS 基础）</td><td>有 30 张图就能做</td></tr>
+<tr><td class="label">火车票实物证据</td><td>⭐⭐⭐</td><td>中（需要实物素材）</td><td>用剧照/拍摄花絮替代</td></tr>
+<tr><td class="label">小红书截图复用</td><td>⭐⭐⭐⭐⭐</td><td>低（设计软件可做）</td><td>用微博/抖音截图替代</td></tr>
+<tr><td class="label">数据证明页</td><td>⭐⭐⭐⭐⭐</td><td>低（用真实数据）</td><td>用票房/播放量数据</td></tr>
+<tr><td class="label">人作比例尺摄影</td><td>⭐⭐</td><td>高（需要摄影技能）</td><td>可学但需 1-3 月练习</td></tr>
+<tr><td class="label">黄金时刻构图</td><td>⭐⭐</td><td>高（需要摄影技能）</td><td>可学但需 1-3 月练习</td></tr>
+<tr><td class="label">高饱和暖色调</td><td>⭐⭐⭐⭐</td><td>低-中（滤镜可调）</td><td>用 VSCO/醒图预设</td></tr>
+</tbody>
+</table>
+
+<div class="alert alert-success">
+<h4>✅ 百思做视觉系统的优先级</h4>
+<ol style="line-height:2;margin-top:.5rem">
+<li><strong>第 1 周</strong>：建立 9 宫格 + 黄色字报模板（最低门槛，立刻能用）</li>
+<li><strong>第 2-4 周</strong>：学会人作比例尺 + 黄金时刻构图（核心摄影技能）</li>
+<li><strong>第 5-8 周</strong>：做 30 宫格封面（汇总贴）+ 数据证明页（爆款帖）</li>
+<li><strong>第 9-12 周</strong>：建立视觉 IP（一篇笔记一眼能认出是 ta）</li>
+</ol>
+</div>
+</section>
+
+<footer>
+<p class="brand">百思传媒 · 视觉系统深度拆解</p>
+<p>基于 TOP1 「广东21城」全部 15 张图片 + TOP3/TOP5 封面对比分析</p>
+<p style="margin-top:1rem;font-size:.75rem">
+报告生成于 2026-06-13 · 数据源：MediaCrawler 抓取的 526 张原始配图<br>
+✅ 图片已内置，无需额外服务<br>
+⚠️ 所有图片版权归原作者所有，本报告仅做对标分析
+</p>
+</footer>
+
+</body>
+</html>

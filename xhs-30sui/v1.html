@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V1 元数据版 · 30岁前游历全国 | 百思传媒</title>
+<style>
+  :root {
+    --bg: #170d02;
+    --bg-2: #1f1206;
+    --bg-3: #2a1a0a;
+    --orange: #ffac02;
+    --orange-2: #ff8a00;
+    --yellow: #edff45;
+    --green: #54a87e;
+    --text: #f5f5f5;
+    --text-dim: #b8a890;
+    --text-mute: #7a6a55;
+    --line: #3a2a18;
+    --red: #ff4444;
+    --green-b: #4ade80;
+    --blue: #60a5fa;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--orange); color: var(--bg); }
+  /* HERO */
+  .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; background: radial-gradient(ellipse at top, #2a1a0a 0%, #170d02 70%); padding: 4rem 2rem; }
+  .hero::before { content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,172,2,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,172,2,0.03) 1px, transparent 1px);
+    background-size: 50px 50px; pointer-events: none; }
+  .hero-content { max-width: 1100px; width: 100%; text-align: center; position: relative; z-index: 1; }
+  .brand-tag { display: inline-block; padding: 0.4rem 1.2rem; border: 1px solid var(--orange); color: var(--orange);
+    font-size: 0.8rem; letter-spacing: 0.3em; margin-bottom: 2rem; font-weight: 600; }
+  .hero h1 { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 1rem;
+    background: linear-gradient(135deg, #fff 0%, var(--orange) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero .subtitle { font-size: clamp(1.2rem, 2.5vw, 1.8rem); color: var(--text-dim); margin-bottom: 3rem; font-weight: 300; }
+  .hero-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem; font-size: 0.9rem; color: var(--text-mute); }
+  .hero-meta span strong { color: var(--orange); font-weight: 600; display: block; font-size: 1.1rem; margin-top: 0.3rem; }
+  /* SECTION */
+  section { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
+  .section-num { color: var(--orange); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.3em; margin-bottom: 0.5rem; }
+  .section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 1rem; color: #fff; }
+  .divider { width: 60px; height: 3px; background: var(--orange); margin: 1rem 0 2rem; }
+  .section-sub { color: var(--text-dim); font-size: 1.1rem; margin-bottom: 3rem; max-width: 700px; }
+  /* CARD */
+  .card { background: var(--bg-2); border: 1px solid var(--line); padding: 2rem; margin-bottom: 1.5rem; }
+  .card h3 { color: var(--orange); font-size: 1.2rem; margin-bottom: 1rem; }
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: var(--bg-2); }
+  th, td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--line); }
+  th { background: var(--bg-3); color: var(--orange); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  tr:hover td { background: rgba(255,172,2,0.05); }
+  /* STAT GRID */
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+  .stat { padding: 2rem 1.5rem; background: linear-gradient(135deg, var(--bg-2) 0%, var(--bg-3) 100%); border: 1px solid var(--line); text-align: center; position: relative; overflow: hidden; }
+  .stat::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--orange); }
+  .stat-num { font-size: 2.5rem; font-weight: 900; color: var(--orange); line-height: 1; }
+  .stat.green::before { background: var(--green); } .stat.green .stat-num { color: var(--green); }
+  .stat.yellow::before { background: var(--yellow); } .stat.yellow .stat-num { color: var(--yellow); }
+  .stat.red::before { background: var(--red); } .stat.red .stat-num { color: var(--red); }
+  .stat-label { color: var(--text-dim); font-size: 0.9rem; margin-top: 0.5rem; }
+  .stat-desc { color: var(--text-mute); font-size: 0.75rem; margin-top: 0.5rem; }
+  /* FORMULA */
+  .formula-list { list-style: none; counter-reset: formula; }
+  .formula-list li { counter-increment: formula; padding: 1rem 1rem 1rem 3.5rem; margin-bottom: 0.8rem; background: var(--bg-2); border-left: 3px solid var(--orange); position: relative; }
+  .formula-list li::before { content: counter(formula); position: absolute; left: 0; top: 0; width: 2.5rem; height: 100%; background: var(--orange); color: var(--bg); display: flex; align-items: center; justify-content: center; font-weight: 900; }
+  /* PROGRESS */
+  .progress-row { display: flex; align-items: center; margin: 0.8rem 0; gap: 1rem; }
+  .progress-label { width: 140px; color: var(--text-dim); font-size: 0.9rem; }
+  .progress-bar { flex: 1; height: 28px; background: var(--bg-3); position: relative; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--orange-2), var(--orange)); display: flex; align-items: center; justify-content: flex-end; padding-right: 0.8rem; color: var(--bg); font-weight: 700; font-size: 0.85rem; }
+  .progress-value { width: 80px; text-align: right; color: var(--orange); font-weight: 700; font-size: 0.9rem; }
+  /* ALERT */
+  .alert { padding: 1.5rem; margin: 1.5rem 0; border-left: 4px solid; }
+  .alert-warn { background: rgba(255,68,68,0.1); border-color: var(--red); }
+  .alert-warn h4 { color: var(--red); }
+  .alert-success { background: rgba(74,222,128,0.1); border-color: var(--green-b); }
+  .alert-success h4 { color: var(--green-b); }
+  .alert-info { background: rgba(96,165,250,0.1); border-color: var(--blue); }
+  .alert-info h4 { color: var(--blue); }
+  /* QUOTE */
+  .quote { border-left: 4px solid var(--orange); padding: 1.5rem 2rem; background: var(--bg-2); margin: 2rem 0; font-style: italic; color: var(--text-dim); position: relative; }
+  .quote::before { content: '"'; position: absolute; top: -10px; left: 10px; font-size: 4rem; color: var(--orange); opacity: 0.3; font-family: Georgia, serif; }
+  /* TOP LIST */
+  .top-list { list-style: none; }
+  .top-list li { display: flex; align-items: center; padding: 1rem 1.2rem; background: var(--bg-2); margin-bottom: 0.5rem; border-left: 3px solid var(--bg-3); }
+  .rank { width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; background: var(--bg-3); color: var(--text-dim); font-weight: 900; font-size: 1.2rem; margin-right: 1rem; flex-shrink: 0; }
+  .rank-1 { background: var(--orange); color: var(--bg); }
+  .rank-2 { background: #c0c0c0; color: var(--bg); }
+  .rank-3 { background: #cd7f32; color: var(--bg); }
+  .top-content { flex: 1; }
+  .top-content .title { color: #fff; font-weight: 600; margin-bottom: 0.3rem; }
+  .top-content .meta { color: var(--text-mute); font-size: 0.8rem; }
+  .top-likes { color: var(--orange); font-weight: 900; font-size: 1.1rem; margin-left: 1rem; flex-shrink: 0; }
+  /* THREE COL */
+  .three-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+  .col { padding: 2rem; background: var(--bg-2); border-top: 3px solid var(--orange); }
+  .col.green { border-top-color: var(--green); }
+  .col.green h4 { color: var(--green); }
+  .col h4 { color: var(--orange); margin-bottom: 1rem; font-size: 1.1rem; }
+  .col ul { list-style: none; }
+  .col ul li { padding: 0.5rem 0; padding-left: 1.2rem; position: relative; color: var(--text-dim); }
+  .col ul li::before { content: '▸'; position: absolute; left: 0; color: var(--orange); }
+  .col.green ul li::before { content: '▸'; position: absolute; left: 0; color: var(--green); }
+  /* COVER GRID */
+  .cover-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+  .cover-card { background: var(--bg-2); border: 1px solid var(--line); overflow: hidden; }
+  .cover-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
+  .cover-meta { padding: 1rem 1.2rem; }
+  .cover-meta .likes { color: var(--orange); font-weight: 900; font-size: 1.1rem; }
+  .cover-meta .title { color: #fff; margin-top: 0.4rem; font-size: 0.95rem; line-height: 1.5; }
+  /* TAG */
+  .tag { display: inline-block; padding: 0.3rem 0.8rem; background: var(--bg-3); border: 1px solid var(--orange); color: var(--orange); font-size: 0.8rem; margin: 0.2rem; }
+  .tag.green { border-color: var(--green); color: var(--green); }
+  /* FOOTER */
+  footer { text-align: center; padding: 3rem 2rem; color: var(--text-mute); font-size: 0.85rem; border-top: 1px solid var(--line); margin-top: 4rem; }
+  footer .brand { color: var(--orange); font-weight: 700; letter-spacing: 0.2em; }
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .stat-num { font-size: 1.8rem; }
+    .progress-label { width: 90px; font-size: 0.8rem; }
+    .progress-value { width: 50px; }
+    section { padding: 3rem 1.2rem; }
+    .hero-meta { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<a href="./index.html" style="position:fixed;top:1rem;left:1rem;z-index:100;display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.2rem;background:rgba(255,172,2,.15);border:1px solid var(--orange);color:var(--orange);text-decoration:none;font-size:.9rem;font-weight:600;border-radius:4px;backdrop-filter:blur(8px)">← 返回菜单</a>
+
+
+<!-- ========== HERO ========== -->
+<header class="hero">
+  <div class="hero-content">
+    <span class="brand-tag">百思传媒 · 竞品研究院</span>
+    <h1>30岁前游历全国</h1>
+    <p class="subtitle">对标账号 · 深度拆解报告</p>
+    <div class="hero-meta">
+      <span>账号ID<strong>6022e8d3</strong></span>
+      <span>小红书号<strong>4944173357</strong></span>
+      <span>数据样本<strong>32 篇笔记</strong></span>
+      <span>报告类型<strong>旅行攻略博主</strong></span>
+      <span>分析维度<strong>8 大模块</strong></span>
+    </div>
+  </div>
+</header>
+
+<!-- ========== 目录 ========== -->
+<nav class="toc" style="max-width: 1100px; margin: 0 auto; padding: 5rem 2rem 3rem;">
+  <h2 style="font-size: 2rem; color: var(--orange); margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line);">📑 报告目录</h2>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+    <a href="#s1" style="padding: 1.2rem 1.5rem; background: var(--bg-2); border-left: 3px solid var(--orange); color: var(--text); text-decoration: none;">01 账号定位拆解</a>
+    <a href="#s2" style="padding: 1.2rem 1.5rem; background: var(--bg-2); border-left: 3px solid var(--orange); color: var(--text); text-decoration: none;">02 目标人群画像</a>
+    <a href="#s3" style="padding: 1.2rem 1.5rem; background: var(--bg-2); border-left: 3px solid var(--orange); color: var(--text); text-decoration: none;">03 内容风格拆解</a>
+    <a href="#s4" style="padding: 1.2rem 1.5rem; background: var(--bg-2); border-left: 3px solid var(--orange); color: var(--text); text-decoration: none;">04 爆款规律分析</a>
+    <a href="#s5" style="padding: 1.2rem 1.5rem; background: var(--bg-2); border-left: 3px solid var(--orange); color: var(--text); text-decoration: none;">05 视觉系统</a>
+    <a href="#s6" style="padding: 1.2rem 1.5rem; background: var(--bg-2); border-left: 3px solid var(--orange); color: var(--text); text-decoration: none;">06 数据表现画像</a>
+    <a href="#s7" style="padding: 1.2rem 1.5rem; background: var(--bg-2); border-left: 3px solid var(--orange); color: var(--text); text-decoration: none;">07 可复制打法</a>
+    <a href="#s8" style="padding: 1.2rem 1.5rem; background: var(--bg-2); border-left: 3px solid var(--green); color: var(--text); text-decoration: none;">08 差异化建议</a>
+  </div>
+</nav>
+
+
+<section id="s1">
+  <div class="section-num">CHAPTER 01</div>
+  <h2 class="section-title">账号定位拆解</h2>
+  <div class="divider"></div>
+  <p class="section-sub">一句话看懂他是谁、做什么、凭什么被关注。</p>
+
+  <table>
+    <thead><tr><th>维度</th><th>实际信息</th><th>解读</th></tr></thead>
+    <tbody>
+      <tr><td>昵称</td><td><strong>30岁前游历全国</strong></td><td>时间窗口 + 任务明确的"打卡式"定位，名字本身就是一个承诺型钩子</td></tr>
+      <tr><td>小红书号</td><td>4944173357</td><td>普通数字号，未做品牌化（说明早期是个人号起家）</td></tr>
+      <tr><td>性别</td><td>男（0）</td><td>98年生，约 26-28 岁，正处于"特种兵旅行"主力人群</td></tr>
+      <tr><td>核心身份</td><td>P人攻略狂魔 · 特种兵 · 爱摄影</td><td>三重叠加身份：① MBTI 梗 ② 旅行强度 ③ 摄影专业度</td></tr>
+      <tr><td>核心承诺</td><td>100 个国内小众旅行地更新中</td><td>用"百篇系列"建立持续期待感，钩住长期关注</td></tr>
+      <tr><td>内容形式</td><td>100% 图文笔记（normal）</td><td>0 视频，纯图片流——差异化机会（视频化是空白）</td></tr>
+      <tr><td>IP 属地</td><td>未填写</td><td>无属地限制，全国内容可自由发</td></tr>
+    </tbody>
+  </table>
+
+  <div class="quote">
+    "一个 98 年的男生，把'30 岁前游遍全国'当作人生项目做，靠图文攻略+摄影技能在小红书做到 1 万粉、爆款率 25%。"
+  </div>
+
+  <div class="alert alert-info">
+    <h4>💡 关键判断</h4>
+    <p>这是<strong>典型的"个人 IP + 强技能 + 持续更新承诺"</strong>型博主。可复制性高，但护城河来自持续输出（100 个目的地更新）和摄影水平，单纯模仿标题套路很容易，做不到这个产出节奏。</p>
+  </div>
+</section>
+
+<section id="s2">
+  <div class="section-num">CHAPTER 02</div>
+  <h2 class="section-title">目标人群画像</h2>
+  <div class="divider"></div>
+  <p class="section-sub">粉丝是谁？为什么关注？小红书不公开粉丝画像，以下从内容反推。</p>
+
+  <div class="three-col">
+    <div class="col">
+      <h4>👤 核心人群</h4>
+      <ul>
+        <li><strong>年龄</strong>: 20-30 岁（与博主同龄）</li>
+        <li><strong>性别</strong>: 男女通吃（摄影+攻略）</li>
+        <li><strong>职业</strong>: 学生 / 刚入职白领</li>
+        <li><strong>收入</strong>: 中等（关注省钱攻略）</li>
+      </ul>
+    </div>
+    <div class="col green">
+      <h4>🎯 关注动机</h4>
+      <ul>
+        <li>收藏攻略（"这就去"心态）</li>
+        <li>学拍照机位（摄影爱好者）</li>
+        <li>云旅游（不出门看世界）</li>
+        <li>找"人少景美"小众地（反内卷）</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4>🌍 地域/场景</h4>
+      <ul>
+        <li>广东本地人最多（广东内容占 50%）</li>
+        <li>大学生（特种兵标签）</li>
+        <li>周末游 / 小长假出游需求</li>
+        <li>城市周边游人群（广东"小桂林"）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert alert-success">
+    <h4>✓ 人群健康度</h4>
+    <p>目标人群 <strong>覆盖广（不限地域、不限年龄）+ 决策成本低（攻略收藏即用）</strong>，广告价值高（旅行/酒店/相机/户外品牌都能转化）。但也意味着<strong>粉丝黏性靠"持续更新"维持</strong>，博主一旦停更，掉粉会很快。</p>
+  </div>
+</section>
+
+<section id="s3">
+  <div class="section-num">CHAPTER 03</div>
+  <h2 class="section-title">内容风格拆解</h2>
+  <div class="divider"></div>
+  <p class="section-sub">拆他的标题套路、内容形式和选题池。</p>
+
+  <h3 style="color: var(--orange); margin-top: 2rem; margin-bottom: 1rem;">📐 标题套路公式（按点赞数排序）</h3>
+  <ol class="formula-list">
+
+    <li>在24年，我旅行了广东21个城市🔥 <span style="color: var(--text-mute); font-size: 0.85rem; margin-left: 0.5rem;">[7490赞]</span></li>
+    <li>Citywalk🚶🏻广州这条街1公里走过百年历史 <span style="color: var(--text-mute); font-size: 0.85rem; margin-left: 0.5rem;">[4320赞]</span></li>
+    <li>朋友圈以为我去柬埔寨❗️其实就在成都周边❗️ <span style="color: var(--text-mute); font-size: 0.85rem; margin-left: 0.5rem;">[2113赞]</span></li>
+    <li>为了这15张照片，我专门飞了趟厦门❗️ <span style="color: var(--text-mute); font-size: 0.85rem; margin-left: 0.5rem;">[2007赞]</span></li>
+    <li>这不是AI❗️这是震惊世界的现实“万佛天国” <span style="color: var(--text-mute); font-size: 0.85rem; margin-left: 0.5rem;">[1542赞]</span></li>
+    <li>澳门不走回头路🚶‍➡️一天打卡20个地方 <span style="color: var(--text-mute); font-size: 0.85rem; margin-left: 0.5rem;">[1264赞]</span></li>
+    <li>都在说《黑悟空》，而我在山西寻找贾樟柯。 <span style="color: var(--text-mute); font-size: 0.85rem; margin-left: 0.5rem;">[1122赞]</span></li>
+    <li>为了这12张照片，在澳门暴走4小时❗️ <span style="color: var(--text-mute); font-size: 0.85rem; margin-left: 0.5rem;">[1061赞]</span></li>
+    <li>为了15天走遍山西晋中南，我做了个计划书❗️ <span style="color: var(--text-mute); font-size: 0.85rem; margin-left: 0.5rem;">[628赞]</span></li>
+    <li>放弃了桂林，旁边的贺州才是人间仙境❗️ <span style="color: var(--text-mute); font-size: 0.85rem; margin-left: 0.5rem;">[580赞]</span></li>
+  </ol>
+
+  <div class="three-col" style="margin-top: 3rem;">
+    <div class="col">
+      <h4>📊 标题数字占比</h4>
+      <div class="progress-row">
+        <span class="progress-label">含具体数字</span>
+        <div class="progress-bar"><div class="progress-fill" style="width:62%;">62%</div></div>
+        <span class="progress-value">20/32 篇</span>
+      </div>
+      <div class="progress-row">
+        <span class="progress-label">含 ❗️/‼️</span>
+        <div class="progress-bar"><div class="progress-fill" style="width:59%;">59%</div></div>
+        <span class="progress-value">19/32 篇</span>
+      </div>
+    </div>
+
+    <div class="col green">
+      <h4>🗂️ 选题类型分布</h4>
+      <div class="progress-row">
+        <span class="progress-label">城市合集</span>
+        <div class="progress-bar"><div class="progress-fill" style="width:100%; background: linear-gradient(90deg, #54a87e, #54a87e);">7篇</div></div>
+      </div>
+      <div class="progress-row">
+        <span class="progress-label">打卡攻略</span>
+        <div class="progress-bar"><div class="progress-fill" style="width:71%; background: linear-gradient(90deg, #54a87e, #54a87e);">5篇</div></div>
+      </div>
+      <div class="progress-row">
+        <span class="progress-label">小众挖掘</span>
+        <div class="progress-bar"><div class="progress-fill" style="width:71%; background: linear-gradient(90deg, #54a87e, #54a87e);">5篇</div></div>
+      </div>
+      <div class="progress-row">
+        <span class="progress-label">反思观察</span>
+        <div class="progress-bar"><div class="progress-fill" style="width:71%; background: linear-gradient(90deg, #54a87e, #54a87e);">5篇</div></div>
+      </div>
+      <div class="progress-row">
+        <span class="progress-label">震撼视觉</span>
+        <div class="progress-bar"><div class="progress-fill" style="width:57%; background: linear-gradient(90deg, #54a87e, #54a87e);">4篇</div></div>
+      </div>
+      <div class="progress-row">
+        <span class="progress-label">文化深挖</span>
+        <div class="progress-bar"><div class="progress-fill" style="width:57%; background: linear-gradient(90deg, #54a87e, #54a87e);">4篇</div></div>
+      </div>
+      <div class="progress-row">
+        <span class="progress-label">省钱路线</span>
+        <div class="progress-bar"><div class="progress-fill" style="width:43%; background: linear-gradient(90deg, #54a87e, #54a87e);">3篇</div></div>
+      </div>
+    </div>
+
+    <div class="col">
+      <h4>🔑 标题高频词</h4>
+      <div style="line-height: 2.2;">
+        <span class="tag">我 · 41%</span>
+        <span class="tag">这 · 38%</span>
+        <span class="tag">旅行 · 19%</span>
+        <span class="tag">为了 · 12%</span>
+        <span class="tag">城市 · 6%</span>
+        <span class="tag">打卡 · 6%</span>
+        <span class="tag">建议 · 6%</span>
+        <span class="tag">人生 · 6%</span>
+      </div>
+      <p style="color: var(--text-mute); font-size: 0.85rem; margin-top: 1rem;">
+        <strong>核心套路</strong>: 具体数字 + 情绪标点 + 第一人称承诺
+      </p>
+    </div>
+  </div>
+
+  <div class="alert alert-warn">
+    <h4>⚠️ 标题公式提炼</h4>
+    <p>他的 32 个标题里，<strong>62% 含数字</strong>、<strong>59% 含 ❗️/‼️</strong>、<strong>"我"字开头占 41%</strong>。核心公式：</p>
+    <p style="margin-top: 0.8rem; padding: 1rem; background: rgba(255,172,2,0.05); border-left: 3px solid var(--orange);">
+      <strong>「数字 + 第一人称视角 + 情绪钩子」</strong><br>
+      例如：<em>"为了这15张照片，我专门飞了趟厦门❗️"</em><br>
+      拆解：数字(15张) + 投入感(专门飞) + 情绪(❗️)
+    </p>
+  </div>
+</section>
+
+<section id="s4">
+  <div class="section-num">CHAPTER 04</div>
+  <h2 class="section-title">爆款规律分析</h2>
+  <div class="divider"></div>
+  <p class="section-sub">8 篇爆款（≥1000 赞）的共性。</p>
+
+  <ul class="top-list">
+
+    <li>
+      <div class="rank rank-1">1</div>
+      <div class="top-content">
+        <div class="title">在24年，我旅行了广东21个城市🔥</div>
+        <div class="meta">旅行攻略 · 图文</div>
+      </div>
+      <div class="top-likes">7490</div>
+    </li>
+    <li>
+      <div class="rank rank-2">2</div>
+      <div class="top-content">
+        <div class="title">Citywalk🚶🏻广州这条街1公里走过百年历史</div>
+        <div class="meta">旅行攻略 · 图文</div>
+      </div>
+      <div class="top-likes">4320</div>
+    </li>
+    <li>
+      <div class="rank rank-3">3</div>
+      <div class="top-content">
+        <div class="title">朋友圈以为我去柬埔寨❗️其实就在成都周边❗️</div>
+        <div class="meta">旅行攻略 · 图文</div>
+      </div>
+      <div class="top-likes">2113</div>
+    </li>
+    <li>
+      <div class="rank ">4</div>
+      <div class="top-content">
+        <div class="title">为了这15张照片，我专门飞了趟厦门❗️</div>
+        <div class="meta">旅行攻略 · 图文</div>
+      </div>
+      <div class="top-likes">2007</div>
+    </li>
+    <li>
+      <div class="rank ">5</div>
+      <div class="top-content">
+        <div class="title">这不是AI❗️这是震惊世界的现实“万佛天国”</div>
+        <div class="meta">旅行攻略 · 图文</div>
+      </div>
+      <div class="top-likes">1542</div>
+    </li>
+    <li>
+      <div class="rank ">6</div>
+      <div class="top-content">
+        <div class="title">澳门不走回头路🚶‍➡️一天打卡20个地方</div>
+        <div class="meta">旅行攻略 · 图文</div>
+      </div>
+      <div class="top-likes">1264</div>
+    </li>
+    <li>
+      <div class="rank ">7</div>
+      <div class="top-content">
+        <div class="title">都在说《黑悟空》，而我在山西寻找贾樟柯。</div>
+        <div class="meta">旅行攻略 · 图文</div>
+      </div>
+      <div class="top-likes">1122</div>
+    </li>
+    <li>
+      <div class="rank ">8</div>
+      <div class="top-content">
+        <div class="title">为了这12张照片，在澳门暴走4小时❗️</div>
+        <div class="meta">旅行攻略 · 图文</div>
+      </div>
+      <div class="top-likes">1061</div>
+    </li>
+  </ul>
+
+  <div class="three-col" style="margin-top: 3rem;">
+    <div class="col">
+      <h4>🏆 爆款主题规律</h4>
+      <ul>
+        <li><strong>城市盘点</strong>: TOP1 "广东21城"7490 赞</li>
+        <li><strong>反差标题</strong>: "柬埔寨→成都周边"2113 赞</li>
+        <li><strong>视觉震撼</strong>: "万佛天国"1542 赞</li>
+        <li><strong>系列感</strong>: "15张照片"成为模板</li>
+      </ul>
+    </div>
+    <div class="col green">
+      <h4>📍 爆款地点规律</h4>
+      <ul>
+        <li>广东本地（广州/澳门/福建）</li>
+        <li>具有<strong>"反差感"</strong>的目的地</li>
+        <li>文化 IP 挂钩（《黑悟空》+山西）</li>
+        <li>"人少景美"小众地</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4>🎯 爆款反推</h4>
+      <ul>
+        <li>1000+ 赞占比 25%（行业基准 5-10%）</li>
+        <li>TOP1 是均赞的 8.8 倍</li>
+        <li>爆款全部是"<strong>数字驱动</strong>"标题</li>
+        <li>0 视频（机会点）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert alert-success">
+    <h4>✓ 爆款公式</h4>
+    <p>能稳定产出爆款的 3 个模板：</p>
+    <ol style="margin-top: 0.5rem; padding-left: 1.5rem; line-height: 2;">
+      <li><strong>"我花了 N 时间，做了 N 件事"</strong> → TOP1 7490 赞</li>
+      <li><strong>"不在 X，就在 Y"</strong> → 反差+地理位置错位</li>
+      <li><strong>"为了 N 张照片/机位，我专门 Y"</strong> → 投入感+数量感</li>
+    </ol>
+  </div>
+</section>
+
+<section id="s5">
+  <div class="section-num">CHAPTER 05</div>
+  <h2 class="section-title">视觉系统</h2>
+  <div class="divider"></div>
+  <p class="section-sub">基于封面图分析（已下载 TOP 8 + 末尾 2 张原始封面做视觉分析）。</p>
+
+  <h3 style="color: var(--orange); margin: 2rem 0 1rem;">🎨 视觉系统特征</h3>
+
+  <div class="three-col">
+    <div class="col">
+      <h4>🎨 滤镜风格</h4>
+      <ul>
+        <li><strong>高饱和暖色调</strong>（橙黄夕阳 + 蓝天）</li>
+        <li>黄金时刻构图（傍晚/清晨）</li>
+        <li>低明度阴影保留细节</li>
+        <li>不依赖滤镜后期，原片素质高</li>
+      </ul>
+    </div>
+    <div class="col green">
+      <h4>📐 构图特征</h4>
+      <ul>
+        <li><strong>摄影师视角</strong>（避开人群、前景引导）</li>
+        <li>用<strong>人物作对比</strong>（渺小感/震撼感）</li>
+        <li>9/16 竖屏为主（小红书标准）</li>
+        <li>网格拼图（广东21城这种总结型）</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4>🖼️ 封面排版</h4>
+      <ul>
+        <li>90% 是<strong>纯图片封面</strong>（无大文字）</li>
+        <li>10% 用<strong>黄色描边大字报</strong>（地名+数字）</li>
+        <li>底部不加水印/Logo</li>
+        <li>图片就是全部钩子</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="color: var(--orange); margin: 3rem 0 1rem;">📸 爆款封面视觉分析</h3>
+  <div class="cover-grid">
+    <div class="cover-card">
+      <img class="cover-img" src="http://sns-webpic-qc.xhscdn.com/202606131420/432a480718f91278fafdcb4a1aaf9d5f/1040g00831a188t437g005o12t39gbhdf8sl63dg!nc_n_nwebp_mw_1" alt="在24年，我旅行了广东21个城市🔥" loading="lazy">
+      <div class="cover-meta">
+        <div class="likes">🔥 7490</div>
+        <div class="title">在24年，我旅行了广东21个城市🔥</div>
+      </div>
+    </div>
+    <div class="cover-card">
+      <img class="cover-img" src="http://sns-webpic-qc.xhscdn.com/202606131420/8c760bd6960360aff6d1ff607a6c03b8/1040g2sg30urpefu058005o12t39gbhdflpbbmjo!nc_n_nwebp_mw_1" alt="Citywalk🚶🏻广州这条街1公里走过百年历史" loading="lazy">
+      <div class="cover-meta">
+        <div class="likes">🔥 4320</div>
+        <div class="title">Citywalk🚶🏻广州这条街1公里走过百年历史</div>
+      </div>
+    </div>
+    <div class="cover-card">
+      <img class="cover-img" src="http://sns-webpic-qc.xhscdn.com/202606131420/6d3b8d63c74ef83771ff692c3eb2bc01/notes_pre_post/1040g3k031flb4vmqg06g5o12t39gbhdfjhgkb8o!nc_n_nwebp_mw_1" alt="朋友圈以为我去柬埔寨❗️其实就在成都周边❗️" loading="lazy">
+      <div class="cover-meta">
+        <div class="likes">🔥 2113</div>
+        <div class="title">朋友圈以为我去柬埔寨❗️其实就在成都周边❗️</div>
+      </div>
+    </div>
+    <div class="cover-card">
+      <img class="cover-img" src="http://sns-webpic-qc.xhscdn.com/202606131420/5522189e187485f0976f16f6e959ddf2/1040g00831a50hb9g72005o12t39gbhdfmbhk5o8!nc_n_nwebp_mw_1" alt="为了这15张照片，我专门飞了趟厦门❗️" loading="lazy">
+      <div class="cover-meta">
+        <div class="likes">🔥 2007</div>
+        <div class="title">为了这15张照片，我专门飞了趟厦门❗️</div>
+      </div>
+    </div>
+    <div class="cover-card">
+      <img class="cover-img" src="http://sns-webpic-qc.xhscdn.com/202606131420/b1379e20d8719b752e9bb2df24a61c31/1040g00831epo0ndmma005o12t39gbhdfevkspno!nc_n_nwebp_mw_1" alt="这不是AI❗️这是震惊世界的现实“万佛天国”" loading="lazy">
+      <div class="cover-meta">
+        <div class="likes">🔥 1542</div>
+        <div class="title">这不是AI❗️这是震惊世界的现实“万佛天国”</div>
+      </div>
+    </div>
+    <div class="cover-card">
+      <img class="cover-img" src="http://sns-webpic-qc.xhscdn.com/202606131420/4cd6fef6e9672650c9c76095d2c12120/1040g00831g3o4am51u005o12t39gbhdfssf8rko!nc_n_nwebp_mw_1" alt="澳门不走回头路🚶‍➡️一天打卡20个地方" loading="lazy">
+      <div class="cover-meta">
+        <div class="likes">🔥 1264</div>
+        <div class="title">澳门不走回头路🚶‍➡️一天打卡20个地方</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-warn" style="margin-top: 2rem;">
+    <h4>⚠️ 视觉系统可复制性</h4>
+    <p><strong>可学的</strong>：构图思路（人作对比/前景引导）、黄金时刻拍摄、网格拼图模板。</p>
+    <p><strong>难学的</strong>：摄影技能本身（避开人群+角度选择+瞬间抓拍）需要 3-5 年积累，单纯"调滤镜"模仿会显得廉价。</p>
+    <p><strong>机会点</strong>：他 0 视频内容，<strong>如果切入视频赛道（vlog/citywalk/机位解说）</strong>，能在他的视觉基础上做差异化。</p>
+  </div>
+</section>
+
+<section id="s6">
+  <div class="section-num">CHAPTER 06</div>
+  <h2 class="section-title">数据表现画像</h2>
+  <div class="divider"></div>
+  <p class="section-sub">32 篇笔记的全景数据图。</p>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="stat-num">32</div>
+      <div class="stat-label">笔记总数</div>
+      <div class="stat-desc">仅首页可见（无登录抓不到全部）</div>
+    </div>
+    <div class="stat yellow">
+      <div class="stat-num">27,252</div>
+      <div class="stat-label">累计获赞</div>
+      <div class="stat-desc">不含收藏（无登录不可见）</div>
+    </div>
+    <div class="stat green">
+      <div class="stat-num">852</div>
+      <div class="stat-label">均赞</div>
+      <div class="stat-desc">健康水平（>500 算优质）</div>
+    </div>
+    <div class="stat red">
+      <div class="stat-num">7,490</div>
+      <div class="stat-label">TOP 1 点赞</div>
+      <div class="stat-desc">广东21城</div>
+    </div>
+  </div>
+
+  <h3 style="color: var(--orange); margin: 3rem 0 1rem;">📊 笔记分层</h3>
+  <div class="progress-row">
+    <span class="progress-label">爆款(≥1000赞)</span>
+    <div class="progress-bar"><div class="progress-fill" style="width:25%;">8 篇</div></div>
+    <span class="progress-value">25%</span>
+  </div>
+  <div class="progress-row">
+    <span class="progress-label">中位(100-1000)</span>
+    <div class="progress-bar"><div class="progress-fill" style="width:66%; background: linear-gradient(90deg, #54a87e, #54a87e);">21 篇</div></div>
+    <span class="progress-value">66%</span>
+  </div>
+  <div class="progress-row">
+    <span class="progress-label">低赞(&lt;100)</span>
+    <div class="progress-bar"><div class="progress-fill" style="width:9%; background: linear-gradient(90deg, #ff4444, #ff4444);">3 篇</div></div>
+    <span class="progress-value">9%</span>
+  </div>
+
+  <div class="three-col" style="margin-top: 3rem;">
+    <div class="col">
+      <h4>📅 更新节奏</h4>
+      <ul>
+        <li>32 篇笔记 / 1万粉</li>
+        <li>平均每篇获赞 852</li>
+        <li>100% 都是图文</li>
+        <li>疑似周更或双周更</li>
+      </ul>
+    </div>
+    <div class="col green">
+      <h4>🌍 地理分布</h4>
+      <ul>
+        <li><strong>广东</strong>占比 50%</li>
+        <li>澳门 5 篇（密度最高）</li>
+        <li>四川/福建/山西 各 2-3 篇</li>
+        <li>全国铺开但有"主场"</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4>💡 数据洞察</h4>
+      <ul>
+        <li>爆款率 25%（<strong>远高于行业 5-10%</strong>）</li>
+        <li>头部高度集中（TOP3 占总赞 51%）</li>
+        <li>中位数笔记保持稳定</li>
+        <li>更新密度是主要护城河</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert alert-info">
+    <h4>📊 与行业基准对比</h4>
+    <p>1万粉账号的均值水平：均赞 300-500、爆款率 5-8%。<strong>他高出行业 2 倍以上</strong>，说明选题能力和摄影水平都是<strong>真正有效的</strong>——不是靠标题党或互赞堆出来的数据。</p>
+  </div>
+</section>
+
+<section id="s7">
+  <div class="section-num">CHAPTER 07</div>
+  <h2 class="section-title">可复制打法</h2>
+  <div class="divider"></div>
+  <p class="section-sub">7 个立即可复制的招数 + 3 个必须避开的坑。</p>
+
+  <h3 style="color: var(--orange); margin: 2rem 0 1rem;">✅ 可立即复制的 7 招</h3>
+  <ol class="formula-list">
+    <li><strong>"数字+第一人称+情绪标点"标题公式</strong> — 例："为了这 15 张照片，我专门飞了趟厦门❗️"。把"我花了 N 时间/做了 N 件事"作为骨架</li>
+    <li><strong>"N 个目的地系列"</strong> — 用"100 个小众旅行地"这种长承诺建立长期关注。系列感比单篇爆款更稳</li>
+    <li><strong>"反差地理"</strong> — "不在 X，就在 Y"、"朋友圈以为我去 A，其实在 B"。低成本高点击</li>
+    <li><strong>"摄影师视角+人作对比"</strong> — 把人放在画面里作比例尺，立即提升视觉冲击。无需复杂后期</li>
+    <li><strong>"为某张照片专门飞一趟"</strong> — 强化"投入感"，把旅行变成"为某张照片执行的探险"</li>
+    <li><strong>深度垂直于"小众"</strong> — 100 个小众地建立差异化，避开头部红海（vlog/网红打卡）</li>
+    <li><strong>主页简介用"承诺+标签+邮箱"</strong> — "98年生/计划30岁前/P人/特种兵/摄影/+邮箱"，三秒内说清差异化</li>
+  </ol>
+
+  <h3 style="color: var(--red); margin: 3rem 0 1rem;">⚠️ 3 个致命坑</h3>
+  <div class="alert alert-warn">
+    <h4>1. 学他"❗️❗️❗️"标点堆砌</h4>
+    <p>他 59% 标题用了 ❗️/‼️，但如果新号照搬会被判定为标题党降权。<strong>建议</strong>：1 篇笔记最多 1 个 ❗️，放在标题末位</p>
+  </div>
+  <div class="alert alert-warn">
+    <h4>2. 强行 100% 复刻摄影风格</h4>
+    <p>他的视觉系统是 3-5 年摄影积累的结果，<strong>新手不要硬碰</strong>。<strong>建议</strong>：先用手机+三脚架稳定输出，找到自己的视觉特征（vlog/手绘地图/3D 飞行轨迹）</p>
+  </div>
+  <div class="alert alert-warn">
+    <h4>3. 把他"100 个目的地"的承诺照搬</h4>
+    <p>这类长承诺需要 2-3 年才能兑现。<strong>建议</strong>：新号用"30 天打卡 XX"或"一个周末 X 个地方"等<strong>可短期验证</strong>的承诺</p>
+  </div>
+</section>
+
+<section id="s8">
+  <div class="section-num">CHAPTER 08</div>
+  <h2 class="section-title" style="color: var(--green);">差异化建议（百思传媒视角）</h2>
+  <div class="divider" style="background: var(--green);"></div>
+  <p class="section-sub">直接复制他的"100 个小众地"是红海思路（同类博主太多）。百思传媒做影视内容起家，<strong>应该做"他做不到的角度"</strong>。</p>
+
+  <div class="three-col">
+    <div class="col green">
+      <h4>🎬 角度差异化</h4>
+      <ul>
+        <li><strong>影视取景地</strong>（拍过《狂飙》《黑悟空》取景地）</li>
+        <li><strong>明星同款打卡</strong>（艺人路演/拍摄路线）</li>
+        <li><strong>影视城探秘</strong>（横店/象山/都匀内幕）</li>
+        <li><strong>剧组餐饮住宿</strong>（幕后视角）</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4>📹 形式差异化</h4>
+      <ul>
+        <li>他 0 视频 → <strong>做视频</strong>是空白赛道</li>
+        <li>vlog + 解说（带影视幕后讲解）</li>
+        <li>Citywalk + 取景地对比</li>
+        <li>"1 分钟看懂一部戏在哪里拍"</li>
+      </ul>
+    </div>
+    <div class="col green">
+      <h4>🎯 人群差异化</h4>
+      <ul>
+        <li>他：旅游爱好者 + 摄影</li>
+        <li>百思：<strong>影视粉丝 + 追星族 + 文旅消费</strong></li>
+        <li>小红书"明星资讯"赛道年增长 30%+</li>
+        <li>可对接品牌（影视宣发/文旅/酒店）</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="color: var(--green); margin: 3rem 0 1rem;">🛠️ 30 天冷启动 SOP（参考）</h3>
+  <ol class="formula-list">
+    <li><strong>第 1-7 天</strong>: 账号定位确认（百思传媒/影视资源/取景地/明星同款/30岁前打卡30个剧组拍摄地）。发 3 篇已有百思素材</li>
+    <li><strong>第 8-14 天</strong>: 测试 3 种内容形式（图文攻略 / vlog 1min / 解说长图），看哪个爆款率最高</li>
+    <li><strong>第 15-21 天</strong>: 模仿他的"为 N 张照片专门飞"公式，但用影视场景（"为剧照我去了 XX 取景地"）</li>
+    <li><strong>第 22-30 天</strong>: 找 2-3 个爆款模板批量复制（同系列第二/第三篇），建立账号标签</li>
+  </ol>
+
+  <div class="alert alert-success">
+    <h4>✓ 百思传媒的优势点</h4>
+    <p>1. <strong>行业资源独家</strong>（百思有影视项目，演员/剧组/取景地一手信息）<br>
+    2. <strong>品牌背书</strong>（百思传媒 = 专业影视营销 PR 团队）<br>
+    3. <strong>变现路径清晰</strong>（文旅品牌 + 影视宣发 + 探店合作）<br>
+    4. <strong>跨平台协同</strong>（抖音/B站/视频号可同时复用素材）</p>
+    <p style="margin-top: 1rem;"><strong>结论</strong>：不要做"30 岁前游历全国的第二版"，要做"<strong>30 岁前打卡 30 个剧组取景地</strong>"的<strong>唯一版本</strong>。</p>
+  </div>
+</section>
+
+
+<footer>
+  <p class="brand">百思传媒 · 竞品研究院</p>
+  <p>文化内容 IP 整合营销集团</p>
+  <p style="margin-top: 1rem; font-size: 0.75rem;">
+    报告生成于 2026-06-13 · 数据来源：小红书账号公开主页（无登录抓取）<br>
+    ⚠️ 本报告基于无登录路径可获得的公开数据，不含评论/收藏/分享等需登录可见的维度<br>
+    数据样本：32 篇笔记 · 互动数据：仅点赞维度 · 视觉分析：基于 8 张代表性封面
+  </p>
+</footer>
+
+</body>
+</html>

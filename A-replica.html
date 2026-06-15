@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A 满级观众 · 从 0 复刻企划 - 百思传媒</title>
+  <style>
+:root {
+  --bg: #0d0905;
+  --bg-2: #170d02;
+  --panel: #1d1107;
+  --panel-2: #261609;
+  --border: #3a2614;
+  --orange: #ffac02;
+  --orange-dim: #c0880a;
+  --green: #54a87e;
+  --yellow: #edff45;
+  --red: #ff5e5e;
+  --text: #f5e9d5;
+  --text-dim: #a89080;
+  --text-mute: #6e5a48;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--orange); text-decoration: none; }
+a:hover { color: var(--yellow); }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+.hero {
+  background: linear-gradient(135deg, #170d02 0%, #261609 50%, #170d02 100%);
+  border-bottom: 2px solid var(--orange);
+  padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,172,2,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-meta { color: var(--green); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+.hero h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
+.hero h1 .accent { color: var(--orange); }
+.hero .sub { color: var(--text-dim); font-size: 20px; max-width: 700px; }
+.hero .meta-row { display: flex; gap: 24px; margin-top: 32px; flex-wrap: wrap; }
+.hero .meta-pill {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.hero .meta-pill b { color: var(--orange); font-weight: 600; }
+
+.nav { background: var(--bg-2); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.nav-inner { display: flex; gap: 8px; padding: 16px 24px; max-width: 1280px; margin: 0 auto; align-items: center; flex-wrap: wrap; }
+.nav-brand { color: var(--orange); font-weight: 700; font-size: 16px; margin-right: 24px; }
+.nav a.nav-link { color: var(--text-dim); padding: 6px 12px; border-radius: 4px; font-size: 14px; }
+.nav a.nav-link:hover, .nav a.nav-link.active { background: var(--panel); color: var(--orange); }
+
+section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+.section-label { color: var(--orange); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+.section-title { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
+.section-sub { color: var(--text-dim); font-size: 16px; margin-bottom: 48px; max-width: 800px; }
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  transition: border-color .2s;
+}
+.card:hover { border-color: var(--orange); }
+.card-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+.card-meta { color: var(--text-dim); font-size: 13px; }
+
+.grid { display: grid; gap: 24px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-5 { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 1024px) { .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .grid-4, .grid-5, .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+.stat {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--orange);
+  padding: 24px;
+  border-radius: 4px;
+}
+.stat .label { color: var(--green); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.stat .value { font-size: 36px; font-weight: 800; color: var(--orange); line-height: 1; }
+.stat .unit { font-size: 14px; color: var(--text-dim); margin-left: 4px; }
+.stat .desc { color: var(--text-dim); font-size: 13px; margin-top: 8px; }
+
+.alert {
+  display: flex;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 4px;
+  border-left: 3px solid;
+  background: var(--panel-2);
+}
+.alert-icon { font-size: 20px; flex-shrink: 0; line-height: 1.4; }
+.alert-body { flex: 1; }
+.alert-title { font-weight: 700; margin-bottom: 4px; }
+.alert-danger { border-left-color: var(--red); }
+.alert-danger .alert-icon { color: var(--red); }
+.alert-warn { border-left-color: var(--orange); }
+.alert-warn .alert-icon { color: var(--orange); }
+.alert-info { border-left-color: var(--green); }
+.alert-info .alert-icon { color: var(--green); }
+.alert-success { border-left-color: var(--yellow); }
+.alert-success .alert-icon { color: var(--yellow); }
+
+table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: var(--panel-2); color: var(--orange); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
+td { color: var(--text); }
+tr:hover td { background: var(--panel-2); }
+
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+
+.note-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.note-row:last-child { border-bottom: 0; }
+.medal { font-size: 16px; font-weight: 800; min-width: 24px; text-align: center; }
+.medal-1 { color: #ffd700; }
+.medal-2 { color: #c0c0c0; }
+.medal-3 { color: #cd7f32; }
+.note-rank { color: var(--text-mute); font-size: 13px; min-width: 24px; text-align: center; }
+.note-type { background: var(--panel-2); padding: 2px 8px; border-radius: 3px; font-size: 11px; color: var(--green); min-width: 50px; text-align: center; }
+.note-title { flex: 1; color: var(--text); }
+.note-likes { color: var(--orange); font-weight: 700; min-width: 60px; text-align: right; }
+.text-red { color: var(--red); }
+.text-green { color: var(--green); }
+.text-orange { color: var(--orange); }
+.text-dim { color: var(--text-dim); }
+.text-mute { color: var(--text-mute); }
+.text-sm { font-size: 13px; }
+.text-xs { font-size: 12px; }
+
+.timeline { position: relative; padding-left: 32px; }
+.timeline::before { content:''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+.timeline-item { position: relative; padding-bottom: 32px; }
+.timeline-item::before { content:''; position: absolute; left: -28px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--orange); border: 3px solid var(--bg); }
+.timeline-item .week { color: var(--green); font-size: 13px; letter-spacing: 1px; }
+.timeline-item .title { font-size: 18px; font-weight: 700; margin: 4px 0 8px; }
+
+footer { padding: 40px 0; color: var(--text-mute); font-size: 13px; text-align: center; }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-meta">REPLICA BLUEPRINT · 从 0 复刻企划</div>
+    <h1>满级观众 <span class="accent">· 复刻企划书</span></h1>
+    <p class="sub">基于原号 32 篇公开笔记的爆款规律反推，从账号定位、内容矩阵、爆款公式、30 天冷启动 SOP 四个维度，输出一份"如果明天新建一个号，从 0 也能跑出来"的完整执行手册。</p>
+    <div class="meta-row">
+      <span class="meta-pill">📊 数据样本 <b>32 篇</b></span>
+      <span class="meta-pill">⭐ 均赞 <b>3,872</b></span>
+      <span class="meta-pill">🔥 爆款率 <b>9.4%</b></span>
+      <span class="meta-pill">🎬 类型 <b>31 视频 + 1 图文</b></span>
+      <span class="meta-pill">📌 赛道 <b>CP 嗑糖混剪</b></span>
+      <span class="meta-pill">📅 数据 <b>2026-06-13</b></span>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-brand">🎬 满级观众 · 复刻企划</span>
+    <a href="#truth" class="nav-link">① 真实定位</a>
+    <a href="#profile" class="nav-link">② 账号画像</a>
+    <a href="#formula" class="nav-link">③ 爆款公式</a>
+    <a href="#matrix" class="nav-link">④ 内容矩阵</a>
+    <a href="#calendar" class="nav-link">⑤ 30 天冷启动</a>
+    <a href="#checklist" class="nav-link">⑥ 风险清单</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ① 真实定位 -->
+  <section id="truth">
+    <div class="container">
+      <div class="section-label">① TRUTH</div>
+      <h2 class="section-title">真实定位：CP 嗑糖混剪号，不是影评号</h2>
+      <p class="section-sub">看报告标题很容易误判为"观影量级影评号"。但 32 篇公开笔记里 31 篇是视频，Top 10 标题全部是"嗑 CP 名场面"——藏海×老婆、蒋峤西×女朋友、苟师×娥、青娥×红兵、楚朝×谢燕来……这是典型的 <b style="color:var(--orange)">嗑糖混剪号</b>，不是影评号。</p>
+
+      <div class="grid grid-3 mt-24">
+        <div class="stat">
+          <div class="label">视频占比</div>
+          <div class="value">31<span class="unit">/ 32 篇</span></div>
+          <div class="desc">图文仅 1 篇 = 3% · 视频是绝对主力</div>
+        </div>
+        <div class="stat">
+          <div class="label">均赞</div>
+          <div class="value">3,872</div>
+          <div class="desc">5 号矩阵里排第 2 · 稳健型</div>
+        </div>
+        <div class="stat">
+          <div class="label">爆款率</div>
+          <div class="value">9.4<span class="unit">%</span></div>
+          <div class="desc">3 篇超过均赞 3 倍 = 真爆款</div>
+        </div>
+      </div>
+
+      <div class="card mt-32">
+        <div class="card-title">🔍 Top 10 标题规律</div>
+        <div class="note-row">
+          <span class="medal medal-1">1</span>
+          <span class="note-type">video</span>
+          <span class="note-title">蒋峤西说粤语好苏啊！女朋友那句听不够！</span>
+          <span class="note-likes">👍 3.6万</span>
+        </div>
+        <div class="note-row">
+          <span class="medal medal-2">2</span>
+          <span class="note-type">video</span>
+          <span class="note-title">谁注意到藏海给老婆采花还藏背后了！好浪漫</span>
+          <span class="note-likes">👍 1.6万</span>
+        </div>
+        <div class="note-row">
+          <span class="medal medal-3">3</span>
+          <span class="note-type">video</span>
+          <span class="note-title">笑疯，苟师每天为娥暴走，开启"嘴pao"模式😂</span>
+          <span class="note-likes">👍 1.4万</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">4</span>
+          <span class="note-type">video</span>
+          <span class="note-title">啊啊这对也好嗑啊！青娥发脾气红兵嬉皮笑脸</span>
+          <span class="note-likes">👍 7,882</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">5</span>
+          <span class="note-type">video</span>
+          <span class="note-title">好心痛😭发生危险时宋师离得蕞远却跑得蕞快</span>
+          <span class="note-likes">👍 7,501</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">6</span>
+          <span class="note-type">video</span>
+          <span class="note-title">舅舅准舅妈对视我嗑亖，老辈子暧昧没轻没重</span>
+          <span class="note-likes">👍 5,433</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">7</span>
+          <span class="note-type">video</span>
+          <span class="note-title">一向淡定的娥都红了眼眶，老友相见太好哭了</span>
+          <span class="note-likes">👍 5,268</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">8</span>
+          <span class="note-type">video</span>
+          <span class="note-title">我们初恋组如此"甜蜜又酸涩"舞台对视好虐</span>
+          <span class="note-likes">👍 4,272</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">9</span>
+          <span class="note-type">video</span>
+          <span class="note-title">细节是团里长辈都把易青娥当女儿一样爱护</span>
+          <span class="note-likes">👍 3,254</span>
+        </div>
+        <div class="note-row">
+          <span class="note-rank">10</span>
+          <span class="note-type">video</span>
+          <span class="note-title">恋爱住一起属实太甜了啊啊！谁懂那个抱！</span>
+          <span class="note-likes">👍 3,134</span>
+        </div>
+        <div class="alert alert-info mt-24">
+          <div class="alert-icon">💡</div>
+          <div class="alert-body">
+            <div class="alert-title">5 个共性特征</div>
+            <p class="mt-8">① 全部用 <b style="color:var(--orange)">CP 角色名（藏海/苟师/青娥/楚朝）</b>作主语 ② 全部带 <b style="color:var(--orange)">强情绪词（嗑/苏/甜/哭/笑/虐/上头）</b> ③ 几乎都用 <b style="color:var(--orange)">感叹号/问号/emoji</b> ④ 大量 <b style="color:var(--orange)">口语化"啊啊啊" "谁懂" "好嗑"</b> ⑤ Top 3 都是 <b style="color:var(--orange)">甜蜜向</b>，虐的反而偏低</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ② 账号画像 -->
+  <section id="profile">
+    <div class="container">
+      <div class="section-label">② PROFILE</div>
+      <h2 class="section-title">账号画像：保留已验证的"剪刀手"人设</h2>
+      <p class="section-sub">从 0 复刻 = 沿用原号已验证的人设 + 微调降风险。原号简介「✂️ 剪刀手爱德华的赛博亲戚」是矩阵里最有 IP 感的一句，保留并强化。</p>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-title">📋 基础信息卡</div>
+          <table>
+            <tr><th>项</th><th>内容</th></tr>
+            <tr><td>账号名</td><td><b style="color:var(--orange)">满级观众</b>（沿用）</td></tr>
+            <tr><td>小红书 ID</td><td>@manjiguanzhong</td></tr>
+            <tr><td>IP 属地</td><td>北京（<b style="color:var(--yellow)">重要：改 IP</b>）</td></tr>
+            <tr><td>性别</td><td>女</td></tr>
+            <tr><td>头像</td><td>剪影 + ✂️ + 🎬 双角标（IP 化）</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-title">📝 新版简介（已优化）</div>
+          <div class="card-meta">原版问题：暴露矩阵（@Yanan 小助理）+ IP 风险（山西多账号）</div>
+          <pre style="background:var(--bg-2); padding:16px; border-radius:4px; margin-top:12px; color:var(--text); font-family:inherit; white-space:pre-wrap;">✂️ 你的赛博嗑糖搭子
+🎬 专治剧荒｜上头｜emo｜二倍速追剧
+📮 商务私信（周末看）</pre>
+          <div class="alert alert-success mt-16">
+            <div class="alert-icon">✓</div>
+            <div class="alert-body"><b>改了什么</b>：去掉 @Yanan（破矩阵）、去掉"爆梗+神转场"（避免版权风险提示）、IP 改北京（脱离山西多账号属地）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-3 mt-24">
+        <div class="card">
+          <div class="card-title">🎯 一句话定位</div>
+          <p style="font-size:17px; line-height:1.7; color:var(--text);"><b style="color:var(--orange)">"赛博嗑糖搭子"</b>——用 30 秒短视频，把当下最热的剧里最甜的 CP 名场面剪给你看。</p>
+        </div>
+        <div class="card">
+          <div class="card-title">👥 目标人群</div>
+          <ul style="margin-left:20px; line-height:1.9;">
+            <li>20-32 岁女性为主</li>
+            <li>追剧党、嗑糖党、cut 党</li>
+            <li>通勤 / 摸鱼 / 睡前场景</li>
+            <li>小红书重度用户（日均 1h+）</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">💎 差异化护城河</div>
+          <ul style="margin-left:20px; line-height:1.9;">
+            <li>"满级"= 老玩家视角（不是小白安利）</li>
+            <li>"剪刀手"人设 = 二次创作授权感</li>
+            <li>CP 角色名 + 强情绪 = 精准踩搜索</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ 爆款公式 -->
+  <section id="formula">
+    <div class="container">
+      <div class="section-label">③ FORMULA</div>
+      <h2 class="section-title">爆款公式：从 32 篇数据反推的 4 要素</h2>
+      <p class="section-sub">把 Top 3（3.6万 / 1.6万 / 1.4万）的标题、情绪、句式拆出来，变成可复用的模板。</p>
+
+      <div class="grid grid-4">
+        <div class="stat">
+          <div class="label">要素 1 · 标题句式</div>
+          <div class="value" style="font-size:24px; line-height:1.3; padding:8px 0;">CP + 情绪 + 名场面</div>
+          <div class="desc">"X×Y + 嗑/苏/甜/哭 + 1 个具体动作"</div>
+        </div>
+        <div class="stat">
+          <div class="label">要素 2 · 强情绪词</div>
+          <div class="value" style="font-size:24px; line-height:1.3; padding:8px 0;">嗑｜苏｜甜｜哭｜笑｜虐</div>
+          <div class="desc">Top 10 100% 命中至少 1 个</div>
+        </div>
+        <div class="stat">
+          <div class="label">要素 3 · 视频时长</div>
+          <div class="value" style="font-size:24px; line-height:1.3; padding:8px 0;">15-45 秒</div>
+          <div class="desc">混剪切 3-5 个镜头 · 节奏紧凑</div>
+        </div>
+        <div class="stat">
+          <div class="label">要素 4 · 发布时机</div>
+          <div class="value" style="font-size:24px; line-height:1.3; padding:8px 0;">剧集播出后 2h 内</div>
+          <div class="desc">趁热度未散 · 抢"全网首剪"</div>
+        </div>
+      </div>
+
+      <div class="card mt-32">
+        <div class="card-title">📝 12 条标题模板（直接套）</div>
+        <table>
+          <tr><th>#</th><th>模板</th><th>示例</th><th>情绪</th></tr>
+          <tr><td>1</td><td>「CP 名」+ 具体动作 + ！好嗑/好甜/好虐</td><td>藏海给老婆采花还藏背后了！好浪漫</td><td><span class="text-orange">甜</span></td></tr>
+          <tr><td>2</td><td>谁注意到 + CP 名 + 名场面细节！</td><td>谁注意到藏海给老婆采花还藏背后了</td><td><span class="text-orange">甜</span></td></tr>
+          <tr><td>3</td><td>「CP 名」说 + 台词 + 好苏/好撩！</td><td>蒋峤西说粤语好苏啊！女朋友那句听不够</td><td><span class="text-orange">苏</span></td></tr>
+          <tr><td>4</td><td>笑疯，「CP 名」+ 反差 + 😂</td><td>笑疯，苟师每天为娥暴走，开启"嘴pao"模式</td><td><span class="text-orange">笑</span></td></tr>
+          <tr><td>5</td><td>啊啊 + CP 名 + 也好嗑啊！+ 细节</td><td>啊啊这对也好嗑啊！青娥发脾气红兵嬉皮笑脸</td><td><span class="text-orange">嗑</span></td></tr>
+          <tr><td>6</td><td>好心痛😭+ 名场面 + 谁懂！</td><td>好心痛😭发生危险时宋师离得蕞远却跑得蕞快</td><td><span class="text-orange">虐</span></td></tr>
+          <tr><td>7</td><td>细节是 + 角色 + 默默守护细节</td><td>细节是团里长辈都把易青娥当女儿一样爱护</td><td><span class="text-orange">嗑</span></td></tr>
+          <tr><td>8</td><td>我们「CP 名」+ 甜蜜又 + 虐 + 😭</td><td>我们初恋组如此"甜蜜又酸涩"舞台对视好虐</td><td><span class="text-orange">虐+甜</span></td></tr>
+          <tr><td>9</td><td>「CP 名」+ 吃醋/傲娇 + 一秒哄好</td><td>谢燕来吃醋楚朝一秒哄好，太会钓了</td><td><span class="text-orange">嗑</span></td></tr>
+          <tr><td>10</td><td>「角色」+ 跑步/奔向 + 名场面</td><td>发现他看到她跑着来自己也立马跑着迎过去</td><td><span class="text-orange">嗑</span></td></tr>
+          <tr><td>11</td><td>「角色」+ 总是 + 反差 + 表情</td><td>被嘲笑跟着大家一起笑反应过来的表情太殇了</td><td><span class="text-orange">虐</span></td></tr>
+          <tr><td>12</td><td>🆘 + 上头 + 让人上头的 CP</td><td>🆘强制心动竟有这么让人上头的cp</td><td><span class="text-orange">嗑</span></td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ 内容矩阵 -->
+  <section id="matrix">
+    <div class="container">
+      <div class="section-label">④ MATRIX</div>
+      <h2 class="section-title">内容矩阵：5 大栏目 + 30 个首批选题</h2>
+      <p class="section-sub">从原号 32 篇内容反推的栏目结构，比例 8:1:1 配比（甜蜜向为绝对主力）。</p>
+
+      <div class="grid grid-5">
+        <div class="stat" style="border-left-color: var(--orange);">
+          <div class="label">栏目 1</div>
+          <div class="value" style="font-size:22px; line-height:1.3;">甜蜜名场面</div>
+          <div class="desc"><b style="color:var(--orange)">60%</b> · 主力</div>
+        </div>
+        <div class="stat" style="border-left-color: var(--yellow);">
+          <div class="label">栏目 2</div>
+          <div class="value" style="font-size:22px; line-height:1.3;">虐心/遗憾</div>
+          <div class="desc">20% · 调性平衡</div>
+        </div>
+        <div class="stat" style="border-left-color: var(--green);">
+          <div class="label">栏目 3</div>
+          <div class="value" style="font-size:22px; line-height:1.3;">搞笑沙雕</div>
+          <div class="desc">10% · 流量款</div>
+        </div>
+        <div class="stat" style="border-left-color: var(--red);">
+          <div class="label">栏目 4</div>
+          <div class="value" style="font-size:22px; line-height:1.3;">配角/支线</div>
+          <div class="desc">5% · 拓展</div>
+        </div>
+        <div class="stat" style="border-left-color: var(--text-dim);">
+          <div class="label">栏目 5</div>
+          <div class="value" style="font-size:22px; line-height:1.3;">联动/红毯</div>
+          <div class="desc">5% · 话题款</div>
+        </div>
+      </div>
+
+      <div class="grid grid-2 mt-32">
+        <div class="card">
+          <div class="card-title">🔥 甜蜜名场面（6 个首批选题）</div>
+          <ol style="margin-left:20px; line-height:1.9;">
+            <li>新剧第 N 集高甜 cut（剧集更新 2h 内抢发）</li>
+            <li>CP 角色名 + 隐藏小动作细节</li>
+            <li>"双向奔赴"主题集合（多部剧混剪）</li>
+            <li>男主"苏"瞬间合集（台词 / 眼神 / 微动作）</li>
+            <li>女主"又飒又甜"反差合集</li>
+            <li>副 CP / 老辈子 CP 嗑点（蓝海赛道）</li>
+          </ol>
+        </div>
+        <div class="card">
+          <div class="card-title">💔 虐心/遗憾（3 个首批选题）</div>
+          <ol style="margin-left:20px; line-height:1.9;">
+            <li>虐心台词混剪（"误会" "错过" "回头"）</li>
+            <li>"如果当初..." 时间线混剪</li>
+            <li>BE 名场面（雨中分手 / 错过重逢）</li>
+          </ol>
+        </div>
+        <div class="card">
+          <div class="card-title">😂 搞笑沙雕（2 个首批选题）</div>
+          <ol style="margin-left:20px; line-height:1.9;">
+            <li>CP 互动笑场 / 嘴瓢 / 反差名场面</li>
+            <li>男/女主"嘴上嫌弃身体诚实"合集</li>
+          </ol>
+        </div>
+        <div class="card">
+          <div class="card-title">🎬 配角 / 联动（2 个首批选题）</div>
+          <ol style="margin-left:20px; line-height:1.9;">
+            <li>剧中"比主 CP 还火"的副 CP 专题</li>
+            <li>演员红毯 / 综艺联动名场面（拉粉圈外用户）</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ 30 天冷启动 -->
+  <section id="calendar">
+    <div class="container">
+      <div class="section-label">⑤ 30-DAY COLD START</div>
+      <h2 class="section-title">30 天冷启动 SOP：每周一个里程碑</h2>
+      <p class="section-sub">不画大饼，把"第 1 天到第 30 天"逐日可执行动作排好。基线目标：30 天 2,000 粉、均赞 500+、爆款率 5%。</p>
+
+      <div class="card">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="week">WEEK 1 · D+1 ~ D+7</div>
+            <div class="title">养号期：定位 / 刷剧 / 找 CP</div>
+            <p>· D+1：改名 + 改简介 + 改头像（IP 化剪影）<br>· D+2~3：每天刷 30 分钟小红书影视娱乐类内容（养号）<br>· D+4~5：批量关注 50 个同类目号（嗑糖 / 混剪 / 影评）<br>· D+6~7：建立"CP 池"（按剧记录 Top 角色 + 嗑点），拍 D+8 的首发素材</p>
+          </div>
+          <div class="timeline-item">
+            <div class="week">WEEK 2 · D+8 ~ D+14</div>
+            <div class="title">试发期：每天 1 篇（共 7 篇）</div>
+            <p>· 发布节奏：每天 1 篇 30 秒视频<br>· 时间：晚 21:00（用户睡前刷剧高峰）<br>· 重点：观察哪类标题点击率最高（按点赞/曝光比）<br>· 每日回复 30 分钟评论（关键涨粉）<br>· 7 篇目标：2,000 粉、均赞 200</p>
+          </div>
+          <div class="timeline-item">
+            <div class="week">WEEK 3 · D+15 ~ D+21</div>
+            <div class="title">提速期：每天 2 篇（共 14 篇）</div>
+            <p>· 新增早 8:00 档（通勤场景）<br>· 把 W2 表现最好的 3 类标题模板放大<br>· 开始追"全网首剪"（剧集更新 2h 内）<br>· 14 篇目标：5,000 粉、均赞 500、首篇破 5,000 赞爆款</p>
+          </div>
+          <div class="timeline-item">
+            <div class="week">WEEK 4 · D+22 ~ D+30</div>
+            <div class="title">复盘期：稳定 + 商业化预热</div>
+            <p>· 稳定每天 1-2 篇节奏<br>· D+25：首次数据复盘（点赞 / 收藏 / 评论 / 完播率）<br>· D+28：建立"选题库 v2"（按 CP 归档）<br>· D+30：30 天总复盘 + 第二季度规划<br>· 目标：8,000 粉、均赞 800、爆款率 8%、可接蒲公英</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-3 mt-24">
+        <div class="stat">
+          <div class="label">D+7 目标</div>
+          <div class="value">500<span class="unit">粉</span></div>
+          <div class="desc">试发 7 篇 · 0 爆款</div>
+        </div>
+        <div class="stat">
+          <div class="label">D+21 目标</div>
+          <div class="value">5,000<span class="unit">粉</span></div>
+          <div class="desc">日均 2 篇 · 1 篇破 5,000 赞</div>
+        </div>
+        <div class="stat">
+          <div class="label">D+30 目标</div>
+          <div class="value">8,000<span class="unit">粉</span></div>
+          <div class="desc">均赞 800 · 爆款率 8%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ 风险清单 -->
+  <section id="checklist">
+    <div class="container">
+      <div class="section-label">⑥ RISK</div>
+      <h2 class="section-title">风险清单：原号踩过的坑，别再踩</h2>
+      <p class="section-sub">原 A 号已经"健康"，但同矩阵的 B 号（西湖边的夏雨荷）已经"已近算法降权"——5 号矩阵的共性风险 + A 号的个别风险，全部列清楚。</p>
+
+      <div class="card">
+        <div class="card-title">🚨 立即规避（账号设置期）</div>
+        <div class="alert alert-danger mt-8">
+          <div class="alert-icon">1</div>
+          <div class="alert-body">
+            <div class="alert-title">简介去掉 @Yanan / 小助理</div>
+            <p>原号简介里"🍠→小助理@Yanan"直接暴露矩阵关系，平台判定同主体后限流。改成"📮 商务私信"。</p>
+          </div>
+        </div>
+        <div class="alert alert-danger mt-8">
+          <div class="alert-icon">2</div>
+          <div class="alert-body">
+            <div class="alert-title">IP 属地改北京</div>
+            <p>5 号矩阵全显示山西，矩阵关系过于明显。新号 IP 改北京或上海，打散属地。</p>
+          </div>
+        </div>
+        <div class="alert alert-warn mt-8">
+          <div class="alert-icon">3</div>
+          <div class="alert-body">
+            <div class="alert-title">"爆梗+神转场"换描述</div>
+            <p>原号简介"爆梗+神转场"暗示二次创作多，版权风险高。换成"专治剧荒｜上头｜emo"（只描述用户场景）。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-24">
+        <div class="card-title">⚠️ 内容期规避（30 天内）</div>
+        <div class="alert alert-warn mt-8">
+          <div class="alert-icon">4</div>
+          <div class="alert-body">
+            <div class="alert-title">不要用 🆘 emoji 开头（原号已踩，最低 46 赞）</div>
+            <p>32 篇里"🆘强制心动竟有这么让人上头的cp"是最低赞（46），🆘 + "上头"组合疑似被限流。改用"啊啊" "谁懂" 等已验证安全词。</p>
+          </div>
+        </div>
+        <div class="alert alert-warn mt-8">
+          <div class="alert-icon">5</div>
+          <div class="alert-body">
+            <div class="alert-title">不要追"谢燕来/楚朝"这种非爆款 CP</div>
+            <p>原号 Top 10 没有"谢燕来/楚朝"，但底部 4 篇全是这俩 CP（129/135/148 赞）。CP 选择是流量决定性因素，不是随机的。</p>
+          </div>
+        </div>
+        <div class="alert alert-info mt-8">
+          <div class="alert-icon">6</div>
+          <div class="alert-body">
+            <div class="alert-title">甜蜜向 = 流量密码（不要做纯虐心）</div>
+            <p>原号 Top 3 全部是甜蜜向，虐的反而偏低（3-5K 赞）。做虐心要有甜蜜打底（"甜蜜又酸涩"），纯虐是流量陷阱。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-24">
+        <div class="card-title">💰 变现期规避（3 个月后）</div>
+        <div class="alert alert-warn mt-8">
+          <div class="alert-icon">7</div>
+          <div class="alert-body">
+            <div class="alert-title">前 3 个月不接广告</div>
+            <p>3,872 均赞 + 1万粉阶段接广告 = 性价比最低。前 3 个月用内容把粉丝推到 5 万，均赞稳 1,000+，再开蒲公英。</p>
+          </div>
+        </div>
+        <div class="alert alert-warn mt-8">
+          <div class="alert-icon">8</div>
+          <div class="alert-body">
+            <div class="alert-title">不做矩阵联动</div>
+            <p>5 号矩阵是历史包袱（IP 都在山西）。新号做单点深耕，不要复制"多账号互推"模式（已被算法打击）。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 一页总结 -->
+  <section>
+    <div class="container">
+      <div class="alert alert-success">
+        <div class="alert-icon">🎯</div>
+        <div class="alert-body">
+          <div class="alert-title" style="font-size:22px;">一句话总结</div>
+          <p class="mt-8" style="font-size:17px; line-height:1.8;">复刻「满级观众」= <b style="color:var(--orange)">保留"剪刀手"人设 + 改 IP 改简介（破矩阵）+ 8 成甜蜜向混剪 + 12 句标题模板 + 30 天冷启动 SOP</b>。<br>核心理念：<b style="color:var(--yellow)">不是做"更高级"的影评号，是把原号已验证的"嗑糖混剪"做到极致 + 避开它踩过的坑。</b></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p>百思传媒 · 满级观众 复刻企划书 · 基于 32 篇公开笔记数据反推</p>
+    <p class="text-mute text-sm mt-8">数据日期: 2026-06-13 · 数据来源: 小红书公开页 · 报告仅供内部参考</p>
+  </div>
+</footer>
+
+</body>
+</html>

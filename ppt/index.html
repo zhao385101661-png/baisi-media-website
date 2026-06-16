@@ -2416,6 +2416,7 @@ ul.bul > li::before{
 .toc-grid{
   flex:1; display:grid;
   grid-template-columns:repeat(3, 1fr);
+  grid-auto-flow: row dense;
   gap:18px 28px;
   align-content:start;
 }
@@ -2432,7 +2433,8 @@ ul.bul > li::before{
 .toc-item > .ti-name{
   margin-top: 2px;
 }
-.toc-item-full{ grid-column:1 / 2; }
+/* 第 5 条（带 .toc-item-full）占中间列，跟 04 在同一行右侧 */
+.toc-item-full{ grid-column: 3 / 4; grid-row: 2 / 3; }
 .ti-no{
   font-family:var(--serif);
   font-size:38px; font-weight:600; color:var(--gold);

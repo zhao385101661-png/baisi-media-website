@@ -126,7 +126,7 @@
   /* 主体 */
   .swiper {
     position: absolute;
-    top: 59px; left: 0; right: 0; bottom: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     overflow: hidden;
   }
   .swiper-wrapper {
@@ -137,7 +137,7 @@
     background: var(--bg);
     overflow: hidden;
     height: 100%;
-    padding: 60px 44px 110px;
+    padding: 50px 44px 60px;
     display: flex;
     flex-direction: column;
   }
@@ -151,10 +151,10 @@
   }
 
   /* 页内元素 */
-  h1 { font-size: 60px; line-height: 1.18; font-weight: 800; letter-spacing: -0.02em; }
-  h2 { font-size: 44px; line-height: 1.22; font-weight: 700; margin-bottom: 16px; }
-  h3 { font-size: 28px; line-height: 1.3; font-weight: 600; }
-  p  { font-size: 22px; line-height: 1.65; color: #d6dae3; }
+  h1 { font-size: 60px; line-height: 0.91; font-weight: 800; letter-spacing: -0.02em; }
+  h2 { font-size: 44px; line-height: 0.94; font-weight: 700; margin-bottom: 16px; }
+  h3 { font-size: 28px; line-height: 1.0; font-weight: 600; }
+  p  { font-size: 22px; line-height: 1.27; color: #d6dae3; }
   small { color: var(--text-mute); font-size: 14px; }
 
   .hl-green { color: var(--accent); }
@@ -207,7 +207,7 @@
   .cover h1 {
     font-size: 64px;
     color: var(--text);
-    line-height: 1.15;
+    line-height: 0.89;
     font-weight: 800;
     letter-spacing: -0.02em;
     text-shadow: 0 4px 30px rgba(94, 224, 167, 0.3);
@@ -275,7 +275,7 @@
     font-size: 64px;
     font-weight: 900;
     color: var(--accent);
-    line-height: 1.15;
+    line-height: 0.89;
     text-shadow: 0 4px 30px rgba(94, 224, 167, 0.4);
   }
   .shock .q3 {
@@ -590,7 +590,7 @@
   <!-- 顶部状态栏 -->
   <div class="top-bar">
     <span class="time">
-      <span id="curTime">00:00</span><span class="sep">/</span><span class="total">01:54</span>
+      <span id="curTime">00:00</span><span class="sep">/</span><span class="total">01:28</span>
     </span>
     <span class="label" id="segLabel">点击屏幕开始</span>
     <span class="page" id="pageNo">1/8</span>
@@ -795,17 +795,97 @@
 
   <!-- 音频（默认静音、不自动播放，等用户点顶部 ▶ 按钮） -->
   <audio id="audio" preload="metadata" playsinline>
-    <source src="audio.mp3" type="audio/mpeg">
+    <source src="audio-1.3x.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- 右下角手动翻页按钮（应急用，音频不同步时手动切） -->
+  <!-- 背景音乐（与主音频同步播放，音量 20%） -->
+  <audio id="bgm" preload="metadata" playsinline loop>
+    <source src="bgm.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- v3.1: 启动提示（点击播放后自动隐藏） -->
+  <div class="start-overlay" id="startOverlay">
+    <div class="start-btn" id="startBtn">
+      <div class="start-ic"></div>
+      <div class="start-tt">▶ 点这里开始播放</div>
+      <div class="start-sub">主音 + BGM 同步 · 87.75 秒</div>
+    </div>
+  </div>
   <div class="manual-nav" id="manualNav">
     <button class="mn-btn" id="mnPrev">‹</button>
     <button class="mn-btn" id="mnPlay">▶</button>
     <button class="mn-btn" id="mnNext">›</button>
   </div>
 
+  <!-- BGM 音量条（左下角，默认半透明，悬停显示） -->
+  <div class="bgm-control" id="bgmControl">
+    <label>🎵 BGM</label>
+    <input type="range" id="bgmVol" min="0" max="100" value="20">
+    <span id="bgmVolLabel">20%</span>
+  </div>
+
   <style>
+  /* v3: 顶部进度条隐藏（顶部状态栏保留） */
+  .progress-bar { display: none !important; }
+
+  /* v3.1: 整个顶部状态栏也隐藏 */
+  .top-bar { display: none !important; }
+
+  /* v3: 右下角翻页按钮隐藏（键盘 ← → 仍可用） */
+  .manual-nav { display: none !important; }
+
+  /* v3: BGM 音量条隐藏（键盘 B 临时显示） */
+  .bgm-control { display: none !important; }
+  .bgm-control.show { display: flex !important; opacity: 1; }
+
+  /* v3.1: 启动提示遮罩 */
+  .start-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(11, 13, 18, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    cursor: pointer;
+    backdrop-filter: blur(2px);
+  }
+  .start-overlay.hidden { display: none; }
+  .start-btn {
+    text-align: center;
+    animation: startPulse 2s ease-in-out infinite;
+  }
+  @keyframes startPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+  }
+  .start-ic {
+    width: 110px; height: 110px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+    border-radius: 50%;
+    margin: 0 auto 24px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 40px rgba(94, 224, 167, 0.4);
+  }
+  .start-ic::after {
+    content: "";
+    width: 0; height: 0;
+    border-left: 30px solid #0b0d12;
+    border-top: 18px solid transparent;
+    border-bottom: 18px solid transparent;
+    margin-left: 8px;
+  }
+  .start-tt {
+    color: var(--text);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .start-sub {
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+
   .manual-nav {
     position: absolute;
     right: 16px; bottom: 16px;
@@ -831,6 +911,36 @@
   }
   .mn-btn:hover { background: var(--accent); color: #0b0d12; }
   .mn-btn#mnPlay { width: 56px; height: 56px; font-size: 22px; background: var(--accent); color: #0b0d12; }
+
+  /* BGM 音量控制 */
+  .bgm-control {
+    position: absolute;
+    left: 16px; bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(0,0,0,0.7);
+    border: 1px solid var(--border-strong);
+    border-radius: 22px;
+    padding: 8px 14px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    z-index: 60;
+    opacity: 0.4;
+    transition: opacity 0.3s;
+    backdrop-filter: blur(4px);
+  }
+  .bgm-control:hover, .bgm-control:focus-within { opacity: 1; }
+  .bgm-control label { color: var(--accent-3); font-weight: 600; white-space: nowrap; }
+  .bgm-control input[type=range] {
+    width: 80px;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+  .bgm-control span {
+    min-width: 32px;
+    color: var(--text-dim);
+    font-family: "SF Mono", monospace;
+  }
   </style>
 
 </div>
@@ -841,49 +951,50 @@
 const TIMELINE = [
   // ===== 第 1 页 封面 (0–4s) =====
   { t: 0.0,   slide: 0, label: '兄弟们我摊牌了',  kw: 'done' },
-  { t: 1.5,   kw: 'hand' },                              // "人真的不用再动手"
+  { t: 1.16,   kw: 'hand' },                              // "人真的不用再动手"
 
   // ===== 第 2 页 实验铺垫 + 三步 (4s–27s, ~23s) =====
-  { t: 4.0,   slide: 1, label: '前几天我做了个实验' },
-  { t: 8.0,   step: 'step1', kw: 'watch' },              // "让它自己看"
-  { t: 13.0,  step: 'step2', kw: 'script' },             // "自己写脚本"
-  { t: 18.0,  step: 'step3', kw: 'call' },               // "最狠的一步"
-  { t: 21.0,  kw: 'api' },                               // "剪映 API"
-  { t: 23.5,  kw: 'draft' },                             // "剪映草稿"
+  { t: 3.09,   slide: 1, label: '前几天我做了个实验' },
+  { t: 6.18,   step: 'step1', kw: 'watch' },              // "让它自己看"
+  { t: 10.04,  step: 'step2', kw: 'script' },             // "自己写脚本"
+  { t: 13.89,  step: 'step3', kw: 'call' },               // "最狠的一步"
+  { t: 16.21,  kw: 'api' },                               // "剪映 API"
+  { t: 18.14,  kw: 'draft' },                             // "剪映草稿"
 
   // ===== 第 3 页 转折高潮 (27s–33s, ~6s) =====
-  { t: 27.0,  slide: 2, label: '转折',                  kw: 'not' },
-  { t: 29.0,  kw: 'full' },                              // "AI 全自动"
-  { t: 31.0,  kw: 'again' },                             // "辅助 → 全自动"
+  { t: 20.84,  slide: 2, label: '转折',                  kw: 'not' },
+  { t: 22.39,  kw: 'full' },                              // "AI 全自动"
+  { t: 23.93,  kw: 'again' },                             // "辅助 → 全自动"
 
   // ===== 第 4 页 项目亮相 (33s–52s, ~19s) =====
-  { t: 33.0,  slide: 3, label: '这个项目叫 capcut-mate', kw: 'mate' },
-  { t: 38.0,  kw: 'jy' },                                // "剪映"
-  { t: 42.0,  kw: '31', items: ['create', 'video', 'image', 'audio', 'sub', 'trans', 'kf', 'mask', 'render'], interval: 1.0 },
+  { t: 25.47,  slide: 3, label: '这个项目叫 capcut-mate', kw: 'mate' },
+  { t: 29.33,  kw: 'jy' },                                // "剪映"
+  { t: 33.96,  kw: '31' },                                // "31 个 API"
+  { t: 35.51,  items: ['create', 'video', 'image', 'audio', 'sub', 'trans', 'kf', 'mask', 'render'], interval: 0.4 },
 
   // ===== 第 5 页 三种玩法（合并）(52s–80s, ~28s) =====
-  { t: 52.0,  slide: 4, label: '三种玩法',             play: 'play1', kw: 'docker' },
-  { t: 61.0,  play: 'play2', kw: 'coze' },
-  { t: 70.0,  play: 'play3', kw: 'desktop' },
+  { t: 40.14,  slide: 4, label: '三种玩法',             play: 'play1', kw: 'docker' },
+  { t: 47.09,  play: 'play2', kw: 'coze' },
+  { t: 54.04,  play: 'play3', kw: 'desktop' },
 
   // ===== 第 6 页 应用场景 (71s–92s, ~21s) =====
-  { t: 71.0,  slide: 5, label: '应用场景',              kw: 'cando' },
-  { t: 75.0,  scene: 'scene1', kw: 'matrix' },
-  { t: 79.5,  scene: 'scene2', kw: 'ecom' },
-  { t: 84.0,  scene: 'scene3', kw: 'koubo' },
-  { t: 88.5,  scene: 'scene4', kw: 'train' },
+  { t: 54.81,  slide: 5, label: '应用场景',              kw: 'cando' },
+  { t: 57.89,  scene: 'scene1', kw: 'matrix' },
+  { t: 61.37,  scene: 'scene2', kw: 'ecom' },
+  { t: 64.84,  scene: 'scene3', kw: 'koubo' },
+  { t: 68.32,  scene: 'scene4', kw: 'train' },
 
   // ===== 第 7 页 Apache + 教程预告 (92s–100s, ~8s) =====
-  { t: 92.0,  slide: 6, label: 'Apache 完全免费' },
-  { t: 94.5,  kw: 'apache' },
-  { t: 97.0,  kw: 'ran' },                               // "已经跑通了全流程"
-  { t: 99.0,  kw: 'next' },                              // "下期给你们放完整教程"
+  { t: 71.02,  slide: 6, label: 'Apache 完全免费' },
+  { t: 72.95,  kw: 'apache' },
+  { t: 74.88,  kw: 'ran' },                               // "已经跑通了全流程"
+  { t: 76.42,  kw: 'next' },                              // "下期给你们放完整教程"
 
   // ===== 第 8 页 结尾召唤 (100s–114s, ~14s) =====
-  { t: 100.0, slide: 7, label: 'Star & 扣 1' },
+  { t: 77.19, slide: 7, label: 'Star & 扣 1' },
 ];
 
-const TOTAL = 114;  // 秒
+const TOTAL = 88;  // 秒
 
 // ============ 状态 ============
 let currentSlide = 0;
@@ -1045,24 +1156,49 @@ function tick() {
 function reset() {
   TIMELINE.forEach(ev => ev._fired = false);
   const audio = document.getElementById('audio');
+  const bgm = document.getElementById('bgm');
   audio.currentTime = 0;
+  bgm.currentTime = 0;
   setSlideImmediate(0);
   clearHighlights();
   document.getElementById('curTime').textContent = '00:00';
   document.getElementById('progFill').style.width = '0%';
   document.getElementById('segLabel').textContent = '点击屏幕开始';
   document.getElementById('btnPause').textContent = '⏸ 暂停';
+  // v3.1: 重播时重新显示启动遮罩
+  document.getElementById('startOverlay').classList.remove('hidden');
+}
+
+// BGM 音量（20%）
+const BGM_VOLUME = 0.2;
+
+// 同步播放主音频 + BGM
+function playBoth() {
+  const audio = document.getElementById('audio');
+  const bgm = document.getElementById('bgm');
+  bgm.volume = BGM_VOLUME;
+  // 重置 BGM 到起点，确保与主音频同步
+  bgm.currentTime = audio.currentTime;
+  return Promise.all([
+    audio.play().catch(e => console.warn('主音频失败:', e)),
+    bgm.play().catch(e => console.warn('BGM失败:', e))
+  ]);
+}
+
+function pauseBoth() {
+  document.getElementById('audio').pause();
+  document.getElementById('bgm').pause();
 }
 
 // 启动音频同步播放
 function startPlayback() {
   const audio = document.getElementById('audio');
   const playBtn = document.getElementById('mnPlay');
-  audio.play().then(() => {
+  playBoth().then(() => {
     playing = true;
     playBtn.textContent = '⏸';
     document.getElementById('btnPause').textContent = '⏸ 暂停';
-    document.getElementById('segLabel').textContent = '▶ 同步播放中';
+    document.getElementById('segLabel').textContent = '▶ 主音+BGM 同步中';
     requestAnimationFrame(tick);
   }).catch(err => {
     console.warn('音频播放失败:', err);
@@ -1074,15 +1210,16 @@ function startPlayback() {
 // 音频暂停/继续（手动翻页按钮用）
 function toggleAudioPlayback() {
   const audio = document.getElementById('audio');
+  const bgm = document.getElementById('bgm');
   const playBtn = document.getElementById('mnPlay');
   if (audio.paused) {
-    audio.play().then(() => {
+    playBoth().then(() => {
       playing = true;
       playBtn.textContent = '⏸';
       requestAnimationFrame(tick);
     });
   } else {
-    audio.pause();
+    pauseBoth();
     playing = false;
     playBtn.textContent = '▶';
   }
@@ -1105,18 +1242,19 @@ document.getElementById('btnPause').addEventListener('click', () => {
     startPlayback();
     return;
   }
-  // 已播放过：在暂停/继续之间切换
+  // 已播放过：在暂停/继续之间切换（同步 BGM）
   if (playing) {
-    audio.pause();
+    pauseBoth();
     playing = false;
     document.getElementById('btnPause').textContent = '▶ 继续';
     document.getElementById('mnPlay').textContent = '▶';
   } else {
-    audio.play();
-    playing = true;
-    document.getElementById('btnPause').textContent = '⏸ 暂停';
-    document.getElementById('mnPlay').textContent = '⏸';
-    requestAnimationFrame(tick);
+    playBoth().then(() => {
+      playing = true;
+      document.getElementById('btnPause').textContent = '⏸ 暂停';
+      document.getElementById('mnPlay').textContent = '⏸';
+      requestAnimationFrame(tick);
+    });
   }
 });
 
@@ -1132,6 +1270,19 @@ document.getElementById('btnDebug').addEventListener('click', () => {
   document.getElementById('debug').classList.toggle('show', debugOn);
 });
 
+// BGM 音量控制交互
+document.getElementById('bgmVol').addEventListener('input', (e) => {
+  const v = parseInt(e.target.value, 10);
+  document.getElementById('bgm').volume = v / 100;
+  document.getElementById('bgmVolLabel').textContent = v + '%';
+});
+
+// v3.1: 点击启动遮罩 → 启动音频 + 隐藏遮罩
+document.getElementById('startOverlay').addEventListener('click', () => {
+  startPlayback();
+  document.getElementById('startOverlay').classList.add('hidden');
+});
+
 // 键盘控制
 document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight') { if (currentSlide < 7) goToSlide(currentSlide + 1); }
@@ -1139,6 +1290,13 @@ document.addEventListener('keydown', e => {
   else if (e.key === ' ') { e.preventDefault(); document.getElementById('btnPause').click(); }
   else if (e.key === 'r' || e.key === 'R') { document.getElementById('btnReset').click(); }
   else if (e.key === 'd' || e.key === 'D') { document.getElementById('btnDebug').click(); }
+  else if (e.key === 'b' || e.key === 'B') {
+    // v3: 按 B 临时显示 BGM 音量条（3 秒后自动隐藏）
+    const c = document.getElementById('bgmControl');
+    c.classList.add('show');
+    clearTimeout(c._hideTimer);
+    c._hideTimer = setTimeout(() => c.classList.remove('show'), 3000);
+  }
 });
 
 // 暴露给控制台调试

@@ -816,7 +816,7 @@
 
   <!-- 背景音乐（与主音频同步播放，音量 20%） -->
   <audio id="bgm" preload="metadata" playsinline loop>
-    <source src="bgm.mp3" type="audio/mpeg">
+    <source src="bgm-mixed.mp3" type="audio/mpeg">
   </audio>
 
   <!-- v3.1: 启动提示（点击播放后自动隐藏） -->
@@ -836,8 +836,8 @@
   <!-- BGM 音量条（左下角，默认半透明，悬停显示） -->
   <div class="bgm-control" id="bgmControl">
     <label>🎵 BGM</label>
-    <input type="range" id="bgmVol" min="0" max="100" value="20">
-    <span id="bgmVolLabel">20%</span>
+    <input type="range" id="bgmVol" min="0" max="100" value="25">
+    <span id="bgmVolLabel">25%</span>
   </div>
 
   <style>
@@ -1185,8 +1185,9 @@ function reset() {
   document.getElementById('startOverlay').classList.remove('hidden');
 }
 
-// BGM 音量（20%）
-const BGM_VOLUME = 0.2;
+// BGM 音量（25%）— 文件本身已预混音到 -29 LUFS，HTML 25% 后实际听感约 -41 LUFS
+// 与口播 -23 LUFS 差 18 dB，标准口播混音比例
+const BGM_VOLUME = 0.25;
 
 // 同步播放主音频 + BGM
 function playBoth() {

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>问界磁吸方向盘套 · 商品评估报告</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f5f5f3;
+    color: #1a1a1a;
+    line-height: 1.65;
+  }
+
+  /* 顶部操作条 */
+  .tip-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #170d02;
+    color: #ffac02;
+    padding: 12px 24px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+  .tip-bar .hint { letter-spacing: 0.04em; }
+  .tip-bar kbd {
+    background: rgba(255,172,2,0.15);
+    border: 1px solid rgba(255,172,2,0.3);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: 12px;
+  }
+  .tip-bar .btn {
+    background: #ffac02;
+    color: #170d02;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+  .tip-bar .btn:hover { opacity: 0.88; }
+
+  /* 文档容器 */
+  .doc {
+    max-width: 960px;
+    margin: 48px auto;
+    background: #fff;
+    padding: 56px 72px;
+    border-radius: 8px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+
+  /* 标题区 */
+  .header {
+    border-bottom: 2px solid #170d02;
+    padding-bottom: 20px;
+    margin-bottom: 28px;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #170d02;
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+  }
+  .meta {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+    color: #888;
+    letter-spacing: 0.04em;
+  }
+  .meta span { color: #54a87e; font-weight: 600; }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #170d02;
+    margin: 28px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+    letter-spacing: 0.02em;
+  }
+
+  p {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  /* 关键数据 4 列 */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .stat {
+    background: #faf8f4;
+    border-left: 3px solid #ffac02;
+    padding: 14px 16px;
+    border-radius: 4px;
+  }
+  .stat .num {
+    font-size: 24px;
+    font-weight: 700;
+    color: #170d02;
+    display: block;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+  }
+  .stat .label {
+    font-size: 11px;
+    color: #888;
+    margin-top: 4px;
+    letter-spacing: 0.06em;
+  }
+
+  /* 颜色色卡 */
+  .colors {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .color-card {
+    text-align: center;
+  }
+  .color-swatch {
+    width: 100%;
+    height: 64px;
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+    margin-bottom: 6px;
+  }
+  .color-name {
+    font-size: 12px;
+    color: #555;
+    letter-spacing: 0.04em;
+  }
+  /* 5 个色卡用近似色填充，方便查看排版；改图时双击换 */
+  .c-1 { background: #d4b896; }   /* 韶华杏 */
+  .c-2 { background: #6b1f1f; }   /* 星云红 */
+  .c-3 { background: #b35a3a; }   /* 赤茶橘 */
+  .c-4 { background: #3d2817; }   /* 松露棕 */
+
+  /* 标签云 */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 14px 0;
+  }
+  .tag {
+    background: #f0ebe0;
+    color: #5d3a2a;
+    padding: 4px 12px;
+    border-radius: 14px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+  .tag strong { color: #b35a3a; margin-left: 4px; }
+
+  /* 买家原声引文 */
+  .quotes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .quote {
+    background: #fdf9f0;
+    border-left: 2px solid #ffac02;
+    padding: 10px 14px;
+    border-radius: 0 4px 4px 0;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
+  .quote::before {
+    content: '"';
+    color: #ffac02;
+    font-size: 16px;
+    font-weight: 700;
+    margin-right: 2px;
+  }
+
+  /* 评估结论块 */
+  .verdict {
+    background: #170d02;
+    color: #ffac02;
+    padding: 24px 28px;
+    border-radius: 6px;
+    margin: 24px 0;
+  }
+  .verdict h3 {
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .verdict ul {
+    list-style: none;
+    padding: 0;
+  }
+  .verdict li {
+    font-size: 14px;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+    padding-left: 18px;
+    position: relative;
+  }
+  .verdict li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #ffac02;
+  }
+  .verdict .grade {
+    display: inline-block;
+    background: #ffac02;
+    color: #170d02;
+    padding: 2px 10px;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    margin-left: 8px;
+  }
+
+  /* 商品主图 */
+  .product-hero {
+    margin: 20px 0;
+    text-align: center;
+  }
+  .product-hero img {
+    max-width: 100%;
+    max-height: 360px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  /* 编辑态 */
+  [contenteditable="true"]:hover {
+    outline: 1px dashed #ffac02;
+    outline-offset: 4px;
+    cursor: text;
+  }
+  [contenteditable="true"]:focus {
+    outline: 2px solid #ffac02;
+    outline-offset: 4px;
+    background: #fffdf7;
+    border-radius: 2px;
+  }
+  .color-swatch:hover {
+    outline: 2px dashed #ffac02;
+    outline-offset: 2px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="tip-bar">
+  <span class="hint">✏️ 点击文字改 · 双击图片/色卡替换 · <kbd>⌘S</kbd> 保存</span>
+  <button class="btn" onclick="saveHTML()">💾 保存 HTML</button>
+</div>
+
+<article class="doc">
+
+  <div class="header">
+    <h1 contenteditable="true">问界磁吸方向盘套 · 商品评估报告</h1>
+    <div class="meta">
+      <span contenteditable="true">📅 2026-06-23</span>
+      <span contenteditable="true">💰 券后 ¥237</span>
+      <span contenteditable="true">🏪 智行车品改装店</span>
+      <span contenteditable="true">🚗 适配 问界 M7</span>
+    </div>
+  </div>
+
+  <h2 contenteditable="true">📊 关键数据</h2>
+  <div class="stats">
+    <div class="stat">
+      <span class="num" contenteditable="true">63</span>
+      <span class="label" contenteditable="true">总评价数</span>
+    </div>
+    <div class="stat">
+      <span class="num" contenteditable="true">56</span>
+      <span class="label" contenteditable="true">好评</span>
+    </div>
+    <div class="stat">
+      <span class="num" contenteditable="true">4</span>
+      <span class="label" contenteditable="true">差评</span>
+    </div>
+    <div class="stat">
+      <span class="num" contenteditable="true">564</span>
+      <span class="label" contenteditable="true">销量(快照)</span>
+    </div>
+  </div>
+
+  <h2 contenteditable="true">🖼 商品主图</h2>
+  <div class="product-hero">
+    <img src="data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='900' height='360' viewBox='0 0 900 360'&gt;&lt;rect width='900' height='360' fill='%23170d02'/&gt;&lt;text x='450' y='190' font-size='28' fill='%23ffac02' text-anchor='middle' font-family='sans-serif' letter-spacing='6'&gt;问界磁吸方向盘套&lt;/text&gt;&lt;text x='450' y='225' font-size='14' fill='%2354a87e' text-anchor='middle' font-family='sans-serif' letter-spacing='8'&gt;M6 · M7 · M8 · M9&lt;/text&gt;&lt;/svg&gt;"
+         alt="商品主图"
+         ondblclick="replaceImage(this)">
+    <p style="text-align:center; color:#aaa; font-size:12px; margin-top:8px; letter-spacing:0.06em;" contenteditable="true">↑ 双击替换为商品主图（建议用问界 M7 装车实拍）</p>
+  </div>
+
+  <h2 contenteditable="true">🎨 在售颜色</h2>
+  <div class="colors">
+    <div class="color-card">
+      <div class="color-swatch c-3" ondblclick="replaceColor(this)"></div>
+      <div class="color-name" contenteditable="true">赤茶橘</div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch c-2" ondblclick="replaceColor(this)"></div>
+      <div class="color-name" contenteditable="true">星云红</div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch c-4" ondblclick="replaceColor(this)"></div>
+      <div class="color-name" contenteditable="true">松露棕</div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch c-1" ondblclick="replaceColor(this)"></div>
+      <div class="color-name" contenteditable="true">韶华杏</div>
+    </div>
+  </div>
+
+  <h2 contenteditable="true">⭐ 高频好评标签</h2>
+  <div class="tags">
+    <span class="tag" contenteditable="true">手感很好 <strong>17</strong></span>
+    <span class="tag" contenteditable="true">确实不错 <strong>10</strong></span>
+    <span class="tag" contenteditable="true">不用担心打滑 <strong>6</strong></span>
+    <span class="tag" contenteditable="true">回头客 <strong>7</strong></span>
+    <span class="tag" contenteditable="true">买家秀 <strong>8</strong></span>
+    <span class="tag" contenteditable="true">好评 <strong>56</strong></span>
+  </div>
+
+  <h2 contenteditable="true">🗣 买家原声</h2>
+  <div class="quotes">
+    <div class="quote" contenteditable="true">手感很防滑，不影响智能驾驶。</div>
+    <div class="quote" contenteditable="true">几分钟就搞定了，安装简单。</div>
+    <div class="quote" contenteditable="true">比手缝款好多了，软软的。</div>
+    <div class="quote" contenteditable="true">颜值高，一份价格一份货。</div>
+    <div class="quote" contenteditable="true">顺丰包邮，隔天就到了。</div>
+    <div class="quote" contenteditable="true">颜色没色差，跟原车的一样。</div>
+    <div class="quote" contenteditable="true">客服小姐姐提供了视频，很有耐心。</div>
+    <div class="quote" contenteditable="true">价格挺实惠，质量也不错。</div>
+  </div>
+
+  <div class="verdict">
+    <h3 contenteditable="true">📋 评估结论 <span class="grade" contenteditable="true">B+ · 可推</span></h3>
+    <ul>
+      <li contenteditable="true"><strong>价格带合理</strong>：¥237 处于 200-300 配件主流区间，专注问界 M7 单车型（M7 销量 30 万+），定位精准。注：标题引流词"26 款 M6-M9"为搜索 SEO，实际只适配 M7。</li>
+      <li contenteditable="true"><strong>评价正向</strong>：88.9% 好评，0 严重翻车；高赞关键词集中在"手感/防滑/简单/颜值"，符合车载内饰配件决策路径。</li>
+      <li contenteditable="true"><strong>差异化卖点</strong>：磁吸+超薄+零改装，三连击精准对应"怕麻烦、怕影响智能驾驶"两大焦虑点。</li>
+      <li contenteditable="true"><strong>色卡选择健康</strong>：4 色暖色调（橘/红/棕/杏），无冷色干扰，命名走意境路线（赤茶橘/韶华杏），与问界 M7 内饰风格高度契合。</li>
+      <li contenteditable="true"><strong>风险点</strong>：① 差评 4 条未读到内容，建议补看是否有材质/异味/适配偏差；② 店铺为"智行车品改装店"（改装小店，非品牌官方），需关注售后稳定性。</li>
+    </ul>
+  </div>
+
+  <h2 contenteditable="true">🎬 内容角度建议</h2>
+  <p contenteditable="true">
+    1. <strong>实拍对比</strong>：未装 vs 已装，5 秒展示磁吸+10 秒展示握感<br>
+    2. <strong>智能驾驶场景</strong>：<em>「装上它，方向盘识别还在不在」</em>——直接回应最大焦虑<br>
+    3. <strong>色卡选择</strong>：5 色手持摆拍，强调"和原车像不像"<br>
+    4. <strong>价格锚定</strong>：对比 4S 店报价（500+），强化"省一半"价值感
+  </p>
+
+  <h2 contenteditable="true">⚠️ 待补信息</h2>
+  <p contenteditable="true" style="color:#999;">
+    · 差评 4 条的具体内容<br>
+    · 月销量 / 30 日销量趋势<br>
+    · 店铺评分（DSR 三项）<br>
+    · SKU 价差（不同颜色是否同价）<br>
+    · 物流时效数据<br>
+    · 同类竞品价格带对比
+  </p>
+
+</article>
+
+<script>
+  function replaceImage(img) {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = e => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => img.src = ev.target.result;
+      reader.readAsDataURL(file);
+    };
+    input.click();
+  }
+
+  // 双击色卡：弹颜色选择器改色
+  function replaceColor(swatch) {
+    const input = document.createElement('input');
+    input.type = 'color';
+    input.value = '#d4b896';
+    input.onchange = e => swatch.style.background = e.target.value;
+    input.click();
+  }
+
+  function saveHTML() {
+    const clone = document.documentElement.cloneNode(true);
+    const tip = clone.querySelector('.tip-bar');
+    if (tip) tip.remove();
+    const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'product-report-' + new Date().toISOString().slice(0, 10) + '.html';
+    a.click();
+    URL.revokeObjectURL(url);
+
+    const btn = document.querySelector('.tip-bar .btn');
+    const orig = btn.textContent;
+    btn.textContent = '✓ 已保存';
+    setTimeout(() => btn.textContent = orig, 1800);
+  }
+
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+      e.preventDefault();
+      saveHTML();
+    }
+  });
+</script>
+
+</body>
+</html>

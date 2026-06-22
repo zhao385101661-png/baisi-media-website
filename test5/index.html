@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920, initial-scale=1">
+<title>抖店好物种草卡 · 问界M7磁吸方向盘套</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* 全屏背景 */
+  html, body {
+    width: 100%;
+    min-height: 100vh;
+    background: #0a0a0a;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* 顶部操作条 */
+  .tip-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(23,13,2,0.95);
+    color: #ffac02;
+    padding: 10px 24px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 0.04em;
+  }
+  .tip-bar kbd {
+    background: rgba(255,172,2,0.15);
+    border: 1px solid rgba(255,172,2,0.3);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: 11px;
+    margin: 0 2px;
+  }
+  .tip-bar .btn {
+    background: #ffac02;
+    color: #170d02;
+    border: none;
+    padding: 5px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+  .tip-bar .btn:hover { opacity: 0.88; }
+
+  /* 画布：1920x1080 自适应缩放 */
+  .stage-wrap {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px 20px;
+  }
+
+  .stage {
+    width: 1920px;
+    height: 1080px;
+    background: #170d02;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    transform-origin: center center;
+  }
+
+  /* ===== 视频区 ===== */
+  .video-area {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    height: 720px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #1a1a1a;
+    cursor: pointer;
+  }
+
+  .video-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* 视频暗角 */
+  .video-area::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.4) 100%);
+    pointer-events: none;
+  }
+
+  /* 播放按钮 */
+  .play-btn {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(255,172,2,0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+  .play-btn::before {
+    content: "";
+    width: 0; height: 0;
+    border-left: 36px solid #170d02;
+    border-top: 22px solid transparent;
+    border-bottom: 22px solid transparent;
+    margin-left: 8px;
+  }
+
+  /* 进度条 */
+  .progress {
+    position: absolute;
+    bottom: 16px;
+    left: 20px;
+    right: 20px;
+    height: 4px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 2px;
+    z-index: 5;
+  }
+  .progress-bar {
+    width: 38%;
+    height: 100%;
+    background: #ffac02;
+    border-radius: 2px;
+  }
+  .time {
+    position: absolute;
+    bottom: 28px;
+    right: 24px;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    z-index: 5;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  }
+
+  /* 视频左上角小标 */
+  .v-tag {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    z-index: 5;
+  }
+
+  /* ===== 信息区 ===== */
+  .info-area {
+    position: absolute;
+    top: 780px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    color: #ffac02;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  /* 钩子标题 */
+  .hook {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: 0.02em;
+  }
+  .hook .pain {
+    color: #ffac02;
+    font-size: 30px;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+  .hook .solution {
+    color: #fff;
+    display: block;
+    text-shadow: 0 2px 12px rgba(255,172,2,0.3);
+  }
+  .hook .highlight {
+    color: #54a87e;
+    background: linear-gradient(180deg, transparent 60%, rgba(84,168,126,0.25) 60%);
+    padding: 0 4px;
+  }
+
+  /* UP主信息条 */
+  .author-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: rgba(255,172,2,0.08);
+    border-radius: 12px;
+    border: 1px solid rgba(255,172,2,0.15);
+  }
+  .avatar {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffac02, #54a87e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #170d02;
+    flex-shrink: 0;
+  }
+  .author-info { flex: 1; }
+  .author-name {
+    font-size: 20px;
+    color: #ffac02;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .author-bio {
+    font-size: 14px;
+    color: rgba(255,172,2,0.6);
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  /* 标签 */
+  .tags {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    background: rgba(84,168,126,0.18);
+    color: #54a87e;
+    border: 1px solid rgba(84,168,126,0.4);
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+  }
+
+  /* 底部品牌行 */
+  .brand {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,172,2,0.2);
+  }
+  .brand-name {
+    font-size: 18px;
+    color: rgba(255,172,2,0.5);
+    letter-spacing: 0.12em;
+  }
+  .brand-name strong { color: #ffac02; font-weight: 600; }
+
+  /* 编辑态视觉 */
+  [contenteditable="true"]:hover {
+    outline: 1px dashed #ffac02;
+    outline-offset: 4px;
+    cursor: text;
+  }
+  [contenteditable="true"]:focus {
+    outline: 2px solid #ffac02;
+    outline-offset: 4px;
+    background: rgba(255,253,247,0.1);
+    border-radius: 2px;
+  }
+  .video-area:hover .play-btn {
+    transform: translate(-50%, -50%) scale(1.05);
+    transition: transform 0.2s;
+  }
+</style>
+</head>
+<body>
+
+<div class="tip-bar">
+  <span class="hint">✏️ 点击文字改 · 双击视频区换封面 · <kbd>⌘S</kbd> 保存</span>
+  <button class="btn" onclick="saveHTML()">💾 保存 HTML</button>
+</div>
+
+<div class="stage-wrap">
+  <div class="stage" id="stage">
+
+    <!-- 视频区 -->
+    <div class="video-area" ondblclick="replaceCover(this)">
+      <div class="v-tag" contenteditable="true">🚗 车主实测 · 第 037 期</div>
+      <div class="play-btn"></div>
+      <div class="progress"><div class="progress-bar"></div></div>
+      <div class="time" contenteditable="true">01:46 / 04:32</div>
+      <img src="data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080' viewBox='0 0 1920 1080'&gt;&lt;defs&gt;&lt;radialGradient id='g' cx='50%25' cy='50%25' r='60%25'&gt;&lt;stop offset='0%25' stop-color='%233a2a1a'/&gt;&lt;stop offset='100%25' stop-color='%230a0604'/&gt;&lt;/radialGradient&gt;&lt;/defs&gt;&lt;rect width='1920' height='1080' fill='url(%23g)'/&gt;&lt;!-- 方向盘外圈 --&gt;&lt;circle cx='960' cy='540' r='340' fill='none' stroke='%23b35a3a' stroke-width='60' opacity='0.92'/&gt;&lt;!-- 内圈压线 --&gt;&lt;circle cx='960' cy='540' r='340' fill='none' stroke='%23704222' stroke-width='2' stroke-dasharray='6 8' opacity='0.6'/&gt;&lt;!-- 中心标 --&gt;&lt;circle cx='960' cy='540' r='70' fill='%23170d02' stroke='%23ffac02' stroke-width='3'/&gt;&lt;text x='960' y='552' font-size='28' fill='%23ffac02' text-anchor='middle' font-family='sans-serif' font-weight='700' letter-spacing='3'&gt;问界 M7&lt;/text&gt;&lt;!-- 缝线装饰 --&gt;&lt;circle cx='960' cy='540' r='300' fill='none' stroke='%23d4b896' stroke-width='1' stroke-dasharray='3 12' opacity='0.5'/&gt;&lt;!-- 左上水印 --&gt;&lt;text x='60' y='80' font-size='18' fill='%23ffac02' opacity='0.5' font-family='sans-serif' letter-spacing='4'&gt;REC ● 4K&lt;/text&gt;&lt;!-- 右下时间码 --&gt;&lt;text x='1860' y='1020' font-size='22' fill='%23fff' opacity='0.6' text-anchor='end' font-family='monospace' letter-spacing='2'&gt;TC 00:01:46:12&lt;/text&gt;&lt;/svg&gt;"
+           alt="视频封面">
+    </div>
+
+    <!-- 信息区 -->
+    <div class="info-area">
+      <h1 class="hook">
+        <span class="pain" contenteditable="true">问界车主最怕方向盘「打滑」</span>
+        <span class="solution" contenteditable="true">麂皮绒握感 · <span class="highlight">磁吸 3 秒装</span> · M7 车主必看</span>
+      </h1>
+
+      <div class="author-row">
+        <div class="avatar" contenteditable="true">百</div>
+        <div class="author-info">
+          <div class="author-name" contenteditable="true">百思传媒 · 车主实测</div>
+          <div class="author-bio" contenteditable="true">每期拆一个真车好物 · 看完不踩坑</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:14px; color:rgba(255,172,2,0.5); letter-spacing:0.06em;" contenteditable="true">已实测 037 期</div>
+          <div style="font-size:14px; color:#54a87e; margin-top:4px; letter-spacing:0.06em;" contenteditable="true">★ 4.9 车主口碑</div>
+        </div>
+      </div>
+
+      <div class="tags">
+        <span class="tag" contenteditable="true"># 问界 M7</span>
+        <span class="tag" contenteditable="true"># 麂皮方向盘套</span>
+        <span class="tag" contenteditable="true"># 磁吸安装</span>
+        <span class="tag" contenteditable="true"># 车载好物</span>
+        <span class="tag" contenteditable="true"># 零改装</span>
+      </div>
+
+      <div class="brand">
+        <div class="brand-name" contenteditable="true"><strong>BAISI MEDIA</strong> · 百思传媒 · 文化内容 IP 整合营销</div>
+        <div class="brand-name" contenteditable="true">www.imbestent.com</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // 自适应缩放：保持 1920x1080 比例
+  function fitStage() {
+    const stage = document.getElementById('stage');
+    const wrapW = window.innerWidth - 40;
+    const wrapH = window.innerHeight - 80;
+    const scale = Math.min(wrapW / 1920, wrapH / 1080, 1);
+    stage.style.transform = `scale(${scale})`;
+  }
+  window.addEventListener('resize', fitStage);
+  fitStage();
+
+  // 双击视频区换封面
+  function replaceCover(area) {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = e => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        const img = area.querySelector('img');
+        img.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    };
+    input.click();
+  }
+
+  function saveHTML() {
+    const clone = document.documentElement.cloneNode(true);
+    const tip = clone.querySelector('.tip-bar');
+    if (tip) tip.remove();
+    const stage = clone.querySelector('.stage');
+    if (stage) stage.removeAttribute('style');
+    const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'douyin-share-' + new Date().toISOString().slice(0, 10) + '.html';
+    a.click();
+    URL.revokeObjectURL(url);
+    const btn = document.querySelector('.tip-bar .btn');
+    const orig = btn.textContent;
+    btn.textContent = '✓ 已保存';
+    setTimeout(() => btn.textContent = orig, 1800);
+  }
+
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+      e.preventDefault();
+      saveHTML();
+    }
+  });
+</script>
+
+</body>
+</html>

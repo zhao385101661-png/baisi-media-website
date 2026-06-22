@@ -167,6 +167,40 @@
   }
   .slides > .page { position: relative; margin: 0; }
 
+  /* 手机端：禁橡皮筋 + 禁选择 */
+  html, body { overscroll-behavior: none; touch-action: pan-y; -webkit-user-select: none; user-select: none; }
+  [contenteditable="true"] { -webkit-user-select: text; user-select: text; touch-action: manipulation; }
+
+  /* 翻页进度点（手机端右侧） */
+  .page-dots {
+    position: fixed; right: 10px; top: 50%; transform: translateY(-50%);
+    z-index: 50; display: flex; flex-direction: column; gap: 6px;
+    padding: 8px 6px; background: rgba(23,13,2,0.35); border-radius: 12px;
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  }
+  .page-dots .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.4); transition: all 0.3s;
+  }
+  .page-dots .dot.on { background: var(--accent-yellow, #fff3a0); width: 6px; height: 18px; border-radius: 3px; }
+  .page-dots { display: none; }
+  @media (max-width: 768px) { .page-dots { display: flex; } }
+
+  /* 翻页提示（首屏 3 秒后淡出） */
+  .swipe-hint {
+    position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+    z-index: 50; color: rgba(23,13,2,0.55); font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700;
+    pointer-events: none; opacity: 0; animation: hintFade 3.5s ease-in-out 1.2s forwards;
+  }
+  @keyframes hintFade {
+    0% { opacity: 0; transform: translate(-50%, 10px); }
+    20% { opacity: 1; transform: translate(-50%, 0); }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  @media (min-width: 769px) { .swipe-hint { display: none; } }
+
   /* 顶部胶囊 */
   .capsule {
     position: absolute;
@@ -433,6 +467,11 @@
 <div class="stage" id="stage">
 <div class="slides" id="slides">
 
+<!-- 翻页进度点（手机端） -->
+<div class="page-dots" id="pageDots"></div>
+<!-- 翻页提示（首屏 3 秒淡出） -->
+<div class="swipe-hint" id="swipeHint">↓ 下滑翻页</div>
+
 <!-- ============================================ -->
 <!-- P1 · 封面（钩子）                            -->
 <!-- ============================================ -->
@@ -655,6 +694,7 @@
     '你选哪个色？',
   ];
 
+  // 翻页（含进度点高亮）
   function go(idx) {
     if (idx < 0) idx = 0;
     if (idx > total - 1) idx = total - 1;
@@ -663,6 +703,9 @@
     slides.style.transform = `translateY(-${current * pageH}px)`;
     document.getElementById('timeLabel').textContent = labels[current];
     document.getElementById('pageNo').textContent = `${current + 1} / ${total}`;
+    if (typeof dots !== 'undefined') {
+      dots.forEach((d, i) => d.classList.toggle('on', i === current));
+    }
     animateCurrentPage();
   }
 
@@ -691,7 +734,7 @@
     else if (e.key === 'End') { go(total - 1); }
   });
 
-  // 滚轮翻页
+  // 滚轮翻页（桌面）
   let wheelLock = false;
   document.addEventListener('wheel', e => {
     if (wheelLock) return;
@@ -701,6 +744,44 @@
     else go(current - 1);
     setTimeout(() => wheelLock = false, 600);
   }, { passive: true });
+
+  // 触摸翻页（手机）
+  let touchStartY = 0, touchStartX = 0, touchStartT = 0, touchLock = false;
+  document.addEventListener('touchstart', e => {
+    if (e.target.closest('[contenteditable="true"]')) return; // 编辑态下不抢
+    touchStartY = e.touches[0].clientY;
+    touchStartX = e.touches[0].clientX;
+    touchStartT = Date.now();
+    touchLock = false;
+  }, { passive: true });
+  document.addEventListener('touchend', e => {
+    if (e.target.closest('[contenteditable="true"]')) return;
+    if (touchLock) return;
+    const t = e.changedTouches[0];
+    const dy = t.clientY - touchStartY;
+    const dx = t.clientX - touchStartX;
+    const dt = Date.now() - touchStartT;
+    // 垂直滑动距离 > 40px 且占比 > 横向 1.5 倍 + 时长 < 800ms
+    if (Math.abs(dy) > 40 && Math.abs(dy) > Math.abs(dx) * 1.5 && dt < 800) {
+      touchLock = true;
+      if (dy < 0) go(current + 1); // 向上滑 → 下一页
+      else go(current - 1);         // 向下滑 → 上一页
+      setTimeout(() => touchLock = false, 600);
+    }
+  }, { passive: true });
+
+  // 进度点初始化
+  const dotsContainer = document.getElementById('pageDots');
+  pages.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' on' : '');
+    d.dataset.idx = i;
+    d.addEventListener('click', () => go(i));
+    dotsContainer.appendChild(d);
+  });
+  var dots = dotsContainer.querySelectorAll('.dot');
+  // 初始化第一页高亮
+  dots.forEach((d, i) => d.classList.toggle('on', i === 0));
 
   // 启动遮罩
   document.getElementById('startOverlay').addEventListener('click', () => {

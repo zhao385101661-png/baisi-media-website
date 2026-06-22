@@ -991,7 +991,7 @@
   document.getElementById('startOverlay').addEventListener('click', () => {
     audio.play().then(() => {
       document.getElementById('startOverlay').style.display = 'none';
-      bgm.volume = 0.12;
+      bgm.volume = 0.08;
       bgm.play().catch(() => {});
       animateCurrentPage(); // 首页入场
       requestAnimationFrame(tickLoop);

@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>五台山 · 文殊道场 · 跟着百思看中国</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f5f3;
+    --grid: #e5e5e0;
+    --ink: #1a1a1a;
+    --ink-dim: #5a5a5a;
+    --ink-mute: #8a8a8a;
+    --accent-red: #e63946;
+    --accent-yellow: #f4c430;
+    --accent-green: #2ecc71;
+    --highlight-green: #c5f48a;
+    --highlight-yellow: #fff3a0;
+    --highlight-red: #ffb8b8;
+    --black-block: #111;
+    --white-on-black: #f5f5f3;
+    --text: #1a1a1a;
+    --text-dim: #5a5a5a;
+    --accent-2: #16a34a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    font-family: -apple-system, BlinkMacSystemFont,
+                 "PingFang SC", "Helvetica Neue", sans-serif;
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  /* 编辑操作条 */
+  .tip-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 40px;
+    background: var(--black-block);
+    color: var(--accent-yellow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 300;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+  .tip-bar kbd {
+    background: rgba(244,196,48,0.15);
+    border: 1px solid rgba(244,196,48,0.3);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: 12px;
+  }
+  .tip-bar .btn {
+    background: var(--accent-yellow);
+    color: var(--black-block);
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+  .tip-bar .btn:hover { opacity: 0.88; }
+
+  /* 启动遮罩 */
+  .start-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    cursor: pointer;
+    backdrop-filter: blur(2px);
+  }
+  .start-btn { text-align: center; animation: startPulse 2s ease-in-out infinite; }
+  @keyframes startPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+  .start-ic {
+    width: 120px; height: 120px;
+    background: linear-gradient(135deg, var(--accent-green), var(--accent-2));
+    border-radius: 50%;
+    margin: 0 auto 24px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 60px rgba(94, 224, 167, 0.5);
+  }
+  .start-ic::after {
+    content: "";
+    width: 0; height: 0;
+    border-left: 32px solid #0b0d12;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    margin-left: 10px;
+  }
+  .start-tt { color: #fff; font-size: 24px; font-weight: 700; margin-bottom: 8px; letter-spacing: 0.04em; }
+  .start-sub { color: rgba(255,255,255,0.7); font-size: 14px; letter-spacing: 0.03em; }
+
+  /* 顶部状态条 */
+  .status-bar {
+    position: fixed;
+    top: 40px; left: 0; right: 0;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    z-index: 100;
+    color: var(--ink-mute);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    pointer-events: none;
+  }
+  .status-bar .time { color: var(--accent-green); font-weight: 700; min-width: 50px; }
+  .status-bar .seg {
+    flex: 1; margin-left: 16px;
+    color: var(--ink);
+    font-family: "Noto Sans SC", -apple-system, "PingFang SC", sans-serif;
+    letter-spacing: 0.04em; font-size: 13px; font-weight: 500;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .status-bar .page { color: var(--ink); font-weight: 700; font-size: 13px; }
+
+  /* stage：窗口层，承载背景 */
+  .stage {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100vh;
+    max-width: 540px;
+    max-height: 960px;
+    overflow: hidden;
+    background: var(--bg);
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: 0 0;
+    margin-top: 36px;
+  }
+  .slides {
+    width: 100%;
+    height: fit-content;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+  .page {
+    width: 100%;
+    height: 100vh;
+    max-width: 540px;
+    max-height: 960px;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+    padding: 106px 48px 60px;
+    display: flex;
+    flex-direction: column;
+  }
+  .slides > .page { position: relative; margin: 0; }
+
+  /* 手机端：禁橡皮筋 + 禁选择 */
+  html, body { overscroll-behavior: none; touch-action: pan-y; -webkit-user-select: none; user-select: none; }
+  [contenteditable="true"] { -webkit-user-select: text; user-select: text; touch-action: manipulation; }
+
+  /* 翻页进度点（手机端右侧） */
+  .page-dots {
+    position: fixed; right: 10px; top: 50%; transform: translateY(-50%);
+    z-index: 50; display: flex; flex-direction: column; gap: 6px;
+    padding: 8px 6px; background: rgba(23,13,2,0.35); border-radius: 12px;
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  }
+  .page-dots .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.4); transition: all 0.3s;
+  }
+  .page-dots .dot.on { background: var(--accent-yellow, #fff3a0); width: 6px; height: 18px; border-radius: 3px; }
+  .page-dots { display: none; }
+  @media (max-width: 768px) { .page-dots { display: flex; } }
+
+  /* 翻页提示（首屏 3 秒后淡出） */
+  .swipe-hint {
+    position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+    z-index: 50; color: rgba(23,13,2,0.55); font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700;
+    pointer-events: none; opacity: 0; animation: hintFade 3.5s ease-in-out 1.2s forwards;
+  }
+  @keyframes hintFade {
+    0% { opacity: 0; transform: translate(-50%, 10px); }
+    20% { opacity: 1; transform: translate(-50%, 0); }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  @media (min-width: 769px) { .swipe-hint { display: none; } }
+
+  /* 顶部胶囊 */
+  .capsule {
+    position: absolute;
+    top: 36px; left: 48px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid #d5d5d0;
+    border-radius: 999px;
+    padding: 8px 18px 8px 12px;
+    backdrop-filter: blur(4px);
+  }
+  .dots { display: flex; gap: 6px; }
+  .dots span { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .dots span:nth-child(1) { background: #ff5f57; }
+  .dots span:nth-child(2) { background: #febc2e; }
+  .dots span:nth-child(3) { background: #28c840; }
+  .capsule .label { font-size: 15px; font-weight: 500; color: var(--ink); letter-spacing: 0.06em; }
+
+  .page-no {
+    position: absolute; top: 44px; right: 48px;
+    font-size: 15px; color: var(--ink-mute);
+    font-family: "JetBrains Mono", monospace; letter-spacing: 0.05em;
+  }
+
+  .bottom-tag {
+    position: absolute; bottom: 36px; left: 48px;
+    font-size: 14px; color: var(--ink-mute);
+    font-weight: 500; letter-spacing: 0.04em;
+  }
+  .signature {
+    position: absolute; bottom: 36px; right: 48px;
+    font-size: 16px; font-weight: 700; color: var(--ink);
+    letter-spacing: 0.08em;
+  }
+
+  /* 主标题 */
+  h1.title {
+    font-size: 42px; line-height: 1.3; font-weight: 900;
+    color: var(--ink); letter-spacing: 0.04em;
+    margin-top: 24px; margin-bottom: 18px;
+    max-height: 38vh; overflow: hidden;
+  }
+  h1.title .accent-green { background: var(--highlight-green); padding: 0 6px; border-radius: 2px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  h1.title .accent-yellow { background: var(--highlight-yellow); padding: 0 6px; border-radius: 2px; }
+  h1.title .accent-red { background: var(--highlight-red); padding: 0 6px; border-radius: 2px; }
+
+  p.sub { font-size: 19px; line-height: 1.7; color: var(--ink-dim); font-weight: 500; margin-bottom: 20px; letter-spacing: 0.03em; }
+  p.sub strong { color: var(--ink); font-weight: 700; }
+
+  .black-block {
+    background: var(--black-block);
+    color: var(--white-on-black);
+    border-radius: 6px;
+    padding: 26px 28px;
+    margin: 16px 0;
+    font-size: 20px;
+    line-height: 1.75;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+  .black-block .hl-yellow { color: var(--accent-yellow); font-weight: 700; }
+  .black-block .hl-red { color: var(--accent-red); font-weight: 700; }
+  .black-block .hl-green { color: var(--accent-green); font-weight: 700; }
+
+  /* 4 色色卡 */
+  .colors {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .color-card {
+    background: rgba(255,255,255,0.85);
+    border: 1px solid #d5d5d0;
+    border-radius: 8px;
+    padding: 16px;
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .color-swatch {
+    flex: 0 0 56px;
+    width: 56px; height: 56px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+  }
+  .color-info { flex: 1; }
+  .color-name {
+    font-size: 18px; font-weight: 700; color: var(--ink);
+    letter-spacing: 0.02em; margin-bottom: 2px;
+  }
+  .color-hex {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px; color: var(--ink-mute);
+    letter-spacing: 0.04em;
+  }
+  .c-chaju   { background: #b35a3a; }  /* 赤茶橘 */
+  .c-xingyun { background: #6b1f1f; }  /* 星云红 */
+  .c-songlu  { background: #5d3a2a; }  /* 松露棕 */
+  .c-shaohua { background: #d4b896; }  /* 韶华杏 */
+
+  /* 买家原声（4 列） */
+  .quotes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .quote {
+    background: rgba(255,255,255,0.85);
+    border: 1px solid #d5d5d0;
+    border-left: 4px solid var(--accent-green);
+    border-radius: 6px;
+    padding: 12px 16px;
+    backdrop-filter: blur(4px);
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.55;
+    letter-spacing: 0.02em;
+  }
+  .quote::before { content: '"'; color: var(--accent-green); font-weight: 900; margin-right: 4px; }
+  .quote::after { content: '"'; color: var(--accent-green); font-weight: 900; margin-left: 2px; }
+
+  /* 数字 4 卡 */
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.7);
+    border: 1px solid #d5d5d0;
+    border-radius: 8px;
+    padding: 18px 14px;
+    text-align: center;
+    backdrop-filter: blur(4px);
+  }
+  .stat-card .num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .stat-card .num .unit { font-size: 16px; color: var(--ink-mute); margin-left: 2px; }
+  .stat-card .lab { font-size: 12px; color: var(--ink-dim); margin-top: 6px; font-weight: 500; letter-spacing: 0.04em; }
+
+  /* 适合/不适合对比 */
+  .vs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 16px;
+  }
+  .vs-col {
+    background: rgba(255,255,255,0.85);
+    border: 1px solid #d5d5d0;
+    border-radius: 8px;
+    padding: 16px 14px;
+    backdrop-filter: blur(4px);
+  }
+  .vs-col.no { background: rgba(255,255,255,0.5); }
+  .vs-col .head {
+    font-size: 14px; font-weight: 700; margin-bottom: 10px;
+    padding-bottom: 8px; border-bottom: 1px solid #d5d5d0;
+    letter-spacing: 0.08em;
+  }
+  .vs-col.yes .head { color: var(--accent-green); }
+  .vs-col.no .head { color: var(--accent-red); }
+  .vs-col ul { list-style: none; }
+  .vs-col li {
+    font-size: 13px; color: var(--ink); line-height: 1.6;
+    margin-bottom: 6px; padding-left: 16px;
+    position: relative; letter-spacing: 0.02em;
+  }
+  .vs-col.yes li::before { content: "✓"; position: absolute; left: 0; color: var(--accent-green); font-weight: 700; }
+  .vs-col.no li::before { content: "✗"; position: absolute; left: 0; color: var(--accent-red); font-weight: 700; }
+
+  /* 红色印章 */
+  .seal {
+    position: absolute; top: 130px; right: 48px;
+    width: 92px; height: 92px;
+    border: 2.5px solid var(--accent-red);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transform: rotate(-15deg);
+    opacity: 0.85;
+  }
+  .seal .text { color: var(--accent-red); font-size: 16px; font-weight: 900; letter-spacing: 0.05em; text-align: center; line-height: 1.1; }
+
+  /* 标签云 */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .tag-pill {
+    background: rgba(255,255,255,0.85);
+    border: 1px solid #d5d5d0;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--ink-dim);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+
+  /* 图片占位（双击换图） */
+  .img-slot {
+    width: 100%;
+    height: 280px;
+    background: rgba(255,255,255,0.6);
+    border: 1.5px dashed #c5c5c0;
+    border-radius: 8px;
+    margin-top: 18px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-mute);
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+  }
+  .img-slot:hover { border-color: var(--accent-yellow); color: var(--accent-yellow); }
+
+  /* 编辑态 */
+  [contenteditable="true"]:hover {
+    outline: 1px dashed var(--accent-yellow);
+    outline-offset: 4px;
+    cursor: text;
+  }
+  [contenteditable="true"]:focus {
+    outline: 2px solid var(--accent-yellow);
+    outline-offset: 4px;
+    background: #fffdf7;
+    border-radius: 2px;
+  }
+</style>
+</head>
+<body>
+
+<!-- 顶部操作条 -->
+<div class="tip-bar">
+  <span>✏️ 点击文字改 · 双击图片/色卡替换 · 键盘 <kbd>↑</kbd> <kbd>↓</kbd> 翻页 · <kbd>⌘S</kbd> 保存</span>
+  <button class="btn" onclick="saveHTML()">💾 保存 HTML</button>
+</div>
+
+<!-- 启动遮罩 -->
+<div class="start-overlay" id="startOverlay">
+  <div class="start-btn" id="startBtn">
+    <div class="start-ic"></div>
+    <div class="start-tt">▶ 点击开始浏览</div>
+    <div class="start-sub">6 页 · 文旅种草卡 · 五台山</div>
+  </div>
+</div>
+
+<!-- 顶部状态条 -->
+<div class="status-bar">
+  <span id="timeLabel2" class="time">00:00</span>
+  <span id="timeLabel" class="seg">我以为自己来五台山是来拜佛的</span>
+  <span id="pageNo" class="page">1 / 6</span>
+</div>
+
+<div class="stage" id="stage">
+<div class="slides" id="slides">
+
+<!-- 翻页进度点（手机端） -->
+<div class="page-dots" id="pageDots"></div>
+<!-- 翻页提示（首屏 3 秒淡出） -->
+<div class="swipe-hint" id="swipeHint">↓ 下滑翻页</div>
+
+<!-- ============================================ -->
+<!-- P1 · 封面（钩子）                            -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="capsule anim-el" data-delay="0">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <span class="label" contenteditable="true">文旅 · 五台山 · 第 01 期</span>
+  </div>
+  <div class="page-no anim-el" data-delay="0.05">01 / 06</div>
+
+  <h1 class="title anim-el" data-delay="0.3" style="font-size: 40px; line-height: 1.3;">
+    <span style="font-size: 18px; color: var(--accent-red); font-weight: 700; letter-spacing: 0.08em; display: block; margin-bottom: 10px;" contenteditable="true">我以为自己来五台山</span>
+    <span contenteditable="true">是来<span class="accent-yellow" style="font-weight:900;">拜佛</span>的</span><br>
+    <span class="accent-red" contenteditable="true">后来才明白</span><br>
+    <span contenteditable="true">我是来——<span class="accent-green" style="font-weight:900;">拜自己</span>的</span>
+  </h1>
+
+  <div class="img-slot anim-el" data-delay="0.8" ondblclick="replaceSlotImage(this)"
+       title="双击换图">
+    <span>📷 双击此处替换为五台山主景（建议大白塔 / 菩萨顶）</span>
+  </div>
+
+  <div class="bottom-tag anim-el" data-delay="0.5">#五台山 #文殊道场 #山西文旅</div>
+  <div class="signature anim-el" data-delay="0.5">BAISI MEDIA · 跟着百思看中国</div>
+</div>
+
+<!-- ============================================ -->
+<!-- P2 · 地理位置 · 五座台顶                    -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="capsule anim-el" data-delay="0">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <span class="label" contenteditable="true">五台山，不是一座山</span>
+  </div>
+  <div class="page-no anim-el" data-delay="0.05">02 / 06</div>
+
+  <h1 class="title anim-el" data-delay="0.3" style="font-size: 38px; line-height: 1.3;">
+    <span class="accent-green" contenteditable="true">五座台顶</span>环抱，<br>
+    围出<span class="accent-yellow" style="font-weight:900;">一座千年道场</span>
+  </h1>
+
+  <div class="black-block anim-el" data-delay="0.7">
+    <div style="font-size: 16px; line-height: 1.95; font-weight: 500; letter-spacing: 0.02em;">
+      <div>📍 <span class="hl-yellow">东台 · 望海峰</span>　2795m　看云海日出</div>
+      <div>📍 <span class="hl-yellow">北台 · 叶斗峰</span>　3058m　华北屋脊</div>
+      <div>📍 <span class="hl-yellow">中台 · 翠岩峰</span>　2894m　平坦如台</div>
+      <div>📍 <span class="hl-yellow">西台 · 挂月峰</span>　2773m　秋夜挂月</div>
+      <div>📍 <span class="hl-yellow">南台 · 锦绣峰</span>　2485m　花开似锦</div>
+    </div>
+  </div>
+
+  <p class="sub anim-el" data-delay="1.2" style="margin-top: 10px; color: var(--ink-dim); font-size: 14px; font-weight: 500; letter-spacing: 0.04em;">
+    山西 · 忻州 · 海拔跨度 2485—3058m
+  </p>
+
+  <div class="bottom-tag anim-el" data-delay="0.5">#五台 · 一山五顶</div>
+  <div class="signature anim-el" data-delay="0.5">BAISI MEDIA</div>
+</div>
+
+<!-- ============================================ -->
+<!-- P3 · 文化底蕴 · 文殊菩萨道场                 -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="capsule anim-el" data-delay="0">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <span class="label" contenteditable="true">这里，是文殊菩萨的家</span>
+  </div>
+  <div class="page-no anim-el" data-delay="0.05">03 / 06</div>
+
+  <h1 class="title anim-el" data-delay="0.3" style="font-size: 38px; line-height: 1.3;">
+    一千三百年，<br>
+    <span class="accent-red" contenteditable="true">皇帝<span style="font-size:24px;">也来</span>朝台</span>
+  </h1>
+
+  <div class="stack anim-el" data-delay="0.8" style="margin-top: 16px;">
+    <div class="stack-row">
+      <div class="name">显通寺 <span class="ver" style="font-size:13px;">— 最早的青庙</span></div>
+      <div class="desc" style="font-size:14px;">始建于东汉　全国重点文物保护单位</div>
+    </div>
+    <div class="stack-row">
+      <div class="name">塔院寺 <span class="ver" style="font-size:13px;">— 大白塔是地标</span></div>
+      <div class="desc" style="font-size:14px;">藏式白塔　五台山的眼睛</div>
+    </div>
+    <div class="stack-row">
+      <div class="name">菩萨顶 <span class="ver" style="font-size:13px;">— 黄庙之冠</span></div>
+      <div class="desc" style="font-size:14px;">108 级台阶　康熙乾隆都题过字</div>
+    </div>
+  </div>
+
+  <div class="bottom-tag anim-el" data-delay="0.5">#文殊道场 · 千年香火</div>
+  <div class="signature anim-el" data-delay="0.5">BAISI MEDIA</div>
+</div>
+
+<!-- ============================================ -->
+<!-- P4 · 视觉奇观 · 四时之美                     -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="capsule anim-el" data-delay="0">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <span class="label" contenteditable="true">春夏秋冬，各有各的来法</span>
+  </div>
+  <div class="page-no anim-el" data-delay="0.05">04 / 06</div>
+
+  <h1 class="title anim-el" data-delay="0.3" style="font-size: 36px; line-height: 1.3;">
+    我见过<span class="accent-green" contenteditable="true">四次</span>五台山，<br>
+    <span class="accent-yellow" style="font-weight:900;">每一次都不一样</span>
+  </h1>
+
+  <div class="scenes anim-el" data-delay="0.9" style="margin-top: 16px;">
+    <div class="scene-card">
+      <div class="ic">🌅</div>
+      <div class="ti">春·东台日出</div>
+      <div class="de">凌晨四点<br>云海翻金边</div>
+    </div>
+    <div class="scene-card">
+      <div class="ic">🌿</div>
+      <div class="ti">夏·高山草甸</div>
+      <div class="de">牛羊成片<br>野花铺到脚边</div>
+    </div>
+    <div class="scene-card">
+      <div class="ic">🍁</div>
+      <div class="ti">秋·挂月峰</div>
+      <div class="de">满山红黄<br>月亮落在林梢</div>
+    </div>
+    <div class="scene-card">
+      <div class="ic">❄️</div>
+      <div class="ti">冬·北台飞雪</div>
+      <div class="de">-30℃<br>雪把塔尖磨亮</div>
+    </div>
+  </div>
+
+  <div class="bottom-tag anim-el" data-delay="0.5">#四时之美</div>
+  <div class="signature anim-el" data-delay="0.5">BAISI MEDIA</div>
+</div>
+
+<!-- ============================================ -->
+<!-- P5 · 实用信息 · 怎么去·避坑                  -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="capsule anim-el" data-delay="0">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <span class="label" contenteditable="true">给准备出发的你</span>
+  </div>
+  <div class="page-no anim-el" data-delay="0.05">05 / 06</div>
+
+  <h1 class="title anim-el" data-delay="0.3" style="font-size: 36px; line-height: 1.3;">
+    4 件<span class="accent-yellow" style="font-weight:900;">过来人才知道</span>的事
+  </h1>
+
+  <div class="black-block anim-el" data-delay="0.7">
+    <div style="font-size: 15px; line-height: 1.95; font-weight: 500; letter-spacing: 0.02em;">
+      <div>① <span class="hl-green">最佳季节</span>　6—9 月　冬季必查封山</div>
+      <div>② <span class="hl-green">必到点位</span>　大白塔·显通寺·菩萨顶</div>
+      <div>③ <span class="hl-red">避坑</span>　<span class="hl-yellow">别在台怀镇</span>买高价香</div>
+      <div>④ <span class="hl-red">着装</span>　<span class="hl-yellow">冲锋衣</span>必备　山顶比山脚低 12℃</div>
+    </div>
+  </div>
+
+  <p class="sub anim-el" data-delay="1.2" style="margin-top: 10px; color: var(--ink); font-size: 14px; font-weight: 600; letter-spacing: 0.04em;">
+    高速直达 · 太原自驾约 3 小时
+  </p>
+
+  <div class="bottom-tag anim-el" data-delay="0.5">#出行指南 · 避坑</div>
+  <div class="signature anim-el" data-delay="0.5">BAISI MEDIA</div>
+</div>
+
+<!-- ============================================ -->
+<!-- P6 · 结尾召唤 · 房琪式金句                    -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="capsule anim-el" data-delay="0">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <span class="label" contenteditable="true">写到最后</span>
+  </div>
+  <div class="page-no anim-el" data-delay="0.05">06 / 06</div>
+
+  <div class="seal anim-el" data-delay="0">
+    <div class="text">可<br>收<br>藏</div>
+  </div>
+
+  <h1 class="title anim-el" data-delay="0.3" style="font-size: 34px; line-height: 1.35;">
+    我到五台山那天，<br>
+    山上<span class="accent-red" contenteditable="true">下了雪</span>。<br>
+    僧人扫雪，<br>
+    <span class="accent-yellow" style="font-weight:900;">比游客还慢</span>。
+  </h1>
+
+  <div class="black-block anim-el" data-delay="0.8" style="background: #fff; color: var(--ink); border: 1.5px solid var(--ink);">
+    <div style="font-size: 18px; font-weight: 700; margin-bottom: 8px; letter-spacing: 0.04em; line-height: 1.6;" contenteditable="true">
+      他们知道——<br>
+      雪自己会停
+    </div>
+    <div style="font-size: 16px; color: var(--ink-dim); letter-spacing: 0.04em; line-height: 1.6;" contenteditable="true">
+      我来五台山，从不求什么。<br>
+      只是想——<br>
+      <span style="color: var(--accent-green); font-weight: 700;">活得像那个扫雪的人</span>
+    </div>
+  </div>
+
+  <div class="tag-row anim-el" data-delay="1.5">
+    <span class="tag-pill" contenteditable="true">#五台山</span>
+    <span class="tag-pill" contenteditable="true">#文殊道场</span>
+    <span class="tag-pill" contenteditable="true">#山西文旅</span>
+    <span class="tag-pill" contenteditable="true">#房琪式文案</span>
+    <span class="tag-pill" contenteditable="true">#诗与远方</span>
+  </div>
+
+  <div class="bottom-tag anim-el" data-delay="0.5">评论区告诉我：你的「第一座山」是哪儿？</div>
+  <div class="signature anim-el" data-delay="0.5">BAISI MEDIA · 跟着百思看中国</div>
+</div>
+
+</div><!-- /.slides -->
+</div><!-- /.stage -->
+
+<script>
+  // ========== 翻页逻辑（无音频） ==========
+  const slides = document.getElementById('slides');
+  const pages = document.querySelectorAll('.page');
+  const total = pages.length;
+  let current = 0;
+  const labels = [
+    '我以为自己来五台山是来拜佛的',
+    '五台山，不是一座山',
+    '这里，是文殊菩萨的家',
+    '春夏秋冬，各有各的来法',
+    '给准备出发的你',
+    '写到最后',
+  ];
+
+  // 翻页（含进度点高亮）
+  function go(idx) {
+    if (idx < 0) idx = 0;
+    if (idx > total - 1) idx = total - 1;
+    current = idx;
+    const pageH = pages[0].offsetHeight;
+    slides.style.transform = `translateY(-${current * pageH}px)`;
+    document.getElementById('timeLabel').textContent = labels[current];
+    document.getElementById('pageNo').textContent = `${current + 1} / ${total}`;
+    if (typeof dots !== 'undefined') {
+      dots.forEach((d, i) => d.classList.toggle('on', i === current));
+    }
+    animateCurrentPage();
+  }
+
+  function animateCurrentPage() {
+    const page = pages[current];
+    if (!page) return;
+    const els = page.querySelectorAll('.anim-el');
+    els.forEach((el, i) => {
+      const delay = parseFloat(el.dataset.delay || (i * 0.1).toFixed(2));
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(14px)';
+      el.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+      setTimeout(() => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, delay * 1000);
+    });
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+      e.preventDefault(); go(current + 1);
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault(); go(current - 1);
+    } else if (e.key === 'Home') { go(0); }
+    else if (e.key === 'End') { go(total - 1); }
+  });
+
+  // 滚轮翻页（桌面）
+  let wheelLock = false;
+  document.addEventListener('wheel', e => {
+    if (wheelLock) return;
+    if (Math.abs(e.deltaY) < 20) return;
+    wheelLock = true;
+    if (e.deltaY > 0) go(current + 1);
+    else go(current - 1);
+    setTimeout(() => wheelLock = false, 600);
+  }, { passive: true });
+
+  // 触摸翻页（手机）
+  let touchStartY = 0, touchStartX = 0, touchStartT = 0, touchLock = false;
+  document.addEventListener('touchstart', e => {
+    if (e.target.closest('[contenteditable="true"]')) return; // 编辑态下不抢
+    touchStartY = e.touches[0].clientY;
+    touchStartX = e.touches[0].clientX;
+    touchStartT = Date.now();
+    touchLock = false;
+  }, { passive: true });
+  document.addEventListener('touchend', e => {
+    if (e.target.closest('[contenteditable="true"]')) return;
+    if (touchLock) return;
+    const t = e.changedTouches[0];
+    const dy = t.clientY - touchStartY;
+    const dx = t.clientX - touchStartX;
+    const dt = Date.now() - touchStartT;
+    // 垂直滑动距离 > 40px 且占比 > 横向 1.5 倍 + 时长 < 800ms
+    if (Math.abs(dy) > 40 && Math.abs(dy) > Math.abs(dx) * 1.5 && dt < 800) {
+      touchLock = true;
+      if (dy < 0) go(current + 1); // 向上滑 → 下一页
+      else go(current - 1);         // 向下滑 → 上一页
+      setTimeout(() => touchLock = false, 600);
+    }
+  }, { passive: true });
+
+  // 进度点初始化
+  const dotsContainer = document.getElementById('pageDots');
+  pages.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' on' : '');
+    d.dataset.idx = i;
+    d.addEventListener('click', () => go(i));
+    dotsContainer.appendChild(d);
+  });
+  var dots = dotsContainer.querySelectorAll('.dot');
+  // 初始化第一页高亮
+  dots.forEach((d, i) => d.classList.toggle('on', i === 0));
+
+  // 启动遮罩
+  document.getElementById('startOverlay').addEventListener('click', () => {
+    document.getElementById('startOverlay').style.display = 'none';
+    setTimeout(() => animateCurrentPage(), 50);
+  });
+
+  // 加载时首屏动画
+  setTimeout(() => animateCurrentPage(), 200);
+
+  // 双击图片槽位换图
+  function replaceSlotImage(el) {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = e => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        el.style.backgroundImage = `url(${ev.target.result})`;
+        el.textContent = '';
+      };
+      reader.readAsDataURL(file);
+    };
+    input.click();
+  }
+
+  // 双击色卡弹颜色选择器
+  function replaceColor(swatch) {
+    const input = document.createElement('input');
+    input.type = 'color';
+    input.value = '#d4b896';
+    input.onchange = e => swatch.style.background = e.target.value;
+    input.click();
+  }
+
+  // 保存为 HTML
+  function saveHTML() {
+    const clone = document.documentElement.cloneNode(true);
+    const tip = clone.querySelector('.tip-bar');
+    const overlay = clone.querySelector('.start-overlay');
+    if (tip) tip.remove();
+    if (overlay) overlay.remove();
+    // 清除动画初始隐藏状态
+    clone.querySelectorAll('.anim-el').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+    const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'douyin-carousel-' + new Date().toISOString().slice(0, 10) + '.html';
+    a.click();
+    URL.revokeObjectURL(url);
+
+    const btn = document.querySelector('.tip-bar .btn');
+    const orig = btn.textContent;
+    btn.textContent = '✓ 已保存';
+    setTimeout(() => btn.textContent = orig, 1800);
+  }
+
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+      e.preventDefault();
+      saveHTML();
+    }
+  });
+</script>
+
+</body>
+</html>

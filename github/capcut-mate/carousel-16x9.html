@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CapCut Mate · 项目分析（16:9 横版）</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f5f3;
+    --grid: #e5e5e0;
+    --ink: #1a1a1a;
+    --ink-dim: #5a5a5a;
+    --ink-mute: #8a8a8a;
+    --accent-red: #e63946;
+    --accent-yellow: #f4c430;
+    --accent-green: #2ecc71;
+    --highlight-green: #c5f48a;
+    --highlight-yellow: #fff3a0;
+    --highlight-red: #ffb8b8;
+    --black-block: #111;
+    --white-on-black: #f5f5f3;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #000;
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont,
+                 "PingFang SC", "Helvetica Neue", sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  /* 启动遮罩 */
+  .start-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    cursor: pointer;
+    backdrop-filter: blur(3px);
+  }
+  .start-btn {
+    text-align: center;
+    animation: startPulse 2s ease-in-out infinite;
+  }
+  @keyframes startPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+  }
+  .start-ic {
+    width: 100px; height: 100px;
+    background: linear-gradient(135deg, var(--accent-green), #5ee4a7);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 50px rgba(94, 224, 167, 0.4);
+  }
+  .start-ic::after {
+    content: "";
+    width: 0; height: 0;
+    border-left: 28px solid #0b0d12;
+    border-top: 18px solid transparent;
+    border-bottom: 18px solid transparent;
+    margin-left: 8px;
+  }
+  .start-tt {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: 0.04em;
+  }
+  .start-sub {
+    color: rgba(255,255,255,0.55);
+    font-size: 13px;
+    letter-spacing: 0.03em;
+  }
+
+  /* 顶部状态条 */
+  .status-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 100;
+    color: var(--ink-mute);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    pointer-events: none;
+    backdrop-filter: blur(8px);
+  }
+  .status-bar .time {
+    color: var(--accent-green);
+    font-weight: 700;
+    min-width: 42px;
+  }
+  .status-bar .seg {
+    flex: 1;
+    margin-left: 12px;
+    color: var(--ink);
+    font-family: "Noto Sans SC", -apple-system, "PingFang SC", sans-serif;
+    letter-spacing: 0.04em;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .status-bar .page {
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 12px;
+  }
+
+  /* 单页容器 16:9 */
+  .page {
+    width: 100vw;
+    height: 100vh;
+    max-width: 960px;
+    max-height: 540px;
+    margin: 0 auto;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+    padding: 40px 52px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .stage {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    max-width: 960px;
+    max-height: 540px;
+    overflow: hidden;
+    background: var(--bg);
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: 0 0;
+  }
+  .slides {
+    width: 100%;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+  .slides > .page {
+    position: relative;
+    margin: 0;
+  }
+
+  /* 顶部胶囊 */
+  .capsule {
+    position: absolute;
+    top: 24px;
+    left: 52px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid #d5d5d0;
+    border-radius: 999px;
+    padding: 6px 14px 6px 10px;
+    backdrop-filter: blur(4px);
+  }
+  .dots {
+    display: flex;
+    gap: 5px;
+  }
+  .dots span {
+    width: 8px; height: 8px; border-radius: 50%;
+    display: inline-block;
+  }
+  .dots span:nth-child(1) { background: #ff5f57; }
+  .dots span:nth-child(2) { background: #febc2e; }
+  .dots span:nth-child(3) { background: #28c840; }
+  .capsule .label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.06em;
+  }
+
+  .page-no {
+    position: absolute;
+    top: 30px;
+    right: 52px;
+    font-size: 13px;
+    color: var(--ink-mute);
+    font-family: "JetBrains Mono", monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .signature {
+    position: absolute;
+    bottom: 20px;
+    right: 52px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.08em;
+  }
+  .bottom-tag {
+    position: absolute;
+    bottom: 20px;
+    left: 52px;
+    font-size: 12px;
+    color: var(--ink-mute);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* 主标题 */
+  h1.title {
+    font-size: 42px;
+    line-height: 1.25;
+    font-weight: 900;
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    margin-top: 12px;
+    margin-bottom: 14px;
+    max-height: 40vh;
+    overflow: hidden;
+  }
+  h1.title .accent-green {
+    background: var(--highlight-green);
+    padding: 0 6px;
+    border-radius: 2px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  h1.title .accent-yellow {
+    background: var(--highlight-yellow);
+    padding: 0 6px;
+    border-radius: 2px;
+  }
+  h1.title .accent-red {
+    background: var(--highlight-red);
+    padding: 0 6px;
+    border-radius: 2px;
+  }
+
+  p.sub {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-dim);
+    font-weight: 500;
+    margin-bottom: 14px;
+    letter-spacing: 0.03em;
+  }
+  p.sub strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .black-block {
+    background: var(--black-block);
+    color: var(--white-on-black);
+    border-radius: 6px;
+    padding: 20px 24px;
+    font-size: 18px;
+    line-height: 1.65;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    flex-shrink: 0;
+  }
+  .black-block .hl-yellow { color: var(--accent-yellow); font-weight: 700; }
+  .black-block .hl-red { color: var(--accent-red); font-weight: 700; }
+
+  /* ====== 16:9 专用布局 ====== */
+
+  /* 左右分栏 */
+  .row-2 {
+    display: flex;
+    gap: 28px;
+    flex: 1;
+    align-items: flex-start;
+    min-height: 0;
+  }
+  .row-2 > .col-l { flex: 1; min-width: 0; }
+  .row-2 > .col-r { flex: 1; min-width: 0; }
+
+  /* 4 列水平 */
+  .row-4 {
+    display: flex;
+    gap: 10px;
+    flex: 1;
+    min-height: 0;
+  }
+  .row-4 > * { flex: 1; min-width: 0; }
+
+  /* 统计卡片 — 4 个横排 */
+  .stats-h {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  .stats-h .stat-card {
+    flex: 1;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid #d5d5d0;
+    border-radius: 8px;
+    padding: 16px 10px;
+    text-align: center;
+    backdrop-filter: blur(4px);
+  }
+  .stats-h .stat-card .num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .stats-h .stat-card .num .unit {
+    font-size: 16px;
+    color: var(--ink-mute);
+    margin-left: 2px;
+  }
+  .stats-h .stat-card .lab {
+    font-size: 12px;
+    color: var(--ink-dim);
+    margin-top: 4px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* API 网格 — 3×3 */
+  .api-grid-w {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .api-grid-w .api-cell {
+    background: rgba(255,255,255,0.7);
+    border: 1px solid #d5d5d0;
+    border-radius: 5px;
+    padding: 10px 6px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    backdrop-filter: blur(4px);
+    letter-spacing: 0.02em;
+  }
+  .api-grid-w .api-cell.hl {
+    background: var(--black-block);
+    color: var(--white-on-black);
+    border-color: var(--black-block);
+  }
+
+  /* 3 步流程 — 水平 */
+  .steps-h {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .steps-h .step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid #d5d5d0;
+    border-radius: 8px;
+    padding: 14px 16px;
+    backdrop-filter: blur(4px);
+    text-align: center;
+  }
+  .steps-h .step .num {
+    width: 44px; height: 44px;
+    margin: 0 auto;
+    background: var(--black-block);
+    color: var(--white-on-black);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 24px;
+    font-weight: 700;
+    font-style: italic;
+  }
+  .steps-h .step .t {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+  .steps-h .step .d {
+    font-size: 12px;
+    color: var(--ink-dim);
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
+
+  /* 3 种玩法 — 水平卡片 */
+  .stack-h {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  .stack-h .stack-card {
+    flex: 1;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid #d5d5d0;
+    border-radius: 8px;
+    padding: 16px 18px;
+    backdrop-filter: blur(4px);
+    text-align: center;
+  }
+  .stack-h .stack-card .name {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+  .stack-h .stack-card .name .ver {
+    display: block;
+    color: var(--ink-mute);
+    font-weight: 400;
+    font-size: 13px;
+    margin-top: 2px;
+  }
+  .stack-h .stack-card .desc {
+    font-size: 13px;
+    color: var(--ink-dim);
+    line-height: 1.55;
+    letter-spacing: 0.02em;
+  }
+
+  /* 4 场景 — 水平卡片 */
+  .scenes-h {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .scenes-h .scene-card {
+    flex: 1;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid #d5d5d0;
+    border-radius: 8px;
+    padding: 14px 12px;
+    backdrop-filter: blur(4px);
+    text-align: center;
+  }
+  .scenes-h .scene-card .ic { font-size: 24px; margin-bottom: 4px; }
+  .scenes-h .scene-card .ti { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 3px; letter-spacing: 0.02em; }
+  .scenes-h .scene-card .de { font-size: 12px; color: var(--ink-dim); line-height: 1.5; letter-spacing: 0.02em; }
+
+  /* 适合 / 不适合 — 左右两列 */
+  .vs-h {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  .vs-h .vs-col {
+    flex: 1;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid #d5d5d0;
+    border-radius: 8px;
+    padding: 14px 16px;
+    backdrop-filter: blur(4px);
+  }
+  .vs-h .vs-col.no { background: rgba(255,255,255,0.5); }
+  .vs-h .vs-col .head {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #d5d5d0;
+    letter-spacing: 0.08em;
+  }
+  .vs-h .vs-col.yes .head { color: var(--accent-green); }
+  .vs-h .vs-col.no .head { color: var(--accent-red); }
+  .vs-h .vs-col ul { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+  .vs-h .vs-col li {
+    font-size: 12px;
+    color: var(--ink);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+    letter-spacing: 0.02em;
+  }
+  .vs-h .vs-col.yes li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--accent-green);
+    font-weight: 700;
+  }
+  .vs-h .vs-col.no li::before {
+    content: "✗";
+    position: absolute;
+    left: 0;
+    color: var(--accent-red);
+    font-weight: 700;
+  }
+
+  /* 印章 */
+  .seal {
+    position: absolute;
+    top: 90px;
+    right: 52px;
+    width: 72px;
+    height: 72px;
+    border: 2px solid var(--accent-red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-15deg);
+    opacity: 0.85;
+  }
+  .seal .text {
+    color: var(--accent-red);
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    text-align: center;
+    line-height: 1.1;
+  }
+
+  /* 代码块 */
+  .code-block {
+    background: #1e1e1e;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #d4d4d4;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    flex-shrink: 0;
+  }
+  .code-block .bar {
+    display: flex; gap: 5px; margin-bottom: 8px;
+  }
+  .code-block .bar span {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+  .code-block .bar span:nth-child(1) { background: #ff5f57; }
+  .code-block .bar span:nth-child(2) { background: #febc2e; }
+  .code-block .bar span:nth-child(3) { background: #28c840; }
+  .code-block .ln { color: #6a9955; }
+  .code-block .kw { color: #569cd6; }
+  .code-block .str { color: #ce9178; }
+  .code-block .fn { color: #dcdcaa; }
+  .code-block .c { color: #888; }
+  .code-block .cursor {
+    display: inline-block;
+    width: 8px; height: 16px;
+    background: var(--accent-yellow);
+    vertical-align: middle;
+    margin-left: 2px;
+    animation: blink 1s steps(2) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* 标签云 */
+  .tag-row {
+    display: flex; flex-wrap: wrap; gap: 5px;
+    flex-shrink: 0;
+  }
+  .tag-pill {
+    background: rgba(255,255,255,0.85);
+    border: 1px solid #d5d5d0;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--ink-dim);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+
+  p.body {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+  p.body strong { font-weight: 800; }
+
+  /* 内容居中辅助 */
+  .center-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+    min-height: 0;
+  }
+/* ===== 通用入场动画（由 JS 行内样式驱动）===== */
+</style>
+</head>
+<body>
+
+<audio id="audio" preload="auto" playsinline>
+  <source src="audio-1.3x.mp3" type="audio/mpeg">
+</audio>
+
+<div class="start-overlay" id="startOverlay">
+  <div class="start-btn" id="startBtn">
+    <div class="start-ic"></div>
+    <div class="start-tt">▶ 点击开始播放</div>
+    <div class="start-sub">口播 87.75 秒 · 自动同步翻页</div>
+  </div>
+</div>
+
+<div class="status-bar">
+  <span id="timeLabel2" class="time">00:00</span>
+  <span id="timeLabel" class="seg">点击屏幕开始</span>
+  <span id="pageNo" class="page">1/8</span>
+</div>
+
+<div class="stage" id="stage">
+<div class="slides" id="slides">
+
+<!-- ========== 第 1 页 · 封面 ========== -->
+<div class="page">
+  <div class="capsule anim-el" data-delay="0">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <span class="label">案例分享 · capcut-mate</span>
+  </div>
+  <div class="page-no anim-el" data-delay="0.05">01 / 08</div>
+
+  <div class="row-2" style="align-items:center;">
+    <div class="col-l">
+      <h1 class="title anim-el" data-delay="0.3" style="font-size:44px; line-height:1.2; margin-top:0; margin-bottom:0;">
+        兄弟们，我<span class="accent-green">摊牌了</span><br>
+        以后剪视频，<br>
+        <span class="accent-yellow">人真的不用</span><br>
+        再动手了
+      </h1>
+    </div>
+    <div class="col-r">
+      <div class="code-block anim-el" data-delay="0.8">
+        <div class="bar"><span></span><span></span><span></span></div>
+        <div><span class="c"># 一个开源项目做到了</span></div>
+        <div><span class="ln">$</span> <span class="fn">AI</span> 写脚本 → 调剪映 API</div>
+        <div><span class="ln">$</span> <span class="fn">AI</span> 渲染 → 出成片</div>
+        <div><span class="c"># → AI 全自动剪辑</span><span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-tag anim-el" data-delay="0.5">#AI工具 #开源项目 #短视频自动化</div>
+</div>
+
+<!-- ========== 第 2 页 · 实验 + 三步 ========== -->
+<div class="page">
+  <div class="capsule anim-el" data-delay="0">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <span class="label">前几天我做了个实验</span>
+  </div>
+  <div class="page-no anim-el" data-delay="0.05">02 / 08</div>
+
+  <h1 class="title anim-el" data-delay="0.3" style="font-size:42px; line-height:1.2;">
+    前几天我做了个<span class="accent-green">实验</span>
+  </h1>
+  <p class="sub" style="font-size:15px; margin-bottom:10px;">把素材扔给 AI，让它<span style="color:var(--accent-green); font-weight:700;">自己看</span>、<span style="color:var(--accent-green); font-weight:700;">自己写脚本</span>——</p>
+
+  <div class="steps-h anim-el" data-delay="0.9">
+    <div class="step">
+      <div class="num">1</div>
+      <div class="t">把素材扔给 AI</div>
+      <div class="d">让它<span style="color:var(--accent-green); font-weight:700;">自己看</span></div>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <div class="t">让 AI 自己写</div>
+      <div class="d">写<span style="color:var(--accent-green); font-weight:700;">剪辑脚本</span></div>
+    </div>
+    <div class="step" style="border:2px solid var(--accent-red);">
+      <div class="num" style="background:var(--accent-red); color:#fff;">3</div>
+      <div class="t" style="color:var(--accent-red);">最狠的一步</div>
+      <div class="d">AI 直接调剪映 API，生成整个<span style="color:var(--accent-red); font-weight:700;">草稿</span></div>
+    </div>
+  </div>
+
+  <p style="margin-top:12px; text-align:center; color:var(--ink); font-size:16px; font-weight:700; letter-spacing:0.04em; flex-shrink:0;">
+    ✋ 整个过程，我连手都没碰一下
+  </p>
+
+  <div class="bottom-tag anim-el" data-delay="0.5">#一个实验</div>
+</div>
+
+<!-- ========== 第 3 页 · 转折 ========== -->
+<div class="page">
+  <div class="capsule anim-el" data-delay="0">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <span class="label">转折点</span>
+  </div>
+  <div class="page-no anim-el" data-delay="0.05">03 / 08</div>
+
+  <div class="center-box">
+    <h1 class="title anim-el" data-delay="0.3" style="font-size:44px; line-height:1.2; margin-top:0; margin-bottom:18px;">
+      你知道这意味着<br>
+      什么吗？
+    </h1>
+
+    <div class="black-block anim-el" data-delay="0.6" style="padding:28px 48px;">
+      <div style="font-size:34px; font-weight:900; margin-bottom:20px; letter-spacing:0.04em;">
+        不是 <span style="color: var(--accent-red);">"AI 辅助剪辑"</span>
+      </div>
+      <div style="font-size:34px; font-weight:900; color: var(--accent-yellow); letter-spacing:0.04em;">
+        是 "AI 全自动剪辑"
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-tag anim-el" data-delay="0.5">#一个转折</div>
+</div>
+
+<!-- ========== 第 4 页 · 项目亮相 ========== -->
+<div class="page">
+  <div class="capsule anim-el" data-delay="0">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <span class="label">这个项目叫</span>
+  </div>
+  <div class="page-no anim-el" data-delay="0.05">04 / 08</div>
+
+  <div class="row-2" style="align-items:center;">
+    <div class="col-l">
+      <h1 class="title anim-el" data-delay="0.3" style="font-size:42px; line-height:1.2; margin-top:0;">
+        这个项目叫<br>
+        <span class="accent-green" style="font-family:'JetBrains Mono', monospace;">capcut-mate</span>
+      </h1>
+      <p class="sub" style="font-size:16px; margin-bottom:0;">
+        把<span style="color:var(--accent-green); font-weight:700;">剪映的剪辑能力</span>，做成了 <strong>31 个 REST API</strong>
+      </p>
+    </div>
+    <div class="col-r">
+      <div class="api-grid-w anim-el" data-delay="1.0">
+        <div class="api-cell hl">创建草稿</div>
+        <div class="api-cell hl">保存草稿</div>
+        <div class="api-cell hl">获取草稿</div>
+        <div class="api-cell">添加视频</div>
+        <div class="api-cell">添加图片</div>
+        <div class="api-cell">添加音频</div>
+        <div class="api-cell">添加字幕</div>
+        <div class="api-cell">添加特效</div>
+        <div class="api-cell">生成视频</div>
+      </div>
+      <p style="margin-top:8px; text-align:center; font-size:13px; color:var(--ink-dim); letter-spacing:0.04em;">
+        + 转场 / 关键帧 / 蒙版 / 22 个辅助接口
+      </p>
+    </div>
+  </div>
+  <div class="bottom-tag anim-el" data-delay="0.5">#核心信息</div>
+</div>
+
+<!-- ========== 第 5 页 · 三种玩法 ========== -->
+<div class="page">
+  <div class="capsule anim-el" data-delay="0">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <span class="label">三种玩法</span>
+  </div>
+  <div class="page-no anim-el" data-delay="0.05">05 / 08</div>
+
+  <h1 class="title anim-el" data-delay="0.3" style="font-size:42px; line-height:1.2;">
+    三种<span class="accent-yellow">玩法</span>，总有一种适合你
+  </h1>
+
+  <div class="stack-h anim-el" data-delay="1.0">
+    <div class="stack-card">
+      <div class="name">Docker <span class="ver">一行命令本地跑</span></div>
+      <div class="desc">docker-compose up -d<br>→ 31 个 API 在线文档</div>
+    </div>
+    <div class="stack-card">
+      <div class="name">扣子 Coze <span class="ver">工作流直接调</span></div>
+      <div class="desc">官方插件已上架<br>工作流里一键调用</div>
+    </div>
+    <div class="stack-card">
+      <div class="name">桌面客户端 <span class="ver">Win / Mac</span></div>
+      <div class="desc">下载草稿到本地<br>在剪映里继续精修</div>
+    </div>
+  </div>
+
+  <div class="bottom-tag anim-el" data-delay="0.5">#三种部署方式</div>
+</div>
+
+<!-- ========== 第 6 页 · 应用场景 ========== -->
+<div class="page">
+  <div class="capsule anim-el" data-delay="0">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <span class="label">应用场景</span>
+  </div>
+  <div class="page-no anim-el" data-delay="0.05">06 / 08</div>
+
+  <h1 class="title anim-el" data-delay="0.3" style="font-size:42px; line-height:1.2;">
+    模板化的视频，<span class="accent-green">它都能干</span>
+  </h1>
+
+  <div class="scenes-h anim-el" data-delay="1.0">
+    <div class="scene-card">
+      <div class="ic">📱</div>
+      <div class="ti">矩阵号</div>
+      <div class="de">批量出片，剪辑师都不用请了</div>
+    </div>
+    <div class="scene-card">
+      <div class="ic">🛒</div>
+      <div class="ti">电商混剪</div>
+      <div class="de">100 个商品视频，AI 半小时搞定</div>
+    </div>
+    <div class="scene-card">
+      <div class="ic">🎓</div>
+      <div class="ti">知识口播</div>
+      <div class="de">稿子写完，草稿已经在剪映里了</div>
+    </div>
+    <div class="scene-card">
+      <div class="ic">🏢</div>
+      <div class="ti">企业培训</div>
+      <div class="de">真正的自动化生产流水线</div>
+    </div>
+  </div>
+
+  <div class="bottom-tag anim-el" data-delay="0.5">#落地场景</div>
+</div>
+
+<!-- ========== 第 7 页 · Apache + 教程 ========== -->
+<div class="page">
+  <div class="capsule anim-el" data-delay="0">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <span class="label">最关键一点</span>
+  </div>
+  <div class="page-no anim-el" data-delay="0.05">07 / 08</div>
+
+  <div class="row-2" style="align-items:center;">
+    <div class="col-l">
+      <h1 class="title anim-el" data-delay="0.3" style="font-size:42px; line-height:1.2; margin-top:0; margin-bottom:8px;">
+        最狠的是<br>
+        <span class="accent-green" style="font-family:'JetBrains Mono', monospace;">Apache-2.0</span><br>
+        完全免费
+      </h1>
+      <p class="sub" style="font-size:16px; margin-bottom:0;">我已经<span style="color:var(--accent-green); font-weight:700;">跑通了</span>全流程</p>
+    </div>
+    <div class="col-r">
+      <div class="black-block anim-el" data-delay="0.6" style="padding:18px 22px;">
+        <div style="font-size:20px; font-weight:700; margin-bottom:8px;">下期给你们放完整教程</div>
+        <div style="font-size:14px; color:var(--ink-dim); line-height:1.6; letter-spacing:0.03em;">
+          从 AI 看素材 → 写脚本 → 调 API<br>
+          到草稿生成 / 云端渲染<br>
+          <span style="color: var(--accent-yellow); font-weight: 700;">手把手 · 上车</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-tag anim-el" data-delay="0.5">#Apache 完全免费</div>
+</div>
+
+<!-- ========== 第 8 页 · 结尾召唤 ========== -->
+<div class="page">
+  <div class="capsule anim-el" data-delay="0">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <span class="label">最后说一句</span>
+  </div>
+  <div class="page-no anim-el" data-delay="0.05">08 / 08</div>
+
+  <div class="seal anim-el" data-delay="0">
+    <div class="text">可<br>收<br>藏</div>
+  </div>
+
+  <div class="row-2" style="align-items:center;">
+    <div class="col-l">
+      <h1 class="title anim-el" data-delay="0.3" style="font-size:42px; line-height:1.2; margin-top:0; margin-bottom:0;">
+        赶紧<span class="accent-green">Star</span><br>
+        别刷着刷着<br>
+        <span class="accent-yellow">就找不到了</span>
+      </h1>
+    </div>
+    <div class="col-r">
+      <div class="black-block anim-el" data-delay="0.6" style="background:#fff; color:var(--ink); border:1.5px solid var(--ink); padding:18px 22px;">
+        <div style="font-size:17px; font-weight:700; margin-bottom:6px; letter-spacing:0.04em;">
+          你最近用 AI 剪过视频吗？
+        </div>
+        <div style="font-size:14px; color:var(--ink-dim); letter-spacing:0.04em;">
+          评论区扣 1，下期带你跑通 👇
+        </div>
+      </div>
+      <div class="tag-row anim-el" data-delay="1.5" style="margin-top:10px;">
+        <span class="tag-pill">#AI工具</span>
+        <span class="tag-pill">#开源项目</span>
+        <span class="tag-pill">#短视频自动化</span>
+        <span class="tag-pill">#capcut-mate</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-tag anim-el" data-delay="0.5">GitHub: Hommy-master/capcut-mate</div>
+</div>
+
+</div><!-- /.slides -->
+</div><!-- /.stage -->
+
+<script>
+  const slides = document.getElementById('slides');
+  const pages = document.querySelectorAll('.page');
+  const total = pages.length;
+  const audio = document.getElementById('audio');
+  let current = 0;
+
+  const TIMELINE = [
+    { t: 0,     slide: 0, label: '兄弟们我摊牌了' },
+    { t: 3.09,  slide: 1, label: '前几天我做了个实验' },
+    { t: 20.84, slide: 2, label: '转折点' },
+    { t: 25.49, slide: 3, label: '这个项目叫 capcut-mate' },
+    { t: 40.14, slide: 4, label: '三种玩法' },
+    { t: 54.0,  slide: 5, label: '应用场景' },
+    { t: 71.02, slide: 6, label: 'Apache 完全免费' },
+    { t: 83.0,  slide: 7, label: 'Star & 扣 1' },
+  ];
+  const TOTAL = 87.75;
+
+  function go(idx) {
+    if (idx < 0) idx = 0;
+    if (idx > total - 1) idx = total - 1;
+    current = idx;
+    const pageH = pages[0].offsetHeight;
+    slides.style.transform = `translateY(-${current * pageH}px)`;
+  }
+
+  function syncFromAudio() {
+    const t = audio.currentTime;
+    let targetSlide = 0;
+    for (let i = TIMELINE.length - 1; i >= 0; i--) {
+      if (t >= TIMELINE[i].t) {
+        targetSlide = TIMELINE[i].slide;
+        break;
+      }
+    }
+    if (targetSlide !== current) {
+      current = targetSlide;
+      const pageH = pages[0].offsetHeight;
+      slides.style.transform = `translateY(-${current * pageH}px)`;
+      const lbl = TIMELINE.find(e => e.slide === current);
+      if (lbl) document.getElementById('timeLabel').textContent = lbl.label;
+      // === 动画 ===
+      animateCurrentPage();
+    }
+    const mm = Math.floor(t / 60);
+    const ss = Math.floor(t % 60);
+    document.getElementById('timeLabel2').textContent =
+      `${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;
+    document.getElementById('pageNo').textContent = `${current + 1} / ${total}`;
+  }
+
+  function animateCurrentPage() {
+    const page = pages[current];
+    if (!page) return;
+    const els = page.querySelectorAll('.anim-el');
+    els.forEach((el, i) => {
+      const delay = parseFloat(el.dataset.delay || (i * 0.1).toFixed(2));
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(14px)';
+      el.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+      setTimeout(() => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, delay * 1000);
+    });
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === ' ' || e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown') {
+      e.preventDefault();
+      audio.currentTime = TIMELINE[Math.min(current + 1, total - 1)].t;
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault();
+      audio.currentTime = TIMELINE[Math.max(current - 1, 0)].t;
+    } else if (e.key === 'Home') {
+      audio.currentTime = 0;
+    } else if (e.key === 'End') {
+      audio.currentTime = TOTAL - 1;
+    }
+  });
+
+  document.getElementById('startOverlay').addEventListener('click', () => {
+    audio.play().then(() => {
+      document.getElementById('startOverlay').style.display = 'none';
+      animateCurrentPage();
+      requestAnimationFrame(tickLoop);
+    });
+  });
+
+  setTimeout(() => animateCurrentPage(), 200);
+
+  function tickLoop() {
+    syncFromAudio();
+    if (!audio.paused && audio.currentTime < TOTAL - 0.1) {
+      requestAnimationFrame(tickLoop);
+    } else if (audio.currentTime >= TOTAL - 0.1) {
+      document.getElementById('startOverlay').style.display = 'flex';
+      document.getElementById('startOverlay').querySelector('.start-tt').textContent = '✓ 已播放完成';
+    }
+  }
+</script>
+
+</body>
+</html>

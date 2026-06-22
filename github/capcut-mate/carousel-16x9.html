@@ -20,6 +20,8 @@
     --highlight-red: #ffb8b8;
     --black-block: #111;
     --white-on-black: #f5f5f3;
+    --design-w: 1280;
+    --design-h: 720;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -113,6 +115,9 @@
     letter-spacing: 0.04em;
     font-size: 12px;
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .status-bar .page {
     color: var(--ink);
@@ -120,17 +125,15 @@
     font-size: 12px;
   }
 
-  /* 单页容器 16:9 */
+  /* 单页容器 16:9 — 设计基准 1280×720，外层 transform: scale 等比缩放 */
   .page {
-    width: 100vw;
-    height: 100vh;
-    max-width: 960px;
-    max-height: 540px;
+    width: 1280px;
+    height: 720px;
     margin: 0 auto;
     background: transparent;
     position: relative;
     overflow: hidden;
-    padding: 40px 52px 32px;
+    padding: 56px 72px 44px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -139,11 +142,9 @@
   .stage {
     position: fixed;
     top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100vw;
-    height: 100vh;
-    max-width: 960px;
-    max-height: 540px;
+    transform-origin: center center;
+    width: 1280px;
+    height: 720px;
     overflow: hidden;
     background: var(--bg);
     background-image:
@@ -615,6 +616,9 @@
 <audio id="audio" preload="auto" playsinline>
   <source src="audio-1.3x.mp3" type="audio/mpeg">
 </audio>
+<audio id="bgm" preload="auto" loop>
+  <source src="bgm.mp3" type="audio/mpeg">
+</audio>
 
 <div class="start-overlay" id="startOverlay">
   <div class="start-btn" id="startBtn">
@@ -625,9 +629,8 @@
 </div>
 
 <div class="status-bar">
-  <span id="timeLabel2" class="time">00:00</span>
-  <span id="timeLabel" class="seg">点击屏幕开始</span>
-  <span id="pageNo" class="page">1/8</span>
+  <span class="time" id="timeLabel2">00:00</span>
+  <span class="seg" id="timeLabel">点击屏幕开始</span>
 </div>
 
 <div class="stage" id="stage">
@@ -916,7 +919,9 @@
   const pages = document.querySelectorAll('.page');
   const total = pages.length;
   const audio = document.getElementById('audio');
+  const bgm = document.getElementById('bgm');
   let current = 0;
+  let lastAnimated = -1; // 上一次触发动画的页码，避免重复隐-显
 
   const TIMELINE = [
     { t: 0,     slide: 0, label: '兄弟们我摊牌了' },
@@ -953,14 +958,16 @@
       slides.style.transform = `translateY(-${current * pageH}px)`;
       const lbl = TIMELINE.find(e => e.slide === current);
       if (lbl) document.getElementById('timeLabel').textContent = lbl.label;
-      // === 动画 ===
-      animateCurrentPage();
+      // === 动画：仅在新进入的页首次触发 ===
+      if (lastAnimated !== current) {
+        animateCurrentPage();
+        lastAnimated = current;
+      }
     }
     const mm = Math.floor(t / 60);
     const ss = Math.floor(t % 60);
     document.getElementById('timeLabel2').textContent =
       `${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;
-    document.getElementById('pageNo').textContent = `${current + 1} / ${total}`;
   }
 
   function animateCurrentPage() {
@@ -996,6 +1003,8 @@
   document.getElementById('startOverlay').addEventListener('click', () => {
     audio.play().then(() => {
       document.getElementById('startOverlay').style.display = 'none';
+      bgm.volume = 0.12;
+      bgm.play().catch(() => {});
       animateCurrentPage();
       requestAnimationFrame(tickLoop);
     });
@@ -1003,11 +1012,25 @@
 
   setTimeout(() => animateCurrentPage(), 200);
 
+  // ========== 16:9 整页等比缩放 ==========
+  // 视口小，画布等比缩小（保持 1280×720 设计基准）
+  function fitStage() {
+    const stage = document.getElementById('stage');
+    if (!stage) return;
+    const sx = window.innerWidth  / 1280;
+    const sy = window.innerHeight / 720;
+    const s  = Math.min(sx, sy);
+    stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+  }
+  window.addEventListener('resize', fitStage);
+  fitStage();
+
   function tickLoop() {
     syncFromAudio();
     if (!audio.paused && audio.currentTime < TOTAL - 0.1) {
       requestAnimationFrame(tickLoop);
     } else if (audio.currentTime >= TOTAL - 0.1) {
+      bgm.pause();
       document.getElementById('startOverlay').style.display = 'flex';
       document.getElementById('startOverlay').querySelector('.start-tt').textContent = '✓ 已播放完成';
     }

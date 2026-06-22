@@ -109,6 +109,9 @@
     letter-spacing: 0.04em;
     font-size: 13px;
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .status-bar .page {
     color: var(--ink);
@@ -586,6 +589,9 @@
 <audio id="audio" preload="auto" playsinline>
   <source src="audio-1.3x.mp3" type="audio/mpeg">
 </audio>
+<audio id="bgm" preload="auto" loop>
+  <source src="bgm.mp3" type="audio/mpeg">
+</audio>
 
 <!-- 启动遮罩（点击开始播放） -->
 <div class="start-overlay" id="startOverlay">
@@ -896,6 +902,7 @@
   const pages = document.querySelectorAll('.page');
   const total = pages.length;
   const audio = document.getElementById('audio');
+  const bgm = document.getElementById('bgm');
   let current = 0;
   let userScrolling = false;
 
@@ -984,6 +991,8 @@
   document.getElementById('startOverlay').addEventListener('click', () => {
     audio.play().then(() => {
       document.getElementById('startOverlay').style.display = 'none';
+      bgm.volume = 0.12;
+      bgm.play().catch(() => {});
       animateCurrentPage(); // 首页入场
       requestAnimationFrame(tickLoop);
     });
@@ -999,6 +1008,7 @@
       requestAnimationFrame(tickLoop);
     } else if (audio.currentTime >= TOTAL - 0.1) {
       // 结束
+      bgm.pause();
       document.getElementById('startOverlay').style.display = 'flex';
       document.getElementById('startOverlay').querySelector('.start-tt').textContent = '✓ 已播放完成';
     }

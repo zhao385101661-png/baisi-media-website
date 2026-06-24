@@ -7,3 +7,10 @@ filler-bg0.webp
 filler-bg03.png
 filler-bg04.png
 1540276733559.jpeg
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example

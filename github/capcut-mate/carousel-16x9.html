@@ -126,6 +126,7 @@
   }
 
   /* 单页容器 16:9 — 设计基准 1280×720，外层 transform: scale 等比缩放 */
+  /* 抖音 16:9 横版安全区：顶部约 70px(标题栏)、底部约 90px(进度条+操作) */
   .page {
     width: 1280px;
     height: 720px;
@@ -133,11 +134,40 @@
     background: transparent;
     position: relative;
     overflow: hidden;
-    padding: 56px 72px 44px;
+    padding: 70px 72px 90px;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
+
+  /* 抖音安全区提示遮罩（仅开发预览用，发布时可隐藏） */
+  .safe-area-guide {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .safe-area-guide.top {
+    top: 0; left: 0; right: 0;
+    height: 70px;
+    background: linear-gradient(to bottom, rgba(230,57,70,0.10), transparent);
+    border-bottom: 1px dashed rgba(230,57,70,0.4);
+  }
+  .safe-area-guide.bottom {
+    bottom: 0; left: 0; right: 0;
+    height: 90px;
+    background: linear-gradient(to top, rgba(230,57,70,0.10), transparent);
+    border-top: 1px dashed rgba(230,57,70,0.4);
+  }
+  .safe-area-guide .label {
+    position: absolute;
+    color: var(--accent-red);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+  }
+  .safe-area-guide.top .label { left: 16px; top: 8px; }
+  .safe-area-guide.bottom .label { right: 16px; bottom: 8px; }
 
   .stage {
     position: fixed;
@@ -161,10 +191,10 @@
     margin: 0;
   }
 
-  /* 顶部胶囊 */
+  /* 顶部胶囊 — 留在安全区外边缘的 padding 内部 */
   .capsule {
     position: absolute;
-    top: 24px;
+    top: 88px;
     left: 52px;
     display: inline-flex;
     align-items: center;
@@ -195,7 +225,7 @@
 
   .page-no {
     position: absolute;
-    top: 30px;
+    top: 94px;
     right: 52px;
     font-size: 13px;
     color: var(--ink-mute);
@@ -205,7 +235,7 @@
 
   .signature {
     position: absolute;
-    bottom: 20px;
+    bottom: 50px;
     right: 52px;
     font-size: 14px;
     font-weight: 700;
@@ -214,7 +244,7 @@
   }
   .bottom-tag {
     position: absolute;
-    bottom: 20px;
+    bottom: 50px;
     left: 52px;
     font-size: 12px;
     color: var(--ink-mute);
@@ -514,7 +544,7 @@
   /* 印章 */
   .seal {
     position: absolute;
-    top: 90px;
+    top: 130px;
     right: 52px;
     width: 72px;
     height: 72px;
@@ -1003,6 +1033,21 @@
   });
 
   setTimeout(() => animateCurrentPage(), 200);
+
+  // ========== 抖音安全区提示遮罩（每页注入） ==========
+  function injectSafeAreaGuides() {
+    document.querySelectorAll('.page').forEach(function (page) {
+      const top = document.createElement('div');
+      top.className = 'safe-area-guide top';
+      top.innerHTML = '<span class="label">安全区 · 顶部 70px</span>';
+      const bottom = document.createElement('div');
+      bottom.className = 'safe-area-guide bottom';
+      bottom.innerHTML = '<span class="label">安全区 · 底部 90px</span>';
+      page.appendChild(top);
+      page.appendChild(bottom);
+    });
+  }
+  injectSafeAreaGuides();
 
   // ========== 16:9 整页等比缩放 ==========
   // 视口小，画布等比缩小（保持 1280×720 设计基准），居中显示
